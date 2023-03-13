@@ -8,7 +8,7 @@ const nextConfig = (phase, { defaultConfig }) => {
     ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
-    basePath: phase === PHASE_DEVELOPMENT_SERVER ? '' : '/next.varbintechcom',
+    // basePath: phase === PHASE_DEVELOPMENT_SERVER ? '' : '/',
   };
 };
 
