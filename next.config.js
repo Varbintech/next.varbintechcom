@@ -1,14 +1,13 @@
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+// const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 /**
  * @type {import('next').NextConfig}
  **/
-const nextConfig = (phase, { defaultConfig }) => {
+const nextConfig = (_phase, { defaultConfig }) => {
   return {
     ...defaultConfig,
     reactStrictMode: true,
     swcMinify: true,
-    // basePath: phase === PHASE_DEVELOPMENT_SERVER ? '' : '/',
   };
 };
 
