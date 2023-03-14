@@ -1,10 +1,8 @@
-import { roboto } from '../../constants/roboto-latin';
-
 import type { ReactChildren } from '../../models/common';
 
 const Main = ({ children }: ReactChildren) => {
   return (
-    <main className={`${roboto.className}`}>
+    <main>
       {children}
     </main>
   );
