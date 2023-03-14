@@ -8,7 +8,14 @@
     "add-domain": "echo \"next.varbintech.com\" > ./out/CNAME"
   },
   "dependencies": {
-    "next": "latest",
+    "@emotion/cache": "11.10.5",
+    "@emotion/react": "11.10.6",
+    "@emotion/server": "11.10.0",
+    "@emotion/styled": "11.10.6",
+    "@mui/icons-material": "5.11.11",
+    "@mui/material": "5.11.13",
+    "next": "13.1.6",
+    "@next/font": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
