@@ -1,3 +1,5 @@
+[![Deploy to GitHub Pages](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy.yml/badge.svg)](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy.yml)
+
 # Deploying to GitHub Pages
 
 This example supports deloying a static Next.js application (using `next export`) to GitHub Pages.
