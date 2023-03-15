@@ -1,12 +1,16 @@
+import React from 'react';
+
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
-import theme from '../theme';
+import lightTheme from '../lightTheme';
+import darkTheme from '../darkTheme';
 import createEmotionCache from '../createEmotionCache';
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -18,6 +22,12 @@ export interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(() => {
+    return prefersDarkMode ? darkTheme : lightTheme;
+  }, [prefersDarkMode]);
 
   return (
     <CacheProvider value={emotionCache}>
