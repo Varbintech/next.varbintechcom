@@ -11,12 +11,10 @@ import Document, {
 import { AppType } from 'next/app';
 
 import createEmotionServer from '@emotion/server/create-instance';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
-import lightTheme from '../lightTheme';
-import darkTheme from '../darkTheme';
 import createEmotionCache from '../createEmotionCache';
 import { inter } from '../constants/inter-latin';
+import { useThemeMode } from '../hooks/use-theme-mode';
 
 import { MyAppProps } from './_app';
 
@@ -25,11 +23,7 @@ interface MyDocumentProps extends DocumentProps {
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(() => {
-    return prefersDarkMode ? darkTheme : lightTheme;
-  }, [prefersDarkMode]);
+  const theme = useThemeMode();
 
   return (
     <Html lang="en" className={inter.className}>

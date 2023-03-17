@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
-import { themeMuiButtonRoot, themeTypography } from 'lightTheme';
+
+import { themeMuiButtonRoot, themeTypography } from './lightTheme';
 
 // Create a theme instance.
 const darkTheme = createTheme({
