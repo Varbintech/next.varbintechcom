@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Document, {
   Html,
   Head,
@@ -10,9 +12,9 @@ import { AppType } from 'next/app';
 
 import createEmotionServer from '@emotion/server/create-instance';
 
-import theme from '../theme';
 import createEmotionCache from '../createEmotionCache';
-import { roboto } from '../constants/roboto-latin';
+import { inter } from '../constants/inter-latin';
+import { useThemeMode } from '../hooks/use-theme-mode';
 
 import { MyAppProps } from './_app';
 
@@ -21,8 +23,10 @@ interface MyDocumentProps extends DocumentProps {
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+  const theme = useThemeMode();
+
   return (
-    <Html lang="en" className={roboto.className}>
+    <Html lang="en" className={inter.className}>
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />

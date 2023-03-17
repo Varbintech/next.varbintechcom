@@ -1,6 +1,8 @@
-import Link from 'next/link';
+import NextjsLink from 'next/link';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 import Main from '../components/common/Main';
@@ -75,6 +77,27 @@ export default function Home() {
           <Typography variant="overline" display="block" gutterBottom>
             overline text
           </Typography>
+        </Box>
+        <Box marginBottom={2}>
+          <Button variant="contained">Contained</Button>
+        </Box>
+        <Box marginBottom={2}>
+          <Button variant="outlined">Outlined</Button>
+        </Box>
+        <Box marginBottom={2}>
+          <Button variant="contained" color="info">
+            Contained Info
+          </Button>
+        </Box>
+        <Box marginBottom={2}>
+          <Button variant="outlined" color="info">
+            Outlined Info
+          </Button>
+        </Box>
+        <Box marginBottom={2}>
+          <Link href="#" variant="body1" component={NextjsLink}>
+            Link
+          </Link>
         </Box>
       </Main>
     </>
