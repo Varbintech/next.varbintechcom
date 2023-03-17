@@ -6,34 +6,34 @@ export const themeTypography = {
   fontFamily: inter.style.fontFamily,
   h1: {
     fontSize: '3.5em',
-    fontWeight: '700',
+    fontWeight: 700,
   },
   h2: {
     fontSize: '2.5em',
-    fontWeight: '700',
+    fontWeight: 700,
   },
   h3: {
     fontSize: '2em',
-    fontWeight: '500',
+    fontWeight: 500,
   },
   h4: {
     fontSize: '1.5em',
-    fontWeight: '500',
+    fontWeight: 500,
   },
   h5: {
     fontSize: '1.25em',
-    fontWeight: '500',
+    fontWeight: 500,
   },
   h6: {
     fontSize: '1.25em',
-    fontWeight: '400',
+    fontWeight: 400,
   },
   body1: {
     lineHeight: '1.6em',
   },
   caption: {
     fontSize: '1em',
-    fontWeight: '500',
+    fontWeight: 500,
     lineHeight: '1.4em',
   },
 };
@@ -41,7 +41,7 @@ export const themeTypography = {
 export const themeMuiButtonRoot = {
   padding: '7px 20px',
   fontSize: '1em',
-  fontWeight: '500',
+  fontWeight: 500,
   boxShadow: 'none',
 
   '&:hover': {
@@ -86,7 +86,7 @@ const lightTheme = createTheme({
     subtitle2: {
       color: '#848484',
       fontSize: '0.875em',
-      fontWeight: '400',
+      fontWeight: 400,
       lineHeight: '1.1em',
     },
     body2: {
@@ -97,7 +97,7 @@ const lightTheme = createTheme({
     overline: {
       color: '#848484',
       fontSize: '0.875em',
-      fontWeight: '400',
+      fontWeight: 400,
       lineHeight: '1.4em',
       textTransform: 'none',
     },
