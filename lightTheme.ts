@@ -83,6 +83,7 @@ const lightTheme = createTheme({
     },
     background: {
       default: color6,
+      paper: color3,
     },
   },
   typography: {
@@ -209,6 +210,16 @@ const lightTheme = createTheme({
           '&.MuiPaper-elevation4': {
             backgroundColor: color3,
           },
+        },
+      },
+    },
+
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontSize: '16px',
+          borderColor: color2,
+          backgroundColor: color8,
         },
       },
     },

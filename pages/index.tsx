@@ -14,7 +14,7 @@ export default function Home() {
 
       <Main>
         <Hero />
-        <CaseStudies />
+        <CaseStudies leftImageFirst={false} leftImageSecond={true} />
       </Main>
     </>
   );
