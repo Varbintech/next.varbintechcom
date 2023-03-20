@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useThemeMode } from 'hooks/use-theme-mode';
+import { useThemeMode } from '../../../hooks/use-theme-mode';
 
 import Button from '../buttons/Button';
 import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
