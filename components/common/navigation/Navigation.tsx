@@ -17,11 +17,11 @@ import NavigationLinks from './NavigationLinks';
 
 import { AppBarStyled, LogoButtonContainer, NavigationDrawer } from './styled-components';
 
-interface Props {
+interface ElevationScrollProps {
   children: ReactElement;
 }
 
-function ElevationScroll(props: Props) {
+const ElevationScroll = (props: ElevationScrollProps) => {
   const { children } = props;
 
   const trigger = useScrollTrigger({
@@ -32,7 +32,7 @@ function ElevationScroll(props: Props) {
   return cloneElement(children, {
     elevation: trigger ? 4 : 0,
   });
-}
+};
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ const Navigation = () => {
   const theme = useThemeMode();
   const smallScreens = useMediaQuery(theme.breakpoints.down('md'));
 
-  const dashboardClick = () => {
+  const homeClickHandle = () => {
     router.push('/');
   };
 
@@ -53,7 +53,7 @@ const Navigation = () => {
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <LogoButtonContainer disableRipple disableTouchRipple onClick={dashboardClick}>
+            <LogoButtonContainer disableRipple disableTouchRipple onClick={homeClickHandle}>
               <LogoBlackIcon />
             </LogoButtonContainer>
 

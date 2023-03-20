@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 
 import { PageContainer } from './styled-components';
 
-function CaseStudies() {
+const CaseStudies = () => {
   return (
     <PageContainer>
       <Container maxWidth="lg">

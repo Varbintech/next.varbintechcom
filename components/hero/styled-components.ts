@@ -2,6 +2,8 @@ import { keyframes, styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import Image from 'next/image';
+
 export const UpdateLabel = styled('span')(({ theme }) => ({
   display: 'inline-block',
   marginRight: '12px',
@@ -16,7 +18,7 @@ export const UpdateLabel = styled('span')(({ theme }) => ({
 export const PageContainer = styled('div')`
   position: relative;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fff;
   background-image: linear-gradient(
     180deg,
@@ -73,19 +75,10 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
 
 const primary = keyframes`
   0% {
-    left: 0;
+    margin-left: 0;
   }
   100% {
-    left: -100%;
-  }
-`;
-
-const secondary = keyframes`
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: 0;
+    margin-left: -1341px;
   }
 `;
 
@@ -102,18 +95,12 @@ export const FixedBottomContainer = styled('div')`
 `;
 
 export const ScrollContainer = styled(Stack)`
-  position: absolute;
-  left: 0;
-  top: 22px;
-  width: 100vw;
-  height: inherit;
-  white-space: nowrap;
-  background-color: #fff;
-  animation: ${primary} 10s linear infinite;
+  margin-top: 22px;
+  margin-left: 110px;
 `;
 
-export const ScrollContainerDublicate = styled(ScrollContainer)`
-  animation: ${secondary} 10s linear infinite;
+export const FirstItem = styled(Image)`
+  animation: ${primary} 10s linear infinite;
 `;
 
 export const TitleTypography = styled(Typography)(({ theme }) => ({

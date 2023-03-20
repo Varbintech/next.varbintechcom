@@ -23,16 +23,16 @@ import {
   PageContainer,
   FixedBottomContainer,
   ScrollContainer,
-  ScrollContainerDublicate,
   RectangleLeftIconContainer,
   RectangleRightIconContainer,
   BoxIconContainer,
   TriangleIconContainer,
   TitleTypography,
   SubTitleTypography,
+  FirstItem,
 } from './styled-components';
 
-function Hero() {
+const Hero = () => {
   return (
     <PageContainer>
       <RectangleLeftIconContainer>
@@ -45,7 +45,7 @@ function Hero() {
         maxWidth="lg"
         sx={{
           position: 'relative',
-          marginBottom: '90px',
+          marginBottom: '116px',
           paddingTop: { xs: '160px', lg: '270px' },
         }}
       >
@@ -79,7 +79,7 @@ function Hero() {
         </Stack>
 
         <Divider sx={{ marginBottom: 2 }}>
-          <Typography variant="overline">RECOGNIZED BY:</Typography>
+          <Typography variant="overline" textTransform="uppercase">recognized by:</Typography>
         </Divider>
         <Stack direction="row" spacing={3} justifyContent="center">
           <UpworkIcon sx={{ width: 'auto' }} />
@@ -88,18 +88,23 @@ function Hero() {
       </Container>
       <FixedBottomContainer>
         <ScrollContainer direction="row" spacing={13.75}>
+          <FirstItem src={placeholderLogo} alt="logo" />
+          <Image src={placeholderLogo1} alt="logo1" />
+          <Image src={placeholderLogo2} alt="logo2" />
+          <Image src={placeholderLogo} alt="logo" />
+          <Image src={placeholderLogo1} alt="logo1" />
+          <Image src={placeholderLogo2} alt="logo2" />
+
+          <Image src={placeholderLogo} alt="logo" />
+          <Image src={placeholderLogo1} alt="logo1" />
+          <Image src={placeholderLogo2} alt="logo2" />
           <Image src={placeholderLogo} alt="logo" />
           <Image src={placeholderLogo1} alt="logo1" />
           <Image src={placeholderLogo2} alt="logo2" />
         </ScrollContainer>
-        <ScrollContainerDublicate direction="row" spacing={13.75}>
-          <Image src={placeholderLogo} alt="logo" />
-          <Image src={placeholderLogo1} alt="logo1" />
-          <Image src={placeholderLogo2} alt="logo2" />
-        </ScrollContainerDublicate>
       </FixedBottomContainer>
     </PageContainer>
   );
-}
+};
 
 export default Hero;
