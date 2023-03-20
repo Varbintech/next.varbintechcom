@@ -1,9 +1,11 @@
 import { styled } from '@mui/material/styles';
+
+import AppBar from '@mui/material/AppBar';
 import ButtonBase from '@mui/material/ButtonBase';
 import Drawer from '@mui/material/Drawer';
 
-export const NavigationContainer = styled('header')(({ theme }) => ({
-  margin: '24px 0 20vh',
+export const AppBarStyled = styled(AppBar)(({ theme }) => ({
+  padding: '24px 0',
 
   '.MuiLink-root': {
     color: theme.palette.text.secondary,
@@ -13,10 +15,6 @@ export const NavigationContainer = styled('header')(({ theme }) => ({
       color: theme.palette.text.primary,
       borderBottomColor: theme.palette.text.primary,
     },
-  },
-
-  [theme.breakpoints.down('lg')]: {
-    marginBottom: '98px',
   },
 }));
 

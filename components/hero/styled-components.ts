@@ -14,6 +14,7 @@ export const UpdateLabel = styled('span')(({ theme }) => ({
 }));
 
 export const PageContainer = styled('div')`
+  position: relative;
   overflow-x: hidden;
   height: 100vh;
   background-color: #fff;
@@ -53,7 +54,7 @@ export const BoxIconContainer = styled('div')(({ theme }) => ({
   left: '-100px',
 
   [theme.breakpoints.down('lg')]: {
-    top: '60px',
+    top: '77px',
     left: '-60px',
   },
 }));
@@ -89,7 +90,7 @@ const secondary = keyframes`
 `;
 
 export const FixedBottomContainer = styled('div')`
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   bottom: 0;
   left: 0;

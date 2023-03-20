@@ -194,9 +194,21 @@ const lightTheme = createTheme({
         root: {
           backgroundColor: 'rgba(20, 22, 41, 0.7)',
         },
-
       },
     },
+
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+
+          '&.MuiPaper-elevation4': {
+            backgroundColor: color3,
+          },
+        },
+      },
+    },
+
   },
 });
 

@@ -13,7 +13,6 @@ import BoxIcon from '../../components/common/icon-box/BoxIcon';
 import TriangleIcon from 'components/common/icon-triangle/TriangleIcon';
 import RectangleLeftIcon from '../../components/common/icon-rectangle-left/RectangleLeftIcon';
 import RectangleRightIcon from '../../components/common/icon-rectangle-right/RectangleRightIcon';
-import Navigation from '../../components/common/navigation/Navigation';
 
 import placeholderLogo from '../../public/PlaceholderLogo.png';
 import placeholderLogo1 from '../../public/PlaceholderLogo1.png';
@@ -42,8 +41,14 @@ function Hero() {
       <RectangleRightIconContainer>
         <RectangleRightIcon />
       </RectangleRightIconContainer>
-      <Container maxWidth="lg" sx={{ position: 'relative', marginBottom: '90px' }}>
-        <Navigation />
+      <Container
+        maxWidth="lg"
+        sx={{
+          position: 'relative',
+          marginBottom: '90px',
+          paddingTop: { xs: '160px', lg: '270px' },
+        }}
+      >
         <BoxIconContainer>
           <BoxIcon />
         </BoxIconContainer>
