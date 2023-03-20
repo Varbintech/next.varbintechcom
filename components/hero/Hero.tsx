@@ -42,7 +42,7 @@ function Hero() {
       <RectangleRightIconContainer>
         <RectangleRightIcon />
       </RectangleRightIconContainer>
-      <Container maxWidth="lg" sx={{position: 'relative'}}>
+      <Container maxWidth="lg" sx={{ position: 'relative', marginBottom: '90px' }}>
         <Navigation />
         <BoxIconContainer>
           <BoxIcon />

@@ -3,7 +3,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Drawer from '@mui/material/Drawer';
 
 export const NavigationContainer = styled('header')(({ theme }) => ({
-  margin: '24px 0 98px',
+  margin: '24px 0 20vh',
 
   '.MuiLink-root': {
     color: theme.palette.text.secondary,
@@ -14,6 +14,10 @@ export const NavigationContainer = styled('header')(({ theme }) => ({
       borderBottomColor: theme.palette.text.primary,
     },
   },
+
+  [theme.breakpoints.down('lg')]: {
+    marginBottom: '98px',
+  },
 }));
 
 export const LogoButtonContainer = styled(ButtonBase)`
@@ -22,7 +26,7 @@ export const LogoButtonContainer = styled(ButtonBase)`
 `;
 
 export const NavigationDrawer = styled(Drawer)(({ theme }) => ({
-  top:' 88px',
+  top: '88px',
 
   '.MuiBackdrop-root, .MuiDrawer-paper': {
     top: '88px',

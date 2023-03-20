@@ -64,7 +64,7 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
   right: '-100px',
 
   [theme.breakpoints.down('lg')]: {
-    top: '76vh',
+    top: '73vh',
     right: 0,
     width: '88px',
   },
