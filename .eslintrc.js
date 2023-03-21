@@ -1,10 +1,29 @@
 module.exports = {
   extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
   ],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  settings: {
+    'jsx-a11y': {
+      components: {
+        Link: 'a',
+      },
+    },
+    linkComponents: ['Link'],
+  },
   root: true,
   overrides: [
     {
