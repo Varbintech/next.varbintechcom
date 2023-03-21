@@ -4,12 +4,14 @@ import Image from 'next/image';
 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
 import Chip from '../../components/common/chip/Chip';
 import Button from '../../components/common/buttons/Button';
 import Feedback from '../../components/common/feedback/Feedback';
 import RectangleIcon from '../../components/common/icon-rectangle/RectangleIcon';
+import RectangleBoxIcon from '../../components/common/icon-rectangle-box/RectangleBoxIcon';
 
 import {
   PageContainer,
@@ -21,6 +23,7 @@ import {
   ImageWrapper,
   IconContainer,
   IconLeftContainer,
+  IconBoxContainer,
 } from './styled-components';
 
 interface CaseStudiesProps {
@@ -32,7 +35,7 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
   const { leftImageFirst, leftImageSecond } = props;
 
   return (
-    <>
+    <Box sx={{position: 'relative'}}>
       <PageContainer>
         <Container maxWidth="lg">
           <Stack
@@ -157,7 +160,10 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
           />
         </Container>
       </PageLightContainer>
-    </>
+      <IconBoxContainer>
+        <RectangleBoxIcon />
+      </IconBoxContainer>
+    </Box>
   );
 };
 
