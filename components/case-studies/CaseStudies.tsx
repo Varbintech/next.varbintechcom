@@ -15,6 +15,6 @@ const CaseStudies = () => {
       </Container>
     </PageContainer>
   );
-}
+};
 
 export default CaseStudies;

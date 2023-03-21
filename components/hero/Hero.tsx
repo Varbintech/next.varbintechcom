@@ -13,13 +13,13 @@ import BoxIcon from '../../components/common/icon-box/BoxIcon';
 import TriangleIcon from 'components/common/icon-triangle/TriangleIcon';
 import RectangleLeftIcon from '../../components/common/icon-rectangle-left/RectangleLeftIcon';
 import RectangleRightIcon from '../../components/common/icon-rectangle-right/RectangleRightIcon';
+import UpdateLabel from '../../components/common/update-label/UpdateLabel';
 
 import placeholderLogo from '../../public/PlaceholderLogo.png';
 import placeholderLogo1 from '../../public/PlaceholderLogo1.png';
 import placeholderLogo2 from '../../public/PlaceholderLogo2.png';
 
 import {
-  UpdateLabel,
   PageContainer,
   FixedBottomContainer,
   ScrollContainer,
@@ -56,8 +56,9 @@ const Hero = () => {
           <TriangleIcon />
         </TriangleIconContainer>
         <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
-          <UpdateLabel>Update</UpdateLabel> Data export & import, relations reordering, audit logs{' '}
-          <Link href="#" variant="body1">
+          <UpdateLabel>Update</UpdateLabel>
+          Data export & import, relations reordering, audit logs{' '}
+          <Link href="#" variant="caption">
             More v4.4 updates
           </Link>
         </Typography>
