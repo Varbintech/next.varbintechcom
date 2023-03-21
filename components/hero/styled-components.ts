@@ -4,17 +4,6 @@ import Typography from '@mui/material/Typography';
 
 import Image from 'next/image';
 
-export const UpdateLabel = styled('span')(({ theme }) => ({
-  display: 'inline-block',
-  marginRight: '12px',
-  padding: '8px 12px',
-  textTransform: 'uppercase',
-  lineHeight: 1,
-  color: theme.palette.success.main,
-  border: `1px solid ${theme.palette.success.main}`,
-  borderRadius: '4px',
-}));
-
 export const PageContainer = styled('div')`
   position: relative;
   overflow-x: hidden;

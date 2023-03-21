@@ -1,7 +1,5 @@
 import { type ReactElement, cloneElement, useState } from 'react';
 
-import { useRouter } from 'next/router';
-
 import Stack from '@mui/system/Stack';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,7 +13,7 @@ import Button from '../buttons/Button';
 import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
 import NavigationLinks from './NavigationLinks';
 
-import { AppBarStyled, LogoButtonContainer, NavigationDrawer } from './styled-components';
+import { AppBarStyled, LogoContainer, NavigationDrawer } from './styled-components';
 
 interface ElevationScrollProps {
   children: ReactElement;
@@ -36,13 +34,8 @@ const ElevationScroll = (props: ElevationScrollProps) => {
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const theme = useThemeMode();
   const smallScreens = useMediaQuery(theme.breakpoints.down('md'));
-
-  const homeClickHandle = () => {
-    router.push('/');
-  };
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -53,9 +46,9 @@ const Navigation = () => {
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <LogoButtonContainer disableRipple disableTouchRipple onClick={homeClickHandle}>
+            <LogoContainer href="/">
               <LogoBlackIcon />
-            </LogoButtonContainer>
+            </LogoContainer>
 
             {!smallScreens ? (
               <nav aria-label="navigation">
@@ -81,7 +74,7 @@ const Navigation = () => {
 
                   <NavigationDrawer anchor="top" open={open} onClose={toggleDrawer(false)}>
                     <nav aria-label="navigation">
-                      <Stack spacing={2} alignItems="center">
+                      <Stack alignItems="center">
                         <NavigationLinks />
                       </Stack>
                     </nav>
