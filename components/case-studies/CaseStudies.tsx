@@ -92,6 +92,7 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
             src="/photo2.png"
             company="Director at"
             companyLink="TIN"
+            companyLinkHref="#"
           />
         </Container>
       </PageContainer>
