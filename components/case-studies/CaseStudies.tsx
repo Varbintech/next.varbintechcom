@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import Chip from '../../components/common/chip/Chip';
 import Button from '../../components/common/buttons/Button';
 import Feedback from '../../components/common/feedback/Feedback';
+import RectangleIcon from '../../components/common/icon-rectangle/RectangleIcon';
 
 import {
   PageContainer,
@@ -17,6 +18,9 @@ import {
   ChipContainer,
   TextContainer,
   ListContainer,
+  ImageWrapper,
+  IconContainer,
+  IconLeftContainer,
 } from './styled-components';
 
 interface CaseStudiesProps {
@@ -36,11 +40,22 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
             spacing={{ xs: '35px', lg: '95px' }}
           >
             <ImageContainer>
-              <Image
-                fill
-                src="/project1.png"
-                alt="The final result of cooperation between TIN and the Varbintech Team for the Strasbourg directory project"
-              />
+              <ImageWrapper>
+                <Image
+                  fill
+                  src="/project1.png"
+                  alt="The final result of cooperation between TIN and the Varbintech Team for the Strasbourg directory project"
+                />
+                {leftImageFirst ? (
+                  <IconLeftContainer>
+                    <RectangleIcon />
+                  </IconLeftContainer>
+                ) : (
+                  <IconContainer>
+                    <RectangleIcon />
+                  </IconContainer>
+                )}
+              </ImageWrapper>
             </ImageContainer>
 
             <TextContainer>
@@ -87,11 +102,22 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
             spacing={{ xs: '35px', lg: '95px' }}
           >
             <ImageContainer>
-              <Image
-                fill
-                src="/project2.png"
-                alt="The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project"
-              />
+              <ImageWrapper>
+                <Image
+                  fill
+                  src="/project2.png"
+                  alt="The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project"
+                />
+                {leftImageSecond ? (
+                  <IconLeftContainer>
+                    <RectangleIcon />
+                  </IconLeftContainer>
+                ) : (
+                  <IconContainer>
+                    <RectangleIcon />
+                  </IconContainer>
+                )}
+              </ImageWrapper>
             </ImageContainer>
 
             <TextContainer>

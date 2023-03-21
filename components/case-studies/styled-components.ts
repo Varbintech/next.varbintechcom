@@ -31,6 +31,40 @@ export const ImageContainer = styled('div')`
   }
 `;
 
+export const ImageWrapper = styled('span')`
+  display: flex;
+  position: relative;
+  max-width: 586px;
+`;
+
+export const IconContainer = styled('span')(({ theme }) => ({
+  position: 'absolute',
+  right: '30px',
+  bottom: '-37px',
+  width: '121px',
+  height: '121px',
+
+  [theme.breakpoints.down('md')]: {
+    right: '-5px',
+    bottom: '-45px',
+    transform: 'scale(0.7)',
+  },
+}));
+
+export const IconLeftContainer = styled(IconContainer)(({ theme }) => ({
+  position: 'absolute',
+  right: 'auto',
+  left: '-33px',
+  bottom: '-5px',
+  width: '121px',
+  height: '121px',
+  transform: 'rotate(60deg)',
+
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}));
+
 export const ChipContainer = styled('div')`
   margin: 16px 0;
 
