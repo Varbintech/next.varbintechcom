@@ -15,6 +15,8 @@ import RectangleLeftIcon from '../../components/common/icon-rectangle-left/Recta
 import RectangleRightIcon from '../../components/common/icon-rectangle-right/RectangleRightIcon';
 import UpdateLabel from '../../components/common/update-label/UpdateLabel';
 
+import { Settings } from '../../constants/settings';
+
 import placeholderLogo from '../../public/PlaceholderLogo.png';
 import placeholderLogo1 from '../../public/PlaceholderLogo1.png';
 import placeholderLogo2 from '../../public/PlaceholderLogo2.png';
@@ -58,7 +60,7 @@ const Hero = () => {
         <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
           <UpdateLabel>Update</UpdateLabel>
           Data export & import, relations reordering, audit logs{' '}
-          <Link href="#" variant="caption">
+          <Link href="#s" variant="caption">
             More v4.4 updates
           </Link>
         </Typography>
@@ -83,8 +85,13 @@ const Hero = () => {
           <Typography variant="overline" textTransform="uppercase">recognized by:</Typography>
         </Divider>
         <Stack direction="row" spacing={3} justifyContent="center">
-          <UpworkIcon sx={{ width: 'auto' }} />
-          <ClutchIcon sx={{ width: 'auto' }} />
+          <Link href={Settings.UpworkLink} target="_blank" rel="noreferrer">
+            <UpworkIcon sx={{ width: '88px' }} />
+          </Link>
+
+          <Link href={Settings.ClutchLink} target="_blank" rel="noreferrer">
+            <ClutchIcon sx={{ width: '57px' }} />
+          </Link>
         </Stack>
       </Container>
       <FixedBottomContainer>

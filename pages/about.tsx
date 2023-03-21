@@ -108,7 +108,7 @@ export default function About() {
           </Button>
         </Box>
         <Box marginBottom={2}>
-          <Link href="#" variant="body1" component={NextjsLink}>
+          <Link href="#link" variant="body1" component={NextjsLink}>
             Link
           </Link>
         </Box>
