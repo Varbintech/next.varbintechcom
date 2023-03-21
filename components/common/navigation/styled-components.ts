@@ -34,7 +34,7 @@ export const NavigationDrawer = styled(Drawer)(({ theme }) => ({
   },
 
   '.MuiPaper-root': {
-    padding: '16px 16px 60px',
+    padding: '8px 16px 48px',
     borderRadius: '0 0 8px 8px',
     boxShadow: 'none',
   },
