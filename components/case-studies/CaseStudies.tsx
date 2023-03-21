@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import Chip from '../../components/common/chip/Chip';
-import Button from '../../components/common/buttons/Button';
+// import Button from '../../components/common/buttons/Button';
 import Feedback from '../../components/common/feedback/Feedback';
 import RectangleIcon from '../../components/common/icon-rectangle/RectangleIcon';
 
@@ -43,7 +43,7 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
               <ImageWrapper>
                 <Image
                   fill
-                  src="/project1.png"
+                  src="/TIN-project.webp"
                   alt="The final result of cooperation between TIN and the Varbintech Team for the Strasbourg directory project"
                 />
                 {leftImageFirst ? (
@@ -72,10 +72,11 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
                 and a top-notch user experience.
               </Typography>
               <ChipContainer>
-                <Chip label="Wordpress" href="#" component="a" />
-                <Chip label="Front-end" href="#" component="a" />
-                <Chip label="Backend" href="#" component="a" />
-                <Chip label="Team augmentation" href="#" component="a" />
+                <Chip label="Front-End" href="#" component="a" />
+                <Chip label="Team management" href="#" component="a" />
+                <Chip label="Project management" href="#" component="a" />
+                <Chip label="Source code audit" href="#" component="a" />
+                <Chip label="Refactoring source code" href="#" component="a" />
                 <Chip label="Code review" href="#" component="a" />
               </ChipContainer>
               <Typography variant="h6">Results:</Typography>
@@ -83,16 +84,20 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
                 <li>3+ years of cooperation with successfully implemented all needed features</li>
                 <li>4.9 rating on App Store</li>
               </ListContainer>
-              <Button href="#">View full case study</Button>
+
+              {/* @TODO Uncomment when case study is ready */}
+              {/* <Button href="#">View full case study</Button> */}
             </TextContainer>
           </Stack>
+
           <Feedback
             text="The latest version of the portal looks great and works great. Awesome job"
             name="Gene Foo"
-            src="/photo2.png"
+            src="/genefoo.jpeg"
             company="Director at"
-            companyLink="TIN"
-            companyLinkHref="#"
+            companyName="TIN"
+            companyLinkHref="https://www.tin.info"
+            linkedInLink="https://www.linkedin.com/in/gene-foo-38520239"
           />
         </Container>
       </PageContainer>
@@ -106,7 +111,7 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
               <ImageWrapper>
                 <Image
                   fill
-                  src="/project2.png"
+                  src="/DT-OKR-for-Jira.webp"
                   alt="The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project"
                 />
                 {leftImageSecond ? (
@@ -129,31 +134,41 @@ const CaseStudies: FC<CaseStudiesProps> = props => {
               >
                 Digital Toucan - OKR for Jira
               </Typography>
-              <Typography>
-                The global retail platform for products from the past, present, and future. It
-                provides over 2M listings from streetwear and designer brands with flexible filters
-                and a top-notch user experience.
+
+              <Typography gutterBottom>
+                Trusted by 1000+ companies. OKR for Jira gives you the power to create objectives with as many nesting levels as you need to reflect your organization priorities.
               </Typography>
+
+              <Typography>
+                Simply create your objectives, add key results, and connect them to Jira issues. Now you can automatically track progress towards your goals and give everyone a clear path to success.
+              </Typography>
+
               <ChipContainer>
-                <Chip label="Wordpress" href="#" component="a" />
                 <Chip label="Front-end" href="#" component="a" />
                 <Chip label="Backend" href="#" component="a" />
-                <Chip label="Team augmentation" href="#" component="a" />
+                <Chip label="Team management" href="#" component="a" />
+                <Chip label="Project management" href="#" component="a" />
+                <Chip label="Refactoring source code" href="#" component="a" />
                 <Chip label="Code review" href="#" component="a" />
               </ChipContainer>
               <Typography variant="h6">Results:</Typography>
+
               <ListContainer>
                 <li>3+ years of cooperation with successfully implemented all needed features</li>
                 <li>4.9 rating on App Store</li>
               </ListContainer>
-              <Button href="#">View full case study</Button>
+
+              {/* @TODO Uncomment when case study is ready */}
+              {/* <Button href="#">View full case study</Button> */}
             </TextContainer>
           </Stack>
           <Feedback
             text="Vitalii and Varbintech are amazing software developers. Vitalii was hired to help us with one layer of one of our products. Over a year of fantastic collaboration, Vitalii helped us grow the team by 5 people contributing to all aspects of 3 products that our company has. Entire Varbintech is very professional, people are very friendly, yet approachable. They have strong technical skills, quality oriented mindset and communicate fluently and directly. It's been absolute pleasure to work with them. They helped make our products better and teams stronger. Thanks!"
             name="Filip Rogaczewski"
-            src="/photo1.png"
-            company="Product Director & Co-Founder"
+            src="/filiprogaczewski.jpeg"
+            company="Product Director & Co-Founder at"
+            companyName='Digital Toucan'
+            linkedInLink='https://www.linkedin.com/in/filiprogaczewski'
           />
         </Container>
       </PageLightContainer>
