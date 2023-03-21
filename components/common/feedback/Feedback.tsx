@@ -22,10 +22,11 @@ interface FeedbackProps {
   src: string;
   company: string;
   companyLink?: string;
+  companyLinkHref?: string;
 }
 
 const Feedback: FC<FeedbackProps> = props => {
-  const { text, name, src, company, companyLink } = props;
+  const { text, name, src, company, companyLink, companyLinkHref } = props;
 
   return (
     <FeedbackContainer>
@@ -49,7 +50,7 @@ const Feedback: FC<FeedbackProps> = props => {
           <Typography variant="overline">
             {company}{' '}
             {companyLink && (
-              <Link href="#" target="_blank">
+              <Link href={companyLinkHref} underline="none">
                 {companyLink}
               </Link>
             )}
