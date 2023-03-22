@@ -7,7 +7,7 @@ import MuiLink, { LinkProps } from '@mui/material/Link';
 type NavigationLinkProps = LinkProps & NextLinkProps;
 
 const Link: FC<NavigationLinkProps> = props => {
-  const { variant, href, children, ...restProps } = props;
+  const { variant, href, underline, children, ...restProps } = props;
 
   return (
     <MuiLink
@@ -15,7 +15,7 @@ const Link: FC<NavigationLinkProps> = props => {
       component={NextLink}
       variant={variant || 'body1'}
       href={href}
-      underline="none"
+      underline={underline || 'none'}
     >
       {children}
     </MuiLink>

@@ -187,6 +187,8 @@ const lightTheme = createTheme({
     MuiDivider: {
       styleOverrides: {
         root: {
+          borderColor: color8,
+
           '&::before, &::after': {
             borderColor: color8,
           },

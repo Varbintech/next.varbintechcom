@@ -5,6 +5,7 @@ import Navigation from '../components/common/navigation/Navigation';
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
+import PricingPlan from '../components/pricing/PricingPlan';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <CaseStudies leftImageFirst={false} leftImageSecond={true} />
         <Services />
+        <PricingPlan />
       </Main>
     </>
   );
