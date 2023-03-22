@@ -1,10 +1,12 @@
 import Head from './components/Head';
-import Main from '../components/common/Main';
 
+import Main from '../components/common/Main';
 import Navigation from '../components/common/navigation/Navigation';
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
+
+import { caseStudies } from '../mocks/case-study';
 
 export default function Home() {
   return (
@@ -15,7 +17,7 @@ export default function Home() {
 
       <Main>
         <Hero />
-        <CaseStudies leftImageFirst={false} leftImageSecond={true} />
+        <CaseStudies data={caseStudies} />
         <Services />
       </Main>
     </>

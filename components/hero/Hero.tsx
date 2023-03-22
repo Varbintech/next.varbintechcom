@@ -1,25 +1,21 @@
-import Image from 'next/image';
-
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import UpworkIcon from '../../components/common/icon-upwork/UpworkIcon';
-import ClutchIcon from '../../components/common/icon-clutch/ClutchIcon';
-import Button from '../../components/common/buttons/Button';
-import BoxIcon from '../../components/common/icon-box/BoxIcon';
-import TriangleIcon from 'components/common/icon-triangle/TriangleIcon';
-import RectangleLeftIcon from '../../components/common/icon-rectangle-left/RectangleLeftIcon';
-import RectangleRightIcon from '../../components/common/icon-rectangle-right/RectangleRightIcon';
-import UpdateLabel from '../../components/common/update-label/UpdateLabel';
+import UpworkIcon from '../common/icon-upwork/UpworkIcon';
+import ClutchIcon from '../common/icon-clutch/ClutchIcon';
+import Button from '../common/buttons/Button';
+import BoxIcon from '../common/icon-box/BoxIcon';
+import TriangleIcon from '../common/icon-triangle/TriangleIcon';
+import RectangleLeftIcon from '../common/icon-rectangle-left/RectangleLeftIcon';
+import RectangleRightIcon from '../common/icon-rectangle-right/RectangleRightIcon';
+import DTIcon from '../common/icon-dt/DTIcon';
 
 import { Settings } from '../../constants/settings';
 
-import placeholderLogo from '../../public/PlaceholderLogo.png';
-import placeholderLogo1 from '../../public/PlaceholderLogo1.png';
-import placeholderLogo2 from '../../public/PlaceholderLogo2.png';
+import tinLogo from '../../public/TIN-logo.png';
 
 import {
   PageContainer,
@@ -57,13 +53,14 @@ const Hero = () => {
         <TriangleIconContainer>
           <TriangleIcon />
         </TriangleIconContainer>
-        <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
+        {/* @TODO Move to a separate component */}
+        {/* <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
           <UpdateLabel>Update</UpdateLabel>
           Data export & import, relations reordering, audit logs{' '}
           <Link href="#s" variant="caption">
             More v4.4 updates
           </Link>
-        </Typography>
+        </Typography> */}
         <TitleTypography variant="h1" align="center">
           A development team with superpower
         </TitleTypography>
@@ -96,19 +93,9 @@ const Hero = () => {
       </Container>
       <FixedBottomContainer>
         <ScrollContainer direction="row" spacing={13.75}>
-          <FirstItem src={placeholderLogo} alt="logo" />
-          <Image src={placeholderLogo1} alt="logo1" />
-          <Image src={placeholderLogo2} alt="logo2" />
-          <Image src={placeholderLogo} alt="logo" />
-          <Image src={placeholderLogo1} alt="logo1" />
-          <Image src={placeholderLogo2} alt="logo2" />
-
-          <Image src={placeholderLogo} alt="logo" />
-          <Image src={placeholderLogo1} alt="logo1" />
-          <Image src={placeholderLogo2} alt="logo2" />
-          <Image src={placeholderLogo} alt="logo" />
-          <Image src={placeholderLogo1} alt="logo1" />
-          <Image src={placeholderLogo2} alt="logo2" />
+          <FirstItem src={tinLogo} alt="The Intelligent Network logo" />
+          <DTIcon />
+          {/* <Image src={placeholderLogo2} alt="logo2" /> */}
         </ScrollContainer>
       </FixedBottomContainer>
     </PageContainer>
