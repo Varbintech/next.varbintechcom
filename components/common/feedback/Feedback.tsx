@@ -21,12 +21,13 @@ interface FeedbackProps {
   name: string;
   src: string;
   company: string;
-  companyLink?: string;
+  linkedInLink: string;
+  companyName?: string;
   companyLinkHref?: string;
 }
 
 const Feedback: FC<FeedbackProps> = props => {
-  const { text, name, src, company, companyLink, companyLinkHref } = props;
+  const { text, name, src, company, linkedInLink, companyName, companyLinkHref } = props;
 
   return (
     <FeedbackContainer>
@@ -40,18 +41,18 @@ const Feedback: FC<FeedbackProps> = props => {
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
           <Image src={src} alt={name} fill />
         </AvatarContainer>
+
         <div>
           <Typography variant="caption" component="div" marginBottom={0.5}>
-            {name}{' '}
-            <LinkContainer href="#" underline="none" target="_blank">
+            {name}&nbsp;<LinkContainer href={linkedInLink} underline="none" target="_blank" rel="noreferrer">
               <LinkedInIcon sx={{ fontSize: '26px' }} />
             </LinkContainer>
           </Typography>
+
           <Typography variant="overline">
-            {company}{' '}
-            {companyLink && (
-              <Link href={companyLinkHref} underline="none">
-                {companyLink}
+            {company}&nbsp;{companyName && (
+              <Link href={companyLinkHref} target="_blank" underline={companyLinkHref ? 'hover' : 'none'} rel="noreferrer">
+                {companyName}
               </Link>
             )}
           </Typography>

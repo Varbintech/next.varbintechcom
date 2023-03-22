@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 
 export const PageContainer = styled('div')(({ theme }) => ({
   padding: '72px 0',
@@ -27,15 +27,19 @@ export const ImageContainer = styled('div')`
     position: relative !important;
     width: 100% !important;
     height: unset !important;
-    max-width: 586px;
+    object-fit: cover;
+    object-position: top;
   }
 `;
 
-export const ImageWrapper = styled('span')`
-  display: flex;
-  position: relative;
-  max-width: 586px;
-`;
+export const ImageWrapper = styled('span')(({ theme }) => ({
+  display: 'flex',
+  position: 'relative',
+  maxWidth: '586px',
+  maxHeight: '429px',
+  border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+  borderRadius: '16px',
+}));
 
 export const IconContainer = styled('span')(({ theme }) => ({
   position: 'absolute',

@@ -20,9 +20,10 @@ module.exports = {
     'jsx-a11y': {
       components: {
         Link: 'a',
+        LinkContainer: 'a',
       },
     },
-    linkComponents: ['Link'],
+    linkComponents: ['Link', 'LinkContainer'],
   },
   root: true,
   overrides: [

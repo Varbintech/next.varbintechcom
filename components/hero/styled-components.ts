@@ -86,6 +86,12 @@ export const FixedBottomContainer = styled('div')`
 export const ScrollContainer = styled(Stack)`
   margin-top: 22px;
   margin-left: 110px;
+
+  img, svg {
+    width: auto;
+    height: auto;
+    max-height: 26px;
+  }
 `;
 
 export const FirstItem = styled(Image)`
