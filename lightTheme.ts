@@ -215,6 +215,7 @@ const lightTheme = createTheme({
 
           '&.MuiPaper-elevation4': {
             backgroundColor: color3,
+            boxShadow: '0 8px 12px rgba(0, 0, 0, 0.08)',
           },
         },
       },
