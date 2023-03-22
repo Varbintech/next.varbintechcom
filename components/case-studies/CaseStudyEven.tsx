@@ -18,15 +18,7 @@ const CaseStudyEven: FC<{ data: CaseStudy }> = ({ data }) => {
           <CaseStudyContent data={data} />
         </Stack>
 
-        <Feedback
-          text={data.feedback.text}
-          name={data.feedback.name}
-          src={data.feedback.src}
-          company={data.feedback.company}
-          companyName={data.feedback.companyName}
-          companyLinkHref={data.feedback.companyLinkHref}
-          linkedInLink={data.feedback.linkedInLink}
-        />
+        <Feedback {...data.feedback} />
       </Container>
     </PageContainer>
   );

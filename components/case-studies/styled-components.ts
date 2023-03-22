@@ -35,10 +35,15 @@ export const ImageContainer = styled('div')`
 export const ImageWrapper = styled('span')(({ theme }) => ({
   display: 'flex',
   position: 'relative',
-  maxWidth: '586px',
-  maxHeight: '429px',
-  border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
-  borderRadius: '16px',
+
+  '.inner-wrapper': {
+    overflow: 'hidden',
+    borderRadius: '16px',
+    border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+    display: 'flex',
+    maxWidth: '586px',
+    maxHeight: '429px',
+  },
 }));
 
 export const IconContainer = styled('span')(({ theme }) => ({

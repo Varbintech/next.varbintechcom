@@ -85,7 +85,7 @@ export const FixedBottomContainer = styled('div')`
 
 export const ScrollContainer = styled(Stack)`
   margin-top: 22px;
-  margin-left: 110px;
+  justify-content: center;
 
   img, svg {
     width: auto;
@@ -95,7 +95,8 @@ export const ScrollContainer = styled(Stack)`
 `;
 
 export const FirstItem = styled(Image)`
-  animation: ${primary} 10s linear infinite;
+  // @TODO Uncomment when more logos
+  // animation: ${primary} 10s linear infinite;
 `;
 
 export const TitleTypography = styled(Typography)(({ theme }) => ({

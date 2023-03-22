@@ -2,9 +2,9 @@ import type { ElementType, FC } from 'react';
 
 import MuiChip, { ChipProps } from '@mui/material/Chip';
 
-type ChipLinkProps = ChipProps & {
-  component: ElementType;
-  href: string;
+export type ChipLinkProps = ChipProps & {
+  component?: ElementType;
+  href?: string;
 };
 
 const Chip: FC<ChipLinkProps> = props => {
@@ -13,7 +13,7 @@ const Chip: FC<ChipLinkProps> = props => {
   return (
     <MuiChip
       {...restProps}
-      component={component}
+      component={component || 'div'}
       label={label}
       variant={variant || 'outlined'}
       clickable

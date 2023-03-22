@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import type { CaseStudy } from '../../models';
 
-import Chip from '../common/chip/Chip';
+import Chip, { type ChipLinkProps } from '../common/chip/Chip';
 // import Button from '../common/buttons/Button';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
@@ -24,7 +24,10 @@ const CaseStudyContent: FC<{ data: CaseStudy }> = ({ data }) => {
     <>
       <ImageContainer>
         <ImageWrapper>
-          <Image fill src={data.projectImage} alt={data.projectImageAlt} />
+          <span className="inner-wrapper">
+            <Image fill src={data.projectImage} alt={data.projectImageAlt} />
+          </span>
+
           <IconContainer>
             <RectangleIcon />
           </IconContainer>
@@ -45,18 +48,32 @@ const CaseStudyContent: FC<{ data: CaseStudy }> = ({ data }) => {
         })}
 
         <ChipContainer>
-          {data.projectTags.map((tag, tagIndex) => (
-            <Chip key={tagIndex} label={tag.name} href={tag.link} component="a" />
-          ))}
+          {data.projectTags.map((tag, tagIndex) => {
+            const additionalProps: Pick<ChipLinkProps, 'component' | 'href'> = tag.link ? {
+              href: tag.link,
+              component: 'a',
+            } : {};
+
+            return (
+              <Chip {...additionalProps} key={tagIndex} label={tag.name} />
+            );
+          })}
         </ChipContainer>
 
-        <Typography variant="h6">Results:</Typography>
+        {data.results.length
+          ? (
+            <>
+              <Typography variant="h6">Results:</Typography>
 
-        <ListContainer>
-          {data.results.map((result, resultIndex) => (
-            <li key={resultIndex}>{result}</li>
-          ))}
-        </ListContainer>
+              <ListContainer>
+                {data.results.map((result, resultIndex) => (
+                  <li key={resultIndex}>{result}</li>
+                ))}
+              </ListContainer>
+            </>
+          )
+          : null
+        }
 
         {/* @TODO Uncomment when case study is ready */}
         {/* <Button href="#">View full case study</Button> */}
