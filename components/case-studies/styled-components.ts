@@ -4,13 +4,13 @@ export const PageContainer = styled('div')(({ theme }) => ({
   padding: '72px 0',
   backgroundColor: theme.palette.secondary.dark,
 
+  '&.lightBackground': {
+    backgroundColor: theme.palette.background.paper,
+  },
+
   [theme.breakpoints.up('lg')]: {
     padding: '124px 0',
   },
-}));
-
-export const PageLightContainer = styled(PageContainer)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
 }));
 
 export const ImageContainer = styled('div')`
@@ -36,9 +36,15 @@ export const ImageWrapper = styled('span')(({ theme }) => ({
   display: 'flex',
   position: 'relative',
   maxWidth: '586px',
-  maxHeight: '429px',
-  border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
-  borderRadius: '16px',
+
+  '.inner-wrapper': {
+    overflow: 'hidden',
+    borderRadius: '16px',
+    border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+    display: 'flex',
+    maxWidth: '586px',
+    maxHeight: '429px',
+  },
 }));
 
 export const IconContainer = styled('span')(({ theme }) => ({
@@ -65,7 +71,9 @@ export const IconLeftContainer = styled(IconContainer)(({ theme }) => ({
   transform: 'rotate(60deg)',
 
   [theme.breakpoints.down('md')]: {
-    display: 'none',
+    left: '-45px',
+    bottom: '-20px',
+    transform: 'scale(0.7) rotate(60deg)',
   },
 }));
 
