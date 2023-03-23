@@ -4,13 +4,13 @@ export const PageContainer = styled('div')(({ theme }) => ({
   padding: '72px 0',
   backgroundColor: theme.palette.secondary.dark,
 
+  '&.lightBackground': {
+    backgroundColor: theme.palette.background.paper,
+  },
+
   [theme.breakpoints.up('lg')]: {
     padding: '124px 0',
   },
-}));
-
-export const PageLightContainer = styled(PageContainer)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
 }));
 
 export const ImageContainer = styled('div')`

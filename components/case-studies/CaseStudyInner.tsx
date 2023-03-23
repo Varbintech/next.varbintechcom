@@ -14,13 +14,14 @@ import Chip, { type ChipLinkProps } from '../common/chip/Chip';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
 import {
-  PageLightContainer,
+  PageContainer,
   ImageContainer,
   ChipContainer,
   TextContainer,
   ListContainer,
   ImageWrapper,
   IconContainer,
+  IconLeftContainer,
 } from './styled-components';
 
 interface CaseStudyInnerProps {
@@ -28,20 +29,26 @@ interface CaseStudyInnerProps {
   data: CaseStudy;
 }
 
-const CaseStudyInner: FC<CaseStudyInnerProps> = ({ data }) => {
+const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
   return (
-    <PageLightContainer>
+    <PageContainer className={direction === 'row' ? 'lightBackground' : ''}>
       <Container maxWidth="lg">
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: '35px', lg: '95px' }}>
+        <Stack direction={{ xs: 'column', md: direction }} spacing={{ xs: '35px', lg: '95px' }}>
           <ImageContainer>
             <ImageWrapper>
               <span className="inner-wrapper">
                 <Image fill src={data.projectImage} alt={data.projectImageAlt} />
               </span>
 
-              <IconContainer>
-                <RectangleIcon />
-              </IconContainer>
+              {direction === 'row' ? (
+                <IconLeftContainer>
+                  <RectangleIcon />
+                </IconLeftContainer>
+              ) : (
+                <IconContainer>
+                  <RectangleIcon />
+                </IconContainer>
+              )}
             </ImageWrapper>
           </ImageContainer>
 
@@ -60,31 +67,28 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ data }) => {
 
             <ChipContainer>
               {data.projectTags.map((tag, tagIndex) => {
-                const additionalProps: Pick<ChipLinkProps, 'component' | 'href'> = tag.link ? {
-                  href: tag.link,
-                  component: 'a',
-                } : {};
+                const additionalProps: Pick<ChipLinkProps, 'component' | 'href'> = tag.link
+                  ? {
+                      href: tag.link,
+                      component: 'a',
+                    }
+                  : {};
 
-                return (
-                  <Chip {...additionalProps} key={tagIndex} label={tag.name} />
-                );
+                return <Chip {...additionalProps} key={tagIndex} label={tag.name} />;
               })}
             </ChipContainer>
 
-            {data.results.length
-              ? (
-                <>
-                  <Typography variant="h6">Results:</Typography>
+            {data.results.length ? (
+              <>
+                <Typography variant="h6">Results:</Typography>
 
-                  <ListContainer>
-                    {data.results.map((result, resultIndex) => (
-                      <li key={resultIndex}>{result}</li>
-                    ))}
-                  </ListContainer>
-                </>
-              )
-              : null
-            }
+                <ListContainer>
+                  {data.results.map((result, resultIndex) => (
+                    <li key={resultIndex}>{result}</li>
+                  ))}
+                </ListContainer>
+              </>
+            ) : null}
 
             {/* @TODO Uncomment when case study is ready */}
             {/* <Button href="#">View full case study</Button> */}
@@ -93,7 +97,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ data }) => {
 
         <Feedback {...data.feedback} />
       </Container>
-    </PageLightContainer>
+    </PageContainer>
   );
 };
 
