@@ -1,19 +1,22 @@
-//import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import type { FC } from 'react';
 
-import { PageContainer } from './styled-components';
+import type { CaseStudy } from '../../models';
 
-const CaseStudies = () => {
+import CaseStudyInner from './CaseStudyInner';
+
+interface CaseStudiesProps {
+  data: Array<CaseStudy>;
+}
+
+const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
   return (
-    <PageContainer>
-      <Container maxWidth="lg">
-{/*         <Typography>
-          The global retail platform for products from the past, present, and future. It provides
-          over 2M listings from streetwear and designer brands with flexible filters and a top-notch
-          user experience.
-        </Typography> */}
-      </Container>
-    </PageContainer>
+    <>
+      {data.map((caseStudy, caseStudyIndex) => {
+        const direction = (caseStudyIndex % 2 === 0) ? 'row-reverse' : 'row';
+
+        return <CaseStudyInner key={caseStudy.id} data={caseStudy} direction={direction} />;
+      })}
+    </>
   );
 };
 
