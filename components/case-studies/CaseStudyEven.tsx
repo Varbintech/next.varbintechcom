@@ -12,7 +12,7 @@ import { PageContainer } from './styled-components';
 
 const CaseStudyEven: FC<{ data: CaseStudy }> = ({ data }) => {
   return (
-    <PageContainer key={data.id}>
+    <PageContainer>
       <Container maxWidth="lg">
         <Stack direction={{ xs: 'column', md: 'row-reverse' }} spacing={{ xs: '35px', lg: '95px' }}>
           <CaseStudyContent data={data} />
