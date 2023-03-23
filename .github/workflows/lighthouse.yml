@@ -43,4 +43,4 @@ jobs:
       - name: Run Lighthouse CI
         run: |
           yarn add global @lhci/cli@0.11.x
-          lhci autorun
+          npx lhci autorun
