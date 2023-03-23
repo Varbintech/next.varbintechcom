@@ -71,7 +71,9 @@ export const IconLeftContainer = styled(IconContainer)(({ theme }) => ({
   transform: 'rotate(60deg)',
 
   [theme.breakpoints.down('md')]: {
-    display: 'none',
+    left: '-45px',
+    bottom: '-20px',
+    transform: 'scale(0.7) rotate(60deg)',
   },
 }));
 
