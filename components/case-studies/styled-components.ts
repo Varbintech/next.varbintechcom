@@ -35,6 +35,7 @@ export const ImageContainer = styled('div')`
 export const ImageWrapper = styled('span')(({ theme }) => ({
   display: 'flex',
   position: 'relative',
+  maxWidth: '586px',
 
   '.inner-wrapper': {
     overflow: 'hidden',
