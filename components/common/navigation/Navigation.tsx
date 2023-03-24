@@ -46,7 +46,7 @@ const Navigation = () => {
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <LogoContainer href="/">
+            <LogoContainer href="/" aria-label="Varbintech logo">
               <LogoBlackIcon />
             </LogoContainer>
 
@@ -63,11 +63,11 @@ const Navigation = () => {
               {smallScreens ? (
                 <>
                   {open ? (
-                    <Button onClick={toggleDrawer(false)} size="small">
+                    <Button onClick={toggleDrawer(false)} size="small" id="close" aria-label="Close navigation">
                       <CloseIcon />
                     </Button>
                   ) : (
-                    <Button onClick={toggleDrawer(true)} size="small">
+                    <Button onClick={toggleDrawer(true)} size="small" id="open" aria-label="Open navigation">
                       <MenuIcon />
                     </Button>
                   )}

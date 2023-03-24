@@ -111,8 +111,3 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
-
-export const SubTitleTypography = styled(Typography)`
-  margin: 0 auto 32px;
-  max-width: 620px;
-`;

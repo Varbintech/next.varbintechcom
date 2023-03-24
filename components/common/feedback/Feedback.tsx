@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
+import type { Feedback } from '../../../models';
+
 import {
   FeedbackContainer,
   QuoterTypography,
@@ -16,42 +18,34 @@ import {
   LinkContainer,
 } from './styled-components';
 
-interface FeedbackProps {
-  text: string;
-  name: string;
-  src: string;
-  company: string;
-  linkedInLink: string;
-  companyName?: string;
-  companyLinkHref?: string;
-}
+type FeedbackProps = Feedback;
 
 const Feedback: FC<FeedbackProps> = props => {
-  const { text, name, src, company, linkedInLink, companyName, companyLinkHref } = props;
+  const { text, name, image, company, linkedInLink, companyName, companyLinkHref } = props;
 
   return (
     <FeedbackContainer>
-      <QuoterTypography variant="h6" sx={{ fontSize: { xs: '16px', md: '20px' } }}>
+      <QuoterTypography variant="body1" sx={{ fontSize: { xs: '16px', md: '20px' } }}>
         <QuoteIconLeft />
-        {text}
+          {text}
         <QuoteIconRight />
       </QuoterTypography>
 
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
-          <Image src={src} alt={name} fill />
+          <Image alt={name} {...image} />
         </AvatarContainer>
 
         <div>
           <Typography variant="caption" component="div" marginBottom={0.5}>
-            {name}&nbsp;<LinkContainer href={linkedInLink} underline="none" target="_blank" rel="noreferrer">
+            {name}&nbsp;<LinkContainer href={linkedInLink} underline="none" target="_blank" rel="noreferrer" aria-label={`Read more about ${name}`}>
               <LinkedInIcon sx={{ fontSize: '26px' }} />
             </LinkContainer>
           </Typography>
 
           <Typography variant="overline">
             {company}&nbsp;{companyName && (
-              <Link href={companyLinkHref} target="_blank" underline={companyLinkHref ? 'hover' : 'none'} rel="noreferrer">
+              <Link href={companyLinkHref} target="_blank" underline={companyLinkHref ? 'hover' : 'none'} rel="noreferrer" aria-label={`Read more about ${companyName}`}>
                 {companyName}
               </Link>
             )}
