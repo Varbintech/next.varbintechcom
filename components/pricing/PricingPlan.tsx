@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -6,7 +6,9 @@ import Typography from '@mui/material/Typography';
 
 import { PricingPlan } from '../../models';
 
+import DialogCustomServices from '../../components/dialogs/custom-services/DialogCustomServices';
 import PlanItem from './PlanItem';
+import CustomServices from './CustomServices';
 
 import { PageContainer } from './styled-components';
 
@@ -15,6 +17,16 @@ interface PricingPlanProps {
 }
 
 const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpenDialog = (): void => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = (): void => {
+    setOpenDialog(false);
+  };
+
   return (
     <PageContainer>
       <Container maxWidth="lg">
@@ -42,6 +54,8 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
             );
           })}
         </Grid>
+        <CustomServices onOpenDialog={handleOpenDialog} />
+        {openDialog ? <DialogCustomServices onClose={handleCloseDialog} /> : null}
       </Container>
     </PageContainer>
   );

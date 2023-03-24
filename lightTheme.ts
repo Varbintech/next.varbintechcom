@@ -46,7 +46,7 @@ export const themeMuiButtonRoot = {
 };
 
 const color1 = '#141629';
-const color2 = '#848484';
+const color2 = '#4d4d4d';
 const color3 = '#fff';
 const color4 = '#219653';
 const color5 = '#eb5757';
@@ -58,6 +58,7 @@ const color9 = '#fef8f6';
 const color10 = '#fefaf5';
 const color11 = '#f9fafb';
 const color12 = '#f2f3f5';
+const color13 = '#d6d5d5';
 
 // Create a theme instance.
 const lightTheme = createTheme({
@@ -227,10 +228,65 @@ const lightTheme = createTheme({
           fontSize: '16px',
           borderColor: color2,
           backgroundColor: color8,
+
+          '&:hover, &.MuiChip-clickable:hover': {
+            cursor: 'default',
+            backgroundColor: color8,
+          },
+
+          '&[href]:hover': {
+            cursor: 'pointer',
+            color: color3,
+            backgroundColor: color1,
+          },
         },
       },
     },
 
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: color13,
+
+            '.text-filled &': {
+              borderColor: color1,
+            },
+
+            '.text-success &': {
+              borderColor: color4,
+            },
+
+            '.text-error &': {
+              borderColor: color5 ,
+            },
+          },
+
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderWidth: '1px',
+          },
+
+          '&.Mui-disabled': {
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: color13,
+              backgroundColor: 'rgba(0,0,0,0.03)',
+            },
+          },
+        },
+
+        input: {
+          padding: '13.5px 20px',
+          lineHeight: '1.2',
+
+          '&::placeholder': {
+            color: color2,
+            opacity: 1,
+          },
+        },
+      },
+    },
   },
 });
 

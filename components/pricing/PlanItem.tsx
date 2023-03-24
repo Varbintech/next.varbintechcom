@@ -29,15 +29,15 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
         <Typography variant="body2" textTransform="uppercase" mb={2.75}>
           You can Save ${planSavePrice}
         </Typography>
-        {planflag === 'QUARTER' ? (
-          <Button href="#" sx={{ mb: 2.75 }}>
-            Get it now
-          </Button>
-        ) : (
-          <Button href="#" variant="outlined" sx={{ mb: 2.75 }}>
-            Get it now
-          </Button>
-        )}
+
+        <Button
+          href="#"
+          variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
+          sx={{ margin: {xs: '0 16px 22px', md: '0 0 22px'} }}
+        >
+          Get it now
+        </Button>
+
         <Link href="#link" underline="always" variant="caption">
           Have a look our previous projects
         </Link>

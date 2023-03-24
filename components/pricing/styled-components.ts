@@ -13,7 +13,8 @@ export const PageContainer = styled('div')(({ theme }) => ({
 }));
 
 export const PlanItemStyled = styled('div')(({ theme }) => ({
-  minHeight: '540px',
+  padding: '34px 24px',
+  borderRadius: '8px',
   background: theme.palette.background.paper,
 
   [theme.breakpoints.up('md')]: {
@@ -23,8 +24,7 @@ export const PlanItemStyled = styled('div')(({ theme }) => ({
 
 export const PlanItemContainer = styled(PlanItemStyled)<{ flag: PlanType }>`
   position: relative;
-  padding: 34px 24px;
-  border-radius: 8px;
+  min-height: 540px;
   border-bottom: 8px solid #f2994a;
 
   ${({ flag }) => {
@@ -96,5 +96,18 @@ export const ListStyled = styled(List)(({ theme }) => ({
 
   '.MuiTypography-root': {
     fontWeight: 500,
+  },
+}));
+
+export const CustomServicesContainer = styled(PlanItemStyled)(({ theme }) => ({
+  paddingTop: '36px',
+  paddingBottom: '40px',
+  marginBottom: '-130px',
+  borderBottom: `8px solid ${theme.palette.primary.main}`,
+  boxShadow: '0 24px 32px rgba(0, 0, 0, 0.08)',
+
+  [theme.breakpoints.up('lg')]: {
+    paddingTop: '68px',
+    paddingBottom: '60px',
   },
 }));
