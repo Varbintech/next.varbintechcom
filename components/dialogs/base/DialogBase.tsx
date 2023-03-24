@@ -6,7 +6,6 @@ import DialogActions from '@mui/material/DialogActions';
 import type { EmptyFunction, FunctionWithArg, JSXElement } from '../../../models/common';
 
 import ButtonClose from '../../common/buttons/ButtonClose';
-import ErrorMessage from '../../common/error-message/ErrorMessage';
 
 import { DialogButtonCloseWrapper, StyledMuiDialog, DialogBaseTitle } from './styled-components';
 
@@ -15,7 +14,6 @@ type HeaderFooterFromContent = FunctionWithArg<ReactNode, JSXElement>;
 interface DialogBaseProps {
   onClose: EmptyFunction;
   fullWidth?: boolean;
-  error?: string;
   children?: ReactNode | JSXElement;
   footer?: ReactNode | JSXElement;
   header?: ReactNode | JSXElement;
@@ -30,7 +28,7 @@ const footerFromContent: HeaderFooterFromContent = (content: ReactNode) => (
 );
 
 const DialogBase: FC<DialogBaseProps> = props => {
-  const { footer, header, onClose, error, children, fullWidth } = props;
+  const { footer, header, onClose, children, fullWidth } = props;
 
   return (
     <StyledMuiDialog
@@ -55,8 +53,6 @@ const DialogBase: FC<DialogBaseProps> = props => {
 
       <DialogContent>
         {children}
-
-        {error ? <ErrorMessage>{error}</ErrorMessage> : null}
       </DialogContent>
 
       {footerFromContent(footer)}

@@ -9,10 +9,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 
-import { PricingPlan } from '../../models';
+import type { PricingPlan } from '../../models';
 
-import Button from '../../components/common/buttons/Button';
-import Link from '../../components/common/link/Link';
+import Button from '../common/buttons/Button';
+import Link from '../common/link/Link';
 
 import { PlanItemContainer, ListStyled, BestChoiceContainer } from './styled-components';
 

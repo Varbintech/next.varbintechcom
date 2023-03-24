@@ -4,9 +4,9 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { PricingPlan } from '../../models';
+import type { PricingPlan } from '../../models';
 
-import DialogCustomServices from '../../components/dialogs/custom-services/DialogCustomServices';
+import DialogCustomServices from '../dialogs/custom-services/DialogCustomServices';
 import PlanItem from './PlanItem';
 import CustomServices from './CustomServices';
 

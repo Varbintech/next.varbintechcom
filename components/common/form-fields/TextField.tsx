@@ -2,9 +2,8 @@ import { type FC, type FocusEvent, type ChangeEventHandler, useState } from 'rea
 
 import MUITextField, { type TextFieldProps as MUITextFieldProps } from '@mui/material/TextField';
 
-export interface TextFieldProps extends Omit<MUITextFieldProps, 'variant' | 'size' | 'error'> {
+export interface TextFieldProps extends Omit<MUITextFieldProps, 'variant' | 'size' > {
   placeholder?: string;
-  error?: boolean;
   success?: boolean;
 }
 

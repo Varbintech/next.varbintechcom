@@ -2,9 +2,9 @@ import type { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import { EmptyFunction } from '../../models/common';
+import type { EmptyFunction } from '../../models/common';
 
-import Button from '../../components/common/buttons/Button';
+import Button from '../common/buttons/Button';
 
 import { CustomServicesContainer } from './styled-components';
 

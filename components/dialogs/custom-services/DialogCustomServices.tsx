@@ -3,13 +3,13 @@ import { type FC, type ChangeEventHandler, type FocusEventHandler, useMemo } fro
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
+import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
+
+import useCustomServiceReducer, { InitialStateKeys } from './CustomService.state';
 
 import Button from '../../common/buttons/Button';
 import TextField from '../../common/form-fields/TextField';
 import DialogBase from '../base/DialogBase';
-
-import useCustomServiceReducer, { InitialStateKeys } from './CustomService.state';
 
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
