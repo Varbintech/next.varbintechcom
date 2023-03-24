@@ -48,6 +48,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
             <ImageWrapper>
               <span className="inner-wrapper">
                 <Image
+                  priority
                   alt={projectImageAlt}
                   {...projectImage}
                 />
