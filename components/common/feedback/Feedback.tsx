@@ -33,7 +33,7 @@ const Feedback: FC<FeedbackProps> = props => {
 
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
-          <Image alt={name} {...image} />
+          <Image alt={`${name} photo`} {...image} />
         </AvatarContainer>
 
         <div>
