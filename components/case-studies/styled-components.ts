@@ -44,6 +44,7 @@ export const ImageWrapper = styled('span')(({ theme }) => ({
     display: 'flex',
     maxWidth: '586px',
     maxHeight: '429px',
+    flex: 1,
   },
 }));
 

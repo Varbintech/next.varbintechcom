@@ -87,9 +87,12 @@ export const ScrollContainer = styled(Stack)`
   margin-top: 22px;
   justify-content: center;
 
-  img, svg {
+  img {
     width: auto;
     height: auto;
+  }
+
+  img, svg {
     max-height: 26px;
   }
 `;
@@ -111,8 +114,3 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
-
-export const SubTitleTypography = styled(Typography)`
-  margin: 0 auto 32px;
-  max-width: 620px;
-`;

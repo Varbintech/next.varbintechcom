@@ -3,10 +3,16 @@ interface ProjectTag {
   link: string;
 }
 
-interface Feedback {
+interface ProjectImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
+export interface Feedback {
   text: string;
   name: string;
-  src: string;
+  image: ProjectImage;
   company: string;
   companyName: string;
   companyLinkHref: string;
@@ -15,7 +21,7 @@ interface Feedback {
 
 export interface CaseStudy {
   id: number;
-  projectImage: string;
+  projectImage: ProjectImage;
   projectImageAlt: string;
   projectTitle: string;
   projectDescription: Array<string>;

@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import type { CaseStudy } from '../../models';
 
 import Feedback from '../common/feedback/Feedback';
-import Chip, { type ChipLinkProps } from '../common/chip/Chip';
+import Chip, { type ChipProps } from '../common/chip/Chip';
 // import Button from '../common/buttons/Button';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
@@ -30,6 +30,16 @@ interface CaseStudyInnerProps {
 }
 
 const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
+  const {
+    projectImage,
+    projectImageAlt,
+    projectTitle,
+    projectDescription,
+    projectTags,
+    results,
+    feedback,
+  } = data;
+
   return (
     <PageContainer className={direction === 'row' ? 'lightBackground' : ''}>
       <Container maxWidth="lg">
@@ -37,7 +47,11 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
           <ImageContainer>
             <ImageWrapper>
               <span className="inner-wrapper">
-                <Image fill src={data.projectImage} alt={data.projectImageAlt} />
+                <Image
+                  priority
+                  alt={projectImageAlt}
+                  {...projectImage}
+                />
               </span>
 
               {direction === 'row' ? (
@@ -54,10 +68,10 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
 
           <TextContainer>
             <Typography variant="h2" marginBottom={1} sx={{ fontSize: { xs: '24px', lg: '32px' } }}>
-              {data.projectTitle}
+              {projectTitle}
             </Typography>
 
-            {data.projectDescription.map((description, descriptionIndex) => {
+            {projectDescription.map((description, descriptionIndex) => {
               return (
                 <Typography key={descriptionIndex} gutterBottom>
                   {description}
@@ -66,8 +80,8 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
             })}
 
             <ChipContainer>
-              {data.projectTags.map((tag, tagIndex) => {
-                const additionalProps: Pick<ChipLinkProps, 'component' | 'href'> = tag.link
+              {projectTags.map((tag, tagIndex) => {
+                const additionalProps: Pick<ChipProps, 'component' | 'href'> = tag.link
                   ? {
                       href: tag.link,
                       component: 'a',
@@ -78,12 +92,12 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               })}
             </ChipContainer>
 
-            {data.results.length ? (
+            {results.length ? (
               <>
-                <Typography variant="h6">Results:</Typography>
+                <Typography variant="h6" component="p">Results:</Typography>
 
                 <ListContainer>
-                  {data.results.map((result, resultIndex) => (
+                  {results.map((result, resultIndex) => (
                     <li key={resultIndex}>{result}</li>
                   ))}
                 </ListContainer>
@@ -95,7 +109,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
           </TextContainer>
         </Stack>
 
-        <Feedback {...data.feedback} />
+        <Feedback {...feedback} />
       </Container>
     </PageContainer>
   );

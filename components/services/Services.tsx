@@ -1,24 +1,37 @@
+import type { FC } from 'react';
+
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import RectangleIcon from '../../components/common/icon-rectangle/RectangleIcon';
-import RectangleLeftFillIcon from '../../components/common/icon-rectangle-left-fill/RectangleLeftFillIcon';
-import DevicesIcon from '../../components/common/icon-devices/DevicesIcon';
-import DataObjectIcon from '../../components/common/icon-data-object/DataObjectIcon';
-import DiversityIcon from '../../components/common/icon-diversity/DiversityIcon';
-import FrameIcon from '../../components/common/icon-frame/FrameIcon';
-import TeamIcon from '../../components/common/icon-team/TeamIcon';
+import type { Service } from '../../models';
+
+import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
+import RectangleLeftFillIcon from '../common/icon-rectangle-left-fill/RectangleLeftFillIcon';
+import DevicesIcon from '../common/icon-devices/DevicesIcon';
+import DataObjectIcon from '../common/icon-data-object/DataObjectIcon';
+import DiversityIcon from '../common/icon-diversity/DiversityIcon';
+import FrameIcon from '../common/icon-frame/FrameIcon';
+import TeamIcon from '../common/icon-team/TeamIcon';
 
 import ServiceItem from './ServiceItem';
 
-import {
-  IconLeftContainer,
-  IconRightContainer,
-  PageContainer,
-} from './styled-components';
-const Services = () => {
+import { IconLeftContainer, IconRightContainer, PageContainer } from './styled-components';
+
+interface ServicesProps {
+  data: Array<Service>;
+}
+
+const icons: Record<string, JSX.Element> = {
+  devicesIcon: <DevicesIcon />,
+  dataObjectIcon: <DataObjectIcon />,
+  diversityIcon: <DiversityIcon />,
+  frameIcon: <FrameIcon />,
+  teamIcon: <TeamIcon />,
+};
+
+const Services: FC<ServicesProps> = ({ data }) => {
   return (
     <PageContainer>
       <IconRightContainer>
@@ -36,52 +49,25 @@ const Services = () => {
           >
             What you will get from us
           </Typography>
+
           <Typography align="center" sx={{ marginBottom: { xs: '30px', md: '57px' } }}>
-            Ensure your product is high-performance with a team of QA experts by your side.
+            Let&apos;s build a bold experience together
           </Typography>
         </Box>
 
         <Grid container spacing={{ xs: 2, md: 3.75 }} columns={12} justifyContent="center">
-          <Grid item xs={12} sm={6} md={4}>
-            <ServiceItem
-              icon={<DevicesIcon />}
-              link="#link"
-              title="Front-end development"
-              text="Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level."
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <ServiceItem
-              icon={<DataObjectIcon />}
-              link="#link"
-              title="Source code audit"
-              text="Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level."
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <ServiceItem
-              icon={<DiversityIcon />}
-              link="#link"
-              title="Dedicated front-end team"
-              text="Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level."
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <ServiceItem
-              icon={<FrameIcon />}
-              link="#link"
-              title="MVP development"
-              text="Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level."
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <ServiceItem
-              icon={<TeamIcon />}
-              link="#link"
-              title="Team management"
-              text="Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level."
-            />
-          </Grid>
+          {data.map(service => {
+            return (
+              <Grid key={service.id} container item direction="column" xs={12} sm={6} md={4} >
+                <ServiceItem
+                  icon={icons[service.serviceIcon]}
+                  link={service.serviceLink}
+                  title={service.serviceTitle}
+                  text={service.serviceText}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </PageContainer>

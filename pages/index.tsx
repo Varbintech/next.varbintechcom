@@ -9,6 +9,7 @@ import PricingPlan from '../components/pricing/PricingPlan';
 
 import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
+import { services } from '../mocks/services';
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
       <Main>
         <Hero />
         <CaseStudies data={caseStudies} />
-        <Services />
+        <Services data={services} />
         <PricingPlan data={pricingPlan} />
       </Main>
     </>

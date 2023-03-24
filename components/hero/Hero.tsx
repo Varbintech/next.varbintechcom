@@ -26,7 +26,6 @@ import {
   BoxIconContainer,
   TriangleIconContainer,
   TitleTypography,
-  SubTitleTypography,
   FirstItem,
 } from './styled-components';
 
@@ -64,10 +63,20 @@ const Hero = () => {
         <TitleTypography variant="h1" align="center">
           A development team with superpower
         </TitleTypography>
-        <SubTitleTypography variant="subtitle1" align="center">
+
+        <Typography
+          variant="subtitle1"
+          align="center"
+          component="h2"
+          sx={{
+            margin: '0 auto 32px',
+            maxWidth: '620px',
+          }}
+        >
           We help startups and companies of all shapes and sizes to build high-quality Front-End
           solutions.
-        </SubTitleTypography>
+        </Typography>
+
         <Stack
           direction="row"
           spacing={3}
@@ -82,18 +91,21 @@ const Hero = () => {
           <Typography variant="overline" textTransform="uppercase">recognized by:</Typography>
         </Divider>
         <Stack direction="row" spacing={3} justifyContent="center">
-          <Link href={Settings.UpworkLink} target="_blank" rel="noreferrer">
+          <Link href={Settings.UpworkLink} target="_blank" rel="noreferrer" aria-label="Recognized by Upwork">
             <UpworkIcon sx={{ width: '88px' }} />
           </Link>
 
-          <Link href={Settings.ClutchLink} target="_blank" rel="noreferrer">
+          <Link href={Settings.ClutchLink} target="_blank" rel="noreferrer" aria-label="Recognized by Clutch">
             <ClutchIcon sx={{ width: '57px' }} />
           </Link>
         </Stack>
       </Container>
       <FixedBottomContainer>
-        <ScrollContainer direction="row" spacing={13.75}>
-          <FirstItem src={tinLogo} alt="The Intelligent Network logo" />
+        <ScrollContainer direction="row" spacing={{
+          xs: 8,
+          sm: 13.75,
+        }}>
+          <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
           <DTIcon />
           {/* <Image src={placeholderLogo2} alt="logo2" /> */}
         </ScrollContainer>
