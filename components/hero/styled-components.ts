@@ -87,9 +87,12 @@ export const ScrollContainer = styled(Stack)`
   margin-top: 22px;
   justify-content: center;
 
-  img, svg {
+  img {
     width: auto;
     height: auto;
+  }
+
+  img, svg {
     max-height: 26px;
   }
 `;
