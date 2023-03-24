@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import type { CaseStudy } from '../../models';
 
 import Feedback from '../common/feedback/Feedback';
-import Chip, { type ChipLinkProps } from '../common/chip/Chip';
+import Chip, { type ChipProps } from '../common/chip/Chip';
 // import Button from '../common/buttons/Button';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
@@ -67,7 +67,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
 
             <ChipContainer>
               {data.projectTags.map((tag, tagIndex) => {
-                const additionalProps: Pick<ChipLinkProps, 'component' | 'href'> = tag.link
+                const additionalProps: Pick<ChipProps, 'component' | 'href'> = tag.link
                   ? {
                       href: tag.link,
                       component: 'a',

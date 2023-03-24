@@ -46,7 +46,7 @@ export const themeMuiButtonRoot = {
 };
 
 const color1 = '#141629';
-const color2 = '#848484';
+const color2 = '#4d4d4d';
 const color3 = '#fff';
 const color4 = '#219653';
 const color5 = '#eb5757';
@@ -56,6 +56,8 @@ const color7 = '#000';
 const color8 = '#f2f2f2';
 const color9 = '#fef8f6';
 const color10 = '#fefaf5';
+const color11 = '#f9fafb';
+const color12 = '#f2f3f5';
 
 // Create a theme instance.
 const lightTheme = createTheme({
@@ -64,6 +66,8 @@ const lightTheme = createTheme({
 
     primary: {
       main: color1,
+      light: color11,
+      dark: color12,
     },
     secondary: {
       main: color2,

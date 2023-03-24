@@ -44,6 +44,7 @@ export const ImageWrapper = styled('span')(({ theme }) => ({
     display: 'flex',
     maxWidth: '586px',
     maxHeight: '429px',
+    flex: 1,
   },
 }));
 
@@ -100,3 +101,17 @@ export const ListContainer = styled('ul')`
     margin-bottom: 8px;
   }
 `;
+
+export const IconBoxContainer = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: '-44px',
+  left: '50%',
+  marginLeft: '-40px',
+  width: '80px',
+  height: '80px',
+  zIndex: 1,
+
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}));
