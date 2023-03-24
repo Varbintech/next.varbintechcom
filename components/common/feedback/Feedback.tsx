@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-import type { Feedback } from '../../../models';
+import type { ProjectFeedback } from '../../../models';
 
 import {
   FeedbackContainer,
@@ -18,7 +18,7 @@ import {
   LinkContainer,
 } from './styled-components';
 
-type FeedbackProps = Feedback;
+type FeedbackProps = ProjectFeedback;
 
 const Feedback: FC<FeedbackProps> = props => {
   const { text, name, image, company, linkedInLink, companyName, companyLinkHref } = props;
