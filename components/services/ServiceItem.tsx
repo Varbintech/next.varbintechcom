@@ -22,14 +22,16 @@ const ServiceItem: FC<ServiceItemProps> = props => {
     : { component: 'div' };
 
   return (
-    <Link {...additionalLinkProps}>
-      <ServiceItemContainer>
+    <Link {...additionalLinkProps} sx={{ height: '100%' }}>
+      <ServiceItemContainer sx={{ height: '100%' }}>
         <Stack margin={1.5} alignItems="center">
           {icon}
         </Stack>
+
         <Typography variant="h5" marginBottom={1}>
           {title}
         </Typography>
+
         <Typography variant="body2">{text}</Typography>
       </ServiceItemContainer>
     </Link>

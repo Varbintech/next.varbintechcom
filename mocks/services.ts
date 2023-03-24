@@ -6,8 +6,7 @@ export const services: Array<Service> = [
     serviceIcon: 'devicesIcon',
     serviceLink: '',
     serviceTitle: 'Front-end development',
-    serviceText:
-      'Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level.',
+    serviceText: "Front-end or UI is what your users will see and interact with, so investing in creating a great user experience is crucial. Working with an experienced front-end team is essential to ensure your product meets users' needs and drives business success",
   },
   {
     id: 1,
@@ -15,30 +14,27 @@ export const services: Array<Service> = [
     serviceLink: '',
     serviceTitle: 'Source code audit',
     serviceText:
-      'Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level.',
+      'We help our clients to audit the source code to identify security vulnerabilities, bugs, coding errors, and other issues that could lead to poor performance, reliability, maintainability, and other important metrics',
   },
   {
     id: 2,
     serviceIcon: 'diversityIcon',
-    serviceLink: '#link',
+    serviceLink: '',
     serviceTitle: 'Dedicated front-end team',
-    serviceText:
-      'Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level.',
+    serviceText: 'Working with a dedicated front-end team can help ensure your product has a polished and engaging user interface, is accessible on various devices and platforms, and meets the latest industry standards and best practices in front-end development',
   },
   {
     id: 3,
     serviceIcon: 'frameIcon',
-    serviceLink: '#link',
+    serviceLink: '',
     serviceTitle: 'MVP development',
-    serviceText:
-      'Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level.',
+    serviceText: "Our team has bold experience in MVP development. We'll be happy to help you validate the product's core value proposition while minimizing time and resources",
   },
   {
     id: 4,
     serviceIcon: 'teamIcon',
-    serviceLink: '#link',
+    serviceLink: '',
     serviceTitle: 'Team management',
-    serviceText:
-      'Flexible rendering and caching options, including Incremental Static Regeneration (ISR), on a per-page level.',
+    serviceText: 'Good team management helps to create a productive, engaged, and cohesive team that can work effectively to achieve its objectives and help your business to earn more revenue',
   },
 ];

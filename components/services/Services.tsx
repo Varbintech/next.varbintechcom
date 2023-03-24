@@ -49,15 +49,16 @@ const Services: FC<ServicesProps> = ({ data }) => {
           >
             What you will get from us
           </Typography>
+
           <Typography align="center" sx={{ marginBottom: { xs: '30px', md: '57px' } }}>
-            Ensure your product is high-performance with a team of QA experts by your side.
+            Let&apos;s build a bold experience together
           </Typography>
         </Box>
 
         <Grid container spacing={{ xs: 2, md: 3.75 }} columns={12} justifyContent="center">
           {data.map(service => {
             return (
-              <Grid key={service.id} item xs={12} sm={6} md={4}>
+              <Grid key={service.id} container item direction="column" xs={12} sm={6} md={4} >
                 <ServiceItem
                   icon={icons[service.serviceIcon]}
                   link={service.serviceLink}
