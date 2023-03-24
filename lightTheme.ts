@@ -46,7 +46,7 @@ export const themeMuiButtonRoot = {
 };
 
 const color1 = '#141629';
-const color2 = '#848484';
+const color2 = '#4d4d4d';
 const color3 = '#fff';
 const color4 = '#219653';
 const color5 = '#eb5757';
