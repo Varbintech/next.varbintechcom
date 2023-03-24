@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import Link, { NavigationLinkProps } from '../common/link/Link';
+import Link, { type LinkProps } from '../common/link/Link';
 
 import { ServiceItemContainer } from './styled-components';
 
@@ -17,7 +17,7 @@ interface ServiceItemProps {
 const ServiceItem: FC<ServiceItemProps> = props => {
   const { icon, link, title, text } = props;
 
-  const additionalLinkProps: Pick<NavigationLinkProps, 'component' | 'href'> = link
+  const additionalLinkProps: Pick<LinkProps, 'component' | 'href'> = link
     ? { href: link }
     : { component: 'div' };
 

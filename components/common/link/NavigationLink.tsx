@@ -3,11 +3,11 @@ import { type FC, useEffect, useState } from 'react';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 
-import MuiLink, { LinkProps } from '@mui/material/Link';
+import MuiLink, { type LinkProps as MuiLinkProps } from '@mui/material/Link';
 
-type NavLinkProps = LinkProps & NextLinkProps;
+type NavigationLinkProps = MuiLinkProps & NextLinkProps;
 
-const NavigationLink: FC<NavLinkProps> = props => {
+const NavigationLink: FC<NavigationLinkProps> = props => {
   const { variant, href, as, children, ...restProps } = props;
   const { asPath, isReady } = useRouter();
   const [computedClassName, setComputedClassName] = useState('');

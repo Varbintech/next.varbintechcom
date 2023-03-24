@@ -1,13 +1,13 @@
 import type { ElementType, FC } from 'react';
 
-import MuiChip, { ChipProps } from '@mui/material/Chip';
+import MuiChip, { type ChipProps as MuiChipProps} from '@mui/material/Chip';
 
-export type ChipLinkProps = ChipProps & {
+export type ChipProps = MuiChipProps & {
   component?: ElementType;
   href?: string;
 };
 
-const Chip: FC<ChipLinkProps> = props => {
+const Chip: FC<ChipProps> = props => {
   const { component, label, variant, ...restProps } = props;
 
   return (

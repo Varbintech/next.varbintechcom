@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { Service } from '../../models';
+import type { Service } from '../../models';
 
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 import RectangleLeftFillIcon from '../common/icon-rectangle-left-fill/RectangleLeftFillIcon';
@@ -23,9 +23,7 @@ interface ServicesProps {
   data: Array<Service>;
 }
 
-type T = keyof typeof icons;
-
-const icons = {
+const icons: Record<string, JSX.Element> = {
   devicesIcon: <DevicesIcon />,
   dataObjectIcon: <DataObjectIcon />,
   diversityIcon: <DiversityIcon />,
@@ -61,7 +59,7 @@ const Services: FC<ServicesProps> = ({ data }) => {
             return (
               <Grid key={service.id} item xs={12} sm={6} md={4}>
                 <ServiceItem
-                  icon={icons[service.serviceIcon as T]}
+                  icon={icons[service.serviceIcon]}
                   link={service.serviceLink}
                   title={service.serviceTitle}
                   text={service.serviceText}
