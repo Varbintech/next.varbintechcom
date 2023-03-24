@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 
 import MuiLink, { LinkProps } from '@mui/material/Link';
 
-type NavigationLinkProps = LinkProps & NextLinkProps;
+type NavLinkProps = LinkProps & NextLinkProps;
 
-const NavigationLink: FC<NavigationLinkProps> = props => {
+const NavigationLink: FC<NavLinkProps> = props => {
   const { variant, href, as, children, ...restProps } = props;
   const { asPath, isReady } = useRouter();
   const [computedClassName, setComputedClassName] = useState('');

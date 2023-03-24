@@ -7,6 +7,7 @@ import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
 
 import { caseStudies } from '../mocks/case-study';
+import { services } from '../mocks/services';
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
       <Main>
         <Hero />
         <CaseStudies data={caseStudies} />
-        <Services />
+        <Services data={services} />
       </Main>
     </>
   );
