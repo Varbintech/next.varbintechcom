@@ -15,10 +15,7 @@ export type FooterElement<T = FooterProps, P = JSXElement> = FunctionWithArg<T, 
 export interface FooterProps {
   onConfirm: EmptyFunction;
   isDisabled?: boolean;
-  openDialog?: EmptyFunction;
-  isLoading?: boolean;
   onClose?: EmptyFunction;
-  buttonText?: string;
 }
 
 export type PlanType = 'MONTH' | 'QUARTER' | 'YEAR';

@@ -1,7 +1,7 @@
 import List from '@mui/material/List';
 import { styled } from '@mui/material/styles';
 
-import { PlanType } from '../../models/common';
+import type { PlanType } from '../../models/common';
 
 export const PageContainer = styled('div')(({ theme }) => ({
   paddingTop: '56px',

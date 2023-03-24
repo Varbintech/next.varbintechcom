@@ -12,12 +12,16 @@ import CheckIcon from '@mui/icons-material/Check';
 import type { PricingPlan } from '../../models';
 
 import Button from '../common/buttons/Button';
-import Link from '../common/link/Link';
+import Link, { type LinkProps } from '../common/link/Link';
 
 import { PlanItemContainer, ListStyled, BestChoiceContainer } from './styled-components';
 
 const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
-  const { planTitle, planPrice, planSavePrice, planflag, planBenefits } = data;
+  const { planTitle, planPrice, planSavePrice, planflag, planLinkProjects, planBenefits } = data;
+
+  const additionalLinkProps: Pick<LinkProps, 'component' | 'href'> = planLinkProjects
+    ? { href: planLinkProjects }
+    : { component: 'div' };
 
   return (
     <PlanItemContainer flag={planflag}>
@@ -31,14 +35,13 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
         </Typography>
 
         <Button
-          href="#"
           variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
           sx={{ margin: {xs: '0 16px 22px', md: '0 0 22px'} }}
         >
           Get it now
         </Button>
 
-        <Link href="#link" underline="always" variant="caption">
+        <Link {...additionalLinkProps} underline="always" variant="caption">
           Have a look our previous projects
         </Link>
       </Stack>

@@ -6,5 +6,6 @@ export interface PricingPlan {
   planPrice: string,
   planSavePrice: string,
   planflag: PlanType,
+  planLinkProjects: string,
   planBenefits: Array<string>,
 }
