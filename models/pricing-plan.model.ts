@@ -8,4 +8,5 @@ export interface PricingPlan {
   planflag: PlanType,
   planLinkProjects: string,
   planBenefits: Array<string>,
+  bestChoice?: boolean;
 }
