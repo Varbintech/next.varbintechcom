@@ -83,7 +83,7 @@ const Hero = () => {
           justifyContent="center"
           sx={{ marginBottom: { xs: '100px', md: '58px' } }}
         >
-          <Button href="https://calendly.com/varbincom/dc15-30">Reserve a spot</Button>
+          <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
 
           <Button variant="outlined" href="#customServices">Let’s discuss</Button>
         </Stack>
