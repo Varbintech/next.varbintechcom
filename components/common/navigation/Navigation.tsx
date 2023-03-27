@@ -9,6 +9,8 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import { useThemeMode } from '../../../hooks/use-theme-mode';
 
+import { Settings } from '../../../constants/settings';
+
 import Button from '../buttons/Button';
 import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
 import NavigationLinks from './NavigationLinks';
@@ -58,7 +60,7 @@ const Navigation = () => {
               </nav>
             ) : null}
             <Stack direction="row" spacing={3}>
-              <Button size="small">Get started</Button>
+              <Button size="small" href={Settings.CalendlyLink}>Get started</Button>
 
               {smallScreens ? (
                 <>

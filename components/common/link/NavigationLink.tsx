@@ -9,6 +9,7 @@ type NavigationLinkProps = MuiLinkProps & NextLinkProps;
 
 const NavigationLink: FC<NavigationLinkProps> = props => {
   const { variant, href, as, children, ...restProps } = props;
+
   const { asPath, isReady } = useRouter();
   const [computedClassName, setComputedClassName] = useState('');
 
@@ -22,7 +23,9 @@ const NavigationLink: FC<NavigationLinkProps> = props => {
       // Using URL().pathname to get rid of query and hash
       const activePathname = new URL(asPath, location.href).pathname;
 
-      const newClassName = linkPathname === activePathname ? 'isActive' : '';
+      const newClassName = linkPathname === activePathname && !href.startsWith('#') || href === location.hash
+        ? 'isActive'
+        : '';
 
       if (newClassName !== computedClassName) {
         setComputedClassName(newClassName);

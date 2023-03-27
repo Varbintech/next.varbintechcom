@@ -33,7 +33,7 @@ const icons: Record<string, JSX.Element> = {
 
 const Services: FC<ServicesProps> = ({ data }) => {
   return (
-    <PageContainer>
+    <PageContainer id="services">
       <IconRightContainer>
         <RectangleIcon />
       </IconRightContainer>
