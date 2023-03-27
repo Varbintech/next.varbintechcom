@@ -25,14 +25,25 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
 
   return (
     <PlanItemContainer flag={planflag}>
-      <Stack textAlign="center">
-        {planflag === 'QUARTER' ? <BestChoiceContainer>Best choice</BestChoiceContainer> : null}
+      {planflag === 'QUARTER' ? <BestChoiceContainer>Best choice</BestChoiceContainer> : null}
 
+      <Stack textAlign="center">
         <Typography className="plan-title">{planTitle}</Typography>
+
         <Typography variant="h3">${planPrice}</Typography>
-        <Typography variant="body2" textTransform="uppercase" mb={2.75}>
-          You can Save ${planSavePrice}
-        </Typography>
+
+        {planSavePrice
+          ? (
+            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+              You can Save ${planSavePrice}
+            </Typography>
+          )
+          : (
+            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+              No honeypot
+            </Typography>
+          )
+        }
 
         <Button
           variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
@@ -57,6 +68,7 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
                 <ListItemIcon>
                   <CheckIcon />
                 </ListItemIcon>
+
                 <ListItemText primary={planBenefit} />
               </ListItem>
             );
