@@ -28,7 +28,7 @@ const ServiceItem: FC<ServiceItemProps> = props => {
           {icon}
         </Stack>
 
-        <Typography variant="h5" marginBottom={1}>
+        <Typography variant="h5" component="h3" marginBottom={1}>
           {title}
         </Typography>
 
