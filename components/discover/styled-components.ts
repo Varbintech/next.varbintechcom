@@ -4,11 +4,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 export const PageContainer = styled('div')(({ theme }) => ({
-  padding: '195px 0 64px',
+  padding: '195px 0 20px',
   backgroundColor: theme.palette.background.paper,
 
   [theme.breakpoints.up('lg')]: {
-    padding: '230px 0 120px',
+    padding: '230px 0 20px',
   },
 }));
 

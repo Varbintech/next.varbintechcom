@@ -287,6 +287,58 @@ const lightTheme = createTheme({
         },
       },
     },
+
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          marginBottom: '-2px',
+          boxShadow: 'none',
+          borderTop: '2px solid rgba(214, 213, 213, .5)',
+          borderBottom: '2px solid rgba(214, 213, 213, .5)',
+
+          '&::before': {
+            display: 'none',
+          },
+
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          padding: '6px 20px 6px 0',
+
+          '@media (max-width: 900px)': {
+            paddingRight: 0,
+          },
+        },
+
+        content: {
+          marginRight: '16px',
+        },
+
+        expandIconWrapper: {
+          color: color1,
+
+          '&.Mui-expanded': {
+            color: color2,
+          },
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          marginTop: '-8px',
+          padding: '0 48px 18px 0',
+
+          '@media (max-width: 900px)': {
+            paddingRight: 0,
+          },
+        },
+      },
+    },
+
   },
 });
 

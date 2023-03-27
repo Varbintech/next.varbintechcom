@@ -20,7 +20,6 @@ const Discover = () => {
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={{ md: '80px' }}
-          marginBottom={{ xs: '60px', lg: '100px' }}
         >
           <Stack
             direction="row"

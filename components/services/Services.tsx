@@ -45,7 +45,7 @@ const Services: FC<ServicesProps> = ({ data }) => {
           <Typography
             variant="h2"
             align="center"
-            sx={{ marginBottom: 1, fontSize: { xs: '32px', lg: '40px' } }}
+            sx={{ marginBottom: 1.5, fontSize: { xs: '32px', lg: '40px' } }}
           >
             What you will get from us
           </Typography>
