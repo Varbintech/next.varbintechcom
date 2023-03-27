@@ -9,7 +9,7 @@ interface ProjectImage {
   height: number;
 }
 
-export interface Feedback {
+export interface ProjectFeedback {
   text: string;
   name: string;
   image: ProjectImage;
@@ -27,5 +27,5 @@ export interface CaseStudy {
   projectDescription: Array<string>;
   projectTags: Array<ProjectTag>;
   results: Array<string>;
-  feedback: Feedback;
+  feedback: ProjectFeedback;
 }
