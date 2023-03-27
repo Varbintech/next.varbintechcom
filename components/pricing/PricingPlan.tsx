@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import type { PricingPlan } from '../../models';
+import type { PricingPlanItem } from '../../models';
 
 import DialogCustomServices from '../dialogs/custom-services/DialogCustomServices';
 import PlanItem from './PlanItem';
@@ -13,7 +13,7 @@ import CustomServices from './CustomServices';
 import { PageContainer } from './styled-components';
 
 interface PricingPlanProps {
-  data: Array<PricingPlan>;
+  data: Array<PricingPlanItem>;
 }
 
 const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
