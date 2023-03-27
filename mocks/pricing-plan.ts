@@ -1,6 +1,6 @@
-import type { PricingPlan } from '../models';
+import type { PricingPlanItem } from '../models';
 
-const pricingPlan1: PricingPlan = {
+const pricingPlan1: PricingPlanItem = {
   id: 0,
   planTitle: 'Monthy',
   planPrice: '4,999/m',
@@ -21,7 +21,7 @@ const pricingPlan1: PricingPlan = {
   ],
 };
 
-const pricingPlan2: PricingPlan = {
+const pricingPlan2: PricingPlanItem = {
   id: 1,
   planTitle: 'Quarterly',
   planPrice: '4,499/m',
@@ -42,7 +42,7 @@ const pricingPlan2: PricingPlan = {
   ],
 };
 
-const pricingPlan3: PricingPlan = {
+const pricingPlan3: PricingPlanItem = {
   id: 2,
   planTitle: 'Yearly',
   planPrice: '3,999/m',
@@ -63,4 +63,4 @@ const pricingPlan3: PricingPlan = {
   ],
 };
 
-export const pricingPlan: Array<PricingPlan> = [pricingPlan1, pricingPlan2, pricingPlan3];
+export const pricingPlan: Array<PricingPlanItem> = [pricingPlan1, pricingPlan2, pricingPlan3];
