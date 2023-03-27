@@ -58,7 +58,7 @@ const Navigation = () => {
               </nav>
             ) : null}
             <Stack direction="row" spacing={3}>
-              <Button size="small">Get started</Button>
+              <Button size="small" href="https://calendly.com/varbincom/dc15-30">Get started</Button>
 
               {smallScreens ? (
                 <>
