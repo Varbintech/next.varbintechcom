@@ -28,7 +28,7 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer id="pricing">
       <Container maxWidth="lg">
         <Typography
           variant="h2"
@@ -54,7 +54,9 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
             );
           })}
         </Grid>
+
         <CustomServices onOpenDialog={handleOpenDialog} />
+
         {openDialog ? <DialogCustomServices onClose={handleCloseDialog} /> : null}
       </Container>
     </PageContainer>
