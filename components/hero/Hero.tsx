@@ -15,7 +15,7 @@ import DTIcon from '../common/icon-dt/DTIcon';
 
 import { Settings } from '../../constants/settings';
 
-import tinLogo from '../../public/TIN-logo.png';
+import tinLogo from '../../public/TIN-logo.webp';
 
 import {
   PageContainer,
