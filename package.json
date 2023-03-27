@@ -6,7 +6,8 @@
     "clean": "rm -rf ./out",
     "deploy": "next build && rm -rf ./out && mkdir out && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages",
     "add-domain": "echo \"next.varbintech.com\" > ./out/CNAME",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --skipLibCheck --project ./tsconfig.json"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
