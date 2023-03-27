@@ -7,4 +7,5 @@ export const Settings = {
   ClutchLink: 'https://clutch.co/profile/varbintech',
   MaxAge: 31536000,
   RevalidateTime: 360, // In seconds
+  CalendlyLink: 'https://calendly.com/varbincom/dc15-30',
 } as const;

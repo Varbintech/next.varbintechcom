@@ -43,7 +43,10 @@ const caseStudy2: CaseStudy = {
   },
   projectImageAlt: 'The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project',
   projectTitle: 'Digital Toucan - OKR for Jira',
-  projectDescription: ['Trusted by 1000+ companies. OKR for Jira gives you the power to create objectives with as many nesting levels as you need to reflect your organization priorities.', 'Simply create your objectives, add key results, and connect them to Jira issues. Now you can automatically track progress towards your goals and give everyone a clear path to success.'],
+  projectDescription: [
+    'Trusted by 1000+ companies. OKR for Jira gives you the power to create objectives with as many nesting levels as you need to reflect your organization priorities.',
+    'Simply create your objectives, add key results, and connect them to Jira issues. Now you can automatically track progress towards your goals and give everyone a clear path to success.',
+  ],
   projectTags: [
     { name: 'Front-End', link: '' },
     { name: 'Backend', link: '' },

@@ -10,13 +10,13 @@ interface CaseStudiesProps {
 
 const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
   return (
-    <>
+    <div id="caseStudies">
       {data.map((caseStudy, caseStudyIndex) => {
         const direction = (caseStudyIndex % 2 === 0) ? 'row-reverse' : 'row';
 
         return <CaseStudyInner key={caseStudy.id} data={caseStudy} direction={direction} />;
       })}
-    </>
+    </div>
   );
 };
 

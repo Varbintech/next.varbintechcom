@@ -7,8 +7,10 @@ import Navigation from '../components/common/navigation/Navigation';
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
+import PricingPlan from '../components/pricing/PricingPlan';
 
 import { caseStudies } from '../mocks/case-study';
+import { pricingPlan } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
 
 import { Settings } from '../constants/settings';
@@ -24,6 +26,7 @@ export default function Home() {
         <Hero />
         <CaseStudies data={caseStudies} />
         <Services data={services} />
+        <PricingPlan data={pricingPlan} />
       </Main>
     </>
   );
