@@ -13,9 +13,9 @@ export const PageContainer = styled('div')(({ theme }) => ({
 }));
 
 export const DiscoverTitle = styled(Typography)(({ theme }) => ({
-  lineHeight: 1,
   marginBottom: '34px',
   fontSize: '32px',
+  lineHeight: 1,
 
   [theme.breakpoints.up('md')]: {
     marginTop: '40px',

@@ -227,11 +227,11 @@ const lightTheme = createTheme({
         root: {
           fontSize: '16px',
           borderColor: color2,
-          backgroundColor: color8,
+          backgroundColor: '#eee',
 
           '&:hover, &.MuiChip-clickable:hover': {
             cursor: 'default',
-            backgroundColor: color8,
+            backgroundColor: '#eee',
           },
 
           '&[href]:hover': {
