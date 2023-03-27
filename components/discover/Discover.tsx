@@ -15,7 +15,7 @@ import {
 
 const Discover = () => {
   return (
-    <PageContainer>
+    <PageContainer id="blog">
       <Container maxWidth="lg">
         <Stack
           direction={{ xs: 'column', md: 'row' }}
