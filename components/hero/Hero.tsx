@@ -85,7 +85,7 @@ const Hero = () => {
         >
           <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
 
-          <Button variant="outlined" href="#customServices">Let’s discuss</Button>
+          <Button variant="outlined" href="#customServices">Let&apos;s discuss</Button>
         </Stack>
 
         <Divider sx={{ marginBottom: 2 }}>
