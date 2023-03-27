@@ -1,3 +1,5 @@
+import type { GetServerSideProps } from 'next';
+
 import Head from './components/Head';
 
 import Main from '../components/common/Main';
@@ -10,6 +12,8 @@ import PricingPlan from '../components/pricing/PricingPlan';
 import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
+
+import { Settings } from '../constants/settings';
 
 export default function Home() {
   return (
@@ -27,3 +31,15 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    // @TODO think about stale-while-revalidate=${Settings.RevalidateTime}
+    `public, max-age=${Settings.MaxAge}, immutable`,
+  );
+
+  return {
+    props: {},
+  };
+};
