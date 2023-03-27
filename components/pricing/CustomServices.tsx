@@ -9,14 +9,14 @@ import Button from '../common/buttons/Button';
 import { CustomServicesContainer } from './styled-components';
 
 interface CustomServicesProps {
-  onOpenDialog?: EmptyFunction;
+  onOpenDialog: EmptyFunction;
 }
 
 const CustomServices: FC<CustomServicesProps> = props => {
   const { onOpenDialog } = props;
 
   const handleOpenDialog = () => {
-    onOpenDialog && onOpenDialog();
+    onOpenDialog();
   };
 
   return (
