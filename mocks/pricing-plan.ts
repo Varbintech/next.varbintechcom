@@ -6,7 +6,7 @@ const pricingPlan1: PricingPlanItem = {
   planPrice: '4,999/m',
   planSavePrice: '',
   planflag: 'MONTH',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
     'Project backlog',
     'Open-Source under MIT License',
@@ -27,7 +27,7 @@ const pricingPlan2: PricingPlanItem = {
   planPrice: '4,499/m',
   planSavePrice: '500',
   planflag: 'QUARTER',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
     'Project backlog',
     'Open-Source under MIT License',
@@ -48,7 +48,7 @@ const pricingPlan3: PricingPlanItem = {
   planPrice: '3,999/m',
   planSavePrice: '1000',
   planflag: 'YEAR',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
     'Project backlog',
     'Open-Source under MIT License',
