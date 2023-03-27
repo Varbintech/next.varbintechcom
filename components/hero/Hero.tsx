@@ -15,7 +15,7 @@ import DTIcon from '../common/icon-dt/DTIcon';
 
 import { Settings } from '../../constants/settings';
 
-import tinLogo from '../../public/TIN-logo.png';
+import tinLogo from '../../public/TIN-logo.webp';
 
 import {
   PageContainer,
@@ -83,8 +83,9 @@ const Hero = () => {
           justifyContent="center"
           sx={{ marginBottom: { xs: '100px', md: '58px' } }}
         >
-          <Button>Let’s discuss</Button>
-          <Button variant="outlined">Let’s discuss</Button>
+          <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
+
+          <Button variant="outlined" href="#customServices">Let&apos;s discuss</Button>
         </Stack>
 
         <Divider sx={{ marginBottom: 2 }}>

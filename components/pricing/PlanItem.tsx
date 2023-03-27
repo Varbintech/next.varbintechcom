@@ -9,14 +9,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 
-import type { PricingPlan } from '../../models';
+import type { PricingPlanItem } from '../../models';
 
 import Button from '../common/buttons/Button';
 import Link, { type LinkProps } from '../common/link/Link';
 
 import { PlanItemContainer, ListStyled, BestChoiceContainer } from './styled-components';
 
-const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
+const PlanItem: FC<{ data: PricingPlanItem }> = ({ data }) => {
   const { planTitle, planPrice, planSavePrice, planflag, planLinkProjects, planBenefits } = data;
 
   const additionalLinkProps: Pick<LinkProps, 'component' | 'href'> = planLinkProjects
@@ -25,14 +25,25 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
 
   return (
     <PlanItemContainer flag={planflag}>
-      <Stack textAlign="center">
-        {planflag === 'QUARTER' ? <BestChoiceContainer>Best choice</BestChoiceContainer> : null}
+      {planflag === 'QUARTER' ? <BestChoiceContainer>Best choice</BestChoiceContainer> : null}
 
+      <Stack textAlign="center">
         <Typography className="plan-title">{planTitle}</Typography>
+
         <Typography variant="h3">${planPrice}</Typography>
-        <Typography variant="body2" textTransform="uppercase" mb={2.75}>
-          You can Save ${planSavePrice}
-        </Typography>
+
+        {planSavePrice
+          ? (
+            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+              You can Save ${planSavePrice}
+            </Typography>
+          )
+          : (
+            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+              No honeypot
+            </Typography>
+          )
+        }
 
         <Button
           variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
@@ -57,6 +68,7 @@ const PlanItem: FC<{ data: PricingPlan }> = ({ data }) => {
                 <ListItemIcon>
                   <CheckIcon />
                 </ListItemIcon>
+
                 <ListItemText primary={planBenefit} />
               </ListItem>
             );

@@ -47,6 +47,10 @@ const initialState: InitialState = {
   },
 };
 
+const isSuccessField = (name: string, value: string) => {
+  return name === 'email' ? !!value && value.includes('@') : !!value;
+};
+
 const reducer: Reducer<InitialState, ActionChange | ActionBlur> = (state, action) => {
   switch (action.type) {
     case 'blur': {
@@ -56,7 +60,7 @@ const reducer: Reducer<InitialState, ActionChange | ActionBlur> = (state, action
         ...state,
         [field.name]: {
           ...state[field.name],
-          success: field.name === 'email' ? !!field.value && field.value.includes('@') : !!field.value,
+          success: isSuccessField(field.name, field.value),
         },
       };
     }
@@ -69,7 +73,7 @@ const reducer: Reducer<InitialState, ActionChange | ActionBlur> = (state, action
         [field.name]: {
           ...state[field.name],
           value: field.value,
-          success: field.name === 'email' ? !!field.value && field.value.includes('@') : !!field.value,
+          success: isSuccessField(field.name, field.value),
         },
       };
 

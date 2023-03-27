@@ -1,4 +1,4 @@
-export type { PricingPlan, PlanType } from './pricing-plan.model';
+export type { PricingPlanItem, PlanType } from './pricing-plan.model';
 
 export type { CaseStudy, ProjectFeedback } from './case-study.model';
 

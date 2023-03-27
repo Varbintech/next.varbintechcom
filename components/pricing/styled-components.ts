@@ -26,6 +26,7 @@ export const PlanItemContainer = styled(PlanItemStyled)<{ flag: PlanType }>`
   position: relative;
   min-height: 540px;
   border-bottom: 8px solid #f2994a;
+  overflow: hidden;
 
   ${({ flag }) => {
     if (flag === 'QUARTER') {
@@ -54,15 +55,15 @@ export const PlanItemContainer = styled(PlanItemStyled)<{ flag: PlanType }>`
 
 export const BestChoiceContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '50px',
-  left: '-34px',
+  top: '-1px',
+  left: 0,
   padding: '7px 14px 7px 8px',
   color: theme.palette.background.paper,
   textTransform: 'uppercase',
   lineHeight: '1em',
   fontWeight: 500,
   background: '#bb6bd9',
-  transform: 'rotate(90deg)',
+  transform: 'rotate(90deg) translate(39%, 110%)',
 
   '&::before': {
     content: '""',

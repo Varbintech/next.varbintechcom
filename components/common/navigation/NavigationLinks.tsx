@@ -1,22 +1,25 @@
 import NavigationLink from '../link/NavigationLink';
 
 const navigationRoutes = [
-  { text: 'Case studies', href: '/case-studies' },
-  { text: 'Technologies', href: '/technologies' },
-  { text: 'Services', href: '/services' },
-  { text: 'Pricing', href: '/pricing' },
-  { text: 'Blog', href: '/blog' },
+  { text: 'Case studies', href: '', scrollTo: '#caseStudies' },
+  { text: 'Services', href: '', scrollTo: '#services' },
+  { text: 'Pricing', href: '', scrollTo: '#pricing' },
+  { text: 'Blog', href: '', scrollTo: '' },
 ];
 
 const NavigationLinks = () => {
   return (
     <>
       {navigationRoutes.map((singleRoute, index) => {
-        return (
-          <NavigationLink key={index} href={singleRoute.href}>
-            {singleRoute.text}
-          </NavigationLink>
-        );
+        if (singleRoute.href || singleRoute.scrollTo) {
+          return (
+            <NavigationLink key={index} href={singleRoute.href || singleRoute.scrollTo}>
+              {singleRoute.text}
+            </NavigationLink>
+          );
+        }
+
+        return null;
       })}
     </>
   );

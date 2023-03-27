@@ -23,7 +23,8 @@ const header = (): JSXElement => (
     >
       Custom services
     </Typography>
-    <Typography variant="body2">We will give you the best price</Typography>
+
+    <Typography variant="body2">Let&#39;s make a difference together</Typography>
   </>
 );
 

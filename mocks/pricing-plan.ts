@@ -1,49 +1,66 @@
-import type { PricingPlan } from '../models';
+import type { PricingPlanItem } from '../models';
 
-const pricingPlan1: PricingPlan = {
+const pricingPlan1: PricingPlanItem = {
   id: 0,
   planTitle: 'Monthy',
-  planPrice: '300',
-  planSavePrice: '200',
+  planPrice: '4,999/m',
+  planSavePrice: '',
   planflag: 'MONTH',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
+    'Project backlog',
     'Open-Source under MIT License',
     'REST & GraphQL API',
     'Highly Flexible Content Structure',
+    'Component-based approach',
+    'Top-notch quality',
+    'Fixed monthly rate',
+    'Lightning fast communication',
+    'Flexible and scalable',
+    'Unlimited requests',
   ],
 };
 
-const pricingPlan2: PricingPlan = {
+const pricingPlan2: PricingPlanItem = {
   id: 1,
   planTitle: 'Quarterly',
-  planPrice: '599',
-  planSavePrice: '300',
+  planPrice: '4,499/m',
+  planSavePrice: '500',
   planflag: 'QUARTER',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
+    'Project backlog',
     'Open-Source under MIT License',
     'REST & GraphQL API',
     'Highly Flexible Content Structure',
-    'Powerful Content Management',
-    'Infinite Customization Capabilities',
+    'Component-based approach',
+    'Top-notch quality',
+    'Fixed monthly rate',
+    'Lightning fast communication',
+    'Flexible and scalable',
+    'Unlimited requests',
   ],
 };
 
-const pricingPlan3: PricingPlan = {
+const pricingPlan3: PricingPlanItem = {
   id: 2,
   planTitle: 'Yearly',
-  planPrice: '1000',
-  planSavePrice: '500',
+  planPrice: '3,999/m',
+  planSavePrice: '1000',
   planflag: 'YEAR',
-  planLinkProjects: '',
+  planLinkProjects: '#caseStudies',
   planBenefits: [
+    'Project backlog',
     'Open-Source under MIT License',
     'REST & GraphQL API',
     'Highly Flexible Content Structure',
-    'Powerful Content Management',
-    'Infinite Customization Capabilities',
+    'Component-based approach',
+    'Top-notch quality',
+    'Fixed monthly rate',
+    'Lightning fast communication',
+    'Flexible and scalable',
+    'Unlimited requests',
   ],
 };
 
-export const pricingPlan: Array<PricingPlan> = [pricingPlan1, pricingPlan2, pricingPlan3];
+export const pricingPlan: Array<PricingPlanItem> = [pricingPlan1, pricingPlan2, pricingPlan3];

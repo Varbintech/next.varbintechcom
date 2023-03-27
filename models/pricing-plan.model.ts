@@ -1,6 +1,6 @@
 export type PlanType = 'MONTH' | 'QUARTER' | 'YEAR';
 
-export interface PricingPlan {
+export interface PricingPlanItem {
   id: number;
   planTitle: string,
   planPrice: string,
@@ -8,4 +8,5 @@ export interface PricingPlan {
   planflag: PlanType,
   planLinkProjects: string,
   planBenefits: Array<string>,
+  bestChoice?: boolean;
 }
