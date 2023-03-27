@@ -6,6 +6,7 @@ import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
 import PricingPlan from '../components/pricing/PricingPlan';
+import Discover from '../components/discover/Discover';
 
 import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
@@ -23,6 +24,7 @@ export default function Home() {
         <CaseStudies data={caseStudies} />
         <Services data={services} />
         <PricingPlan data={pricingPlan} />
+        <Discover />
       </Main>
     </>
   );

@@ -100,6 +100,8 @@ export const ListStyled = styled(List)(({ theme }) => ({
 }));
 
 export const CustomServicesContainer = styled(PlanItemStyled)(({ theme }) => ({
+  position: 'relative',
+  zIndex: 10,
   paddingTop: '36px',
   paddingBottom: '40px',
   marginBottom: '-130px',
