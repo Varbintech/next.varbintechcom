@@ -10,14 +10,14 @@ export type LinkProps = MuiLinkProps &  {
 };
 
 const Link: FC<LinkProps> = props => {
-  const { variant, component, children, ...restProps } = props;
+  const { variant, component, underline, children, ...restProps } = props;
 
   return (
     <MuiLink
       {...restProps}
       component={component || NextLink}
       variant={variant || 'body1'}
-      underline="none"
+      underline={underline || 'none'}
     >
       {children}
     </MuiLink>
