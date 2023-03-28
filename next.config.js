@@ -1,3 +1,5 @@
+const { PHASE_PRODUCTION_BUILD } = require('next/constants');
+
 // @TODO Doesn't work with GitHub Pages
 const headers = async () => {
   return [
@@ -23,7 +25,7 @@ module.exports = async (phase, { defaultConfig: _ }) => {
     swcMinify: true,
     images: {
       minimumCacheTTL: 60,
-      unoptimized: phase !== process.env.CI,
+      unoptimized: phase === PHASE_PRODUCTION_BUILD && phase !== process.env.CI,
     },
 
     headers,
