@@ -32,9 +32,11 @@ const Questions: FC<QuestionsProps> = ({ data }) => {
       <IconRightContainer>
         <RectangleLeftFillIcon />
       </IconRightContainer>
+
       <IconLeftContainer>
         <RectangleIcon />
       </IconLeftContainer>
+
       <Container maxWidth="lg">
         <Box paddingLeft={2} paddingRight={2} maxWidth="600px" margin="auto">
           <Typography
@@ -50,8 +52,7 @@ const Questions: FC<QuestionsProps> = ({ data }) => {
             align="center"
             sx={{ marginBottom: { xs: '30px', md: '57px' } }}
           >
-            Flexible rendering and caching options, including Incremental Static Regeneration (ISR),
-            on a per-page level.
+            Top-notch experience with a proven record
           </Typography>
         </Box>
 
@@ -59,13 +60,13 @@ const Questions: FC<QuestionsProps> = ({ data }) => {
           return (
             <Accordion
               key={question.id}
-              expanded={expanded === 'panel' + question.id}
-              onChange={handleChange('panel' + question.id)}
+              expanded={expanded === `panel${question.id}`}
+              onChange={handleChange(`panel${question.id}`)}
               disableGutters
             >
               <AccordionSummary
-                aria-controls={'panel-content' + question.id}
-                id={'panel-header' + question.id}
+                aria-controls={`panel-content${question.id}`}
+                id={`panel-header${question.id}`}
                 expandIcon={<SouthIcon fontSize="small" />}
               >
                 <Typography variant="h5">{question.questionsTitle}</Typography>
