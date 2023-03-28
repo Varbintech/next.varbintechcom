@@ -27,18 +27,18 @@ export const DiscoverTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const DiscoverItemContainer = styled('div')`
-  padding: 36px 0;
-`;
+export const DiscoverItemContainer = styled('div')(({ theme }) => ({
+  padding: '36px 0',
+  borderBottom: '2px solid',
+  borderColor: alpha(theme.palette.primary.main, 0.1),
+}));
 
 export const DiscoverColumn = styled(Stack)(({ theme }) => ({
-  width: '50%',
   borderTop: '2px solid',
   borderColor: alpha(theme.palette.primary.main, 0.1),
 
-  '& > div': {
-    borderBottom: '2px solid',
-    borderColor: alpha(theme.palette.primary.main, 0.1),
+  [theme.breakpoints.down('md')]: {
+    width: '50%',
   },
 }));
 

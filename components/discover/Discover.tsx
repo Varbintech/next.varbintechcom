@@ -15,7 +15,7 @@ import {
 
 const Discover = () => {
   return (
-    <PageContainer id="blog">
+    <PageContainer>
       <Container maxWidth="lg">
         <Stack
           direction={{ xs: 'column', md: 'row' }}
@@ -35,7 +35,7 @@ const Discover = () => {
               Start with why
             </DiscoverTitle>
 
-            <Stack direction="row" spacing={3.75}>
+            <Stack direction="row" spacing={{ xs: 3, md: 3.75 }}>
               <DiscoverColumn>
                 <DiscoverItemContainer>
                   <DiscoverItemTitle>we have done</DiscoverItemTitle>
