@@ -10,6 +10,7 @@ import Services from '../components/services/Services';
 import PricingPlan from '../components/pricing/PricingPlan';
 import Discover from '../components/discover/Discover';
 import Questions from '../components/questions/Questions';
+import Contact from '../components/contact/Contact';
 
 import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
@@ -32,6 +33,7 @@ export default function Home() {
         <PricingPlan data={pricingPlan} />
         <Discover />
         <Questions data={questions} />
+        <Contact />
       </Main>
     </>
   );
