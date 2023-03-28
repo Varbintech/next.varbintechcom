@@ -7,6 +7,7 @@ export const themeTypography = {
   h2: {
     fontSize: '2.5em',
     fontWeight: 700,
+    lineHeight: '1em',
   },
   h3: {
     fontSize: '2em',
@@ -53,12 +54,11 @@ const color5 = '#eb5757';
 
 const color6 = '#f3f3f3';
 const color7 = '#000';
-const color8 = '#f2f2f2';
+const color8 = '#d6d5d5';
 const color9 = '#fef8f6';
 const color10 = '#fefaf5';
 const color11 = '#f9fafb';
 const color12 = '#f2f3f5';
-const color13 = '#d6d5d5';
 
 // Create a theme instance.
 const lightTheme = createTheme({
@@ -227,11 +227,11 @@ const lightTheme = createTheme({
         root: {
           fontSize: '16px',
           borderColor: color2,
-          backgroundColor: color8,
+          backgroundColor: '#eee',
 
           '&:hover, &.MuiChip-clickable:hover': {
             cursor: 'default',
-            backgroundColor: color8,
+            backgroundColor: '#eee',
           },
 
           '&[href]:hover': {
@@ -249,7 +249,7 @@ const lightTheme = createTheme({
           padding: 0,
 
           '.MuiOutlinedInput-notchedOutline': {
-            borderColor: color13,
+            borderColor: color8,
 
             '.text-filled &': {
               borderColor: color1,
@@ -270,7 +270,7 @@ const lightTheme = createTheme({
 
           '&.Mui-disabled': {
             '.MuiOutlinedInput-notchedOutline': {
-              borderColor: color13,
+              borderColor: color8,
               backgroundColor: 'rgba(0,0,0,0.03)',
             },
           },
@@ -287,6 +287,58 @@ const lightTheme = createTheme({
         },
       },
     },
+
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          marginBottom: '-2px',
+          boxShadow: 'none',
+          borderTop: '2px solid rgba(214, 213, 213, .5)',
+          borderBottom: '2px solid rgba(214, 213, 213, .5)',
+
+          '&::before': {
+            display: 'none',
+          },
+
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          padding: '6px 20px 6px 0',
+
+          '@media (max-width: 900px)': {
+            paddingRight: 0,
+          },
+        },
+
+        content: {
+          marginRight: '16px',
+        },
+
+        expandIconWrapper: {
+          color: color1,
+
+          '&.Mui-expanded': {
+            color: color2,
+          },
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          marginTop: '-8px',
+          padding: '0 48px 18px 0',
+
+          '@media (max-width: 900px)': {
+            paddingRight: 0,
+          },
+        },
+      },
+    },
+
   },
 });
 

@@ -4,7 +4,7 @@ const navigationRoutes = [
   { text: 'Case studies', href: '', scrollTo: '#caseStudies' },
   { text: 'Services', href: '', scrollTo: '#services' },
   { text: 'Pricing', href: '', scrollTo: '#pricing' },
-  { text: 'Blog', href: '', scrollTo: '' },
+  { text: 'Blog', href: '', scrollTo: '#blog' },
 ];
 
 const NavigationLinks = () => {
