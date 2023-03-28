@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next';
+import type { GetStaticProps } from 'next';
 
 import Head from './components/Head';
 
@@ -37,14 +37,12 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  res.setHeader(
-    'Cache-Control',
-    // @TODO think about stale-while-revalidate=${Settings.RevalidateTime}
-    `public, max-age=${Settings.MaxAge}, immutable`,
-  );
-
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
   };
 };
