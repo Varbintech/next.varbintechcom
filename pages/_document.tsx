@@ -13,7 +13,6 @@ import { AppType } from 'next/app';
 import createEmotionServer from '@emotion/server/create-instance';
 
 import createEmotionCache from '../createEmotionCache';
-import { inter } from '../constants/inter-latin';
 import { useThemeMode } from '../hooks/use-theme-mode';
 
 import { MyAppProps } from './_app';
@@ -26,7 +25,7 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   const theme = useThemeMode();
 
   return (
-    <Html lang="en" className={inter.className}>
+    <Html lang="en">
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
