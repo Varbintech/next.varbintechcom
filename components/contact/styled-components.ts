@@ -37,7 +37,7 @@ export const ContactMainContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
 
   [theme.breakpoints.up('lg')]: {
-    padding: '60px 70px 56px',
+    padding: '56px 60px',
     maxWidth: '500px',
   },
 }));
@@ -66,6 +66,10 @@ export const ContactEmail = styled(Typography)(({ theme }) => ({
   color: theme.palette.background.paper,
   fontWeight: 700,
   lineHeight: 1,
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '24px',
+  },
 }));
 
 export const ContactText = styled(Typography)(({ theme }) => ({

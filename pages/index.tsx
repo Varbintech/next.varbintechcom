@@ -16,6 +16,7 @@ import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
 import { questions } from '../mocks/questions';
+import { socialIcons } from '../mocks/social-icons';
 
 import { Settings } from '../constants/settings';
 
@@ -33,7 +34,7 @@ export default function Home() {
         <PricingPlan data={pricingPlan} />
         <Discover />
         <Questions data={questions} />
-        <Contact />
+        <Contact data={socialIcons} />
       </Main>
     </>
   );
