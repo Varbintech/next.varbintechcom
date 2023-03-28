@@ -1,7 +1,4 @@
-/**
- * @type {import('next').NextConfig}
- **/
-
+// @TODO Doesn't work with GitHub Pages
 const headers = async () => {
   return [
     {
@@ -17,14 +14,20 @@ const headers = async () => {
   ];
 };
 
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    minimumCacheTTL: 60,
-  },
+module.exports = async (phase, { defaultConfig: _ }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const nextConfig = {
+    reactStrictMode: true,
+    swcMinify: true,
+    images: {
+      minimumCacheTTL: 60,
+      unoptimized: phase !== process.env.CI,
+    },
 
-  headers,
+    headers,
+  };
+
+  return nextConfig;
 };
-
-module.exports = nextConfig;
