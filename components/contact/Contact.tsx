@@ -28,25 +28,28 @@ import {
   ContactIconContainer,
 } from './styled-components';
 
+import contactBg from '../../public/contact-bg.webp';
+
 const Contact = () => {
   return (
     <PageContainer id="services">
       <IconLeftContainer>
         <RectangleLeftFillIcon />
       </IconLeftContainer>
+
       <Container maxWidth="lg">
         <ContactContainer direction={{ xs: 'column', md: 'row-reverse' }}>
           <ContactImageContainer>
             <ImageWrapper>
-              <Image src="/contact-bg.webp" alt="Contact image" width="672" height="450" />
+              <Image src={contactBg} alt="Contact the Varbintech team, and you will have the answer in less than 24 hour" />
             </ImageWrapper>
           </ContactImageContainer>
           <ContactMainContainer>
             <div>
-              <ContactEmail variant="h3">shams@fibo.studio</ContactEmail>
+              <ContactEmail variant="h3">contact@varbintech.com</ContactEmail>
+
               <ContactText>
-                Flexible rendering and caching options, including Incremental Static Regeneration
-                (ISR), on a per-page level.
+                Take the next step towards achieving your goals by leveraging our top-notch experience with a proven record
               </ContactText>
               <ContactIconContainer>
                 <RectangleBoxWhiteIcon />
@@ -63,6 +66,7 @@ const Contact = () => {
               >
                 <RedditIcon sx={{ fontSize: '20px' }} />
               </ContactRedditLink>
+
               <ContactLink
                 href={Settings.GitHubLink}
                 underline="none"
@@ -72,6 +76,7 @@ const Contact = () => {
               >
                 <GitHubIcon sx={{ fontSize: '26px' }} />
               </ContactLink>
+
               <ContactLink
                 href={Settings.LinkedInLink}
                 underline="none"
@@ -82,6 +87,7 @@ const Contact = () => {
               >
                 <LinkedInIcon sx={{ fontSize: '26px' }} />
               </ContactLink>
+
               <ContactLink
                 href={Settings.TwitterLink}
                 underline="none"
@@ -101,6 +107,7 @@ const Contact = () => {
               >
                 <UpworkSmallIcon />
               </ContactLink>
+
               <ContactLink
                 href={Settings.ClutchLink}
                 underline="none"
