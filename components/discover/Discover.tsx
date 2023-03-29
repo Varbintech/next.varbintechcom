@@ -66,7 +66,7 @@ const Discover = () => {
                 <DiscoverItemContainer>
                   <DiscoverItemTitle>Responsiveness</DiscoverItemTitle>
                   <Typography variant="h3" sx={{ fontSize: { xs: '24px', lg: '32px' } }}>
-                    &lt; 24 Hours
+                    &lt; 24 Hour
                   </Typography>
                 </DiscoverItemContainer>
               </DiscoverColumn>
