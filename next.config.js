@@ -6,9 +6,8 @@ module.exports = async () => {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      loader: 'custom',
-      domains: ['res.cloudinary.com'],
-      loaderFile: './utils/loader-cloudinary.ts',
+      minimumCacheTTL: 60,
+      unoptimized: true,
     },
   };
 
