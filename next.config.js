@@ -25,7 +25,7 @@ module.exports = async (phase, { defaultConfig: _ }) => {
     swcMinify: true,
     images: {
       minimumCacheTTL: 60,
-      unoptimized: phase === PHASE_PRODUCTION_BUILD && phase !== process.env.CI,
+      unoptimized: phase === PHASE_PRODUCTION_BUILD && !process.env.CI,
     },
 
     headers,
