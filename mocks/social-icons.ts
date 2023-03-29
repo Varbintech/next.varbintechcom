@@ -11,14 +11,14 @@ export const socialIcons: Array<SocialIcon> = [
   {
     id: 1,
     socialTitle: 'GitHub',
-    socialLink: '',
+    socialLink: 'https://github.com/Varbintech',
     socialIcon: 'gitHubIcon',
     socialBorderRadius: '',
   },
   {
     id: 2,
     socialTitle: 'LinkedIn',
-    socialLink: '',
+    socialLink: 'https://www.linkedin.com/company/varbintech',
     socialIcon: 'linkedInIcon',
     socialBorderRadius: '2px',
   },
