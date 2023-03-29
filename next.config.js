@@ -1,5 +1,3 @@
-const { PHASE_PRODUCTION_BUILD } = require('next/constants');
-
 // @TODO Doesn't work with GitHub Pages
 const headers = async () => {
   return [
