@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import { Settings } from '../constants/settings';
+import { inter } from '../constants/inter-latin';
 
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
@@ -26,6 +27,12 @@ export default function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content={Settings.Viewport} />
+
+        <style jsx global>{`
+          html {
+            font-family: ${inter.style.fontFamily};
+          }
+        `}</style>
       </Head>
 
       <ThemeProvider theme={theme}>
