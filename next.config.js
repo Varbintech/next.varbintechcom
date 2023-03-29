@@ -1,22 +1,4 @@
-const { PHASE_PRODUCTION_BUILD } = require('next/constants');
-
-// @TODO Doesn't work with GitHub Pages
-const headers = async () => {
-  return [
-    {
-      source: '/:all*(svg|jpg|png|webp)',
-      locale: false,
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
-  ];
-};
-
-module.exports = async (phase, { defaultConfig: _ }) => {
+module.exports = async () => {
   /**
    * @type {import('next').NextConfig}
    */
@@ -24,11 +6,10 @@ module.exports = async (phase, { defaultConfig: _ }) => {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      minimumCacheTTL: 60,
-      unoptimized: phase === PHASE_PRODUCTION_BUILD && !process.env.CI,
+      loader: 'custom',
+      domains: ['res.cloudinary.com'],
+      loaderFile: './utils/loader-cloudinary.ts',
     },
-
-    headers,
   };
 
   return nextConfig;

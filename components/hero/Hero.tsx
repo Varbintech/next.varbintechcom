@@ -16,8 +16,6 @@ import DTIcon from '../common/icon-dt/DTIcon';
 
 import { Settings } from '../../constants/settings';
 
-import tinLogo from '../../public/TIN-logo.webp';
-
 import {
   PageContainer,
   FixedBottomContainer,
@@ -107,7 +105,7 @@ const Hero = () => {
           xs: 8,
           sm: 13.75,
         }}>
-          <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
+          <FirstItem src="TIN-logo_ezagpq" alt="The Intelligent Network logo" width={300} height={60} />
           <Box sx={{ width: '24px', height: '24px' }}>
             <DTIcon />
           </Box>
