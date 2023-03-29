@@ -1,7 +1,6 @@
-/**
- * @type {import('next').NextConfig}
- **/
+const { PHASE_PRODUCTION_BUILD } = require('next/constants');
 
+// @TODO Doesn't work with GitHub Pages
 const headers = async () => {
   return [
     {
@@ -17,14 +16,20 @@ const headers = async () => {
   ];
 };
 
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    minimumCacheTTL: 60,
-  },
+module.exports = async (phase, { defaultConfig: _ }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const nextConfig = {
+    reactStrictMode: true,
+    swcMinify: true,
+    images: {
+      minimumCacheTTL: 60,
+      unoptimized: phase === PHASE_PRODUCTION_BUILD && !process.env.CI,
+    },
 
-  headers,
+    headers,
+  };
+
+  return nextConfig;
 };
-
-module.exports = nextConfig;

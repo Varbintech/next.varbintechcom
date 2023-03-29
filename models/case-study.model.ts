@@ -5,6 +5,7 @@ interface ProjectTag {
 
 interface ProjectImage {
   src: string;
+  name: string;
   width: number;
   height: number;
 }

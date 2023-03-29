@@ -24,6 +24,7 @@ export const AppBarStyled = styled(AppBar)(({ theme }) => ({
 export const LogoContainer = styled(Link)`
   width: 68px;
   height: 40px;
+  display: block;
 `;
 
 export const NavigationDrawer = styled(Drawer)(({ theme }) => ({

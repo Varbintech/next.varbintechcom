@@ -3,6 +3,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
@@ -107,7 +108,9 @@ const Hero = () => {
           sm: 13.75,
         }}>
           <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
-          <DTIcon />
+          <Box sx={{ width: '24px', height: '24px' }}>
+            <DTIcon />
+          </Box>
           {/* <Image src={placeholderLogo2} alt="logo2" /> */}
         </ScrollContainer>
       </FixedBottomContainer>

@@ -1,43 +1,22 @@
-import { type ReactElement, cloneElement, useState } from 'react';
+import { useState } from 'react';
 
 import Stack from '@mui/system/Stack';
+import Box from '@mui/system/Box';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Container from '@mui/material/Container';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-
-import { useThemeMode } from '../../../hooks/use-theme-mode';
 
 import { Settings } from '../../../constants/settings';
 
 import Button from '../buttons/Button';
 import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
 import NavigationLinks from './NavigationLinks';
+import ElevationScroll from './ElevationScroll';
 
 import { AppBarStyled, LogoContainer, NavigationDrawer } from './styled-components';
 
-interface ElevationScrollProps {
-  children: ReactElement;
-}
-
-const ElevationScroll = (props: ElevationScrollProps) => {
-  const { children } = props;
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-};
-
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const theme = useThemeMode();
-  const smallScreens = useMediaQuery(theme.breakpoints.down('md'));
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -52,37 +31,37 @@ const Navigation = () => {
               <LogoBlackIcon />
             </LogoContainer>
 
-            {!smallScreens ? (
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <nav aria-label="navigation">
                 <Stack direction="row" spacing={3}>
                   <NavigationLinks />
                 </Stack>
               </nav>
-            ) : null}
-            <Stack direction="row" spacing={3}>
-              <Button size="small" href={Settings.CalendlyLink}>Get started</Button>
+            </Box>
 
-              {smallScreens ? (
-                <>
-                  {open ? (
-                    <Button onClick={toggleDrawer(false)} size="small" id="close" aria-label="Close navigation">
-                      <CloseIcon />
-                    </Button>
-                  ) : (
-                    <Button onClick={toggleDrawer(true)} size="small" id="open" aria-label="Open navigation">
-                      <MenuIcon />
-                    </Button>
-                  )}
 
-                  <NavigationDrawer anchor="top" open={open} onClose={toggleDrawer(false)}>
-                    <nav aria-label="navigation">
-                      <Stack alignItems="center">
-                        <NavigationLinks />
-                      </Stack>
-                    </nav>
-                  </NavigationDrawer>
-                </>
-              ) : null}
+            <Stack direction="row" spacing={3} sx={{ height: '40px' }}>
+              <Button size="small" href={Settings.CalendlyLink} sx={{ height: '40px', display: 'flex' }}>Get started</Button>
+
+              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                {open ? (
+                  <Button onClick={toggleDrawer(false)} size="small" id="close" aria-label="Close navigation" sx={{ width: '40px', height: '40px' }}>
+                    <CloseIcon />
+                  </Button>
+                ) : (
+                  <Button onClick={toggleDrawer(true)} size="small" id="open" aria-label="Open navigation" sx={{ width: '40px', height: '40px' }}>
+                    <MenuIcon />
+                  </Button>
+                )}
+
+                <NavigationDrawer anchor="top" open={open} onClose={toggleDrawer(false)}>
+                  <nav aria-label="navigation">
+                    <Stack alignItems="center">
+                      <NavigationLinks />
+                    </Stack>
+                  </nav>
+                </NavigationDrawer>
+              </Box>
             </Stack>
           </Stack>
         </Container>
