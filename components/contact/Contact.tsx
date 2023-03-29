@@ -59,6 +59,7 @@ const Contact: FC<ContactProps> = ({ data }) => {
           <ContactImageContainer>
             <ImageWrapper>
               <Image
+                priority
                 src={contactBg}
                 alt="Contact the Varbintech team, and you will have the answer in less than 24 hour"
               />
