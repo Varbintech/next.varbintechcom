@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -8,6 +8,14 @@ import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import type { ProjectFeedback } from '../../../models';
+
+import filipRogaczewskiPhoto from '../../../public/filiprogaczewski.webp';
+import geneFooPhoto from '../../../public/genefoo.webp';
+
+const assets: Record<string, StaticImageData> = {
+  filipRogaczewskiPhoto,
+  geneFooPhoto,
+};
 
 import {
   FeedbackContainer,
@@ -33,7 +41,7 @@ const Feedback: FC<FeedbackProps> = props => {
 
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
-          <Image alt={`${name} photo`} src={image.name} width={image.width} height={image.height} />
+          <Image alt={`${name} photo`} src={assets[image.name]} />
         </AvatarContainer>
 
         <div>

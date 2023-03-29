@@ -32,6 +32,8 @@ import {
   ContactIconContainer,
 } from './styled-components';
 
+import contactBg from '../../public/contact-bg.webp';
+
 interface ContactProps {
   data: Array<SocialIcon>;
 }
@@ -58,10 +60,8 @@ const Contact: FC<ContactProps> = ({ data }) => {
             <ImageWrapper>
               <Image
                 priority
-                src="contact-bg_xbuoym"
+                src={contactBg}
                 alt="Contact the Varbintech team, and you will have the answer in less than 24 hour"
-                width={672}
-                height={450}
               />
             </ImageWrapper>
           </ContactImageContainer>
