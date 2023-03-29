@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -12,14 +12,6 @@ import Feedback from '../common/feedback/Feedback';
 import Chip, { type ChipProps } from '../common/chip/Chip';
 // import Button from '../common/buttons/Button';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
-
-import tinProject from '../../public/TIN-project.webp';
-import dtOkrForJiraProject from '../../public/DT-OKR-for-Jira.webp';
-
-const assets: Record<string, StaticImageData> = {
-  tinProject,
-  dtOkrForJiraProject,
-};
 
 import {
   PageContainer,
@@ -58,7 +50,9 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
                 <Image
                   priority
                   alt={projectImageAlt}
-                  src={assets[projectImage.name]}
+                  src={projectImage.name}
+                  width={projectImage.width}
+                  height={projectImage.height}
                 />
               </span>
 
