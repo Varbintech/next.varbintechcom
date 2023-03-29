@@ -16,14 +16,6 @@ on:
       - '**.yml'
       - '!README.md'
 
-env:
-  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ vars.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
-  NEXT_PUBLIC_CLOUDINARY_FOLDER: ${{ vars.NEXT_PUBLIC_CLOUDINARY_FOLDER }}
-  NEXT_PUBLIC_CLOUDINARY_ASSETS_VERSION: ${{ vars.NEXT_PUBLIC_CLOUDINARY_ASSETS_VERSION }}
-  CLOUDINARY_API_KEY: ${{ vars.CLOUDINARY_API_KEY }}
-  CLOUDINARY_API_SECRET: ${{ vars.CLOUDINARY_API_SECRET }}
-  NEXT_TELEMETRY_DISABLED: ${{ vars.NEXT_TELEMETRY_DISABLED }}
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -95,6 +87,13 @@ jobs:
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          NEXT_PUBLIC_CLOUDINARY_FOLDER: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_FOLDER }}
+          NEXT_PUBLIC_CLOUDINARY_ASSETS_VERSION: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_ASSETS_VERSION }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          NEXT_TELEMETRY_DISABLED: ${{ secrets.NEXT_TELEMETRY_DISABLED }}
 
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
