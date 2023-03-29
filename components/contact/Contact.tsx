@@ -4,6 +4,8 @@ import Image from 'next/image';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import type { LinkProps }  from '@mui/material/Link';
+
 import RedditIcon from '@mui/icons-material/Reddit';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -81,32 +83,25 @@ const Contact: FC<ContactProps> = ({ data }) => {
                   return null;
                 }
 
+                const commonProps: LinkProps = {
+                  href: icon.socialLink,
+                  underline: 'none',
+                  target: '_blank',
+                  rel: 'noreferrer',
+                  'aria-label': `Read more about Varbintech on ${icon.socialTitle}`,
+                  sx: { borderRadius: icon.socialBorderRadius },
+                };
+
                 if (icon.socialTitle === 'Reddit') {
                   return (
-                    <ContactRedditLink
-                      key={icon.id}
-                      href={icon.socialLink}
-                      underline="none"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Read more about Varbintech on ${icon.socialTitle}`}
-                      sx={{ borderRadius: icon.socialBorderRadius }}
-                    >
+                    <ContactRedditLink key={icon.id} {...commonProps} >
                       {icons[icon.socialIcon]}
                     </ContactRedditLink>
                   );
                 }
 
                 return (
-                  <ContactLink
-                    key={icon.id}
-                    href={icon.socialLink}
-                    underline="none"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Read more about Varbintech on ${icon.socialTitle}`}
-                    sx={{ borderRadius: icon.socialBorderRadius }}
-                  >
+                  <ContactLink key={icon.id} {...commonProps} >
                     {icons[icon.socialIcon]}
                   </ContactLink>
                 );
