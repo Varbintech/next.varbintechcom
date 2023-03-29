@@ -10,6 +10,7 @@ import Services from '../components/services/Services';
 import PricingPlan from '../components/pricing/PricingPlan';
 import Discover from '../components/discover/Discover';
 import Contact from '../components/contact/Contact';
+import Footer from '../components/footer/Footer';
 // import Questions from '../components/questions/Questions';
 
 import { caseStudies } from '../mocks/case-study';
@@ -36,6 +37,7 @@ export default function Home() {
         {/* @TODO uncomment when FAQ ia ready */}
         {/* <Questions data={questions} /> */}
         <Contact data={socialIcons} />
+        <Footer services={services} />
       </Main>
     </>
   );

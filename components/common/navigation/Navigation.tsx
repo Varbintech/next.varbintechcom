@@ -9,11 +9,11 @@ import Container from '@mui/material/Container';
 import { Settings } from '../../../constants/settings';
 
 import Button from '../buttons/Button';
-import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
 import NavigationLinks from './NavigationLinks';
 import ElevationScroll from './ElevationScroll';
+import SiteLogo from './SiteLogo';
 
-import { AppBarStyled, LogoContainer, NavigationDrawer } from './styled-components';
+import { AppBarStyled, NavigationDrawer } from './styled-components';
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -27,9 +27,7 @@ const Navigation = () => {
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <LogoContainer href="/" aria-label="Varbintech logo">
-              <LogoBlackIcon />
-            </LogoContainer>
+            <SiteLogo />
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <nav aria-label="navigation">

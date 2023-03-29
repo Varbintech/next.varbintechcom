@@ -1,6 +1,6 @@
 import NavigationLink from '../link/NavigationLink';
 
-const navigationRoutes = [
+export const navigationRoutes = [
   { text: 'Case studies', href: '', scrollTo: '#caseStudies' },
   { text: 'Services', href: '', scrollTo: '#services' },
   { text: 'Pricing', href: '', scrollTo: '#pricing' },
