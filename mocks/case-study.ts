@@ -4,7 +4,7 @@ const caseStudy1: CaseStudy = {
   id: 0,
   projectImage: {
     src: '/TIN-project.webp',
-    name: 'TIN-project_wdns5r',
+    name: 'tinProject',
     width: 2944,
     height: 2944,
   },
@@ -25,7 +25,7 @@ const caseStudy1: CaseStudy = {
     name: 'Gene Foo',
     image: {
       src: '/genefoo.webp',
-      name: 'genefoo_szy9pa',
+      name: 'geneFooPhoto',
       width: 396,
       height: 396,
     },
@@ -40,7 +40,7 @@ const caseStudy2: CaseStudy = {
   id: 1,
   projectImage: {
     src: '/DT-OKR-for-Jira.webp',
-    name: 'DT-OKR-for-Jira_ojqmkm',
+    name: 'dtOkrForJiraProject',
     width: 1221,
     height: 887,
   },
@@ -71,7 +71,7 @@ const caseStudy2: CaseStudy = {
     name: 'Filip Rogaczewski',
     image: {
       src: '/filiprogaczewski.webp',
-      name: 'filiprogaczewski_k8f5nk',
+      name: 'filipRogaczewskiPhoto',
       width: 200,
       height: 200,
     },
