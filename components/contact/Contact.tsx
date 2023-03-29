@@ -47,7 +47,7 @@ const icons: Record<string, JSX.Element> = {
 
 const Contact: FC<ContactProps> = ({ data }) => {
   return (
-    <PageContainer id="services">
+    <PageContainer>
       <IconLeftContainer>
         <RectangleLeftFillIcon />
       </IconLeftContainer>
