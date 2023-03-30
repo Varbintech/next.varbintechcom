@@ -1,35 +1,23 @@
-const { PHASE_PRODUCTION_BUILD } = require('next/constants');
+// const { PHASE_EXPORT } = require('next/constants');
 
-// @TODO Doesn't work with GitHub Pages
-const headers = async () => {
-  return [
-    {
-      source: '/:all*(svg|jpg|png|webp)',
-      locale: false,
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
-  ];
-};
+const nextPWA = require('next-pwa');
 
-module.exports = async (phase, { defaultConfig: _ }) => {
+module.exports = async (_phase, { defaultConfig: _ }) => {
   /**
    * @type {import('next').NextConfig}
    */
+  const withPWA = nextPWA({
+    dest: 'public',
+  });
+
   const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
       minimumCacheTTL: 60,
-      unoptimized: phase === PHASE_PRODUCTION_BUILD && !process.env.CI,
+      unoptimized: true,
     },
-
-    headers,
   };
 
-  return nextConfig;
+  return withPWA(nextConfig);
 };
