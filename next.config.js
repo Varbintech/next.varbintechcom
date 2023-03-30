@@ -1,23 +1,15 @@
-// @TODO Doesn't work with GitHub Pages
-const headers = async () => {
-  return [
-    {
-      source: '/:all*(svg|jpg|png|webp)',
-      locale: false,
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
-  ];
-};
+// const { PHASE_EXPORT } = require('next/constants');
+
+const nextPWA = require('next-pwa');
 
 module.exports = async (_phase, { defaultConfig: _ }) => {
   /**
    * @type {import('next').NextConfig}
    */
+  const withPWA = nextPWA({
+    dest: 'public',
+  });
+
   const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
@@ -25,9 +17,7 @@ module.exports = async (_phase, { defaultConfig: _ }) => {
       minimumCacheTTL: 60,
       unoptimized: true,
     },
-
-    headers,
   };
 
-  return nextConfig;
+  return withPWA(nextConfig);
 };
