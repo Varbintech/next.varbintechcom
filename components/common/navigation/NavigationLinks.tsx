@@ -1,19 +1,14 @@
-import NavigationLink from '../link/NavigationLink';
+import { navigationRoutes } from '../../../mocks/navigation';
 
-const navigationRoutes = [
-  { text: 'Case studies', href: '', scrollTo: '#caseStudies' },
-  { text: 'Services', href: '', scrollTo: '#services' },
-  { text: 'Pricing', href: '', scrollTo: '#pricing' },
-  { text: 'Blog', href: '', scrollTo: '' },
-];
+import NavigationLink from '../link/NavigationLink';
 
 const NavigationLinks = () => {
   return (
     <>
-      {navigationRoutes.map((singleRoute, index) => {
+      {navigationRoutes.map((singleRoute) => {
         if (singleRoute.href || singleRoute.scrollTo) {
           return (
-            <NavigationLink key={index} href={singleRoute.href || singleRoute.scrollTo}>
+            <NavigationLink key={singleRoute.id} href={singleRoute.href || singleRoute.scrollTo}>
               {singleRoute.text}
             </NavigationLink>
           );

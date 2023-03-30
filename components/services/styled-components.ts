@@ -13,15 +13,16 @@ export const PageContainer = styled('div')(({ theme }) => ({
 
 export const IconRightContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
-  right: '-65px',
-  bottom: '310px',
-  width: '121px',
-  height: '121px',
-  transform: 'rotate(60deg)',
+  right: 0,
+  bottom: '340px',
+  width: '83px',
+  height: '66px',
 
   [theme.breakpoints.down('lg')]: {
-    right: '-95px',
-    bottom: '-53px',
+    bottom: 0,
+    width: '50px',
+    height: '50px',
+    overflow: 'hidden',
   },
 }));
 

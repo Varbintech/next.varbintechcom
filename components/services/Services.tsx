@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 
 import type { Service } from '../../models';
 
-import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
+import RectangleRightIconPrimary from '../common/icon-rectangle-right/RectangleRightIconPrimary';
 import RectangleLeftFillIcon from '../common/icon-rectangle-left-fill/RectangleLeftFillIcon';
 import DevicesIcon from '../common/icon-devices/DevicesIcon';
 import DataObjectIcon from '../common/icon-data-object/DataObjectIcon';
@@ -35,7 +35,7 @@ const Services: FC<ServicesProps> = ({ data }) => {
   return (
     <PageContainer id="services">
       <IconRightContainer>
-        <RectangleIcon />
+        <RectangleRightIconPrimary />
       </IconRightContainer>
       <IconLeftContainer>
         <RectangleLeftFillIcon />
@@ -58,7 +58,7 @@ const Services: FC<ServicesProps> = ({ data }) => {
         <Grid container spacing={{ xs: 2, md: 3.75 }} columns={12} justifyContent="center">
           {data.map(service => {
             return (
-              <Grid key={service.id} container item direction="column" xs={12} sm={6} md={4} >
+              <Grid key={service.id} container item direction="column" xs={12} sm={6} md={4}>
                 <ServiceItem
                   icon={icons[service.serviceIcon]}
                   link={service.serviceLink}

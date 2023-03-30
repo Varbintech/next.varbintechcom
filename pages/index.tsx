@@ -10,12 +10,14 @@ import Services from '../components/services/Services';
 import PricingPlan from '../components/pricing/PricingPlan';
 import Discover from '../components/discover/Discover';
 import Contact from '../components/contact/Contact';
+import Footer from '../components/footer/Footer';
 // import Questions from '../components/questions/Questions';
 
 import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
 import { socialIcons } from '../mocks/social-icons';
+import { footerData } from '../mocks/footer-data';
 // import { questions } from '../mocks/questions';
 
 import { Settings } from '../constants/settings';
@@ -36,6 +38,7 @@ export default function Home() {
         {/* @TODO uncomment when FAQ ia ready */}
         {/* <Questions data={questions} /> */}
         <Contact data={socialIcons} />
+        <Footer data={footerData} />
       </Main>
     </>
   );
