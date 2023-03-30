@@ -5,21 +5,28 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import type { Service } from '../../models';
+import type { FooterData } from '../../models';
 
 import Link, { type LinkProps } from '../common/link/Link';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 import SiteLogo from '../common/navigation/SiteLogo';
-import { navigationRoutes } from '../common/navigation/NavigationLinks';
 
 import { FooterList, FooterListItem, IconRightContainer, PageContainer } from './styled-components';
 
 interface FooterProps {
-  services: Array<Service>;
+  data: FooterData;
 }
 
-const Footer: FC<FooterProps> = ({ services }) => {
+const Footer: FC<FooterProps> = ({ data }) => {
   const currentYear = new Date().getFullYear();
+
+  const additionalFooterLinkProps = (
+    link: string,
+  ): Pick<LinkProps, 'component' | 'href' | 'underline' | 'className'> => {
+    return link
+      ? { href: link, underline: 'hover', className: 'footer-link' }
+      : { component: 'div' };
+  };
 
   return (
     <PageContainer>
@@ -38,10 +45,10 @@ const Footer: FC<FooterProps> = ({ services }) => {
           <Grid container item direction="column" xs={6} md={3}>
             <Typography variant="subtitle2">Navigation</Typography>
             <FooterList>
-              {navigationRoutes.map((singleRoute, index) => {
+              {data.navigations.map(singleRoute => {
                 if (singleRoute.href || singleRoute.scrollTo) {
                   return (
-                    <FooterListItem key={index}>
+                    <FooterListItem key={singleRoute.id}>
                       <Link href={singleRoute.href || singleRoute.scrollTo} underline="hover">
                         {singleRoute.text}
                       </Link>
@@ -56,15 +63,12 @@ const Footer: FC<FooterProps> = ({ services }) => {
           <Grid container item direction="column" xs={6} md={3}>
             <Typography variant="subtitle2">Services</Typography>
             <FooterList>
-              {services.map(service => {
-                const additionalLinkProps: Pick<LinkProps, 'component' | 'href' | 'underline'> =
-                  service.serviceLink
-                    ? { href: service.serviceLink, underline: 'hover' }
-                    : { component: 'div' };
-
+              {data.services.map(service => {
                 return (
                   <FooterListItem key={service.id}>
-                    <Link {...additionalLinkProps}>{service.serviceTitle}</Link>
+                    <Link {...additionalFooterLinkProps(service.serviceLink)}>
+                      {service.serviceTitle}
+                    </Link>
                   </FooterListItem>
                 );
               })}
@@ -73,10 +77,15 @@ const Footer: FC<FooterProps> = ({ services }) => {
           <Grid container item direction="column" xs={10} md={3}>
             <Typography variant="subtitle2">Hire Engineers</Typography>
             <FooterList>
-              <FooterListItem>Hire React.js Developer</FooterListItem>
-              <FooterListItem>Hire Front-End Developer</FooterListItem>
-              <FooterListItem>Hire Angular Developer</FooterListItem>
-              <FooterListItem>Hire Software Development Team</FooterListItem>
+              {data.hireEngineers.map(hireEngineer => {
+                return (
+                  <FooterListItem key={hireEngineer.id}>
+                    <Link {...additionalFooterLinkProps(hireEngineer.hireLink)}>
+                      {hireEngineer.hireText}
+                    </Link>
+                  </FooterListItem>
+                );
+              })}
             </FooterList>
           </Grid>
         </Grid>

@@ -17,6 +17,7 @@ import { caseStudies } from '../mocks/case-study';
 import { pricingPlan } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
 import { socialIcons } from '../mocks/social-icons';
+import { footerData } from '../mocks/footer-data';
 // import { questions } from '../mocks/questions';
 
 import { Settings } from '../constants/settings';
@@ -37,7 +38,7 @@ export default function Home() {
         {/* @TODO uncomment when FAQ ia ready */}
         {/* <Questions data={questions} /> */}
         <Contact data={socialIcons} />
-        <Footer services={services} />
+        <Footer data={footerData} />
       </Main>
     </>
   );

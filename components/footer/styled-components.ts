@@ -34,7 +34,7 @@ export const FooterList = styled('ul')`
 export const FooterListItem = styled('li')`
   padding: 4px 0;
 
-  a {
+  .footer-link {
     line-height: 1;
   }
 `;
