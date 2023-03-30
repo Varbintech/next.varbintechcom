@@ -25,29 +25,29 @@ export const PlanItemStyled = styled('div')(({ theme }) => ({
 export const PlanItemContainer = styled(PlanItemStyled)<{ flag: PlanType }>`
   position: relative;
   min-height: 540px;
-  border-bottom: 8px solid #f2994a;
+  border-bottom: 8px solid #ba5a0d;
   overflow: hidden;
 
   ${({ flag }) => {
     if (flag === 'QUARTER') {
-      return 'border-color: #bb6bd9; box-shadow: 0 24px 32px rgba(0, 0, 0, 0.08);';
+      return 'border-color: #862bab; box-shadow: 0 24px 32px rgba(0, 0, 0, 0.08);';
     } else if (flag === 'YEAR') {
-      return 'border-color: #219653;';
+      return 'border-color: #2e8540;';
     }
   }}
 
   .plan-title {
     margin-bottom: 30px;
-    color: #f2994a;
+    color: #ba5a0d;
     font-weight: 500;
     line-height: 1;
     text-transform: uppercase;
 
     ${({ flag }) => {
       if (flag === 'QUARTER') {
-        return 'color: #bb6bd9;';
+        return 'color: #862bab;';
       } else if (flag === 'YEAR') {
-        return 'color: #219653;';
+        return 'color: #2e8540;';
       }
     }}
   }
@@ -62,7 +62,7 @@ export const BestChoiceContainer = styled('div')(({ theme }) => ({
   textTransform: 'uppercase',
   lineHeight: '1em',
   fontWeight: 500,
-  background: '#bb6bd9',
+  background: '#862bab',
   transform: 'rotate(90deg) translate(39%, 110%)',
 
   '&::before': {
