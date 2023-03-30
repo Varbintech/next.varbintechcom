@@ -12,7 +12,7 @@ const darkTheme = createTheme({
     },
 
     success: {
-      main: '#219653',
+      main: '#2e8540',
     },
     error: {
       main: '#eb5757',
