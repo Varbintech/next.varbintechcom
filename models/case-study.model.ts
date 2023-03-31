@@ -8,8 +8,8 @@ interface ProjectImage {
   name: string;
   width: number;
   height: number;
-  srcSet: string;
-  sizes: string;
+  srcSet?: string;
+  sizes?: string;
 }
 
 export interface ProjectFeedback {
