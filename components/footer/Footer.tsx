@@ -90,7 +90,8 @@ const Footer: FC<FooterProps> = ({ data }) => {
           </Grid>
         </Grid>
         <Divider sx={{ margin: { xs: '30px 0 22px', md: '60px 0 22px', lg: '118px 0 22px' } }} />
-        <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }}>
+
+        <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }} component="h5">
           &copy; Varbintech {currentYear}
         </Typography>
       </Container>
