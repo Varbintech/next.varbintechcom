@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2020,
@@ -30,10 +31,22 @@ module.exports = {
     {
       files: ['**/*.{js,ts,tsx}'],
       rules: {
-        'no-console': ['error', { allow: ['warn', 'error'] }],
+        'no-console': [
+          'error',
+          {
+            allow: ['warn', 'error'],
+          },
+        ],
         'import/no-anonymous-default-export': 'off',
         semi: ['error', 'always'],
-        quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+        quotes: [
+          'error',
+          'single',
+          {
+            avoidEscape: true,
+            allowTemplateLiterals: true,
+          },
+        ],
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-var-requires': 'off',
@@ -41,7 +54,10 @@ module.exports = {
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',
-          { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+          {
+            argsIgnorePattern: '^_',
+            varsIgnorePattern: '^_',
+          },
         ],
         'newline-after-var': ['error', 'always'],
         'no-duplicate-imports': 'error',

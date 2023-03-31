@@ -7,7 +7,9 @@
     "deploy": "next build && rm -rf ./out && mkdir out && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages",
     "add-domain": "echo \"next.varbintech.com\" > ./out/CNAME",
     "lint": "eslint .",
-    "typecheck": "tsc --skipLibCheck --project ./tsconfig.json --excludeDirectories public"
+    "typecheck": "tsc --skipLibCheck --project ./tsconfig.json --excludeDirectories public",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
@@ -24,16 +26,27 @@
     "sharp": "0.31.3"
   },
   "devDependencies": {
+    "@babel/core": "7.21.4",
+    "@storybook/addon-actions": "6.5.16",
+    "@storybook/addon-essentials": "6.5.16",
+    "@storybook/addon-interactions": "6.5.16",
+    "@storybook/addon-links": "6.5.16",
+    "@storybook/builder-webpack5": "6.5.16",
+    "@storybook/manager-webpack5": "6.5.16",
+    "@storybook/react": "6.5.16",
+    "@storybook/testing-library": "0.0.13",
     "@types/node": "18.11.5",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
+    "babel-loader": "8.3.0",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-storybook": "0.6.11",
     "prettier": "2.8.3",
     "typescript": "4.8.4"
   }
