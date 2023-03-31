@@ -43,7 +43,7 @@ const Footer: FC<FooterProps> = ({ data }) => {
             </Typography>
           </Grid>
           <Grid container item direction="column" xs={6} md={3}>
-            <Typography variant="subtitle2">Navigation</Typography>
+            <Typography variant="subtitle2" component="h4">Navigation</Typography>
             <FooterList>
               {data.navigations.map(singleRoute => {
                 if (singleRoute.href || singleRoute.scrollTo) {
@@ -61,7 +61,7 @@ const Footer: FC<FooterProps> = ({ data }) => {
             </FooterList>
           </Grid>
           <Grid container item direction="column" xs={6} md={3}>
-            <Typography variant="subtitle2">Services</Typography>
+            <Typography variant="subtitle2" component="h4">Services</Typography>
             <FooterList>
               {data.services.map(service => {
                 return (
@@ -75,7 +75,7 @@ const Footer: FC<FooterProps> = ({ data }) => {
             </FooterList>
           </Grid>
           <Grid container item direction="column" xs={10} md={3}>
-            <Typography variant="subtitle2">Hire Engineers</Typography>
+            <Typography variant="subtitle2" component="h4">Hire Engineers</Typography>
             <FooterList>
               {data.hireEngineers.map(hireEngineer => {
                 return (
@@ -90,7 +90,8 @@ const Footer: FC<FooterProps> = ({ data }) => {
           </Grid>
         </Grid>
         <Divider sx={{ margin: { xs: '30px 0 22px', md: '60px 0 22px', lg: '118px 0 22px' } }} />
-        <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }}>
+
+        <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }} component="h5">
           &copy; Varbintech {currentYear}
         </Typography>
       </Container>
