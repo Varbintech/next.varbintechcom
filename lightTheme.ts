@@ -148,6 +148,7 @@ const lightTheme = createTheme({
         },
 
         contained: {
+          color: color3,
           border: '1px solid transparent',
           '&:hover': {
             color: color1,
