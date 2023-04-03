@@ -15,10 +15,9 @@ import { FooterList, FooterListItem, IconRightContainer, PageContainer } from '.
 
 interface FooterProps {
   data: FooterData;
-  secondary?: boolean;
 }
 
-const Footer: FC<FooterProps> = ({ data, secondary }) => {
+const Footer: FC<FooterProps> = ({ data }) => {
   const currentYear = new Date().getFullYear();
 
   const additionalFooterLinkProps = (
@@ -30,7 +29,7 @@ const Footer: FC<FooterProps> = ({ data, secondary }) => {
   };
 
   return (
-    <PageContainer className={secondary ? 'footer-secondary' : ''}>
+    <PageContainer>
       <IconRightContainer>
         <RectangleIcon />
       </IconRightContainer>

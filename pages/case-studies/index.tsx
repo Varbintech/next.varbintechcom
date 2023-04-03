@@ -3,7 +3,7 @@ import Head from '../components/Head';
 import Main from '../../components/common/Main';
 import Navigation from '../../components/common/navigation/Navigation';
 
-import HeroCaseStudies from '../../components/hero/HeroCaseStudies';
+import Hero from '../../components/hero/Hero';
 import TabsFilter from '../../components/common/tabsFilter/TabsFilter';
 import CaseStudies from '../../components/case-studies/CaseStudies';
 import Contact from '../../components/contact/Contact';
@@ -24,13 +24,18 @@ const CaseStudiesPage = () => {
       <Navigation />
 
       <Main>
-        <HeroCaseStudies />
+        <Hero
+          small
+          title="Case studies that we feel proud"
+          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
+          solutions."
+        />
         <TabsFilter data={tabsItems} />
-        <CaseStudies data={caseStudies} secondary />
+        <CaseStudies data={caseStudies} />
         {/* @TODO uncomment when FAQ ia ready */}
         {/* <Questions data={questions} /> */}
         <Contact data={socialIcons} />
-        <Footer data={footerData} secondary />
+        <Footer data={footerData} />
       </Main>
     </>
   );

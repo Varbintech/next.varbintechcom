@@ -1,23 +1,45 @@
 import { keyframes, styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import Image from 'next/image';
 
-export const PageContainerSecondary = styled('div')`
+export const PageContainer = styled('div')`
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
   background-color: #fff;
   background-image: linear-gradient(
     180deg,
     rgba(242, 242, 242, 0) 0%,
     rgba(242, 242, 242, 0.24) 100%
   );
+
+  &.page-small {
+    min-height: auto;
+  }
 `;
 
-export const PageContainer = styled(PageContainerSecondary)`
-  min-height: 100vh;
-`;
+export const ContainerStyled = styled(Container)(({ theme }) => ({
+  position: 'relative',
+  marginBottom: '116px',
+  padding: '160px 24px 0',
+
+  [theme.breakpoints.up('lg')]: {
+    padding: '270px 24px 0',
+  },
+
+  '.page-small &': {
+    marginBottom: '60px',
+    padding: '112px 60px 0',
+
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '72px',
+      padding: '135px 60px 0',
+    },
+  },
+}));
 
 export const RectangleLeftIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -27,6 +49,14 @@ export const RectangleLeftIconContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
     top: '75vh',
     left: '-40px',
+  },
+
+  '.page-small &': {
+    top: '266px',
+
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -40,6 +70,14 @@ export const RectangleRightIconContainer = styled('div')(({ theme }) => ({
     width: '40px',
     overflow: 'hidden',
   },
+
+  '.page-small &': {
+    top: '131px',
+
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
+  },
 }));
 
 export const BoxIconContainer = styled('div')(({ theme }) => ({
@@ -50,6 +88,14 @@ export const BoxIconContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
     top: '77px',
     left: '-60px',
+  },
+
+  '.page-small &': {
+    top: '175px',
+
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -63,40 +109,15 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
     right: 0,
     width: '88px',
   },
-}));
 
+  '.page-small &': {
+    top: '225px',
+    height: '150px',
+    overflow: 'hidden',
 
-export const BoxIconContainerSecondary = styled(BoxIconContainer)(({ theme }) => ({
-  top: '175px',
-
-  [theme.breakpoints.down('lg')]: {
-    display: 'none',
-  },
-}));
-
-export const TriangleIconContainerSecondary = styled(TriangleIconContainer)(({ theme }) => ({
-  top: '225px',
-  height: '150px',
-  overflow: 'hidden',
-
-  [theme.breakpoints.down('lg')]: {
-    display: 'none',
-  },
-}));
-
-export const RectangleLeftIconContainerSecondary = styled(RectangleLeftIconContainer)(({ theme }) => ({
-  top: '266px',
-
-  [theme.breakpoints.down('lg')]: {
-    display: 'none',
-  },
-}));
-
-export const RectangleRightIconContainerSecondary = styled(RectangleRightIconContainer)(({ theme }) => ({
-  top: '131px',
-
-  [theme.breakpoints.down('lg')]: {
-    display: 'none',
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -130,7 +151,8 @@ export const ScrollContainer = styled(Stack)`
     height: auto;
   }
 
-  img, svg {
+  img,
+  svg {
     max-height: 26px;
   }
 `;
@@ -144,7 +166,7 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
   marginBottom: '10px',
   marginLeft: 'auto',
   marginRight: 'auto',
-  fontSize: '3em',
+  fontSize: '2em',
   maxWidth: '620px',
 
   [theme.breakpoints.up('md')]: {
@@ -152,7 +174,3 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
-
-export const TitleTypographySecondary = styled(TitleTypography)`
-  font-size: 2em;
-`;

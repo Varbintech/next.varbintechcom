@@ -11,6 +11,7 @@ import PricingPlan from '../components/pricing/PricingPlan';
 import Discover from '../components/discover/Discover';
 import Contact from '../components/contact/Contact';
 import Footer from '../components/footer/Footer';
+import СubeComponent from '../components/common/icon-rectangle-box/CubeComponent';
 // import Questions from '../components/questions/Questions';
 
 import { caseStudies } from '../mocks/case-study';
@@ -30,8 +31,13 @@ export default function Home() {
       <Navigation />
 
       <Main>
-        <Hero />
+        <Hero
+          title="A development team with superpower"
+          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
+          solutions."
+        />
         <CaseStudies data={caseStudies} />
+        <СubeComponent />
         <Services data={services} />
         <PricingPlan data={pricingPlan} />
         <Discover />

@@ -2,17 +2,14 @@ import type { FC } from 'react';
 
 import type { CaseStudy } from '../../models';
 
-import RectangleBoxIcon from '../common/icon-rectangle-box/RectangleBoxIcon';
-
 import CaseStudyInner from './CaseStudyInner';
-import { BoxIconContainer, CaseStudiesContainer } from './styled-components';
+import { CaseStudiesContainer } from './styled-components';
 
 interface CaseStudiesProps {
   data: Array<CaseStudy>;
-  secondary?: boolean;
 }
 
-const CaseStudies: FC<CaseStudiesProps> = ({ data, secondary }) => {
+const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
   return (
     <CaseStudiesContainer id="caseStudies">
       {data.map((caseStudy, caseStudyIndex) => {
@@ -20,11 +17,6 @@ const CaseStudies: FC<CaseStudiesProps> = ({ data, secondary }) => {
 
         return <CaseStudyInner key={caseStudy.id} data={caseStudy} direction={direction} />;
       })}
-      {!secondary ? (
-        <BoxIconContainer>
-          <RectangleBoxIcon />
-        </BoxIconContainer>
-      ) : null}
     </CaseStudiesContainer>
   );
 };
