@@ -15,11 +15,11 @@ interface ProjectImage {
 export interface ProjectFeedback {
   text: string;
   name: string;
-  image: ProjectImage;
   company: string;
   companyName: string;
   companyLinkHref: string;
   linkedInLink: string;
+  image?: ProjectImage;
 }
 
 export interface CaseStudy {
