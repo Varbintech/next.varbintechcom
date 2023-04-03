@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 
 import TypographyExample from './TypographyExample';
 
-storiesOf('App/CommonComponents/Default', module)
-  .add('text', () => (
+storiesOf('App/CommonComponents/Typography', module)
+  .add('Default', () => (
     <TypographyExample />
   ));
