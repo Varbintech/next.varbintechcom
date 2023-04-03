@@ -1,35 +1,49 @@
-[![Deploy to GitHub Pages](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy.yml/badge.svg)](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy.yml)
+# Intro
+The front-end part for Varbintech Team [home page](https://varbintech.com/).
 
-# Deploying to GitHub Pages
+![image](https://res.cloudinary.com/dlxpwfaic/image/upload/v1680439761/varbintech/varbintech-join-the-club_qypktu.jpg)
 
-This example supports deloying a static Next.js application (using `next export`) to GitHub Pages.
+## Social Links
+  - [GitHub](https://github.com/Varbintech)
+  - [LinkedIn](https://www.linkedin.com/company/varbintech/)
+  - [Clutch](https://clutch.co/profile/varbintech#summary)
+  - [UpWork](https://www.upwork.com/ag/varbintech/)
 
-The `out` directory should not be ignored by version control.
+## Deploying
+This project uses [Cloudflare Pages](https://pages.cloudflare.com/) as a JAMstack platform for frontend developers to collaborate and deploy websites.
 
-## How to use
+## Tech Stack
+### Front-End:
+  - [React.js](https://react.dev/)
+  - [Material UI](https://mui.com/)
+  - [Emotion](https://emotion.sh/)
+  - [TypeScript](https://www.typescriptlang.org/)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### Backend:
+  - [Next.js](https://nextjs.org/)
+  - [Next-PWA](https://github.com/shadowwalker/next-pwa/)
 
-```bash
-npx create-next-app --example github-pages nextjs-github-pages
-# or
-yarn create next-app --example github-pages nextjs-github-pages
-# or
-pnpm create next-app --example github-pages nextjs-github-pages
-```
+### Code Quality:
+  - [EditorConfig](https://editorconfig.org/)
+  - [ESLint](https://eslint.org/) + plugins
+  - [Pretter](https://prettier.io/)
+  - [Husky](https://typicode.github.io/husky) + [lint-staged](https://github.com/okonet/lint-staged) for [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
-### Deploy to GitHub Pages
+### Design:
+  - [Figma](https://www.figma.com/)
 
-1.  Create a new public GitHub repository.
-1.  Edit `next.config.js` to match your GitHub repository name.
-1.  Push the starter code to the `main` branch.
-1.  Run the `deploy` script (e.g. `npm run deploy`) to create the `gh-pages` branch.
-1.  On GitHub, go to **Settings** > **Pages** > **Branch**, and choose `gh-pages` as the branch with the `/root` folder. Hit **Save**.
-1.  Make a change.
-1.  Run the `deploy` script again to push the changes to GitHub Pages.
+### Project Backlog:
+  - [GitHub Projects](https://github.com/orgs/Varbintech/projects/4) (**private**)
 
-Congratulations! You should have a URL like:
-
-```bash
-https://<github-user-name>.github.io/<github-project-name>/
-```
+## Project Roadmap
+  - Develop index page - <u>**IN PROGRESS**</u>
+  - Cloudflare Pages build ✅
+  - Develop email template
+  - Send emails using Cloudflare Workers
+  - Add analytics
+  - Develop case studies page
+  - Develop case study item page
+  - Develop blog page
+  - Develop blog Item page
+  - Headless CMS for case studies
+  - Headless CMS for blog
