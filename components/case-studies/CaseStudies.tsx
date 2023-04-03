@@ -9,9 +9,10 @@ import { BoxIconContainer, CaseStudiesContainer } from './styled-components';
 
 interface CaseStudiesProps {
   data: Array<CaseStudy>;
+  secondary?: boolean;
 }
 
-const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
+const CaseStudies: FC<CaseStudiesProps> = ({ data, secondary }) => {
   return (
     <CaseStudiesContainer id="caseStudies">
       {data.map((caseStudy, caseStudyIndex) => {
@@ -19,9 +20,11 @@ const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
 
         return <CaseStudyInner key={caseStudy.id} data={caseStudy} direction={direction} />;
       })}
-      <BoxIconContainer>
-        <RectangleBoxIcon />
-      </BoxIconContainer>
+      {!secondary ? (
+        <BoxIconContainer>
+          <RectangleBoxIcon />
+        </BoxIconContainer>
+      ) : null}
     </CaseStudiesContainer>
   );
 };

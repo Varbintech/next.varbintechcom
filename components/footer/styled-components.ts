@@ -9,6 +9,10 @@ export const PageContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     padding: '120px 0 154px',
   },
+
+  '&.footer-secondary': {
+    paddingBottom: '24px',
+  },
 }));
 
 export const IconRightContainer = styled('div')(({ theme }) => ({

@@ -4,16 +4,19 @@ import Typography from '@mui/material/Typography';
 
 import Image from 'next/image';
 
-export const PageContainer = styled('div')`
+export const PageContainerSecondary = styled('div')`
   position: relative;
   overflow-x: hidden;
-  min-height: 100vh;
   background-color: #fff;
   background-image: linear-gradient(
     180deg,
     rgba(242, 242, 242, 0) 0%,
     rgba(242, 242, 242, 0.24) 100%
   );
+`;
+
+export const PageContainer = styled(PageContainerSecondary)`
+  min-height: 100vh;
 `;
 
 export const RectangleLeftIconContainer = styled('div')(({ theme }) => ({
@@ -59,6 +62,41 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
     top: '73vh',
     right: 0,
     width: '88px',
+  },
+}));
+
+
+export const BoxIconContainerSecondary = styled(BoxIconContainer)(({ theme }) => ({
+  top: '175px',
+
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
+}));
+
+export const TriangleIconContainerSecondary = styled(TriangleIconContainer)(({ theme }) => ({
+  top: '225px',
+  height: '150px',
+  overflow: 'hidden',
+
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
+}));
+
+export const RectangleLeftIconContainerSecondary = styled(RectangleLeftIconContainer)(({ theme }) => ({
+  top: '266px',
+
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
+}));
+
+export const RectangleRightIconContainerSecondary = styled(RectangleRightIconContainer)(({ theme }) => ({
+  top: '131px',
+
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
   },
 }));
 
@@ -114,3 +152,7 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
+
+export const TitleTypographySecondary = styled(TitleTypography)`
+  font-size: 2em;
+`;
