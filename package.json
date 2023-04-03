@@ -8,8 +8,8 @@
     "add-domain": "echo \"next.varbintech.com\" > ./out/CNAME",
     "lint": "eslint .",
     "typecheck": "tsc --skipLibCheck --project ./tsconfig.json --excludeDirectories public",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
@@ -35,6 +35,7 @@
     "@storybook/manager-webpack5": "6.5.16",
     "@storybook/react": "6.5.16",
     "@storybook/testing-library": "0.0.13",
+    "storybook-addon-next": "1.3.1",
     "@types/node": "18.11.5",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",

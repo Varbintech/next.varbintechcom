@@ -3,7 +3,8 @@ import { createTheme } from '@mui/material/styles';
 import { inter } from './constants/inter-latin';
 
 export const themeTypography = {
-  //fontFamily: inter.style.fontFamily,
+  fontFamily: inter.style.fontFamily,
+
   h2: {
     fontSize: '2.5em',
     fontWeight: 700,

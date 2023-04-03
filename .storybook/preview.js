@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-//import "./globals.css";
 
 import lightTheme from '../lightTheme';
 
