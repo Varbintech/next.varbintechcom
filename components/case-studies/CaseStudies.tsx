@@ -2,10 +2,8 @@ import type { FC } from 'react';
 
 import type { CaseStudy } from '../../models';
 
-import RectangleBoxIcon from '../common/icon-rectangle-box/RectangleBoxIcon';
-
 import CaseStudyInner from './CaseStudyInner';
-import { BoxIconContainer, CaseStudiesContainer } from './styled-components';
+import { CaseStudiesContainer } from './styled-components';
 
 interface CaseStudiesProps {
   data: Array<CaseStudy>;
@@ -19,9 +17,6 @@ const CaseStudies: FC<CaseStudiesProps> = ({ data }) => {
 
         return <CaseStudyInner key={caseStudy.id} data={caseStudy} direction={direction} />;
       })}
-      <BoxIconContainer>
-        <RectangleBoxIcon />
-      </BoxIconContainer>
     </CaseStudiesContainer>
   );
 };

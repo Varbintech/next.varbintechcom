@@ -4,6 +4,8 @@ import Head from './components/Head';
 
 import Main from '../components/common/Main';
 import Navigation from '../components/common/navigation/Navigation';
+import СubeComponent from '../components/common/icon-rectangle-box/CubeComponent';
+
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
@@ -28,8 +30,13 @@ export default function Home() {
       <Navigation />
 
       <Main>
-        <Hero />
+        <Hero
+          title="A development team with superpower"
+          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
+          solutions."
+        />
         <CaseStudies data={caseStudies} />
+        <СubeComponent />
         <Services data={services} />
         <PricingPlan data={pricingPlan} />
         <Discover />
