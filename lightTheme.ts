@@ -4,6 +4,7 @@ import { inter } from './constants/inter-latin';
 
 export const themeTypography = {
   fontFamily: inter.style.fontFamily,
+
   h2: {
     fontSize: '2.5em',
     fontWeight: 700,
@@ -343,7 +344,7 @@ const lightTheme = createTheme({
         root: {
           background: color3,
           borderTop: `1px solid ${color8}`,
-          boxShadow:`inset 0px -1px 0 0px  ${color8}`,
+          boxShadow: `inset 0px -1px 0 0px  ${color8}`,
         },
 
         indicator: {
