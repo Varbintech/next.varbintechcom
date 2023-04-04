@@ -136,7 +136,6 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small }) => {
             <Box sx={{ width: '24px', height: '24px' }}>
               <DTIcon />
             </Box>
-            {/* <Image src={placeholderLogo2} alt="logo2" /> */}
           </ScrollContainer>
         </FixedBottomContainer>
       ) : null}
