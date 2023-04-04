@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import { useRouter } from 'next/router';
+
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -8,7 +10,7 @@ import type { CaseStudy } from '../../models';
 
 import Feedback from '../common/feedback/Feedback';
 import Chip, { type ChipProps } from '../common/chip/Chip';
-// import Button from '../common/buttons/Button';
+import Button from '../common/buttons/Button';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
 import {
@@ -29,6 +31,7 @@ interface CaseStudyInnerProps {
 
 const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
   const {
+    id,
     projectImage,
     projectImageAlt,
     projectTitle,
@@ -37,6 +40,12 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
     results,
     feedback,
   } = data;
+
+  const router = useRouter();
+
+  const caseStudyDetailsHandler = () => {
+    router.push('/case-studies/' + id);
+  };
 
   return (
     <PageContainer className={direction === 'row' ? 'lightBackground' : ''}>
@@ -106,8 +115,8 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               </>
             ) : null}
 
-            {/* @TODO Uncomment when case study is ready */}
-            {/* <Button href="#">View full case study</Button> */}
+
+            <Button onClick={caseStudyDetailsHandler}>View full case study</Button>
           </TextContainer>
         </Stack>
 
