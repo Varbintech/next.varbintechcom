@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import { CacheProvider, type EmotionCache } from '@emotion/react';
 
 import { Settings } from '../constants/settings';
 import { inter } from '../constants/inter-latin';
