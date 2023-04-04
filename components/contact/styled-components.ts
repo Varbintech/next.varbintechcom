@@ -4,11 +4,10 @@ import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-export const PageContainer = styled('div')(({ theme }) => ({
-  position: 'relative',
-  overflow: 'hidden',
-  backgroundColor: theme.palette.background.paper,
-}));
+export const PageContainer = styled('div')`
+  position: relative;
+  overflow: hidden;
+`;
 
 export const IconLeftContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
