@@ -1,12 +1,13 @@
-// const { PHASE_EXPORT } = require('next/constants');
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 const nextPWA = require('next-pwa');
 
-module.exports = async (_phase, { defaultConfig: _ }) => {
+module.exports = async (phase, { defaultConfig: _dc }) => {
   /**
    * @type {import('next').NextConfig}
    */
   const withPWA = nextPWA({
+    disable: phase === PHASE_DEVELOPMENT_SERVER,
     dest: 'public',
   });
 

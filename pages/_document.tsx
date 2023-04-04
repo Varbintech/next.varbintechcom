@@ -5,10 +5,10 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentProps,
-  DocumentContext,
+  type DocumentProps,
+  type DocumentContext,
 } from 'next/document';
-import { AppType } from 'next/app';
+import type { AppType } from 'next/app';
 
 import createEmotionServer from '@emotion/server/create-instance';
 
@@ -92,7 +92,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   // This is important. It prevents Emotion to render invalid HTML.
   // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
+  const emotionStyleTags = emotionStyles.styles.map(style => (
     <style
       data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}

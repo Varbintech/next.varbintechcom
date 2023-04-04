@@ -8,16 +8,18 @@ interface ProjectImage {
   name: string;
   width: number;
   height: number;
+  srcSet?: string;
+  sizes?: string;
 }
 
 export interface ProjectFeedback {
   text: string;
   name: string;
-  image: ProjectImage;
   company: string;
   companyName: string;
   companyLinkHref: string;
   linkedInLink: string;
+  image?: ProjectImage;
 }
 
 export interface CaseStudy {

@@ -4,6 +4,7 @@ import { inter } from './constants/inter-latin';
 
 export const themeTypography = {
   fontFamily: inter.style.fontFamily,
+
   h2: {
     fontSize: '2.5em',
     fontWeight: 700,
@@ -262,7 +263,7 @@ const lightTheme = createTheme({
             },
 
             '.text-error &': {
-              borderColor: color5 ,
+              borderColor: color5,
             },
           },
 
@@ -301,7 +302,6 @@ const lightTheme = createTheme({
           '&::before': {
             display: 'none',
           },
-
         },
       },
     },
@@ -341,6 +341,30 @@ const lightTheme = createTheme({
       },
     },
 
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          background: color3,
+          borderTop: `1px solid ${color8}`,
+          boxShadow: `inset 0px -1px 0 0px  ${color8}`,
+        },
+
+        indicator: {
+          height: '1px',
+        },
+      },
+    },
+
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          padding: '20px',
+          fontSize: '1em',
+          fontWeight: 400,
+          textTransform: 'none',
+        },
+      },
+    },
   },
 });
 

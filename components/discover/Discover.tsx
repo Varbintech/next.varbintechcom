@@ -1,9 +1,11 @@
+import dynamic from 'next/dynamic';
+
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
-import DiscoverIcon from '../common/icon-discover/DiscoverIcon';
+const DynamicDiscoverIcon = dynamic(() => import('../common/icon-discover/DiscoverIcon'));
 
 import {
   PageContainer,
@@ -17,10 +19,7 @@ const Discover = () => {
   return (
     <PageContainer>
       <Container maxWidth="lg">
-        <Stack
-          direction={{ xs: 'column', md: 'row' }}
-          spacing={{ md: '80px' }}
-        >
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ md: '80px' }}>
           <Stack
             direction="row"
             marginLeft="-20px"
@@ -28,12 +27,10 @@ const Discover = () => {
               maxWidth: { sm: '50%' },
             }}
           >
-            <DiscoverIcon />
+            <DynamicDiscoverIcon />
           </Stack>
           <Box>
-            <DiscoverTitle variant="h2">
-              Start with why
-            </DiscoverTitle>
+            <DiscoverTitle variant="h2">Start with why</DiscoverTitle>
 
             <Stack direction="row" spacing={{ xs: 3, md: 3.75 }}>
               <DiscoverColumn>
