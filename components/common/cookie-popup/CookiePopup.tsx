@@ -25,9 +25,9 @@ const CookiePopup = () => {
         Cookie Use
       </PopperTitle>
       <PopperText>
-        Varbin tech uses cookies to allow us to better understand how to our site is used. By
-        continuing to use this site, you consent to Terms of Service and Privacy Policy of Varbin
-        tech service.
+        Varbintech uses cookies to allow us to better understand how to our site is used. By
+        continuing to use this site, you consent to Terms of Service and Privacy Policy of
+        Varbintech service.
       </PopperText>
       <Stack direction="row" spacing={2}>
         <Button variant="contained" color="info">
