@@ -2,7 +2,7 @@ import type { PricingPlanItem } from '../models';
 
 const pricingPlan1: PricingPlanItem = {
   id: 0,
-  planTitle: 'Monthy',
+  planTitle: 'Monthly',
   planPrice: '4,999/m',
   planSavePrice: '',
   planflag: 'MONTH',
