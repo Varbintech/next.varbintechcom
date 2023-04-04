@@ -35,25 +35,39 @@ const Feedback: FC<FeedbackProps> = props => {
     <FeedbackContainer>
       <QuoterTypography variant="body1" sx={{ fontSize: { xs: '16px', md: '20px' } }}>
         <QuoteIconLeft />
-          {text}
+        {text}
         <QuoteIconRight />
       </QuoterTypography>
 
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
-          <Image alt={`${name} photo`} src={assets[image.name]} />
+          {image ? <Image alt={`${name} photo`} src={assets[image.name]} /> : null}
         </AvatarContainer>
 
         <div>
           <Typography variant="caption" component="div" marginBottom={0.5}>
-            {name}&nbsp;<LinkContainer href={linkedInLink} underline="none" target="_blank" rel="noreferrer" aria-label={`Read more about ${name}`}>
+            {name}&nbsp;
+            <LinkContainer
+              href={linkedInLink}
+              underline="none"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Read more about ${name}`}
+            >
               <LinkedInIcon sx={{ fontSize: '26px' }} />
             </LinkContainer>
           </Typography>
 
           <Typography variant="overline">
-            {company}&nbsp;{companyName && (
-              <Link href={companyLinkHref} target="_blank" underline={companyLinkHref ? 'hover' : 'none'} rel="noreferrer" aria-label={`Read more about ${companyName}`}>
+            {company}&nbsp;
+            {companyName && (
+              <Link
+                href={companyLinkHref}
+                target="_blank"
+                underline={companyLinkHref ? 'hover' : 'none'}
+                rel="noreferrer"
+                aria-label={`Read more about ${companyName}`}
+              >
                 {companyName}
               </Link>
             )}
