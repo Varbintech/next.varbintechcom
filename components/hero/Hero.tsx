@@ -1,8 +1,9 @@
+import type { FC } from 'react';
+
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
@@ -20,6 +21,7 @@ import tinLogo from '../../public/TIN-logo.webp';
 
 import {
   PageContainer,
+  ContainerStyled,
   FixedBottomContainer,
   ScrollContainer,
   RectangleLeftIconContainer,
@@ -30,23 +32,22 @@ import {
   FirstItem,
 } from './styled-components';
 
-const Hero = () => {
+interface HeroProps {
+  title: string;
+  subtitle?: string;
+  small?: boolean;
+}
+
+const Hero: FC<HeroProps> = ({ title, subtitle, small }) => {
   return (
-    <PageContainer>
+    <PageContainer className={small ? 'page-small' : ''}>
       <RectangleLeftIconContainer>
         <RectangleLeftIcon />
       </RectangleLeftIconContainer>
       <RectangleRightIconContainer>
         <RectangleRightIcon />
       </RectangleRightIconContainer>
-      <Container
-        maxWidth="lg"
-        sx={{
-          position: 'relative',
-          marginBottom: '116px',
-          paddingTop: { xs: '160px', lg: '270px' },
-        }}
-      >
+      <ContainerStyled maxWidth="lg">
         <BoxIconContainer>
           <BoxIcon />
         </BoxIconContainer>
@@ -54,66 +55,90 @@ const Hero = () => {
           <TriangleIcon />
         </TriangleIconContainer>
         {/* @TODO Move to a separate component */}
-        {/* <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
+        {/* {!small ? ( <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
           <UpdateLabel>Update</UpdateLabel>
           Data export & import, relations reordering, audit logs{' '}
           <Link href="#s" variant="caption">
             More v4.4 updates
           </Link>
-        </Typography> */}
+        </Typography> ) : null}*/}
         <TitleTypography variant="h1" align="center">
-          A development team with superpower
+          {title}
         </TitleTypography>
 
-        <Typography
-          variant="subtitle1"
-          align="center"
-          component="h2"
-          sx={{
-            margin: '0 auto 32px',
-            maxWidth: '620px',
-          }}
-        >
-          We help startups and companies of all shapes and sizes to build high-quality Front-End
-          solutions.
-        </Typography>
+        {subtitle ? (
+          <Typography
+            variant="subtitle1"
+            align="center"
+            component="h2"
+            sx={{
+              margin: '0 auto 32px',
+              maxWidth: '620px',
+              fontSize: { xs: '16px', md: '20px' },
+            }}
+          >
+            {subtitle}
+          </Typography>
+        ) : null}
 
-        <Stack
-          direction="row"
-          spacing={3}
-          justifyContent="center"
-          sx={{ marginBottom: { xs: '100px', md: '58px' } }}
-        >
-          <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
+        {!small ? (
+          <>
+            <Stack
+              direction="row"
+              spacing={3}
+              justifyContent="center"
+              sx={{ marginBottom: { xs: '100px', md: '58px' } }}
+            >
+              <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
 
-          <Button variant="outlined" href="#customServices">Let&apos;s discuss</Button>
-        </Stack>
+              <Button variant="outlined" href="#customServices">
+                Let&apos;s discuss
+              </Button>
+            </Stack>
 
-        <Divider sx={{ marginBottom: 2 }}>
-          <Typography variant="overline" textTransform="uppercase">recognized by:</Typography>
-        </Divider>
-        <Stack direction="row" spacing={3} justifyContent="center">
-          <Link href={Settings.UpworkLink} target="_blank" rel="noreferrer" aria-label="Recognized by Upwork">
-            <UpworkIcon sx={{ width: '88px' }} />
-          </Link>
+            <Divider sx={{ marginBottom: 2 }}>
+              <Typography variant="overline" textTransform="uppercase">
+                recognized by:
+              </Typography>
+            </Divider>
+            <Stack direction="row" spacing={3} justifyContent="center">
+              <Link
+                href={Settings.UpworkLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Recognized by Upwork"
+              >
+                <UpworkIcon sx={{ width: '88px' }} />
+              </Link>
 
-          <Link href={Settings.ClutchLink} target="_blank" rel="noreferrer" aria-label="Recognized by Clutch">
-            <ClutchIcon sx={{ width: '57px' }} />
-          </Link>
-        </Stack>
-      </Container>
-      <FixedBottomContainer>
-        <ScrollContainer direction="row" spacing={{
-          xs: 8,
-          sm: 13.75,
-        }}>
-          <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
-          <Box sx={{ width: '24px', height: '24px' }}>
-            <DTIcon />
-          </Box>
-          {/* <Image src={placeholderLogo2} alt="logo2" /> */}
-        </ScrollContainer>
-      </FixedBottomContainer>
+              <Link
+                href={Settings.ClutchLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Recognized by Clutch"
+              >
+                <ClutchIcon sx={{ width: '57px' }} />
+              </Link>
+            </Stack>
+          </>
+        ) : null}
+      </ContainerStyled>
+      {!small ? (
+        <FixedBottomContainer>
+          <ScrollContainer
+            direction="row"
+            spacing={{
+              xs: 8,
+              sm: 13.75,
+            }}
+          >
+            <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
+            <Box sx={{ width: '24px', height: '24px' }}>
+              <DTIcon />
+            </Box>
+          </ScrollContainer>
+        </FixedBottomContainer>
+      ) : null}
     </PageContainer>
   );
 };

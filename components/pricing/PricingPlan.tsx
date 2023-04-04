@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 import { type FC, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
@@ -5,8 +7,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import type { PricingPlanItem } from '../../models';
+import Loading from '../common/loading/Loading';
 
-import DialogCustomServices from '../dialogs/custom-services/DialogCustomServices';
 import PlanItem from './PlanItem';
 import CustomServices from './CustomServices';
 
@@ -15,6 +17,13 @@ import { PageContainer } from './styled-components';
 interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
+
+const DynamicDialogCustomServices = dynamic(
+  () => import('../dialogs/custom-services/DialogCustomServices'),
+  {
+    loading: () => <Loading />,
+  },
+);
 
 const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -38,8 +47,9 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
             fontSize: { xs: '32px', lg: '40px' },
           }}
         >
-          Choose a plan that match your project
+          Choose a plan that matches your project
         </Typography>
+
         <Grid
           container
           spacing={{ xs: 3, lg: 3.75 }}
@@ -57,7 +67,7 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
 
         <CustomServices onOpenDialog={handleOpenDialog} />
 
-        {openDialog ? <DialogCustomServices onClose={handleCloseDialog} /> : null}
+        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
       </Container>
     </PageContainer>
   );

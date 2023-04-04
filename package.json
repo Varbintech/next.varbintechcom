@@ -3,13 +3,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "clean": "rm -rf ./out",
-    "deploy": "next build && rm -rf ./out && mkdir out && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages",
-    "add-domain": "echo \"next.varbintech.com\" > ./out/CNAME",
-    "lint": "eslint .",
-    "typecheck": "tsc --skipLibCheck --project ./tsconfig.json --excludeDirectories public",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "next lint",
+    "typecheck": "tsc --skipLibCheck --project ./tsconfig.json --excludeDirectories public",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
@@ -48,6 +46,8 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.11",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.0",
     "prettier": "2.8.3",
     "typescript": "4.8.4"
   }
