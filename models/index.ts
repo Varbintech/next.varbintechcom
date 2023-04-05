@@ -1,6 +1,15 @@
 export type { PricingPlanItem, PlanType } from './pricing-plan.model';
 
-export type { CaseStudy, ProjectFeedback } from './case-study.model';
+export type {
+  CaseStudy,
+  ProjectFeedback,
+  ProjectFullInfo,
+  ProjectImageDetails,
+  ProjectTextDetails,
+  ProjectResultInfo,
+  ProjectImage,
+  ProjectTag,
+} from './case-study.model';
 
 export type { Service } from './service.model';
 
