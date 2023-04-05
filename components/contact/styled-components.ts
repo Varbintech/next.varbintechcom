@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 export const PageContainer = styled('div')`
