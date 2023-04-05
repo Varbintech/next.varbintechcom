@@ -30,5 +30,5 @@ storiesOf('App/CommonComponents/Buttons', module)
     <ButtonClose />
   ))
   .add('button nextLink', () => (
-    <ButtonLink />
+    <ButtonLink>button nextLink</ButtonLink>
   ));
