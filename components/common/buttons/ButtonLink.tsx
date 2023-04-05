@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import NextLink from 'next/link';
 
-import MUIButton, { ButtonProps } from '@mui/material/Button';
+import MUIButton, { type ButtonProps } from '@mui/material/Button';
 
 const ButtonLink: FC<ButtonProps> = props => {
   const { children, startIcon, variant, size, ...restProps } = props;

@@ -16,7 +16,6 @@ export const ImageContainer = styled('div')`
   img {
     display: inline-block;
     vertical-align: top;
-    object-fit: contain;
     width: 100%;
     height: auto;
     object-fit: cover;
