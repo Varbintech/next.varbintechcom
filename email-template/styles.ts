@@ -1,6 +1,6 @@
 export const main = {
-  backgroundColor: '#ffffff',
   fontFamily: 'Tahoma, Verdana, Segoe, sans-serif',
+  backgroundColor: '#ffffff',
 };
 
 export const container = {
