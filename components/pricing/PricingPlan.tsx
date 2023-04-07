@@ -58,6 +58,7 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
     }); */
     fetch('/api/send-email', {
       method: 'POST',
+      mode: 'cors',
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
