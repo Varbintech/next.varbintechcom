@@ -2,36 +2,53 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import nodemailer, { type SendMailOptions } from 'nodemailer';
 
-const transporter = nodemailer.createTransport({
-  pool: true,
+// Gmail
+/* const transporter = nodemailer.createTransport({
+  // pool: true,
   port: 465,
   host: 'smtp.gmail.com',
   auth: {
     user: 'testcupid2@gmail.com',
-    pass: 'aCsas1MM_5',
+    pass: 'cvhscivclmaajxjd',
   },
   secure: true,
+}); */
+
+const transporter = nodemailer.createTransport({
+  port: parseInt(String(process.env.SMTP_PORT)),
+  host: process.env.SMTP_HOST,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+  secure: false,
+  tls: {
+    ciphers: 'SSLv3',
+  },
 });
 
-const mailData = (name: string, to: string, message: string): SendMailOptions => {
+const mailData = (
+  name: string,
+  to: string,
+  message: string,
+  customTo?: string,
+): SendMailOptions => {
   return {
-    from: 'testcupid2@gmail.com',
-    to,
-    subject: `Message From ${name}`,
-    text: message,
-    html: `<div>${message}</div>`,
+    from: process.env.SMTP_USER,
+    to: customTo || process.env.SMTP_USER,
+    subject: `A new request on varbintech.com from ${name}`,
+    html: `<h2>${message}</h2><h3>${to}</h3>`,
   };
 };
 
 export default function (req: NextApiRequest, res: NextApiResponse) {
-  console.warn('req: ', req);
-  console.warn('res: ', res);
-
-  transporter.sendMail(mailData('test', 'test', 'test'), (err, info) => {
+  transporter.sendMail(mailData(req.body.name, req.body.to, req.body.message), (err, info) => {
     if (err) {
       console.error(err);
     } else {
       console.warn(info);
     }
   });
+
+  res.send('success');
 }

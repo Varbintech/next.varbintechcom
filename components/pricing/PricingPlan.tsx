@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 
 import { type FC, useState } from 'react';
 
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -20,7 +20,7 @@ interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+// const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
@@ -50,11 +50,29 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
         console.warn(info);
       }
     }); */
-    resend.sendEmail({
+    /* resend.sendEmail({
       from: data.to,
       to: 'var.bin.com@gmail.com',
       subject: `New request on varbintech.com from ${data.name}`,
       html: `Congrats on sending your <strong>first email</strong>!<br>${data.message}`,
+    }); */
+    fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(res => {
+      console.warn('Response received');
+
+      if (res.status === 200) {
+        // console.log('Response succeeded!')
+        /* setSubmitted(true)
+          setName('')
+          setEmail('')
+          setMessage('') */
+      }
     });
   };
 
