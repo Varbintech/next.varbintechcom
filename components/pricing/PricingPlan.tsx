@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic';
 
 import { type FC, useState } from 'react';
 
+import { Resend } from 'resend';
+
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-import nodemailer, { type SendMailOptions } from 'nodemailer';
 
 import type { PricingPlanItem } from '../../models';
 import Loading from '../common/loading/Loading';
@@ -20,26 +20,7 @@ interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
 
-const transporter = nodemailer.createTransport({
-  pool: true,
-  port: 465,
-  host: 'smtp.gmail.com',
-  auth: {
-    user: 'testcupid2@gmail.com',
-    pass: 'aCsas1MM_5',
-  },
-  secure: true,
-});
-
-const mailData = (name: string, to: string, message: string): SendMailOptions => {
-  return {
-    from: 'testcupid2@gmail.com',
-    to,
-    subject: `Message From ${name}`,
-    text: message,
-    html: `<div>${message}</div>`,
-  };
-};
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
@@ -60,12 +41,20 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   };
 
   const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
-    transporter.sendMail(mailData(data.name, data.to, data.message), (err, info) => {
+    console.warn('data: ', data);
+
+    /* transporter.sendMail(mailData(data.name, data.to, data.message), (err, info) => {
       if (err) {
         console.error(err);
       } else {
         console.warn(info);
       }
+    }); */
+    resend.sendEmail({
+      from: data.to,
+      to: 'var.bin.com@gmail.com',
+      subject: `New request on varbintech.com from ${data.name}`,
+      html: `Congrats on sending your <strong>first email</strong>!<br>${data.message}`,
     });
   };
 
