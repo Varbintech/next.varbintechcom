@@ -3,7 +3,12 @@ import { type FC, type ChangeEventHandler, type FocusEventHandler, useMemo } fro
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
+import type {
+  EmptyFunction,
+  FooterElement,
+  FunctionWithArg,
+  JSXElement,
+} from '../../../models/common';
 
 import useCustomServiceReducer, { InitialStateKeys } from './CustomService.state';
 
@@ -13,6 +18,7 @@ import DialogBase from '../base/DialogBase';
 
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
+  onConfirm: FunctionWithArg<{ name: string; to: string; message: string }>;
 }
 
 const header = (): JSXElement => (
@@ -39,7 +45,7 @@ const footer: FooterElement = options => {
 };
 
 const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
-  const { onClose } = props;
+  const { onClose, onConfirm } = props;
   const { state, dispatchEvent } = useCustomServiceReducer();
 
   const isDisabled = useMemo(() => {
@@ -65,7 +71,11 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   };
 
   const handleConfirm = () => {
-    console.warn('confirm');
+    onConfirm({
+      name: state.username.value,
+      to: state.email.value,
+      message: state.request.value,
+    });
   };
 
   return (

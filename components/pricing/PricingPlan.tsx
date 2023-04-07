@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import nodemailer, { type SendMailOptions } from 'nodemailer';
+
 import type { PricingPlanItem } from '../../models';
 import Loading from '../common/loading/Loading';
 
@@ -17,6 +19,27 @@ import { PageContainer } from './styled-components';
 interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
+
+const transporter = nodemailer.createTransport({
+  pool: true,
+  port: 465,
+  host: 'smtp.gmail.com',
+  auth: {
+    user: 'testcupid2@gmail.com',
+    pass: 'aCsas1MM_5',
+  },
+  secure: true,
+});
+
+const mailData = (name: string, to: string, message: string): SendMailOptions => {
+  return {
+    from: 'testcupid2@gmail.com',
+    to,
+    subject: `Message From ${name}`,
+    text: message,
+    html: `<div>${message}</div>`,
+  };
+};
 
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
@@ -34,6 +57,16 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
 
   const handleCloseDialog = (): void => {
     setOpenDialog(false);
+  };
+
+  const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
+    transporter.sendMail(mailData(data.name, data.to, data.message), (err, info) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.warn(info);
+      }
+    });
   };
 
   return (
@@ -67,7 +100,12 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
 
         <CustomServices onOpenDialog={handleOpenDialog} />
 
-        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
+        {openDialog ? (
+          <DynamicDialogCustomServices
+            onClose={handleCloseDialog}
+            onConfirm={handleConfirmDialog}
+          />
+        ) : null}
       </Container>
     </PageContainer>
   );
