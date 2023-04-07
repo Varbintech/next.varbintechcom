@@ -2052,6 +2052,13 @@
   dependencies:
     react "18.2.0"
 
+"@react-email/column@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/@react-email/column/-/column-0.0.7.tgz#c67df014dc682df290e22d51d8f498e74e29e4c4"
+  integrity sha512-B29wVXyIcuVprgGpLkR23waPh/twlqmugZQsCKk05JlMCQ80/Puv4Lgj4dRsIJzgyTLMwG6xq17+Uxc5iGfuaQ==
+  dependencies:
+    react "18.2.0"
+
 "@react-email/container@0.0.8":
   version "0.0.8"
   resolved "https://registry.npmjs.org/@react-email/container/-/container-0.0.8.tgz#a5442b217247d7fe6134dc63564094ffbaca7c12"
@@ -2126,6 +2133,11 @@
     pretty "2.0.0"
     react "18.2.0"
     react-dom "18.2.0"
+
+"@react-email/row@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/@react-email/row/-/row-0.0.5.tgz#665d7db896fd38c7d9d3a8094624410f66e2f9c3"
+  integrity sha512-dir5l1M7Z/1BQqQkUrKUPIIDPt6ueEf6ScMGoBOcUh+VNNqmnqJE2Q2CH5X3w2uo6a5X7tnVhoJHGa2KTKe8Sw==
 
 "@react-email/section@0.0.9":
   version "0.0.9"

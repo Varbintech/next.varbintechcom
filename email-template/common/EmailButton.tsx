@@ -6,7 +6,7 @@ import { button } from '../styles';
 
 export const EmailButton = ({ children }: ReactChildren) => {
   return (
-    <Button style={button} href="#">
+    <Button pX={20} pY={14} style={button} href="#">
       {children}
     </Button>
   );
