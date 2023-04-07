@@ -9,6 +9,7 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
   const withPWA = nextPWA({
     disable: phase === PHASE_DEVELOPMENT_SERVER,
     dest: 'public',
+    publicExcludes: ['!_headers'],
   });
 
   const nextConfig = {
