@@ -2,8 +2,6 @@ import dynamic from 'next/dynamic';
 
 import { type FC, useState } from 'react';
 
-// import { Resend } from 'resend';
-
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -20,7 +18,7 @@ interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
 
-// const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+const headersAuthorization = { Authorization: `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}` };
 
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
@@ -43,36 +41,20 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
     console.warn('data: ', data);
 
-    /* transporter.sendMail(mailData(data.name, data.to, data.message), (err, info) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.warn(info);
-      }
-    }); */
-    /* resend.sendEmail({
-      from: data.to,
-      to: 'var.bin.com@gmail.com',
-      subject: `New request on varbintech.com from ${data.name}`,
-      html: `Congrats on sending your <strong>first email</strong>!<br>${data.message}`,
-    }); */
-    fetch('/api/send-email', {
+    fetch('https://api.resend.com/email', {
       method: 'POST',
-      mode: 'cors',
       headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        ...headersAuthorization,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        from: 'onboarding@resend.dev',
+        to: 'var.bin.com@gmail.com',
+        subject: 'Hello world via Resend APIs',
+        html: `<strong>It works! Timestamp: ${Date.now()}</strong>`,
+      }),
     }).then(res => {
-      console.warn('Response received');
-
       if (res.status === 200) {
-        // console.log('Response succeeded!')
-        /* setSubmitted(true)
-          setName('')
-          setEmail('')
-          setMessage('') */
+        console.warn('Response received');
       }
     });
   };
