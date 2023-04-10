@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "14.18.1"
+          node-version: "16.20.0"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Install dependencies
