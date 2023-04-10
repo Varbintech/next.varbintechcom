@@ -1,9 +1,13 @@
+import { blogData } from '../../mocks/blog-data';
+
+import Blog from '../../components/blog/Blog';
 import Hero from '../../components/hero/Hero';
 
 const BlogPage = () => {
   return (
     <>
-      <Hero small title="Stay inspired Varbin tech Blog" />
+      <Hero small plainBg title="Stay inspired Varbin tech Blog" />
+      <Blog data={blogData} />
     </>
   );
 };

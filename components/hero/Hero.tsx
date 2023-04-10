@@ -36,11 +36,15 @@ interface HeroProps {
   title: string;
   subtitle?: string;
   small?: boolean;
+  plainBg?: boolean;
 }
 
-const Hero: FC<HeroProps> = ({ title, subtitle, small }) => {
+const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
+  const classSmallSize = small ? 'page-small' : '';
+  const classPlainBg = plainBg ? 'page-plainBg' : '';
+
   return (
-    <PageContainer className={small ? 'page-small' : ''}>
+    <PageContainer className={`${classSmallSize} ${classPlainBg}`}>
       <RectangleLeftIconContainer>
         <RectangleLeftIcon />
       </RectangleLeftIconContainer>
