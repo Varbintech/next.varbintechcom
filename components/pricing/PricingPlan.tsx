@@ -18,8 +18,6 @@ interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
 
-const headersAuthorization = { Authorization: `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}` };
-
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
   {
@@ -39,12 +37,15 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   };
 
   const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
-    console.warn('data: ', data);
+    console.warn('data: ', data, process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
     fetch('https://api.resend.com/email', {
       method: 'POST',
+      mode: 'no-cors',
+      credentials: 'include',
       headers: {
-        ...headersAuthorization,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: 'onboarding@resend.dev',
@@ -52,11 +53,10 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
         subject: 'Hello world via Resend APIs',
         html: `<strong>It works! Timestamp: ${Date.now()}</strong>`,
       }),
-    }).then(res => {
-      if (res.status === 200) {
-        console.warn('Response received');
-      }
-    });
+    })
+      // .then(response => response.json())
+      .then(response => console.warn(response))
+      .catch(err => console.error(err));
   };
 
   return (
