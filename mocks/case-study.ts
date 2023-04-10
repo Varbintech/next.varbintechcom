@@ -212,32 +212,6 @@ const caseStudy1: CaseStudy = {
       ],
     },
   ],
-  projectSocialIcons: [
-    {
-      id: 0,
-      socialTitle: 'Facebook',
-      socialLink: '#',
-      socialIcon: 'facebookIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Facebook',
-    },
-    {
-      id: 1,
-      socialTitle: 'LinkedIn',
-      socialLink: '#',
-      socialIcon: 'linkedInIcon',
-      socialBorderRadius: '2px',
-      socialAriaLabel: 'Read more on LinkedIn',
-    },
-    {
-      id: 2,
-      socialTitle: 'Twitter',
-      socialLink: '#',
-      socialIcon: 'twitterIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Twitter',
-    },
-  ],
 };
 
 const caseStudy2: CaseStudy = {
@@ -401,32 +375,6 @@ const caseStudy2: CaseStudy = {
         'React Router',
         'React Query',
       ],
-    },
-  ],
-  projectSocialIcons: [
-    {
-      id: 0,
-      socialTitle: 'Facebook',
-      socialLink: '#',
-      socialIcon: 'facebookIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Facebook',
-    },
-    {
-      id: 1,
-      socialTitle: 'LinkedIn',
-      socialLink: '#',
-      socialIcon: 'linkedInIcon',
-      socialBorderRadius: '2px',
-      socialAriaLabel: 'Read more on LinkedIn',
-    },
-    {
-      id: 2,
-      socialTitle: 'Twitter',
-      socialLink: '#',
-      socialIcon: 'twitterIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Twitter',
     },
   ],
 };

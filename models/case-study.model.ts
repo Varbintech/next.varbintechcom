@@ -1,5 +1,3 @@
-import type { SocialIcon } from './social-icons.model';
-
 export interface ProjectTag {
   name: string;
   link: string;
@@ -63,5 +61,4 @@ export interface CaseStudy {
   resultInfo: Array<ProjectResultInfo>;
   projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
   projectFullInfo: Array<ProjectFullInfo>;
-  projectSocialIcons: Array<SocialIcon>;
 }
