@@ -16,6 +16,34 @@ const CaseStudyDetailPage = () => {
 
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
+  const pageLink = `https://5f9731df.next-varbintechcom.pages.dev${router.asPath}`;
+  const projectSocialIcons = [
+    {
+      id: 0,
+      socialTitle: 'Facebook',
+      socialLink: `https://www.facebook.com/sharer/sharer.php?u=${pageLink}%2F&amp;src=sdkpreparse`,
+      socialIcon: 'facebookIcon',
+      socialBorderRadius: '',
+      socialAriaLabel: 'Share on Facebook',
+    },
+    {
+      id: 1,
+      socialTitle: 'LinkedIn',
+      socialLink: `https://linkedin.com/shareArticle?url=${pageLink}`,
+      socialIcon: 'linkedInIcon',
+      socialBorderRadius: '2px',
+      socialAriaLabel: 'Share on LinkedIn',
+    },
+    {
+      id: 2,
+      socialTitle: 'Twitter',
+      socialLink: `https://twitter.com/intent/tweet?text=${pageLink}`,
+      socialIcon: 'twitterIcon',
+      socialBorderRadius: '',
+      socialAriaLabel: 'Share on Twitter',
+    },
+  ];
+
   return (
     <>
       {data ? (
@@ -24,7 +52,7 @@ const CaseStudyDetailPage = () => {
           bgColored
           title={data.projectTitle}
           projectTags={data.projectTags}
-          projectSocialIcons={data.projectSocialIcons}
+          projectSocialIcons={projectSocialIcons}
         />
       ) : null}
       {data ? <ImageWrapperComponent data={data.projectImage} /> : null}
