@@ -41,22 +41,52 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
   const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
     console.warn('data: ', data, process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
-    fetch('https://api.resend.com/email', {
+    /* cache-control: public, max-age=0, must-revalidate
+    content-type: application/json; charset=utf-8
+    date: Mon, 10 Apr 2023 21:14:27 GMT
+    etag: "108aufq08oj19"
+    server: Vercel
+    strict-transport-security: max-age=63072000
+    x-matched-path: /api/email
+    x-vercel-cache: MISS
+    x-vercel-id: fra1::iad1::zcgng-1681161266899-1433f85e953e
+    content-length: 45 */
+
+    fetch('https://api.sendinblue.com/v3/smtp/email', {
       method: 'POST',
-      mode: 'no-cors',
-      credentials: 'include',
+      // mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
+        'Content-Type': 'application/json; charset=utf-8',
+        // Accept: '*/*',
+        // Authorization: `Bearer re_c6Ln9eAr_KZEh2Cc3RcjqcMqX7KKXw4Mq`,
+        'api-key':
+          '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',
+        // 'cache-control': 'public, max-age=0, must-revalidate',
+        /* server: 'Vercel',
+        'strict-transport-security': 'max-age=63072000',
+        'x-matched-path': '/api/email',
+        'content-length': '45',
+        'date': 'Mon, 10 Apr 2023 21:14:27 GMT',
+        'etag': '108aufq08oj19',
+        'x-vercel-id': 'fra1::iad1::zcgng-1681161266899-1433f85e953e',
+        'x-vercel-cache': 'MISS', */
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: 'var.bin.com@gmail.com',
-        subject: 'Hello world via Resend APIs',
-        html: `<strong>It works! Timestamp: ${Date.now()}</strong>`,
+        sender: {
+          name: 'Sender Alex',
+          email: 'senderalex@example.com',
+        },
+        to: [
+          {
+            email: 'testmail@example.com',
+            name: 'John Doe',
+          },
+        ],
+        subject: 'Hello world',
+        htmlContent:
+          '<html><head></head><body><p>Hello,</p>This is my first transactional email sent from Sendinblue.</p></body></html>',
       }),
     })
-      // .then(response => response.json())
       .then(response => console.warn(response))
       .catch(err => console.error(err));
   };
