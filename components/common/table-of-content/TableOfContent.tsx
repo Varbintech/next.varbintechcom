@@ -50,13 +50,14 @@ const TableOfContent: FC<TableOfContentProps> = props => {
       <Stack spacing={2} marginBottom="52px">
         {linkList &&
           linkList.map((item, index) => {
-            if (item && item.title ) {
+            if (item && item.title) {
               return (
-                <Link key={index} href={`#${item.href}`} underline='hover'>
+                <Link key={index} href={`#${item.href}`} underline="hover">
                   <>{item.title}</>
                 </Link>
               );
             }
+
             return null;
           })}
       </Stack>
