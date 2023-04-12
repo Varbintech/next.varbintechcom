@@ -10,13 +10,15 @@ import NextPage from '../../components/common/next-page/NextPage';
 
 import { caseStudies } from '../../mocks/case-study';
 
+import { useWindowLocation } from '../../hooks/use-window-location';
+
 const CaseStudyDetailPage = () => {
   const router = useRouter();
-  const caseStudyId = router.query.caseStudyId;
+  const location = useWindowLocation();
 
+  const { caseStudyId } = router.query;
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
-
-  const pageLink = `https://5f9731df.next-varbintechcom.pages.dev${router.asPath}`;
+  const pageLink = new URL(router.asPath, location?.origin).href;
   const projectSocialIcons = [
     {
       id: 0,
