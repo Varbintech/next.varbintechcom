@@ -1,20 +1,15 @@
 import { styled } from '@mui/material/styles';
 import { ImageContainerStyled } from '../styled-containers';
 
+export const TableOfContentContainer = styled('div')`
+  position: sticky;
+  top: 128px;
+`;
+
 export const ImageContainer = styled(ImageContainerStyled)`
-  max-width: 570px;
+  margin-bottom: 35px;
 
   .inner-wrapper {
-    max-width: 570px;
-    max-height: 400px;
-  }
-
-  &.image-alone {
-    max-width: 100%;
-
-    .inner-wrapper {
-      max-width: 100%;
-      max-height: 260px;
-    }
+    max-height: 190px;
   }
 `;

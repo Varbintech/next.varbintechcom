@@ -12,11 +12,10 @@ import { ImageContainer } from './styled-components';
 
 interface BlogSectionProps {
   data: BlogItem;
-  id: number;
 }
 
-const BlogSection: FC<BlogSectionProps> = ({ data, id }) => {
-  const { blogImage, blogCategoty, blogDate, blogTitle } = data;
+const BlogSection: FC<BlogSectionProps> = ({ data }) => {
+  const { id, blogImage, blogCategoty, blogDate, blogTitle } = data;
 
   return (
     <Stack direction="column">
