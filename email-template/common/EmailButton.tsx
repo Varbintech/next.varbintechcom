@@ -4,9 +4,13 @@ import type { ReactChildren } from '../../models/common';
 
 import { button } from '../styles';
 
-export const EmailButton = ({ children }: ReactChildren) => {
+interface EmailButtonProps extends ReactChildren {
+  href: string;
+}
+
+export const EmailButton = ({ children, href }: EmailButtonProps) => {
   return (
-    <Button pX={20} pY={14} style={button} href="#">
+    <Button pX={20} pY={14} style={button} href={href} target="_blank" rel="noreferrer">
       {children}
     </Button>
   );

@@ -10,6 +10,7 @@ storiesOf('App/EmailTemplates', module)
     <EmailTemplate
       headTitle={confirmationEmail.headTitle}
       buttonText={confirmationEmail.buttonText}
+      href="https://varbintech.com"
       subHeadConfirmation
     />
   ))
@@ -18,5 +19,6 @@ storiesOf('App/EmailTemplates', module)
       headTitle={contactFormEmail.headTitle}
       buttonText={contactFormEmail.buttonText}
       textSection={contactFormEmail.textSection}
+      href="https://varbintech.com"
     />
   ));

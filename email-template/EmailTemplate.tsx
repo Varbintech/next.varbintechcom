@@ -27,6 +27,7 @@ interface EmailTemplateProps {
   buttonText: string;
   subHeadConfirmation?: boolean;
   textSection?: Array<TextSection>;
+  href?: string;
 }
 
 export const EmailTemplate = ({
@@ -34,20 +35,25 @@ export const EmailTemplate = ({
   buttonText,
   subHeadConfirmation,
   textSection,
+  href,
 }: EmailTemplateProps) => {
   return (
     <Html lang="en">
       <EmailHead>{Settings.Title}</EmailHead>
+
       <Body style={main}>
         <Container style={container}>
           <EmailLogo />
+
           <EmailHeading>{headTitle}</EmailHeading>
+
           {subHeadConfirmation ? (
             <EmailSubText>
               Your account is now <span style={paragraph}>approved</span> and you can access your
               dashboard now!
             </EmailSubText>
           ) : null}
+
           {textSection
             ? textSection.map((item, index) => {
                 return (
@@ -58,13 +64,18 @@ export const EmailTemplate = ({
                 );
               })
             : null}
-          <EmailButton>{buttonText}</EmailButton>
+
+          {href ? <EmailButton href={href}>{buttonText}</EmailButton> : null}
+
           <Hr style={hr} />
+
           <EmailText>
             Thanks for reading, <br />
-            Varbintech
+            Varbintech Team
           </EmailText>
+
           <Hr style={hr} />
+
           <EmailFooterText />
         </Container>
       </Body>

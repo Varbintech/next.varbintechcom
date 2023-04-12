@@ -74,10 +74,11 @@ export const footerSubParagraph = {
 export const footerImage = {
   display: 'inline-block',
   margin: '0 5px',
+  verticalAlign: 'middle',
 };
 
 export const footerLogo = {
   display: 'inline-block',
   verticalAlign: 'bottom',
-  marginLeft: '16px',
+  marginLeft: '8px',
 };
