@@ -115,8 +115,19 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return {
+      paths: [], // @TODO replace with real data when Headless CMS is ready
+      fallback: false,
+    };
+  }
+
+  const paths = caseStudies.map(({ id }) => ({
+    params: { caseStudyId: String(id) },
+  }));
+
   return {
-    paths: [], // @TODO replace with real data when Headless CMS is ready
-    fallback: false, // can also be true or 'blocking'
+    paths,
+    fallback: false,
   };
 };
