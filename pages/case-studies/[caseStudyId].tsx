@@ -1,6 +1,13 @@
+import type { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import Container from '@mui/material/Container';
+
+import { useWindowLocation } from '../../hooks/use-window-location';
+
+import { Settings } from '../../constants/settings';
+
+import { caseStudies } from '../../mocks/case-study';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
@@ -8,23 +15,29 @@ import FullInfoColumn from '../../components/common/full-info-column/FullInfoCol
 import TextColumn from '../../components/common/text-column/TextColumn';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import Result from '../../components/common/result/Result';
-import NextPage from '../../components/common/next-page/NextPage';
-
-import { caseStudies } from '../../mocks/case-study';
+import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
 import { socialShareButtons } from '../../utils/socialShareButtons';
 
 const CaseStudyDetailPage = () => {
-  const router = useRouter();
-  const caseStudyId = router.query.caseStudyId;
+  const {
+    query: { caseStudyId },
+    isReady,
+    asPath,
+  } = useRouter();
+  const location = useWindowLocation(isReady);
 
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
-  const pageLink = `https://5f9731df.next-varbintechcom.pages.dev${router.asPath}`;
+  const pageLink = location?.origin && new URL(asPath, location?.origin).href || '';
 
-  return (
-    <>
-      {data ? (
+  const randomCaseStudy =
+    caseStudies[Number(caseStudyId) + 1] ||
+    caseStudies[Math.floor(Math.random() * caseStudies.length)];
+
+  if (data) {
+    return (
+      <>
         <HeroDetails
           centered
           bgColored
@@ -32,26 +45,57 @@ const CaseStudyDetailPage = () => {
           projectTags={data.projectTags}
           projectSocialIcons={socialShareButtons(pageLink)}
         />
-      ) : null}
-      {data ? <ImageWrapperComponent data={data.projectImage} /> : null}
-      {data ? <FullInfoColumn data={data.projectFullInfo} /> : null}
-      <Container maxWidth="lg">
-        {data &&
-          data.projectDetails.map((item, index) => {
-            if (item.label === 'TEXT') {
-              return <TextColumn key={index} data={item} />;
-            }
-            if (item.label === 'IMAGE') {
-              return <ImagesColumn key={index} data={item} />;
-            }
+        <Container
+          maxWidth="lg"
+          sx={{
+            marginTop: { xs: '-90px', md: '-160px' },
+            marginBottom: { xs: '42px', md: '112px' },
+          }}
+        >
+          <ImageWrapperComponent data={data.projectImage} largeWithBorder />
+        </Container>
+        <FullInfoColumn data={data.projectFullInfo} />
+        <Container maxWidth="lg">
+          {data &&
+            data.projectDetails.map((item, index) => {
+              if (item.label === 'TEXT') {
+                return <TextColumn key={index} data={item} />;
+              }
+              if (item.label === 'IMAGE') {
+                return <ImagesColumn key={index} data={item} />;
+              }
 
-            return null;
-          })}
-      </Container>
-      {data ? <Result data={data} /> : null}
-      <NextPage />
-    </>
-  );
+              return null;
+            })}
+        </Container>
+        <Result data={data} />
+        <CaseStudyNextItem title={randomCaseStudy.projectTitle} id={randomCaseStudy.id} />
+      </>
+    );
+  }
+
+  return null;
 };
 
 export default CaseStudyDetailPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true };
+  }
+
+  return {
+    props: {},
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [], // @TODO replace with real data when Headless CMS is ready
+    fallback: false, // can also be true or 'blocking'
+  };
+};

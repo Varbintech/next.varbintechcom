@@ -41,7 +41,7 @@ const BlogSection: FC<BlogSectionProps> = ({ data }) => {
         </Typography>
       </Stack>
 
-      <Link href={'/blog/' + id} variant="h5">
+      <Link href={`/blog/${id}`} variant="h5" underline="hover">
         {blogTitle}
       </Link>
     </Stack>

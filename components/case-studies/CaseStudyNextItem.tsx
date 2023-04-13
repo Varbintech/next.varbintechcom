@@ -1,13 +1,20 @@
+import type { FC } from 'react';
+
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import { Settings } from '../../../constants/settings';
+import { Settings } from '../../constants/settings';
 
-import Button from '../buttons/Button';
-import ButtonLink from '../buttons/ButtonLink';
+import Button from '../common/buttons/Button';
+import ButtonLink from '../common/buttons/ButtonLink';
 
-const NextPage = () => {
+interface CaseStudyNextItemProps {
+  title: string;
+  id: string | number;
+}
+
+const CaseStudyNextItem: FC<CaseStudyNextItemProps> = ({ title, id }) => {
   return (
     <Container
       maxWidth="lg"
@@ -27,10 +34,10 @@ const NextPage = () => {
           lineHeight: '1.2em',
         }}
       >
-        Digital Toucan - JQL Search Extensions for Jira
+        {title}
       </Typography>
       <Stack direction="row" spacing={3} justifyContent="center">
-        <ButtonLink href="/case-studies/1">View full case study</ButtonLink>
+        <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink>
 
         <Button variant="outlined" href={Settings.CalendlyLink}>
           Book a call
@@ -40,4 +47,4 @@ const NextPage = () => {
   );
 };
 
-export default NextPage;
+export default CaseStudyNextItem;

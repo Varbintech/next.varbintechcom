@@ -49,4 +49,12 @@ export const socialIcons: Array<SocialIcon> = [
     socialBorderRadius: '',
     socialAriaLabel: 'Read more about Varbintech on Clutch',
   },
+  {
+    id: 6,
+    socialTitle: 'Facebook',
+    socialLink: '',
+    socialIcon: 'facebookIcon',
+    socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on Facebook',
+  },
 ];

@@ -1,35 +1,37 @@
 import type { FC } from 'react';
 
-import Container from '@mui/material/Container';
-
 import type { ProjectImage } from '../../../models';
 
 import { ImageContainer } from './styled-components';
 
 interface ImageWrapperComponentProps {
   data: ProjectImage;
+  largeWithBorder?: boolean;
+  mediumSize?: boolean;
+  mediumSizeAloneColumn?: boolean;
 }
 
-const ImageWrapperComponent: FC<ImageWrapperComponentProps> = ({ data }) => {
+const ImageWrapperComponent: FC<ImageWrapperComponentProps> = props => {
+  const { data, largeWithBorder, mediumSize, mediumSizeAloneColumn } = props;
+
+  const medium = mediumSize ? 'medium-size' : '';
+  const mediumAloneColumn = mediumSizeAloneColumn ? 'medium-size-alone-column' : '';
+  const largeBorder = largeWithBorder ? 'large-with-border' : '';
+
   return (
-    <Container
-      maxWidth="lg"
-      sx={{ marginTop: { xs: '-90px', md: '-160px' }, marginBottom: { xs: '42px', md: '112px' } }}
-    >
-      <ImageContainer>
-        <span className="inner-wrapper">
-          {/* eslint-disable @next/next/no-img-element */}
-          <img
-            loading="lazy"
-            sizes={data.sizes}
-            srcSet={data.srcSet}
-            alt={data.name}
-            width={data.width}
-            height={data.height}
-          />
-        </span>
-      </ImageContainer>
-    </Container>
+    <ImageContainer className={`${medium} ${mediumAloneColumn} ${largeBorder}`}>
+      <span className="inner-wrapper">
+        {/* eslint-disable @next/next/no-img-element */}
+        <img
+          loading="lazy"
+          sizes={data.sizes}
+          srcSet={data.srcSet}
+          alt={data.name}
+          width={data.width}
+          height={data.height}
+        />
+      </span>
+    </ImageContainer>
   );
 };
 
