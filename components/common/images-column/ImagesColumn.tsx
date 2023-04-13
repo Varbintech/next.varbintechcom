@@ -18,6 +18,7 @@ const ImagesColumn: FC<ImagesColumnProps> = ({ data }) => {
       direction={{ xs: 'column', md: aloneColumn ? 'column' : 'row' }}
       spacing={{ xs: '24px', md: '30px' }}
       sx={{ marginBottom: { xs: '60px', md: aloneColumn ? '60px' : '112px' } }}
+      flexWrap={aloneColumn ? 'wrap' : 'initial'}
     >
       {data.imageSection.map((item, index) => {
         return (
