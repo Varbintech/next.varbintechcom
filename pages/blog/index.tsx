@@ -10,7 +10,7 @@ import Hero from '../../components/hero/Hero';
 const BlogPage = () => {
   return (
     <>
-      <Hero small plainBg title="Stay inspired Varbin tech Blog" />
+      <Hero small plainBg title="Stay inspired by Varbintech Blog" />
       <Blog data={blogData} />
     </>
   );
