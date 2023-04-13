@@ -7,9 +7,7 @@ export const ImageContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flex: 1,
     overflow: 'hidden',
-    maxHeight: '700px',
-    borderRadius: '16px',
-    border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+    borderRadius: '8px',
   },
 
   img: {
@@ -19,5 +17,20 @@ export const ImageContainer = styled('div')(({ theme }) => ({
     height: 'auto',
     objectFit: 'cover',
     objectPosition: 'top',
+  },
+
+  '&.large-with-border .inner-wrapper': {
+    maxHeight: '700px',
+    borderRadius: '16px',
+    border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+  },
+
+  '&.medium-size ':{
+    maxWidth: '570px',
+
+    '.inner-wrapper': {
+      maxWidth: '570px',
+      maxHeight: '400px',
+    },
   },
 }));

@@ -1,5 +1,11 @@
 import { useRouter } from 'next/router';
 
+import Container from '@mui/material/Container';
+
+import { caseStudies } from '../../mocks/case-study';
+
+import { useWindowLocation } from '../../hooks/use-window-location';
+
 import HeroDetails from '../../components/hero/HeroDetails';
 import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
 import FullInfoColumn from '../../components/common/full-info-column/FullInfoColumn';
@@ -7,10 +13,6 @@ import TextColumn from '../../components/common/text-column/TextColumn';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import Result from '../../components/common/result/Result';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
-
-import { caseStudies } from '../../mocks/case-study';
-
-import { useWindowLocation } from '../../hooks/use-window-location';
 
 const CaseStudyDetailPage = () => {
   const router = useRouter();
@@ -61,7 +63,15 @@ const CaseStudyDetailPage = () => {
           projectTags={data.projectTags}
           projectSocialIcons={projectSocialIcons}
         />
-        <ImageWrapperComponent data={data.projectImage} />
+        <Container
+          maxWidth="lg"
+          sx={{
+            marginTop: { xs: '-90px', md: '-160px' },
+            marginBottom: { xs: '42px', md: '112px' },
+          }}
+        >
+          <ImageWrapperComponent data={data.projectImage} largeWithBorder />
+        </Container>
         <FullInfoColumn data={data.projectFullInfo} />
         {data.projectDetails.map((item, index) => {
           if (item.label === 'TEXT') {
