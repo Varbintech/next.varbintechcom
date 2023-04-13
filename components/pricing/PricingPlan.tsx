@@ -36,13 +36,6 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
     setOpenDialog(false);
   };
 
-  const handleConfirmDialog = (data: { name: string; to: string; message: string }) => {
-    fetch('/api/send', {
-      method: 'post',
-      body: JSON.stringify(data),
-    }).then(data => console.warn('data: ', data));
-  };
-
   return (
     <PageContainer id="pricing">
       <Container maxWidth="lg">
@@ -74,12 +67,7 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
 
         <CustomServices onOpenDialog={handleOpenDialog} />
 
-        {openDialog ? (
-          <DynamicDialogCustomServices
-            onClose={handleCloseDialog}
-            onConfirm={handleConfirmDialog}
-          />
-        ) : null}
+        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
       </Container>
     </PageContainer>
   );

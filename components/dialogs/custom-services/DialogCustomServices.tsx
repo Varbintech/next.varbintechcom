@@ -1,14 +1,9 @@
-import { type FC, type ChangeEventHandler, type FocusEventHandler, useMemo } from 'react';
+import { type FC, type ChangeEventHandler, type FocusEventHandler, useMemo, useState } from 'react';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import type {
-  EmptyFunction,
-  FooterElement,
-  FunctionWithArg,
-  JSXElement,
-} from '../../../models/common';
+import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
 
 import useCustomServiceReducer, { InitialStateKeys } from './CustomService.state';
 
@@ -18,7 +13,6 @@ import DialogBase from '../base/DialogBase';
 
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
-  onConfirm: FunctionWithArg<{ name: string; to: string; message: string }>;
 }
 
 const header = (): JSXElement => (
@@ -45,14 +39,16 @@ const footer: FooterElement = options => {
 };
 
 const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
-  const { onClose, onConfirm } = props;
+  const { onClose } = props;
   const { state, dispatchEvent } = useCustomServiceReducer();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const isDisabled = useMemo(() => {
     const fields = Object.keys(state) as Array<InitialStateKeys>;
 
-    return fields.some(field => !state[field].success);
-  }, [state]);
+    return fields.some(field => !state[field].success) || isLoading;
+  }, [state, isLoading]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     dispatchEvent({
@@ -71,10 +67,19 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   };
 
   const handleConfirm = () => {
-    onConfirm({
-      name: state.username.value,
-      to: state.email.value,
-      message: state.request.value,
+    setIsLoading(true);
+
+    fetch('/api/send', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: state.username.value,
+        to: state.email.value,
+        message: state.request.value,
+      }),
+    }).then(data => {
+      if (data.status === 200) {
+        setShowMessage(true);
+      }
     });
   };
 
@@ -113,6 +118,8 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+
+        {isLoading && showMessage ? <Typography>👋 Your request has been sent</Typography> : null}
       </Stack>
     </DialogBase>
   );

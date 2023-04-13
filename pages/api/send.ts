@@ -5,6 +5,21 @@ export const config = {
 };
 
 export default async (req: NextRequest) => {
+  if (req.method !== 'POST') {
+    const body = JSON.stringify({
+      message:
+        'This API only accepts POST method with an appropriate body: { name: string, to: string, message: string }',
+    });
+
+    return new Response(body, {
+      status: 405,
+      statusText: `Method ${req.method} Not Allowed`,
+      headers: {
+        Allow: 'POST',
+      },
+    });
+  }
+
   try {
     const json = await req.json();
 
@@ -28,6 +43,7 @@ export default async (req: NextRequest) => {
 
     return new Response(JSON.stringify(data), {
       status: 200,
+      statusText: 'OK',
     });
   } catch (e) {
     return new Response(String(e), {
