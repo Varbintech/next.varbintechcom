@@ -8,7 +8,7 @@ import type { CaseStudy } from '../../models';
 
 import Feedback from '../common/feedback/Feedback';
 import ChipGroup from '../common/chip/ChipGroup';
-import ButtonLink from '../common/buttons/ButtonLink';
+// import ButtonLink from '../common/buttons/ButtonLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
 import {
@@ -29,7 +29,7 @@ interface CaseStudyInnerProps {
 
 const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
   const {
-    id,
+    // id,
     projectImage,
     projectImageAlt,
     projectTitle,
@@ -104,7 +104,8 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               </>
             ) : null}
 
-            <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink>
+            {/* @TODO Uncomment after Headless CMS */}
+            {/* <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink> */}
           </TextContainer>
         </Stack>
 

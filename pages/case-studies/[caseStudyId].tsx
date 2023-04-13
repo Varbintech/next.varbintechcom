@@ -1,10 +1,13 @@
+import type { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import Container from '@mui/material/Container';
 
-import { caseStudies } from '../../mocks/case-study';
-
 import { useWindowLocation } from '../../hooks/use-window-location';
+
+import { Settings } from '../../constants/settings';
+
+import { caseStudies } from '../../mocks/case-study';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
@@ -15,13 +18,16 @@ import Result from '../../components/common/result/Result';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
 const CaseStudyDetailPage = () => {
-  const router = useRouter();
-  const location = useWindowLocation();
+  const {
+    query: { caseStudyId },
+    isReady,
+    asPath,
+  } = useRouter();
+  const location = useWindowLocation(isReady);
 
-  const { caseStudyId } = router.query;
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
-  const pageLink = location?.origin && new URL(router.asPath, location?.origin).href;
+  const pageLink = location?.origin && new URL(asPath, location?.origin).href;
   const projectSocialIcons = [
     {
       id: 0,
@@ -93,3 +99,24 @@ const CaseStudyDetailPage = () => {
 };
 
 export default CaseStudyDetailPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true };
+  }
+
+  return {
+    props: {},
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [], // @TODO replace with real data when Headless CMS is ready
+    fallback: false, // can also be true or 'blocking'
+  };
+};

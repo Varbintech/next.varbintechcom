@@ -1,11 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useWindowLocation = () => {
-  const location = useRef<null | Location>(null);
+export const useWindowLocation = (isReady: boolean) => {
+  const [location, setLocation] = useState<null | Location>(null);
 
   useEffect(() => {
-    location.current = window.location;
-  }, []);
+    if (isReady) {
+      setLocation(window.location);
+    }
+  }, [isReady]);
 
-  return location.current;
+  return location;
 };
