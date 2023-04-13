@@ -379,10 +379,4 @@ const caseStudy2: CaseStudy = {
   ],
 };
 
-const caseStudy3: CaseStudy = {
-  ...caseStudy1,
-  id: 2,
-  projectTitle: 'Background image for a Hero section should be provided via a special prop',
-};
-
-export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2, caseStudy3];
+export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2];

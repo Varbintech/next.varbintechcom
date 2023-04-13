@@ -17,7 +17,15 @@ export const PageContainer = styled('div')`
   );
 
   &.page-small {
-    min-height: auto;
+    min-height: 375px;
+
+    @media screen and (max-width: 1200px){
+      min-height: auto;
+    }
+  }
+
+  &.page-plainBg {
+    background-image: none;
   }
 `;
 

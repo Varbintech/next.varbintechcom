@@ -22,3 +22,5 @@ export type { SocialIcon } from './social-icons.model';
 export type { FooterData } from './footer-data.model';
 
 export type { NavigationRoute } from './navigation-routes.model';
+
+export type { BlogItem } from './blog-data.model';

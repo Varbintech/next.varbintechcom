@@ -1,15 +1,25 @@
 import { styled } from '@mui/material/styles';
 
+export const PageContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
+  padding: '0 0 64px',
+  zIndex: 10,
+
+  [theme.breakpoints.up('lg')]: {
+    marginTop: '-50px',
+    padding: '0 0 120px',
+  },
+}));
+
 export const ImageContainer = styled('div')`
   display: flex;
-  max-width: 570px;
+  margin-bottom: 22px;
 
   .inner-wrapper {
     display: flex;
     flex: 1;
     overflow: hidden;
-    max-width: 570px;
-    max-height: 400px;
+    max-height: 260px;
     border-radius: 8px;
   }
 

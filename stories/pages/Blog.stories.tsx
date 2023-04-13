@@ -3,23 +3,21 @@ import { storiesOf } from '@storybook/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
-import CaseStudiesPage from '../../pages/case-studies';
-import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId]';
+import BlogPage from '../../pages/blog';
 
 const mockRouter = {
-  pathname: '/case-studies/[caseStudyId]',
-  route: 'case-studies/[caseStudyId]',
+  pathname: '/blog/[blogId]',
+  route: 'blog/[blogId]',
   query: { caseStudyId: '0' },
-  asPath: '/case-studies/0',
+  asPath: '/blog/0',
   basePath: '',
   isLocaleDomain: false,
 } as unknown as NextRouter;
 
-storiesOf('App/Pages/CaseStudies', module)
+storiesOf('App/Pages/Blog', module)
   .addDecorator(Story => (
     <RouterContext.Provider value={mockRouter}>
       <Story />
     </RouterContext.Provider>
   ))
-  .add('Index', () => <CaseStudiesPage />)
-  .add('Details', () => <CaseStudyDetailPage />);
+  .add('Index', () => <BlogPage />);
