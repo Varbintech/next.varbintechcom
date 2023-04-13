@@ -1,3 +1,5 @@
+import type { GetStaticProps } from 'next';
+
 import { useRouter } from 'next/router';
 
 import HeroDetails from '../../components/hero/HeroDetails';
@@ -11,6 +13,8 @@ import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 import { caseStudies } from '../../mocks/case-study';
 
 import { useWindowLocation } from '../../hooks/use-window-location';
+
+import { Settings } from '../../constants/settings';
 
 const CaseStudyDetailPage = () => {
   const {
@@ -86,3 +90,17 @@ const CaseStudyDetailPage = () => {
 };
 
 export default CaseStudyDetailPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true };
+  }
+
+  return {
+    props: {},
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
