@@ -8,18 +8,25 @@ interface ImageWrapperComponentProps {
   data: ProjectImage;
   largeWithBorder?: boolean;
   mediumSize?: boolean;
+  mediumSizeColumn?: boolean;
   mediumSizeAloneColumn?: boolean;
+  smallSize?: boolean;
 }
 
 const ImageWrapperComponent: FC<ImageWrapperComponentProps> = props => {
-  const { data, largeWithBorder, mediumSize, mediumSizeAloneColumn } = props;
+  const { data, largeWithBorder, mediumSize, mediumSizeColumn, mediumSizeAloneColumn, smallSize } =
+    props;
 
+  const small = smallSize ? 'small-size' : '';
   const medium = mediumSize ? 'medium-size' : '';
   const mediumAloneColumn = mediumSizeAloneColumn ? 'medium-size-alone-column' : '';
+  const mediumColumn = mediumSizeColumn ? 'medium-size-column' : '';
   const largeBorder = largeWithBorder ? 'large-with-border' : '';
 
   return (
-    <ImageContainer className={`${medium} ${mediumAloneColumn} ${largeBorder}`}>
+    <ImageContainer
+      className={`${small} ${medium} ${mediumColumn} ${mediumAloneColumn} ${largeBorder}`}
+    >
       <span className="inner-wrapper">
         {/* eslint-disable @next/next/no-img-element */}
         <img

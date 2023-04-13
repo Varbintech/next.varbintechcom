@@ -1,7 +1,6 @@
 import { alpha, styled } from '@mui/material/styles';
-import { ImageContainerStyled } from '../styled-containers';
 
-export const ImageContainer = styled(ImageContainerStyled)(({ theme }) => ({
+export const ImageContainer = styled('div')(({ theme }) => ({
   display: 'flex',
 
   '.inner-wrapper': {
@@ -26,7 +25,7 @@ export const ImageContainer = styled(ImageContainerStyled)(({ theme }) => ({
     border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
   },
 
-  '&.medium-size ':{
+  '&.medium-size': {
     maxWidth: '570px',
 
     '.inner-wrapper': {
@@ -42,5 +41,13 @@ export const ImageContainer = styled(ImageContainerStyled)(({ theme }) => ({
       maxWidth: '100%',
       maxHeight: '260px',
     },
+  },
+
+  '&.medium-size-column .inner-wrapper': {
+      maxHeight: '260px',
+  },
+
+  '&.small-size .inner-wrapper': {
+    maxHeight: '190px',
   },
 }));

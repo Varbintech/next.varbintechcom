@@ -9,7 +9,7 @@ import BlogDetailPage from 'pages/blog/[blogId]';
 const mockRouter = {
   pathname: '/blog/[blogId]',
   route: 'blog/[blogId]',
-  query: { caseStudyId: '0' },
+  query: { blogId: '0' },
   asPath: '/blog/0',
   basePath: '',
   isLocaleDomain: false,

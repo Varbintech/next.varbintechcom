@@ -1,7 +1,12 @@
+import type { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+
+import { Settings } from '../../constants/settings';
+
+import { useWindowLocation } from '../../hooks/use-window-location';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import TextColumn from '../../components/common/text-column/TextColumn';
@@ -14,16 +19,20 @@ import { blogData } from '../../mocks/blog-data';
 import { socialShareButtons } from '../../utils/socialShareButtons';
 
 const BlogDetailPage = () => {
-  const router = useRouter();
-  const blogId = router.query.blogId;
+  const {
+    query: { blogId },
+    isReady,
+    asPath,
+  } = useRouter();
+  const location = useWindowLocation(isReady);
 
   const data = blogData.find(item => item.id === Number(blogId));
 
-  const pageLink = `https://5f9731df.next-varbintechcom.pages.dev${router.asPath}`;
+  const pageLink = (location?.origin && new URL(asPath, location?.origin).href) || '';
 
-  return (
-    <>
-      {data ? (
+  if (data) {
+    return (
+      <>
         <HeroDetails
           title={data.blogTitle}
           projectTags={data.blogTags}
@@ -33,9 +42,7 @@ const BlogDetailPage = () => {
           postAuthorPhoto={data.blogAuthorPhoto}
           postBgImage={data.blogImage.src}
         />
-      ) : null}
 
-      {data ? (
         <Container maxWidth="lg" sx={{ marginTop: { md: '64px' }, marginBottom: { md: '64px' } }}>
           <Grid container spacing={'30px'} columns={12}>
             <Grid container item direction="column" md={3} display={{ xs: 'none', md: 'flex' }}>
@@ -59,11 +66,45 @@ const BlogDetailPage = () => {
             </Grid>
           </Grid>
         </Container>
-      ) : null}
 
-      <RelatedPosts data={blogData} />
-    </>
-  );
+        <RelatedPosts data={blogData} />
+      </>
+    );
+  }
+
+  return null;
 };
 
 export default BlogDetailPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true };
+  }
+
+  return {
+    props: {},
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return {
+      paths: [], // @TODO replace with real data when Headless CMS is ready
+      fallback: false,
+    };
+  }
+
+  const paths = blogData.map(({ id }) => ({
+    params: { blogId: String(id) },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};

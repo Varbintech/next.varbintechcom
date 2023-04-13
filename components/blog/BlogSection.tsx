@@ -7,8 +7,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import type { BlogItem } from '../../models';
 
 import Link from '../common/link/Link';
-
-import { ImageContainer } from './styled-components';
+import ImageWrapperComponent from '../common/image-wrapper/ImageWrapper';
 
 interface BlogSectionProps {
   data: BlogItem;
@@ -19,21 +18,9 @@ const BlogSection: FC<BlogSectionProps> = ({ data }) => {
 
   return (
     <Stack direction="column">
-      <ImageContainer>
-        <span className="inner-wrapper">
-          {/* eslint-disable @next/next/no-img-element */}
-          <img
-            loading="lazy"
-            sizes={blogImage.sizes}
-            srcSet={blogImage.srcSet}
-            alt={blogImage.name}
-            width={blogImage.width}
-            height={blogImage.height}
-          />
-        </span>
-      </ImageContainer>
+      <ImageWrapperComponent data={blogImage} mediumSizeColumn />
 
-      <Stack direction="row" alignItems="center" marginBottom={1}>
+      <Stack direction="row" alignItems="center" marginBottom={1} marginTop="22px">
         <Typography lineHeight={1}>{blogCategoty}</Typography>
         <FiberManualRecordIcon sx={{ fontSize: '6px', margin: '0 8px' }} />
         <Typography variant="body2" lineHeight={1}>
