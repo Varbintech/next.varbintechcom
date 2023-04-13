@@ -53,7 +53,7 @@ const color3 = '#fff';
 const color4 = '#2e8540';
 const color5 = '#eb5757';
 
-const color6 = '#f3f3f3';
+//const color6 = '#f3f3f3';
 const color7 = '#000';
 const color8 = '#d6d5d5';
 const color9 = '#fef8f6';
@@ -89,7 +89,7 @@ const lightTheme = createTheme({
       disabled: color2,
     },
     background: {
-      default: color6,
+      default: color3,
       paper: color3,
     },
   },

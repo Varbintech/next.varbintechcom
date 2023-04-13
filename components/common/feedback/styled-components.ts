@@ -6,12 +6,10 @@ import Link from '@mui/material/Link';
 import QuoteIcon from '../icon-quote/QuoteIcon';
 
 export const FeedbackContainer = styled('div')(({ theme }) => ({
-  marginTop: '48px',
   padding: '42px 0 0',
   borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
 
   [theme.breakpoints.up('lg')]: {
-    marginTop: '100px',
     padding: '72px 0 0',
   },
 }));

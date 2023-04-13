@@ -4,7 +4,6 @@ export const PageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
   padding: '64px 0 24px',
-  backgroundColor: theme.palette.background.paper,
 
   [theme.breakpoints.up('lg')]: {
     padding: '120px 0 154px',

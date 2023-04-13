@@ -1,14 +1,12 @@
 import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-export const PageContainer = styled('div')(({ theme }) => ({
-  position: 'relative',
-  overflow: 'hidden',
-  backgroundColor: theme.palette.background.paper,
-}));
+export const PageContainer = styled('div')`
+  position: relative;
+  overflow: hidden;
+`;
 
 export const IconLeftContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -75,34 +73,6 @@ export const ContactEmail = styled(Typography)(({ theme }) => ({
 export const ContactText = styled(Typography)(({ theme }) => ({
   color: theme.palette.background.paper,
   opacity: '0.5',
-}));
-
-export const ContactLink = styled(Link)(({ theme }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '26px',
-  height: '26px',
-  color: theme.palette.background.paper,
-  background: theme.palette.primary.main,
-  borderRadius: '50%',
-  transition:
-    'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-
-  '&:hover': {
-    color: theme.palette.primary.main,
-    background: theme.palette.background.paper,
-  },
-}));
-
-export const ContactRedditLink = styled(ContactLink)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  background: theme.palette.background.paper,
-
-  '&:hover': {
-    color: theme.palette.background.paper,
-    background: theme.palette.primary.main,
-  },
 }));
 
 export const ContactIconContainer = styled('div')(({ theme }) => ({

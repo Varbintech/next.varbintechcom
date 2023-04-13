@@ -174,3 +174,29 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
+
+export const HeroDetailsStyled = styled('div')(({ theme }) => ({
+  paddingTop: '112px',
+  paddingBottom: '72px',
+
+  [theme.breakpoints.up('md')]: {
+    paddingTop: '135px',
+  },
+
+  '&.bg-colored': {
+    paddingBottom: '150px',
+    backgroundColor: theme.palette.secondary.dark,
+
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: '240px',
+    },
+  },
+
+  '.centered': {
+    textAlign: 'center',
+
+    '.MuiStack-root': {
+      justifyContent: 'center',
+    },
+  },
+}));

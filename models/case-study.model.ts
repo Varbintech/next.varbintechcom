@@ -1,15 +1,21 @@
-interface ProjectTag {
+export interface ProjectTag {
   name: string;
   link: string;
 }
 
-interface ProjectImage {
+export interface ProjectImage {
   src: string;
   name: string;
   width: number;
   height: number;
   srcSet?: string;
   sizes?: string;
+}
+
+interface ProjectTextSection {
+  title?: string;
+  text?: string;
+  textList?: Array<string>;
 }
 
 export interface ProjectFeedback {
@@ -22,6 +28,27 @@ export interface ProjectFeedback {
   image?: ProjectImage;
 }
 
+export interface ProjectResultInfo {
+  name: string;
+  text: string;
+}
+
+export interface ProjectTextDetails {
+  label: 'TEXT',
+  name: string;
+  textSection: Array<ProjectTextSection>;
+}
+
+export interface ProjectImageDetails {
+  label: 'IMAGE',
+  imageSection: Array<ProjectImage>;
+}
+
+export interface ProjectFullInfo {
+  name: string;
+  description: Array<string>;
+}
+
 export interface CaseStudy {
   id: number;
   projectImage: ProjectImage;
@@ -31,4 +58,7 @@ export interface CaseStudy {
   projectTags: Array<ProjectTag>;
   results: Array<string>;
   feedback: ProjectFeedback;
+  resultInfo: Array<ProjectResultInfo>;
+  projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
+  projectFullInfo: Array<ProjectFullInfo>;
 }

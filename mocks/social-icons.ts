@@ -7,6 +7,7 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: '',
     socialIcon: 'redditIcon',
     socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on Reddit',
   },
   {
     id: 1,
@@ -14,6 +15,7 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: 'https://github.com/Varbintech',
     socialIcon: 'gitHubIcon',
     socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on GitHub',
   },
   {
     id: 2,
@@ -21,6 +23,7 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: 'https://www.linkedin.com/company/varbintech',
     socialIcon: 'linkedInIcon',
     socialBorderRadius: '2px',
+    socialAriaLabel: 'Read more about Varbintech on LinkedIn',
   },
   {
     id: 3,
@@ -28,6 +31,7 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: '',
     socialIcon: 'twitterIcon',
     socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on Twitter',
   },
   {
     id: 4,
@@ -35,6 +39,7 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: 'https://www.upwork.com/ag/varbintech',
     socialIcon: 'upworkIcon',
     socialBorderRadius: '2px',
+    socialAriaLabel: 'Read more about Varbintech on Upwork',
   },
   {
     id: 5,
@@ -42,5 +47,14 @@ export const socialIcons: Array<SocialIcon> = [
     socialLink: 'https://clutch.co/profile/varbintech',
     socialIcon: 'clutchIcon',
     socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on Clutch',
+  },
+  {
+    id: 6,
+    socialTitle: 'Facebook',
+    socialLink: '',
+    socialIcon: 'facebookIcon',
+    socialBorderRadius: '',
+    socialAriaLabel: 'Read more about Varbintech on Facebook',
   },
 ];

@@ -1,9 +1,11 @@
 import type { FC } from 'react';
 
+import NextLink from 'next/link';
+
 import MUIButton, { type ButtonProps } from '@mui/material/Button';
 
-const Button: FC<ButtonProps> = props => {
-  const { children, startIcon, variant, size, onClick, ...restProps } = props;
+const ButtonLink: FC<ButtonProps> = props => {
+  const { children, startIcon, variant, size, ...restProps } = props;
 
   return (
     <MUIButton
@@ -11,11 +13,11 @@ const Button: FC<ButtonProps> = props => {
       variant={variant || 'contained'}
       size={size || 'medium'}
       startIcon={startIcon || null}
-      onClick={onClick}
+      LinkComponent={NextLink}
     >
       {children}
     </MUIButton>
   );
 };
 
-export default Button;
+export default ButtonLink;

@@ -27,7 +27,6 @@ export const ImageContainer = styled('div')`
   img {
     display: inline-block;
     vertical-align: top;
-    object-fit: contain;
     position: relative !important;
     width: 100% !important;
     height: unset !important;
@@ -84,10 +83,6 @@ export const IconLeftContainer = styled(IconContainer)(({ theme }) => ({
 
 export const ChipContainer = styled('div')`
   margin: 16px 0;
-
-  .MuiChip-root {
-    margin: 0 8px 8px 0;
-  }
 `;
 
 export const TextContainer = styled('div')(({ theme }) => ({
