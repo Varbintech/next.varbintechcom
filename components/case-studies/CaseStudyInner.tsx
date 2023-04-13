@@ -104,7 +104,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               </>
             ) : null}
 
-            <ButtonLink href={'/case-studies/' + id}>View full case study</ButtonLink>
+            <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink>
           </TextContainer>
         </Stack>
 

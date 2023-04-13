@@ -16,5 +16,4 @@ export const ListStyled = styled(List)(({ theme }) => ({
       fontSize: '20px',
     },
   },
-
 }));

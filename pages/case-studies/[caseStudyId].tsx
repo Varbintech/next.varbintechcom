@@ -6,31 +6,64 @@ import FullInfoColumn from '../../components/common/full-info-column/FullInfoCol
 import TextColumn from '../../components/common/text-column/TextColumn';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import Result from '../../components/common/result/Result';
-import NextPage from '../../components/common/next-page/NextPage';
+import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
 import { caseStudies } from '../../mocks/case-study';
 
+import { useWindowLocation } from '../../hooks/use-window-location';
+
 const CaseStudyDetailPage = () => {
   const router = useRouter();
-  const caseStudyId = router.query.caseStudyId;
+  const location = useWindowLocation();
 
+  const { caseStudyId } = router.query;
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
-  return (
-    <>
-      {data ? (
+  const pageLink = location?.origin && new URL(router.asPath, location?.origin).href;
+  const projectSocialIcons = [
+    {
+      id: 0,
+      socialTitle: 'Facebook',
+      socialLink: `https://www.facebook.com/sharer/sharer.php?u=${pageLink}%2F&amp;src=sdkpreparse`,
+      socialIcon: 'facebookIcon',
+      socialBorderRadius: '',
+      socialAriaLabel: 'Share on Facebook',
+    },
+    {
+      id: 1,
+      socialTitle: 'LinkedIn',
+      socialLink: `https://linkedin.com/shareArticle?url=${pageLink}`,
+      socialIcon: 'linkedInIcon',
+      socialBorderRadius: '2px',
+      socialAriaLabel: 'Share on LinkedIn',
+    },
+    {
+      id: 2,
+      socialTitle: 'Twitter',
+      socialLink: `https://twitter.com/intent/tweet?text=${pageLink}`,
+      socialIcon: 'twitterIcon',
+      socialBorderRadius: '',
+      socialAriaLabel: 'Share on Twitter',
+    },
+  ];
+
+  const randomCaseStudy =
+    caseStudies[Number(caseStudyId) + 1] ||
+    caseStudies[Math.floor(Math.random() * caseStudies.length)];
+
+  if (data) {
+    return (
+      <>
         <HeroDetails
           centered
           bgColored
           title={data.projectTitle}
           projectTags={data.projectTags}
-          projectSocialIcons={data.projectSocialIcons}
+          projectSocialIcons={projectSocialIcons}
         />
-      ) : null}
-      {data ? <ImageWrapperComponent data={data.projectImage} /> : null}
-      {data ? <FullInfoColumn data={data.projectFullInfo} /> : null}
-      {data &&
-        data.projectDetails.map((item, index) => {
+        <ImageWrapperComponent data={data.projectImage} />
+        <FullInfoColumn data={data.projectFullInfo} />
+        {data.projectDetails.map((item, index) => {
           if (item.label === 'TEXT') {
             return <TextColumn key={index} data={item} />;
           }
@@ -40,10 +73,13 @@ const CaseStudyDetailPage = () => {
 
           return null;
         })}
-      {data ? <Result data={data} /> : null}
-      <NextPage />
-    </>
-  );
+        <Result data={data} />
+        <CaseStudyNextItem title={randomCaseStudy.projectTitle} id={randomCaseStudy.id} />
+      </>
+    );
+  }
+
+  return null;
 };
 
 export default CaseStudyDetailPage;

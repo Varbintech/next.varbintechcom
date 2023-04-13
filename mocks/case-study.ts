@@ -212,32 +212,6 @@ const caseStudy1: CaseStudy = {
       ],
     },
   ],
-  projectSocialIcons: [
-    {
-      id: 0,
-      socialTitle: 'Facebook',
-      socialLink: '#',
-      socialIcon: 'facebookIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Facebook',
-    },
-    {
-      id: 1,
-      socialTitle: 'LinkedIn',
-      socialLink: '#',
-      socialIcon: 'linkedInIcon',
-      socialBorderRadius: '2px',
-      socialAriaLabel: 'Read more on LinkedIn',
-    },
-    {
-      id: 2,
-      socialTitle: 'Twitter',
-      socialLink: '#',
-      socialIcon: 'twitterIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Twitter',
-    },
-  ],
 };
 
 const caseStudy2: CaseStudy = {
@@ -403,32 +377,12 @@ const caseStudy2: CaseStudy = {
       ],
     },
   ],
-  projectSocialIcons: [
-    {
-      id: 0,
-      socialTitle: 'Facebook',
-      socialLink: '#',
-      socialIcon: 'facebookIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Facebook',
-    },
-    {
-      id: 1,
-      socialTitle: 'LinkedIn',
-      socialLink: '#',
-      socialIcon: 'linkedInIcon',
-      socialBorderRadius: '2px',
-      socialAriaLabel: 'Read more on LinkedIn',
-    },
-    {
-      id: 2,
-      socialTitle: 'Twitter',
-      socialLink: '#',
-      socialIcon: 'twitterIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Read more on Twitter',
-    },
-  ],
 };
 
-export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2];
+const caseStudy3: CaseStudy = {
+  ...caseStudy1,
+  id: 2,
+  projectTitle: 'Background image for a Hero section should be provided via a special prop',
+};
+
+export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2, caseStudy3];
