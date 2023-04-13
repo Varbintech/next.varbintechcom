@@ -13,13 +13,16 @@ import { caseStudies } from '../../mocks/case-study';
 import { useWindowLocation } from '../../hooks/use-window-location';
 
 const CaseStudyDetailPage = () => {
-  const router = useRouter();
-  const location = useWindowLocation();
+  const {
+    query: { caseStudyId },
+    isReady,
+    asPath,
+  } = useRouter();
+  const location = useWindowLocation(isReady);
 
-  const { caseStudyId } = router.query;
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
-  const pageLink = location?.origin && new URL(router.asPath, location?.origin).href;
+  const pageLink = location?.origin && new URL(asPath, location?.origin).href;
   const projectSocialIcons = [
     {
       id: 0,
