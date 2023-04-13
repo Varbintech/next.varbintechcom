@@ -1,4 +1,4 @@
-import type { GetStaticProps } from 'next';
+import type { GetStaticProps, GetStaticPaths } from 'next';
 
 import { useRouter } from 'next/router';
 
@@ -102,5 +102,12 @@ export const getStaticProps: GetStaticProps = async () => {
     // - When a request comes in
     // - At most once every `Settings.RevalidateTime` seconds
     revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [], // @TODO replace with real data when Headless CMS is ready
+    fallback: false, // can also be true or 'blocking'
   };
 };
