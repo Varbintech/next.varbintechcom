@@ -2,8 +2,8 @@ import { storiesOf } from '@storybook/react';
 
 import { NextRouter } from 'next/router';
 
-import CaseStudiesPage from '.';
-import CaseStudyDetailPage from './[caseStudyId]';
+import CaseStudiesPage from '../../pages/case-studies';
+import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId]';
 
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
