@@ -52,7 +52,7 @@ export const EmailFooterText = () => {
           rel="noreferrer"
         >
           <Img
-            src="/images/vt-logo-short.jpeg"
+            src="https://res.cloudinary.com/dlxpwfaic/image/upload/v1681412004/varbintech/vt-logo-short_axczz3.jpg"
             height="24"
             alt="Varbintech logo in footer"
             style={footerLogo}

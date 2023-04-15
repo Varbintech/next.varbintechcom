@@ -24,7 +24,7 @@ export interface TextSection {
 
 interface EmailTemplateProps {
   headTitle: string;
-  buttonText: string;
+  buttonText?: string;
   subHeadConfirmation?: boolean;
   textSection?: Array<TextSection>;
   href?: string;
@@ -32,7 +32,7 @@ interface EmailTemplateProps {
 
 export const EmailTemplate = ({
   headTitle,
-  buttonText,
+  buttonText = '',
   subHeadConfirmation,
   textSection,
   href,
