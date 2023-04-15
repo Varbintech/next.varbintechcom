@@ -1,11 +1,11 @@
-import type { GetStaticProps, GetStaticPaths } from 'next';
+//import type { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import Container from '@mui/material/Container';
 
 import { useWindowLocation } from '../../hooks/use-window-location';
 
-import { Settings } from '../../constants/settings';
+// import { Settings } from '../../constants/settings';
 
 import { caseStudies } from '../../mocks/case-study';
 
@@ -100,7 +100,7 @@ const CaseStudyDetailPage = () => {
 
 export default CaseStudyDetailPage;
 
-export const getStaticProps: GetStaticProps = async () => {
+/* export const getStaticProps: GetStaticProps = async () => {
   if (process.env.NODE_ENV === 'production') {
     return { notFound: true };
   }
@@ -130,4 +130,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: false,
   };
-};
+}; */
