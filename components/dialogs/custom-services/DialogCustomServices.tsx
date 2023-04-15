@@ -1,9 +1,24 @@
-import { type FC, type ChangeEventHandler, type FocusEventHandler, useMemo, useState } from 'react';
+import {
+  type FC,
+  type ChangeEventHandler,
+  type FocusEventHandler,
+  type FormEventHandler,
+  useMemo,
+  useState,
+  useRef,
+  memo,
+} from 'react';
+
+import { render } from '@react-email/render';
+
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
 import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
+
+import EmailTemplate from '../../../email-template/EmailTemplate';
 
 import useCustomServiceReducer, { InitialStateKeys } from './CustomService.state';
 
@@ -14,6 +29,8 @@ import DialogBase from '../base/DialogBase';
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
 }
+
+const HCaptchaMemo = memo(HCaptcha);
 
 const header = (): JSXElement => (
   <>
@@ -43,12 +60,25 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   const { state, dispatchEvent } = useCustomServiceReducer();
   const [isLoading, setIsLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [token, setToken] = useState('');
+  const captchaRef = useRef(null);
+
+  const onLoad = () => {
+    // this reaches out to the hCaptcha JS API and runs the
+    // execute function on it. You can use other functions as
+    // documented here:
+    // https://docs.hcaptcha.com/configuration#jsapi
+    // @ts-ignore
+    // captchaRef?.current?.renderCaptcha();
+    // @ts-ignore
+    captchaRef?.current?.execute({ async: true });
+  };
 
   const isDisabled = useMemo(() => {
     const fields = Object.keys(state) as Array<InitialStateKeys>;
 
-    return fields.some(field => !state[field].success) || isLoading;
-  }, [state, isLoading]);
+    return fields.some(field => !state[field].success) || isLoading || !token;
+  }, [state, isLoading, token]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     dispatchEvent({
@@ -69,18 +99,42 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   const handleConfirm = () => {
     setIsLoading(true);
 
+    const name = {
+      title: 'Name',
+      text: state.username.value,
+    };
+    const email = {
+      title: 'Email',
+      text: state.email.value,
+    };
+    const request = {
+      title: 'Request',
+      text: state.request.value,
+    };
+    const html = render(
+      <EmailTemplate
+        headTitle="New request from varbintech.com via contact form"
+        textSection={[name, email, request]}
+      />,
+    );
+
     fetch('/api/send', {
       method: 'POST',
       body: JSON.stringify({
         name: state.username.value,
         to: state.email.value,
         message: state.request.value,
+        html,
       }),
     }).then(data => {
       if (data.status === 200) {
         setShowMessage(true);
       }
     });
+  };
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
+    e.preventDefault();
   };
 
   return (
@@ -93,34 +147,48 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
       })}
       onClose={onClose}
     >
-      <Stack spacing={1}>
-        <TextField
-          placeholder="Name"
-          name="username"
-          success={state.username.success}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <TextField
-          placeholder="Email"
-          name="email"
-          type="email"
-          success={state.email.success}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <TextField
-          multiline
-          rows={4}
-          placeholder="Your request"
-          name="request"
-          success={state.request.success}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+      <form action="#" onSubmit={handleSubmit}>
+        <Stack spacing={1}>
+          <TextField
+            placeholder="Name"
+            name="username"
+            success={state.username.success}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <TextField
+            placeholder="Email"
+            name="email"
+            type="email"
+            success={state.email.success}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <TextField
+            multiline
+            rows={4}
+            placeholder="Your request"
+            name="request"
+            success={state.request.success}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
 
-        {isLoading && showMessage ? <Typography>👋 Your request has been sent</Typography> : null}
-      </Stack>
+          <HCaptchaMemo
+            sitekey={
+              process.env.NODE_ENV === 'development'
+                ? String(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_TEST_KEY)
+                : String(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY)
+            }
+            onLoad={onLoad}
+            onVerify={setToken}
+            onExpire={() => setToken('')}
+            ref={captchaRef}
+          />
+
+          {isLoading && showMessage ? <Typography>👋 Your request has been sent</Typography> : null}
+        </Stack>
+      </form>
     </DialogBase>
   );
 };

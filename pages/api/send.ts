@@ -8,7 +8,7 @@ export default async (req: NextRequest) => {
   if (req.method !== 'POST') {
     const body = JSON.stringify({
       message:
-        'This API only accepts POST method with an appropriate body: { name: string, to: string, message: string }',
+        'This API only accepts POST method with an appropriate body: { name: string, to: string, message: string, html: string }',
     });
 
     return new Response(body, {
@@ -30,14 +30,10 @@ export default async (req: NextRequest) => {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: 'var.bin.com@gmail.com',
-        subject: 'Hello world via Resend APIs using Contact form',
-        html: `
-          <div><strong>Name:</strong> ${json.name}</div>
-          <div><strong>To:</strong> ${json.to}</div>
-          <div><strong>Message:</strong> ${json.message}</div>
-        `,
+        from: process.env.RESEND_FROM,
+        to: process.env.RESEND_TO,
+        subject: '🔥 New request on varbintech.com via contact form',
+        html: json.html,
       }),
     });
 
