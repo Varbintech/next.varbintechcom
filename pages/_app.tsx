@@ -12,7 +12,7 @@ import { inter } from '../constants/inter-latin';
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
 
-import Layout from './components/Layout';
+import Layout from '../components-pages/layout/Layout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
