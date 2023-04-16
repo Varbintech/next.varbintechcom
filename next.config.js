@@ -19,6 +19,7 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       minimumCacheTTL: 60,
       unoptimized: true,
     },
+    pageExtensions: ['page.tsx', 'page.ts', 'api.ts'],
   };
 
   return withPWA(nextConfig);
