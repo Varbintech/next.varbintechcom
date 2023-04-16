@@ -12,6 +12,9 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     publicExcludes: ['!_headers'],
   });
 
+  const pageExtensionsWIP =
+    phase === PHASE_DEVELOPMENT_SERVER ? ['page-wip.tsx', 'page-wip.ts', 'api-wip.ts'] : [];
+
   const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
@@ -19,7 +22,7 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       minimumCacheTTL: 60,
       unoptimized: true,
     },
-    pageExtensions: ['page.tsx', 'page.ts', 'api.ts'],
+    pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
   };
 
   return withPWA(nextConfig);
