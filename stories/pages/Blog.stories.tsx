@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
-import BlogPage from '../../pages/blog';
+import BlogPage from '../../pages/blog/index.page-wip';
 
 const mockRouter = {
   pathname: '/blog/[blogId]',

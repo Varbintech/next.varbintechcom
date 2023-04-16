@@ -5,8 +5,6 @@ import {
   type FormEventHandler,
   useMemo,
   useState,
-  useRef,
-  memo,
 } from 'react';
 
 import { render } from '@react-email/render';
@@ -29,8 +27,6 @@ import DialogBase from '../base/DialogBase';
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
 }
-
-const HCaptchaMemo = memo(HCaptcha);
 
 const header = (): JSXElement => (
   <>
@@ -61,18 +57,6 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [token, setToken] = useState('');
-  const captchaRef = useRef(null);
-
-  const onLoad = () => {
-    // this reaches out to the hCaptcha JS API and runs the
-    // execute function on it. You can use other functions as
-    // documented here:
-    // https://docs.hcaptcha.com/configuration#jsapi
-    // @ts-ignore
-    // captchaRef?.current?.renderCaptcha();
-    // @ts-ignore
-    captchaRef?.current?.execute({ async: true });
-  };
 
   const isDisabled = useMemo(() => {
     const fields = Object.keys(state) as Array<InitialStateKeys>;
@@ -174,16 +158,15 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
             onBlur={handleBlur}
           />
 
-          <HCaptchaMemo
+          <HCaptcha
             sitekey={
               process.env.NODE_ENV === 'development'
                 ? String(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_TEST_KEY)
                 : String(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY)
             }
-            onLoad={onLoad}
             onVerify={setToken}
             onExpire={() => setToken('')}
-            ref={captchaRef}
+            onClose={() => setToken('')}
           />
 
           {isLoading && showMessage ? <Typography>👋 Your request has been sent</Typography> : null}
