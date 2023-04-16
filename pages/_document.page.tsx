@@ -15,7 +15,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
 
-import { MyAppProps } from './_app';
+import { MyAppProps } from './_app.page';
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
