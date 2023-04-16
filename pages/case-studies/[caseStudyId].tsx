@@ -1,11 +1,8 @@
-//import type { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import Container from '@mui/material/Container';
 
 import { useWindowLocation } from '../../hooks/use-window-location';
-
-// import { Settings } from '../../constants/settings';
 
 import { caseStudies } from '../../mocks/case-study';
 
@@ -99,35 +96,3 @@ const CaseStudyDetailPage = () => {
 };
 
 export default CaseStudyDetailPage;
-
-/* export const getStaticProps: GetStaticProps = async () => {
-  if (process.env.NODE_ENV === 'production') {
-    return { notFound: true };
-  }
-
-  return {
-    props: {},
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every `Settings.RevalidateTime` seconds
-    revalidate: Settings.RevalidateTime, // In seconds
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.NODE_ENV === 'production') {
-    return {
-      paths: [], // @TODO replace with real data when Headless CMS is ready
-      fallback: false,
-    };
-  }
-
-  const paths = caseStudies.map(({ id }) => ({
-    params: { caseStudyId: String(id) },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}; */
