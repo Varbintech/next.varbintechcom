@@ -43,14 +43,15 @@ const TableOfContent: FC<TableOfContentProps> = props => {
         Table of Contents
       </Typography>
       <Stack spacing={2} marginBottom="52px">
-        {linkList.length &&
-          linkList.map((item, index) => {
-            return (
-              <Link key={index} href={`#${item?.href}`} underline="hover">
-                {item?.title}
-              </Link>
-            );
-          })}
+        {linkList.length
+          ? linkList.map((item, index) => {
+              return (
+                <Link key={index} href={`#${item?.href}`} underline="hover">
+                  {item?.title}
+                </Link>
+              );
+            })
+          : null}
       </Stack>
       <SocialIcons data={socialIcons} />
     </TableOfContentContainer>
