@@ -25,12 +25,29 @@ export const ImageContainer = styled('div')(({ theme }) => ({
     border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,
   },
 
-  '&.medium-size ':{
+  '&.medium-size': {
     maxWidth: '570px',
 
     '.inner-wrapper': {
       maxWidth: '570px',
       maxHeight: '400px',
     },
+  },
+
+  '&.medium-size-alone-column': {
+    maxWidth: '100%',
+
+    '.inner-wrapper': {
+      maxWidth: '100%',
+      maxHeight: '260px',
+    },
+  },
+
+  '&.medium-size-column .inner-wrapper': {
+      maxHeight: '260px',
+  },
+
+  '&.small-size .inner-wrapper': {
+    maxHeight: '190px',
   },
 }));

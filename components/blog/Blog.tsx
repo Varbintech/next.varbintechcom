@@ -20,10 +20,10 @@ const Blog: FC<BlogProps> = ({ data }) => {
     <PageContainer>
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: '35px', md: 3.75 }} columns={12} justifyContent="center">
-          {data.map((item, index) => {
+          {data.map(item => {
             return (
-              <Grid key={index} container item direction="column" xs={12} sm={6} md={4}>
-                <BlogSection data={item} id={index} />
+              <Grid key={item.id} container item direction="column" xs={12} sm={6} md={4}>
+                <BlogSection data={item} />
               </Grid>
             );
           })}

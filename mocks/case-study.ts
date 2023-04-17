@@ -49,9 +49,9 @@ const caseStudy1: CaseStudy = {
     {
       label: 'TEXT',
       name: 'Overview',
+      title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
       textSection: [
         {
-          title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
           text: 'What’s On by the City of Sydney is a unique digital platform for Sydney-siders and tourists alike; providing the means to create, discover and share a collection of awe-inspiring events from across the city, providing the truest glimpse of ‘Sydney through the eyes of a local’.',
         },
       ],
@@ -59,9 +59,9 @@ const caseStudy1: CaseStudy = {
     {
       label: 'TEXT',
       name: 'Project background',
+      title: 'What’s On 1.0',
       textSection: [
         {
-          title: 'What’s On 1.0',
           text: 'text1',
         },
         {
@@ -103,15 +103,15 @@ const caseStudy1: CaseStudy = {
       name: 'Challenges',
       textSection: [
         {
-          title: 'Challenges 1',
+          subTitle: 'Challenges 1',
           text: 'In 2014 we commenced a relationship with the City of Sydney to develop their What’s On platform - a vibrant and immersive showcase of the best events Sydney has to offer.',
         },
         {
-          title: 'Challenges 2',
+          subTitle: 'Challenges 2',
           text: 'text2',
         },
         {
-          title: 'Challenges 3',
+          subTitle: 'Challenges 3',
           text: 'text3',
         },
       ],
@@ -142,9 +142,9 @@ const caseStudy1: CaseStudy = {
     {
       label: 'TEXT',
       name: 'Solutions',
+      title: 'The solutions that we came out',
       textSection: [
         {
-          title: 'The solutions that we came out',
           textList: [
             'Black Friday Shopping Tips for Parents',
             'At-Home Valentine’s Day Ideas',
@@ -271,9 +271,9 @@ const caseStudy2: CaseStudy = {
     {
       label: 'TEXT',
       name: 'Overview',
+      title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
       textSection: [
         {
-          title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
           text: 'What’s On by the City of Sydney is a unique digital platform for Sydney-siders and tourists alike; providing the means to create, discover and share a collection of awe-inspiring events from across the city, providing the truest glimpse of ‘Sydney through the eyes of a local’.',
         },
       ],
@@ -281,9 +281,9 @@ const caseStudy2: CaseStudy = {
     {
       label: 'TEXT',
       name: 'Project background',
+      title: 'What’s On 1.0',
       textSection: [
         {
-          title: 'What’s On 1.0',
           text: 'text1',
         },
         {

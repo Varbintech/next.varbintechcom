@@ -13,7 +13,7 @@ export interface ProjectImage {
 }
 
 interface ProjectTextSection {
-  title?: string;
+  subTitle?: string;
   text?: string;
   textList?: Array<string>;
 }
@@ -37,6 +37,8 @@ export interface ProjectTextDetails {
   label: 'TEXT',
   name: string;
   textSection: Array<ProjectTextSection>;
+  href?: string;
+  title?: string;
 }
 
 export interface ProjectImageDetails {
