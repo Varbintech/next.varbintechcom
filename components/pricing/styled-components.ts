@@ -106,7 +106,10 @@ export const CustomServicesContainer = styled(PlanItemStyled)(({ theme }) => ({
   paddingTop: '36px',
   paddingBottom: '40px',
   marginBottom: '-130px',
-  borderBottom: `8px solid ${theme.palette.primary.main}`,
+  borderBottom:
+    theme.palette.mode === 'dark'
+      ? `8px solid ${theme.palette.primary.light}`
+      : `8px solid ${theme.palette.primary.main}`,
   boxShadow: '0 24px 32px rgba(0, 0, 0, 0.08)',
 
   [theme.breakpoints.up('lg')]: {

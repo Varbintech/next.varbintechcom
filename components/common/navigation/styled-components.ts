@@ -7,6 +7,7 @@ import Drawer from '@mui/material/Drawer';
 
 export const AppBarStyled = styled(AppBar)(({ theme }) => ({
   padding: '24px 0',
+  backgroundImage: 'none',
 
   '.MuiLink-root': {
     padding: '13px 0',
@@ -15,8 +16,8 @@ export const AppBarStyled = styled(AppBar)(({ theme }) => ({
     borderBottom: '1px solid transparent',
 
     '&:hover, &.isActive': {
-      color: theme.palette.text.primary,
-      borderBottomColor: theme.palette.text.primary,
+      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
+      borderBottomColor: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
     },
   },
 }));
@@ -38,6 +39,8 @@ export const NavigationDrawer = styled(Drawer)(({ theme }) => ({
     padding: '8px 16px 48px',
     borderRadius: '0 0 8px 8px',
     boxShadow: 'none',
+    backgroundImage: 'none',
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primary.dark : '',
   },
 
   '.MuiLink-root': {
@@ -48,8 +51,8 @@ export const NavigationDrawer = styled(Drawer)(({ theme }) => ({
     borderBottom: '1px solid transparent',
 
     '&:hover, &.isActive': {
-      color: theme.palette.text.primary,
-      borderBottomColor: theme.palette.text.primary,
+      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
+      borderBottomColor: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
     },
   },
 }));

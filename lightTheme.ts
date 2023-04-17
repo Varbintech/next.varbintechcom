@@ -2,6 +2,20 @@ import { createTheme } from '@mui/material/styles';
 
 import { inter } from './constants/inter-latin';
 
+const color1 = '#141629';
+const color2 = '#4d4d4d';
+const color3 = '#fff';
+const color4 = '#2e8540';
+const color5 = '#eb5757';
+
+const color6 = '#f3f3f3';
+const color7 = '#000';
+const color8 = '#d6d5d5';
+const color9 = '#fef8f6';
+const color10 = '#fefaf5';
+const color11 = '#f9fafb';
+const color12 = '#f2f3f5';
+
 export const themeTypography = {
   fontFamily: inter.style.fontFamily,
 
@@ -36,31 +50,6 @@ export const themeTypography = {
   },
 };
 
-export const themeMuiButtonRoot = {
-  padding: '7px 20px',
-  fontSize: '1em',
-  fontWeight: 500,
-  boxShadow: 'none',
-
-  '&:hover': {
-    boxShadow: 'none',
-  },
-};
-
-const color1 = '#141629';
-const color2 = '#4d4d4d';
-const color3 = '#fff';
-const color4 = '#2e8540';
-const color5 = '#eb5757';
-
-const color6 = '#f3f3f3';
-const color7 = '#000';
-const color8 = '#d6d5d5';
-const color9 = '#fef8f6';
-const color10 = '#fefaf5';
-const color11 = '#f9fafb';
-const color12 = '#f2f3f5';
-
 // Create a theme instance.
 const lightTheme = createTheme({
   palette: {
@@ -93,6 +82,7 @@ const lightTheme = createTheme({
       paper: color3,
     },
   },
+
   typography: {
     ...themeTypography,
 
@@ -139,8 +129,15 @@ const lightTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          ...themeMuiButtonRoot,
+          padding: '7px 20px',
+          fontSize: '1em',
+          fontWeight: 500,
           textTransform: 'none',
+          boxShadow: 'none',
+
+          '&:hover': {
+            boxShadow: 'none',
+          },
         },
 
         sizeSmall: {
@@ -305,6 +302,7 @@ const lightTheme = createTheme({
         },
       },
     },
+
     MuiAccordionSummary: {
       styleOverrides: {
         root: {
@@ -328,6 +326,7 @@ const lightTheme = createTheme({
         },
       },
     },
+
     MuiAccordionDetails: {
       styleOverrides: {
         root: {

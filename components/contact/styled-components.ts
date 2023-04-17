@@ -34,7 +34,8 @@ export const ContactMainContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   padding: '35px 24px 24px',
   minHeight: '270px',
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor:
+    theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
 
   [theme.breakpoints.up('lg')]: {
     padding: '56px 60px',
@@ -63,7 +64,7 @@ export const ImageWrapper = styled('div')(({ theme }) => ({
 
 export const ContactEmail = styled(Typography)(({ theme }) => ({
   marginBottom: '12px',
-  color: theme.palette.background.paper,
+  color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.background.paper,
   fontWeight: 700,
   lineHeight: 1,
 
@@ -73,7 +74,7 @@ export const ContactEmail = styled(Typography)(({ theme }) => ({
 }));
 
 export const ContactText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.background.paper,
+  color: theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.background.paper,
   opacity: '0.5',
 }));
 
@@ -83,15 +84,15 @@ export const ContactLink = styled(Link)(({ theme }) => ({
   justifyContent: 'center',
   width: '26px',
   height: '26px',
-  color: theme.palette.background.paper,
-  background: theme.palette.primary.main,
+  color: theme.palette.mode === 'dark' ? theme.palette.secondary.main : theme.palette.background.paper,
+  background: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
   borderRadius: '50%',
   transition:
     'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
   '&:hover': {
-    color: theme.palette.primary.main,
-    background: theme.palette.background.paper,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
+    background: theme.palette.mode === 'dark' ? theme.palette.secondary.main : theme.palette.background.paper,
   },
 }));
 
