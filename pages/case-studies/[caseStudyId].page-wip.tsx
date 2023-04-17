@@ -14,6 +14,8 @@ import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import Result from '../../components/common/result/Result';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
+import { socialShareButtons } from '../../utils/socialShareButtons';
+
 const CaseStudyDetailPage = () => {
   const {
     query: { caseStudyId },
@@ -24,33 +26,7 @@ const CaseStudyDetailPage = () => {
 
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
 
-  const pageLink = location?.origin && new URL(asPath, location?.origin).href;
-  const projectSocialIcons = [
-    {
-      id: 0,
-      socialTitle: 'Facebook',
-      socialLink: `https://www.facebook.com/sharer/sharer.php?u=${pageLink}%2F&amp;src=sdkpreparse`,
-      socialIcon: 'facebookIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Share on Facebook',
-    },
-    {
-      id: 1,
-      socialTitle: 'LinkedIn',
-      socialLink: `https://linkedin.com/shareArticle?url=${pageLink}`,
-      socialIcon: 'linkedInIcon',
-      socialBorderRadius: '2px',
-      socialAriaLabel: 'Share on LinkedIn',
-    },
-    {
-      id: 2,
-      socialTitle: 'Twitter',
-      socialLink: `https://twitter.com/intent/tweet?text=${pageLink}`,
-      socialIcon: 'twitterIcon',
-      socialBorderRadius: '',
-      socialAriaLabel: 'Share on Twitter',
-    },
-  ];
+  const pageLink = (location?.origin && new URL(asPath, location?.origin).href) || '';
 
   const randomCaseStudy =
     caseStudies[Number(caseStudyId) + 1] ||
@@ -64,7 +40,7 @@ const CaseStudyDetailPage = () => {
           bgColored
           title={data.projectTitle}
           projectTags={data.projectTags}
-          projectSocialIcons={projectSocialIcons}
+          projectSocialIcons={socialShareButtons(pageLink)}
         />
         <Container
           maxWidth="lg"
@@ -76,16 +52,19 @@ const CaseStudyDetailPage = () => {
           <ImageWrapperComponent data={data.projectImage} largeWithBorder />
         </Container>
         <FullInfoColumn data={data.projectFullInfo} />
-        {data.projectDetails.map((item, index) => {
-          if (item.label === 'TEXT') {
-            return <TextColumn key={index} data={item} />;
-          }
-          if (item.label === 'IMAGE') {
-            return <ImagesColumn key={index} data={item} />;
-          }
+        <Container maxWidth="lg">
+          {data &&
+            data.projectDetails.map((item, index) => {
+              if (item.label === 'TEXT') {
+                return <TextColumn key={index} data={item} />;
+              }
+              if (item.label === 'IMAGE') {
+                return <ImagesColumn key={index} data={item} />;
+              }
 
-          return null;
-        })}
+              return null;
+            })}
+        </Container>
         <Result data={data} />
         <CaseStudyNextItem title={randomCaseStudy.projectTitle} id={randomCaseStudy.id} />
       </>

@@ -4,11 +4,12 @@ import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
 import BlogPage from '../../pages/blog/index.page-wip';
+import BlogDetailPage from 'pages/blog/[blogId]';
 
 const mockRouter = {
   pathname: '/blog/[blogId]',
   route: 'blog/[blogId]',
-  query: { caseStudyId: '0' },
+  query: { blogId: '0' },
   asPath: '/blog/0',
   basePath: '',
   isLocaleDomain: false,
@@ -20,4 +21,5 @@ storiesOf('App/Pages/Blog', module)
       <Story />
     </RouterContext.Provider>
   ))
-  .add('Index', () => <BlogPage />);
+  .add('Index', () => <BlogPage />)
+  .add('Details', () => <BlogDetailPage />);

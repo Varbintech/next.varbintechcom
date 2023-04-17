@@ -19,7 +19,7 @@ export const PageContainer = styled('div')`
   &.page-small {
     min-height: 375px;
 
-    @media screen and (max-width: 1200px){
+    @media screen and (max-width: 1200px) {
       min-height: auto;
     }
   }
@@ -208,3 +208,13 @@ export const HeroDetailsStyled = styled('div')(({ theme }) => ({
     },
   },
 }));
+
+export const HeroDetailsBgImage = styled('div')<{ imageUrl?: string }>`
+  @media only screen and (min-width: 900px) {
+    background-image: ${({ imageUrl }) =>
+      imageUrl
+        ? `linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%), url(${imageUrl})`
+        : ''};
+    background-size: cover;
+  }
+`;
