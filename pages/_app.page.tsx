@@ -12,6 +12,8 @@ import { inter } from '../constants/inter-latin';
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
 
+import Layout from '../components-pages/layout/Layout';
+
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -38,7 +40,10 @@ export default function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </CacheProvider>
   );

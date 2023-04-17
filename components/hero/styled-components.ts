@@ -16,7 +16,15 @@ export const PageContainer = styled('div')(({ theme }) => ({
       : 'linear-gradient(180deg, rgba(242, 242, 242, 0) 0%, rgba(242, 242, 242, 0.24) 100%)',
 
   '&.page-small': {
-    minHeight: 'auto',
+    minHeight: '375px',
+
+    [theme.breakpoints.down('lg')]: {
+      minHeight: 'auto',
+    },
+  },
+
+  '&.page-plainBg': {
+    backgroundImage: 'none',
   },
 }));
 
@@ -176,3 +184,39 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     fontSize: '3.5em',
   },
 }));
+
+export const HeroDetailsStyled = styled('div')(({ theme }) => ({
+  paddingTop: '112px',
+  paddingBottom: '72px',
+
+  [theme.breakpoints.up('md')]: {
+    paddingTop: '135px',
+  },
+
+  '&.bg-colored': {
+    paddingBottom: '150px',
+    backgroundColor: theme.palette.secondary.dark,
+
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: '240px',
+    },
+  },
+
+  '.centered': {
+    textAlign: 'center',
+
+    '.MuiStack-root': {
+      justifyContent: 'center',
+    },
+  },
+}));
+
+export const HeroDetailsBgImage = styled('div')<{ imageUrl?: string }>`
+  @media only screen and (min-width: 900px) {
+    background-image: ${({ imageUrl }) =>
+      imageUrl
+        ? `linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%), url(${imageUrl})`
+        : ''};
+    background-size: cover;
+  }
+`;

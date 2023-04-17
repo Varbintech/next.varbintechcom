@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react';
 
 import Button from './Button';
 import ButtonClose from './ButtonClose';
+import ButtonLink from './ButtonLink';
 
 storiesOf('App/CommonComponents/Buttons', module)
   .add('text', () => (
@@ -27,4 +28,7 @@ storiesOf('App/CommonComponents/Buttons', module)
   ))
   .add('button icon close', () => (
     <ButtonClose />
+  ))
+  .add('button nextLink', () => (
+    <ButtonLink>button nextLink</ButtonLink>
   ));

@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import type { CaseStudy } from '../../models';
 
 import Feedback from '../common/feedback/Feedback';
-import Chip, { type ChipProps } from '../common/chip/Chip';
-// import Button from '../common/buttons/Button';
+import ChipGroup from '../common/chip/ChipGroup';
+// import ButtonLink from '../common/buttons/ButtonLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 
 import {
@@ -29,6 +29,7 @@ interface CaseStudyInnerProps {
 
 const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
   const {
+    // id,
     projectImage,
     projectImageAlt,
     projectTitle,
@@ -41,7 +42,11 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
   return (
     <PageContainer className={direction === 'row' ? 'lightBackground' : ''}>
       <Container maxWidth="lg">
-        <Stack direction={{ xs: 'column', md: direction }} spacing={{ xs: '35px', lg: '95px' }}>
+        <Stack
+          direction={{ xs: 'column', md: direction }}
+          spacing={{ xs: '35px', lg: '95px' }}
+          marginBottom={{ xs: '48px', lg: '100px' }}
+        >
           <ImageContainer>
             <ImageWrapper>
               <span className="inner-wrapper">
@@ -82,21 +87,14 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
             })}
 
             <ChipContainer>
-              {projectTags.map((tag, tagIndex) => {
-                const additionalProps: Pick<ChipProps, 'component' | 'href'> = tag.link
-                  ? {
-                      href: tag.link,
-                      component: 'a',
-                    }
-                  : {};
-
-                return <Chip {...additionalProps} key={tagIndex} label={tag.name} />;
-              })}
+              <ChipGroup data={projectTags} />
             </ChipContainer>
 
             {results.length ? (
               <>
-                <Typography variant="h6" component="p">Results:</Typography>
+                <Typography variant="h6" component="p">
+                  Results:
+                </Typography>
 
                 <ListContainer>
                   {results.map((result, resultIndex) => (
@@ -106,8 +104,8 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               </>
             ) : null}
 
-            {/* @TODO Uncomment when case study is ready */}
-            {/* <Button href="#">View full case study</Button> */}
+            {/* @TODO Uncomment after Headless CMS */}
+            {/* <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink> */}
           </TextContainer>
         </Stack>
 

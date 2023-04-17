@@ -7,12 +7,16 @@ const caseStudy1: CaseStudy = {
     name: 'tinProject',
     width: 2944,
     height: 2944,
-    srcSet: '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+    srcSet:
+      '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
     sizes: '(max-width: 3000px) 40vw, 1200px',
   },
-  projectImageAlt: 'The final result of cooperation between TIN and the Varbintech Team for the Strasbourg directory project',
+  projectImageAlt:
+    'The final result of cooperation between TIN and the Varbintech Team for the Strasbourg directory project',
   projectTitle: 'TIN - Strasbourg directory',
-  projectDescription: ['Global communications platform that facilitates communication, interaction and transactions, enabling people to make powerful connections - whether in business, government, tourism, culture, education, philanthropy or creativity.'],
+  projectDescription: [
+    'Global communications platform that facilitates communication, interaction and transactions, enabling people to make powerful connections - whether in business, government, tourism, culture, education, philanthropy or creativity.',
+  ],
   projectTags: [
     { name: 'Front-End', link: '' },
     { name: 'Team management', link: '' },
@@ -36,6 +40,178 @@ const caseStudy1: CaseStudy = {
     companyLinkHref: 'https://www.tin.info',
     linkedInLink: 'https://www.linkedin.com/in/gene-foo-38520239',
   },
+  resultInfo: [
+    { name: '$12M', text: 'Funding raised' },
+    { name: '120K', text: 'Active user' },
+    { name: '34', text: 'Country' },
+  ],
+  projectDetails: [
+    {
+      label: 'TEXT',
+      name: 'Overview',
+      title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
+      textSection: [
+        {
+          text: 'What’s On by the City of Sydney is a unique digital platform for Sydney-siders and tourists alike; providing the means to create, discover and share a collection of awe-inspiring events from across the city, providing the truest glimpse of ‘Sydney through the eyes of a local’.',
+        },
+      ],
+    },
+    {
+      label: 'TEXT',
+      name: 'Project background',
+      title: 'What’s On 1.0',
+      textSection: [
+        {
+          text: 'text1',
+        },
+        {
+          text: 'text2',
+        },
+        {
+          text: 'text3',
+        },
+        {
+          text: 'text4',
+        },
+      ],
+    },
+    {
+      label: 'IMAGE',
+      imageSection: [
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+      ],
+    },
+    {
+      label: 'TEXT',
+      name: 'Challenges',
+      textSection: [
+        {
+          subTitle: 'Challenges 1',
+          text: 'In 2014 we commenced a relationship with the City of Sydney to develop their What’s On platform - a vibrant and immersive showcase of the best events Sydney has to offer.',
+        },
+        {
+          subTitle: 'Challenges 2',
+          text: 'text2',
+        },
+        {
+          subTitle: 'Challenges 3',
+          text: 'text3',
+        },
+      ],
+    },
+    {
+      label: 'IMAGE',
+      imageSection: [
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+      ],
+    },
+    {
+      label: 'TEXT',
+      name: 'Solutions',
+      title: 'The solutions that we came out',
+      textSection: [
+        {
+          textList: [
+            'Black Friday Shopping Tips for Parents',
+            'At-Home Valentine’s Day Ideas',
+            'Baby Essentials with Liesel Teen',
+            'Honoring Black History Month with Toddlers',
+            'Holiday Travel Safety Tips',
+          ],
+        },
+      ],
+    },
+  ],
+  projectFullInfo: [
+    {
+      name: 'Number of contracts',
+      description: ['Bangladesh'],
+    },
+    {
+      name: 'Time frame',
+      description: ['Jul 2021 - Aug 2022'],
+    },
+    {
+      name: 'Feedback',
+      description: ['5 stars'],
+    },
+    {
+      name: 'Country',
+      description: ['United Kingdom'],
+    },
+    {
+      name: 'Industry',
+      description: ['SaaS'],
+    },
+    {
+      name: 'Team size',
+      description: ['4-9 people'],
+    },
+    {
+      name: 'Services',
+      description: [
+        'Team management',
+        'Project management',
+        'Front-end development',
+        'Backend development',
+      ],
+    },
+    {
+      name: 'Technologies',
+      description: [
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+      ],
+    },
+  ],
 };
 
 const caseStudy2: CaseStudy = {
@@ -45,10 +221,12 @@ const caseStudy2: CaseStudy = {
     name: 'dtOkrForJiraProject',
     width: 1221,
     height: 887,
-    srcSet: '/dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_397.webp 397w, /dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_886.webp 886w, /dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_1200.webp 1200w',
+    srcSet:
+      '/dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_397.webp 397w, /dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_886.webp 886w, /dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_1200.webp 1200w',
     sizes: '(max-width: 3000px) 40vw, 1200px',
   },
-  projectImageAlt: 'The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project',
+  projectImageAlt:
+    'The final result of cooperation between Digital Toucan and the Varbintech Team for the OKR for Jira project',
   projectTitle: 'Digital Toucan - OKR for Jira',
   projectDescription: [
     'Trusted by 1000+ companies. OKR for Jira gives you the power to create objectives with as many nesting levels as you need to reflect your organization priorities.',
@@ -84,6 +262,121 @@ const caseStudy2: CaseStudy = {
     companyLinkHref: 'https://digitaltoucan.com',
     linkedInLink: 'https://www.linkedin.com/in/filiprogaczewski',
   },
+  resultInfo: [
+    { name: '$12M', text: 'Funding raised' },
+    { name: '120K', text: 'Active user' },
+    { name: '34', text: 'Country' },
+  ],
+  projectDetails: [
+    {
+      label: 'TEXT',
+      name: 'Overview',
+      title: 'A vibrant and immersive display of the bestevents Sydney has to offer.',
+      textSection: [
+        {
+          text: 'What’s On by the City of Sydney is a unique digital platform for Sydney-siders and tourists alike; providing the means to create, discover and share a collection of awe-inspiring events from across the city, providing the truest glimpse of ‘Sydney through the eyes of a local’.',
+        },
+      ],
+    },
+    {
+      label: 'TEXT',
+      name: 'Project background',
+      title: 'What’s On 1.0',
+      textSection: [
+        {
+          text: 'text1',
+        },
+        {
+          text: 'text2',
+        },
+        {
+          text: 'text3',
+        },
+        {
+          text: 'text4',
+        },
+      ],
+    },
+    {
+      label: 'IMAGE',
+      imageSection: [
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+        {
+          src: '/TIN-project.webp',
+          name: 'tinProject',
+          width: 2944,
+          height: 2944,
+          srcSet:
+            '/tin-project/TIN-project_q9im1n_c_scale,w_397.webp 397w, /tin-project/TIN-project_q9im1n_c_scale,w_884.webp 884w, /tin-project/TIN-project_q9im1n_c_scale,w_1200.webp 1200w',
+          sizes: '(max-width: 3000px) 40vw, 1200px',
+        },
+      ],
+    },
+  ],
+  projectFullInfo: [
+    {
+      name: 'Number of contracts',
+      description: ['Bangladesh'],
+    },
+    {
+      name: 'Time frame',
+      description: ['Jul 2021 - Aug 2022'],
+    },
+    {
+      name: 'Feedback',
+      description: ['5 stars'],
+    },
+    {
+      name: 'Country',
+      description: ['United Kingdom'],
+    },
+    {
+      name: 'Industry',
+      description: ['SaaS'],
+    },
+    {
+      name: 'Team size',
+      description: ['4-9 people'],
+    },
+    {
+      name: 'Services',
+      description: [
+        'Team management',
+        'Project management',
+        'Front-end development',
+        'Backend development',
+      ],
+    },
+    {
+      name: 'Technologies',
+      description: [
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+        'Zeplin',
+        'React',
+        'React Router',
+        'React Query',
+      ],
+    },
+  ],
 };
 
 export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2];

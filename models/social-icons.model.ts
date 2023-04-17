@@ -4,4 +4,5 @@ export interface SocialIcon {
   socialLink: string;
   socialIcon: string;
   socialBorderRadius: string;
+  socialAriaLabel: string;
 }
