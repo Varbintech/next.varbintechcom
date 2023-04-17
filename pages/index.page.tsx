@@ -1,7 +1,3 @@
-import type { GetStaticProps } from 'next';
-
-import { Settings } from '../constants/settings';
-
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
@@ -29,13 +25,3 @@ export default function Home() {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every `Settings.RevalidateTime` seconds
-    revalidate: Settings.RevalidateTime, // In seconds
-  };
-};

@@ -44,7 +44,7 @@ export const ImageContainer = styled('div')(({ theme }) => ({
   },
 
   '&.medium-size-column .inner-wrapper': {
-      maxHeight: '260px',
+    maxHeight: '260px',
   },
 
   '&.small-size .inner-wrapper': {

@@ -34,7 +34,7 @@ export interface ProjectResultInfo {
 }
 
 export interface ProjectTextDetails {
-  label: 'TEXT',
+  label: 'TEXT';
   name: string;
   textSection: Array<ProjectTextSection>;
   href?: string;
@@ -42,7 +42,7 @@ export interface ProjectTextDetails {
 }
 
 export interface ProjectImageDetails {
-  label: 'IMAGE',
+  label: 'IMAGE';
   imageSection: Array<ProjectImage>;
 }
 

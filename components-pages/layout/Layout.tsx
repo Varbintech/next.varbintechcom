@@ -1,6 +1,6 @@
 import type { ReactChildren } from '../../models/common';
 
-import Head from './Head';
+import Head from '../head/Head';
 import Navigation from '../../components/common/navigation/Navigation';
 import Contact from '../../components/contact/Contact';
 import Footer from '../../components/footer/Footer';
