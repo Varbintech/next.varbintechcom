@@ -4,7 +4,7 @@ import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
 import BlogPage from '../../pages/blog/index.page-wip';
-import BlogDetailPage from 'pages/blog/[blogId]';
+import BlogDetailPage from 'pages/blog/[blogId].page-wip';
 
 const mockRouter = {
   pathname: '/blog/[blogId]',
