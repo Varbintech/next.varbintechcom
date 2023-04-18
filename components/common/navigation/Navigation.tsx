@@ -14,7 +14,9 @@ import SiteLogo from './SiteLogo';
 
 import { AppBarStyled } from './styled-components';
 
-const DynamicNavigationMobile = dynamic(() => import('./NavigationMobile'));
+const DynamicNavigationMobile = dynamic(() => import('./NavigationMobile'), {
+  ssr: false,
+});
 
 const Navigation = () => {
   return (

@@ -1,16 +1,12 @@
-import dynamic from 'next/dynamic';
-
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import type { PricingPlanItem } from '../../models';
-import Loading from '../common/loading/Loading';
 
 import PlanItem from './PlanItem';
-import CustomServices from './CustomServices';
 
 import { PageContainer } from './styled-components';
 
@@ -18,24 +14,7 @@ interface PricingPlanProps {
   data: Array<PricingPlanItem>;
 }
 
-const DynamicDialogCustomServices = dynamic(
-  () => import('../dialogs/custom-services/DialogCustomServices'),
-  {
-    loading: () => <Loading />,
-  },
-);
-
 const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleOpenDialog = (): void => {
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = (): void => {
-    setOpenDialog(false);
-  };
-
   return (
     <PageContainer id="pricing">
       <Container maxWidth="lg">
@@ -64,10 +43,6 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
             );
           })}
         </Grid>
-
-        <CustomServices onOpenDialog={handleOpenDialog} />
-
-        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
       </Container>
     </PageContainer>
   );

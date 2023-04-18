@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@mui/material/styles';
+import { darken, keyframes, styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -24,7 +24,14 @@ export const PageContainer = styled('div')(({ theme }) => ({
   },
 
   '&.page-plainBg': {
-    backgroundImage: 'none',
+    backgroundImage:
+      theme.palette.mode === 'dark'
+        ? 'linear-gradient(180deg, rgba(242, 242, 242, 0) 0%, rgba(242, 242, 242, 0.24) 100%)'
+        : 'none',
+
+    [theme.breakpoints.down('lg')]: {
+      marginBottom: theme.palette.mode === 'dark' ? '12px' : '',
+    },
   },
 }));
 
@@ -144,10 +151,10 @@ export const FixedBottomContainer = styled('div')(({ theme }) => ({
   left: 0,
   right: 0,
   height: '70px',
-  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primary.contrastText : '#fff',
+  backgroundColor: theme.palette.mode === 'dark' ? darken(theme.palette.background.default, 0.1)  : '#fff',
   borderTop:
     theme.palette.mode === 'dark'
-      ? `1px solid ${theme.palette.background.default}`
+      ? `1px solid ${theme.palette.primary.light}`
       : '1px solid #f2f2f2',
   transform: 'translate3d(0, 0, 0)',
 }));
@@ -195,7 +202,8 @@ export const HeroDetailsStyled = styled('div')(({ theme }) => ({
 
   '&.bg-colored': {
     paddingBottom: '150px',
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.secondary.dark,
 
     [theme.breakpoints.up('md')]: {
       paddingBottom: '240px',
@@ -212,11 +220,22 @@ export const HeroDetailsStyled = styled('div')(({ theme }) => ({
 }));
 
 export const HeroDetailsBgImage = styled('div')<{ imageUrl?: string }>`
+  &.bg-dark-theme {
+    margin-bottom: 12px;
+    background-color: rgb(59, 61, 77);
+  }
+
   @media only screen and (min-width: 900px) {
     background-image: ${({ imageUrl }) =>
       imageUrl
         ? `linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%), url(${imageUrl})`
         : ''};
     background-size: cover;
+
+    &.bg-dark-theme {
+      background-image: ${({ imageUrl }) => (imageUrl ? `url(${imageUrl})` : '')};
+      background-color: rgba(20, 22, 41, 0.8);
+      background-blend-mode: multiply;
+    }
   }
 `;

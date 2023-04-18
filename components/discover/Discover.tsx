@@ -5,7 +5,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
-const DynamicDiscoverIcon = dynamic(() => import('../common/icon-discover/DiscoverIcon'));
+const DynamicDiscoverIcon = dynamic(() => import('../common/icon-discover/DiscoverIcon'), {
+  ssr: false,
+});
 
 import {
   PageContainer,

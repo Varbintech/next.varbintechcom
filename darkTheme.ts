@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, darken } from '@mui/material/styles';
 
 import { themeTypography } from './lightTheme';
 
@@ -131,21 +131,21 @@ const darkTheme = createTheme({
         },
         outlinedInfo: {
           color: color3,
-          backgroundColor: color1,
+          backgroundColor: color2,
           borderColor: color3,
           '&:hover': {
-            color: color1,
+            color: color2,
             backgroundColor: color3,
-            borderColor: color1,
+            borderColor: color2,
           },
         },
         containedInfo: {
-          color: color1,
+          color: color2,
           backgroundColor: color3,
           border: '1px solid transparent',
           '&:hover': {
             color: color3,
-            backgroundColor: color1,
+            backgroundColor: color2,
             borderColor: color3,
           },
         },
@@ -217,7 +217,7 @@ const darkTheme = createTheme({
           padding: 0,
 
           '.MuiOutlinedInput-notchedOutline': {
-            borderColor: color8,
+            borderColor: darken(color1, 0.4),
 
             '.text-filled &': {
               borderColor: color1,

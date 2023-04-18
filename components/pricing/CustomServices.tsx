@@ -1,53 +1,68 @@
-import type { FC } from 'react';
+import { useState } from 'react';
 
+import dynamic from 'next/dynamic';
+
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import type { EmptyFunction } from '../../models/common';
-
+import Loading from '../common/loading/Loading';
 import Button from '../common/buttons/Button';
 
-import { CustomServicesContainer } from './styled-components';
+import { CustomServicesContainer, CustomServicesWrapper } from './styled-components';
 
-interface CustomServicesProps {
-  onOpenDialog: EmptyFunction;
-}
+const DynamicDialogCustomServices = dynamic(
+  () => import('../dialogs/custom-services/DialogCustomServices'),
+  {
+    loading: () => <Loading />,
+    ssr: false,
+  },
+);
 
-const CustomServices: FC<CustomServicesProps> = props => {
-  const { onOpenDialog } = props;
+const CustomServices = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleCloseDialog = (): void => {
+    setOpenDialog(false);
+  };
 
   const handleOpenDialog = () => {
-    onOpenDialog();
+    setOpenDialog(true);
   };
 
   return (
     <CustomServicesContainer id="customServices">
-      <Stack textAlign="center">
-        <Typography
-          variant="h3"
-          textTransform="uppercase"
-          sx={{ fontSize: { xs: '24px', lg: '32px' } }}
-        >
-          Custom services
-        </Typography>
-        <Typography
-          variant="caption"
-          textTransform="uppercase"
-          sx={{ marginBottom: { xs: '26px', md: '18px' } }}
-        >
-          Let&#39;s make a difference together
-        </Typography>
+      <Container maxWidth="lg">
+        <CustomServicesWrapper>
+          <Stack textAlign="center">
+            <Typography
+              variant="h3"
+              textTransform="uppercase"
+              sx={{ fontSize: { xs: '24px', lg: '32px' } }}
+            >
+              Custom services
+            </Typography>
+            <Typography
+              variant="caption"
+              textTransform="uppercase"
+              sx={{ marginBottom: { xs: '26px', md: '18px' } }}
+            >
+              Let&#39;s make a difference together
+            </Typography>
 
-        <Button
-          onClick={handleOpenDialog}
-          sx={{
-            margin: { xs: '0 16px', md: '0 auto' },
-            width: { xs: 'auto', md: '320px' },
-          }}
-        >
-          Contact now
-        </Button>
-      </Stack>
+            <Button
+              onClick={handleOpenDialog}
+              sx={{
+                margin: { xs: '0 16px', md: '0 auto' },
+                width: { xs: 'auto', md: '320px' },
+              }}
+            >
+              Contact now
+            </Button>
+          </Stack>
+        </CustomServicesWrapper>
+        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
+      </Container>
     </CustomServicesContainer>
   );
 };

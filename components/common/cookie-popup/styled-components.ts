@@ -9,7 +9,8 @@ export const PopperStyled = styled(Popper)(({ theme }) => ({
   padding: '24px',
   maxWidth: '470px',
   color: theme.palette.background.paper,
-  background: theme.palette.primary.main,
+  background:
+    theme.palette.mode === 'dark' ? theme.palette.secondary.main : theme.palette.primary.main,
   borderRadius: '8px',
 }));
 
