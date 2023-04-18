@@ -7,6 +7,12 @@ import Loading from '../../common/loading/Loading';
 
 import { StyledIFrame, IFrameContainer, IFrameLoadingContainer } from '../base/styled-components';
 
+/**
+ * Testing the checkout
+ *
+ * https://docs.lemonsqueezy.com/guides/developer-guide/testing-going-live#testing-the-checkout
+ */
+
 interface DialogCheckoutProps {
   onClose: EmptyFunction;
   checkoutSrc: string;
