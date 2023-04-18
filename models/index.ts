@@ -1,4 +1,4 @@
-export type { PricingPlanItem, PlanType } from './pricing-plan.model';
+export type { PricingPlanItem, PlanType, ChackoutSrcList } from './pricing-plan.model';
 
 export type {
   CaseStudy,
@@ -13,7 +13,7 @@ export type {
 
 export type { Service } from './service.model';
 
-export type { ReactChildren } from './common';
+export type { ReactChildren, EmptyFunction, FunctionWithArg } from './common';
 
 export type { Question } from './questions.model';
 
