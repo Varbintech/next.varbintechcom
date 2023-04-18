@@ -6,7 +6,7 @@ import Discover from '../components/discover/Discover';
 import СubeComponent from '../components/common/icon-rectangle-box/CubeComponent';
 
 import { caseStudies } from '../mocks/case-study';
-import { pricingPlan } from '../mocks/pricing-plan';
+import { pricingPlan, checkoutSrcList } from '../mocks/pricing-plan';
 import { services } from '../mocks/services';
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       <CaseStudies data={caseStudies} />
       <СubeComponent />
       <Services data={services} />
-      <PricingPlan data={pricingPlan} />
+      <PricingPlan data={pricingPlan} checkoutSrcList={checkoutSrcList} />
       <Discover />
     </>
   );
