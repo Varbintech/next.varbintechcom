@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import type { PricingPlanItem } from '../../models';
+import type { PricingPlanItem, PlanType, ChackoutSrcList } from '../../models';
 import Loading from '../common/loading/Loading';
 
 import PlanItem from './PlanItem';
@@ -16,6 +16,7 @@ import { PageContainer } from './styled-components';
 
 interface PricingPlanProps {
   data: Array<PricingPlanItem>;
+  checkoutSrcList: ChackoutSrcList;
 }
 
 const DynamicDialogCustomServices = dynamic(
@@ -25,15 +26,30 @@ const DynamicDialogCustomServices = dynamic(
   },
 );
 
-const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
-  const [openDialog, setOpenDialog] = useState(false);
+const DynamicDialogCheckout = dynamic(() => import('../dialogs/checkout/DialogCheckout'), {
+  loading: () => <Loading />,
+});
 
-  const handleOpenDialog = (): void => {
-    setOpenDialog(true);
+const PricingPlan: FC<PricingPlanProps> = ({ data, checkoutSrcList }) => {
+  const [showDialogCustomServices, setShowDialogCustomServices] = useState(false);
+  const [showDialogCheckout, setShowDialogCheckout] = useState(false);
+  const [checkoutSrc, setCheckoutSrc] = useState<string>('');
+
+  const handleShowDialogCustomServices = (): void => {
+    setShowDialogCustomServices(true);
   };
 
-  const handleCloseDialog = (): void => {
-    setOpenDialog(false);
+  const handleCloseDialogCustomServices = (): void => {
+    setShowDialogCustomServices(false);
+  };
+
+  const handleShowDialogCheckout = (planType: PlanType): void => {
+    setShowDialogCheckout(true);
+    setCheckoutSrc(checkoutSrcList[planType]);
+  };
+
+  const handleCloseDialogCheckout = (): void => {
+    setShowDialogCheckout(false);
   };
 
   return (
@@ -59,15 +75,21 @@ const PricingPlan: FC<PricingPlanProps> = ({ data }) => {
           {data.map(pricingPlan => {
             return (
               <Grid key={pricingPlan.id} item xs={12} md={4}>
-                <PlanItem data={pricingPlan} />
+                <PlanItem data={pricingPlan} onOpenCheckout={handleShowDialogCheckout} />
               </Grid>
             );
           })}
         </Grid>
 
-        <CustomServices onOpenDialog={handleOpenDialog} />
+        <CustomServices onOpenDialog={handleShowDialogCustomServices} />
 
-        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
+        {showDialogCustomServices ? (
+          <DynamicDialogCustomServices onClose={handleCloseDialogCustomServices} />
+        ) : null}
+
+        {showDialogCheckout ? (
+          <DynamicDialogCheckout onClose={handleCloseDialogCheckout} checkoutSrc={checkoutSrc} />
+        ) : null}
       </Container>
     </PageContainer>
   );
