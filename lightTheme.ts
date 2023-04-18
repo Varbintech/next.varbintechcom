@@ -345,7 +345,7 @@ const lightTheme = createTheme({
         root: {
           background: color3,
           borderTop: `1px solid ${color8}`,
-          boxShadow: `inset 0px -1px 0 0px  ${color8}`,
+          boxShadow: `inset 0 -1px 0 0 ${color8}`,
         },
 
         indicator: {

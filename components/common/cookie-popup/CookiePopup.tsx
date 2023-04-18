@@ -1,18 +1,20 @@
 import { useState } from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
 
-import ButtonClose from '../buttons/ButtonClose';
 import Button from '../buttons/Button';
 
-import { ButtonCloseContainer, PopperStyled, PopperText, PopperTitle } from './styled-components';
+import {
+  ButtonCloseContainer,
+  ButtonCloseStyled,
+  PopperStyled,
+  PopperText,
+  PopperTitle,
+} from './styled-components';
 
 const CookiePopup = () => {
   const [open, setOpen] = useState(true);
-
-  const isDarkTheme = useTheme().palette.mode === 'dark';
 
   const closePopupHandle = () => {
     setOpen(false);
@@ -21,7 +23,7 @@ const CookiePopup = () => {
   return (
     <PopperStyled open={open}>
       <ButtonCloseContainer>
-        <ButtonClose sx={{ color: isDarkTheme ? '#141629' : '#fff' }} onClick={closePopupHandle} />
+        <ButtonCloseStyled onClick={closePopupHandle} />
       </ButtonCloseContainer>
       <PopperTitle variant="h5">
         <CookieOutlinedIcon />

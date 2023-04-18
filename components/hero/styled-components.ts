@@ -9,7 +9,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   overflowX: 'hidden',
   minHeight: '100vh',
-  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.default : '#fff',
+  backgroundColor: theme.palette.background.default,
   backgroundImage:
     theme.palette.mode === 'dark'
       ? ''
@@ -151,7 +151,10 @@ export const FixedBottomContainer = styled('div')(({ theme }) => ({
   left: 0,
   right: 0,
   height: '70px',
-  backgroundColor: theme.palette.mode === 'dark' ? darken(theme.palette.background.default, 0.1)  : '#fff',
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? darken(theme.palette.background.default, 0.1)
+      : theme.palette.background.default,
   borderTop:
     theme.palette.mode === 'dark'
       ? `1px solid ${theme.palette.primary.light}`

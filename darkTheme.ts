@@ -313,7 +313,7 @@ const darkTheme = createTheme({
         root: {
           background: color8,
           borderTop: `1px solid ${color8}`,
-          boxShadow: `inset 0px -1px 0 0px  ${color3}`,
+          boxShadow: `inset 0 -1px 0 0 ${color3}`,
         },
 
         indicator: {

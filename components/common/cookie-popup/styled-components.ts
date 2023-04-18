@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 
+import ButtonClose from '../buttons/ButtonClose';
+
 export const PopperStyled = styled(Popper)(({ theme }) => ({
   zIndex: 1200,
   margin: '16px',
@@ -19,6 +21,10 @@ export const ButtonCloseContainer = styled('div')`
   top: 8px;
   right: 8px;
 `;
+
+export const ButtonCloseStyled = styled(ButtonClose)(({ theme }) => ({
+  color: theme.palette.background.paper,
+}));
 
 export const PopperTitle = styled(Typography)(({ theme }) => ({
   display: 'flex',
