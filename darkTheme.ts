@@ -8,8 +8,6 @@ const color3 = '#141629';
 const color4 = '#2e8540';
 const color5 = '#eb5757';
 
-//const color6 = '#f3f3f3';
-//const color7 = '#fff';
 const color8 = '#3b3d4d';
 const color9 = '#323443';
 const color10 = '#fefaf5';
@@ -172,19 +170,6 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: 'rgba(20, 22, 41, 0.7)',
-        },
-      },
-    },
-
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: 'transparent',
-
-          '&.MuiPaper-elevation4': {
-            backgroundColor: color9,
-            boxShadow: '0 8px 12px rgba(0, 0, 0, 0.08)',
-          },
         },
       },
     },
