@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import type { PricingPlanItem, PlanType, ChackoutSrcList } from '../../models';
+import type { PricingPlanItem, PlanType, CheckoutSrcList } from '../../models';
 import Loading from '../common/loading/Loading';
 
 import PlanItem from './PlanItem';
@@ -16,7 +16,7 @@ import { PageContainer } from './styled-components';
 
 interface PricingPlanProps {
   data: Array<PricingPlanItem>;
-  checkoutSrcList: ChackoutSrcList;
+  checkoutSrcList: CheckoutSrcList;
 }
 
 const DynamicDialogCustomServices = dynamic(

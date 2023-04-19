@@ -1,4 +1,4 @@
-import type { PricingPlanItem, ChackoutSrcList } from '../models';
+import type { PricingPlanItem, CheckoutSrcList } from '../models';
 
 const pricingPlan1: PricingPlanItem = {
   id: 0,
@@ -65,7 +65,7 @@ const pricingPlan3: PricingPlanItem = {
 
 export const pricingPlan: Array<PricingPlanItem> = [pricingPlan1, pricingPlan2, pricingPlan3];
 
-export const checkoutSrcList: ChackoutSrcList = {
+export const checkoutSrcList: CheckoutSrcList = {
   MONTH: Number(process.env.NEXT_PUBLIC_LEMONSQUEEZY_TEST_MODE)
     ? String(process.env.NEXT_PUBLIC_LEMONSQUEEZY_CHECKOUT_TEST_URL_MONTH)
     : String(process.env.NEXT_PUBLIC_LEMONSQUEEZY_CHECKOUT_URL_MONTH),

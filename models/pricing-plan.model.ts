@@ -11,6 +11,6 @@ export interface PricingPlanItem {
   bestChoice?: boolean;
 }
 
-export type ChackoutSrcList = {
+export type CheckoutSrcList = {
   [key in PlanType]: string;
 };

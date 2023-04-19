@@ -1,4 +1,4 @@
-export type { PricingPlanItem, PlanType, ChackoutSrcList } from './pricing-plan.model';
+export type { PricingPlanItem, PlanType, CheckoutSrcList } from './pricing-plan.model';
 
 export type {
   CaseStudy,
