@@ -2,6 +2,7 @@ import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
 import PricingPlan from '../components/pricing/PricingPlan';
+import CustomServices from '../components/pricing/CustomServices';
 import Discover from '../components/discover/Discover';
 import СubeComponent from '../components/common/icon-rectangle-box/CubeComponent';
 
@@ -21,6 +22,7 @@ export default function Home() {
       <СubeComponent />
       <Services data={services} />
       <PricingPlan data={pricingPlan} />
+      <CustomServices />
       <Discover />
     </>
   );

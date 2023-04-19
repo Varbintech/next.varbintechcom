@@ -1,11 +1,9 @@
-import dynamic from 'next/dynamic';
-
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
-const DynamicDiscoverIcon = dynamic(() => import('../common/icon-discover/DiscoverIcon'));
+import DiscoverIcon from '../common/icon-discover/DiscoverIcon';
 
 import {
   PageContainer,
@@ -27,7 +25,7 @@ const Discover = () => {
               maxWidth: { sm: '50%' },
             }}
           >
-            <DynamicDiscoverIcon />
+            <DiscoverIcon />
           </Stack>
           <Box>
             <DiscoverTitle variant="h2">Start with why</DiscoverTitle>

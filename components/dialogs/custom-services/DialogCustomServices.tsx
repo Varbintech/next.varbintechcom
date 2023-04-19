@@ -13,6 +13,7 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 
 import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
 
@@ -57,6 +58,7 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [token, setToken] = useState('');
+  const isDarkTheme = useTheme().palette.mode === 'dark';
 
   const isDisabled = useMemo(() => {
     const fields = Object.keys(state) as Array<InitialStateKeys>;
@@ -167,6 +169,7 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
             onVerify={setToken}
             onExpire={() => setToken('')}
             onClose={() => setToken('')}
+            theme={isDarkTheme ? 'dark' : 'light'}
           />
 
           {isLoading && showMessage ? <Typography>👋 Your request has been sent</Typography> : null}
