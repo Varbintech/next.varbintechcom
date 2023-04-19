@@ -13,12 +13,18 @@ export const SocialLink = styled(Link)(({ theme }) => ({
     'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
   '&.inverse-color': {
-    color: theme.palette.background.paper,
-    background: theme.palette.primary.main,
+    color:
+      theme.palette.mode === 'dark' ? theme.palette.secondary.main : theme.palette.background.paper,
+    background:
+      theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
 
     '&:hover': {
-      color: theme.palette.primary.main,
-      background: theme.palette.background.paper,
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
+      background:
+        theme.palette.mode === 'dark'
+          ? theme.palette.secondary.main
+          : theme.palette.background.paper,
     },
   },
 }));

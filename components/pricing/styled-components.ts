@@ -5,10 +5,12 @@ import type { PlanType } from '../../models/common';
 
 export const PageContainer = styled('div')(({ theme }) => ({
   paddingTop: '56px',
+  paddingBottom: '115px',
   backgroundColor: theme.palette.primary.dark,
 
   [theme.breakpoints.up('lg')]: {
     paddingTop: '112px',
+    paddingBottom: '120px',
   },
 }));
 
@@ -100,13 +102,24 @@ export const ListStyled = styled(List)(({ theme }) => ({
   },
 }));
 
-export const CustomServicesContainer = styled(PlanItemStyled)(({ theme }) => ({
+export const CustomServicesContainer = styled('div')(({ theme }) => ({
+  margin: '-115px 0 -130px',
+
+  [theme.breakpoints.up('lg')]: {
+    marginTop: '-120px',
+  },
+}));
+
+export const CustomServicesWrapper = styled(PlanItemStyled)(({ theme }) => ({
   position: 'relative',
   zIndex: 10,
   paddingTop: '36px',
   paddingBottom: '40px',
-  marginBottom: '-130px',
-  borderBottom: `8px solid ${theme.palette.primary.main}`,
+
+  borderBottom:
+    theme.palette.mode === 'dark'
+      ? `8px solid ${theme.palette.primary.light}`
+      : `8px solid ${theme.palette.primary.main}`,
   boxShadow: '0 24px 32px rgba(0, 0, 0, 0.08)',
 
   [theme.breakpoints.up('lg')]: {

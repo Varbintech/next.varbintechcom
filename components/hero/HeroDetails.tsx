@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 import Image from 'next/image';
 
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
@@ -40,8 +41,10 @@ const HeroDetails: FC<HeroDetailsProps> = props => {
     postBgImage,
   } = props;
 
+  const isDarkTheme = useTheme().palette.mode === 'dark';
+
   return (
-    <HeroDetailsBgImage imageUrl={postBgImage}>
+    <HeroDetailsBgImage imageUrl={postBgImage} className={isDarkTheme ? 'bg-dark-theme' : ''}>
       <HeroDetailsStyled className={bgColored ? 'bg-colored' : ''}>
         <Container maxWidth="lg" className={centered ? 'centered' : ''}>
           <Typography

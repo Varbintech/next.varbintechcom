@@ -32,7 +32,8 @@ export const ContactMainContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   padding: '35px 24px 24px',
   minHeight: '270px',
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor:
+    theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
 
   [theme.breakpoints.up('lg')]: {
     padding: '56px 60px',
@@ -61,7 +62,8 @@ export const ImageWrapper = styled('div')(({ theme }) => ({
 
 export const ContactEmail = styled(Typography)(({ theme }) => ({
   marginBottom: '12px',
-  color: theme.palette.background.paper,
+  color:
+    theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.background.paper,
   fontWeight: 700,
   lineHeight: 1,
 
@@ -71,7 +73,8 @@ export const ContactEmail = styled(Typography)(({ theme }) => ({
 }));
 
 export const ContactText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.background.paper,
+  color:
+    theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.background.paper,
   opacity: '0.5',
 }));
 

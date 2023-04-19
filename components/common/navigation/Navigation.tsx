@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic';
-
 import Stack from '@mui/system/Stack';
 import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
@@ -11,10 +9,9 @@ import Button from '../buttons/Button';
 import NavigationLinks from './NavigationLinks';
 import ElevationScroll from './ElevationScroll';
 import SiteLogo from './SiteLogo';
+import NavigationMobile from './NavigationMobile';
 
 import { AppBarStyled } from './styled-components';
-
-const DynamicNavigationMobile = dynamic(() => import('./NavigationMobile'));
 
 const Navigation = () => {
   return (
@@ -41,7 +38,7 @@ const Navigation = () => {
                 Get started
               </Button>
 
-              <DynamicNavigationMobile />
+              <NavigationMobile />
             </Stack>
           </Stack>
         </Container>

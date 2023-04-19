@@ -1,16 +1,14 @@
-import dynamic from 'next/dynamic';
-
 import { type FC, useState } from 'react';
+
+import dynamic from 'next/dynamic';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import type { PricingPlanItem, PlanType, CheckoutSrcList } from '../../models';
-import Loading from '../common/loading/Loading';
 
 import PlanItem from './PlanItem';
-import CustomServices from './CustomServices';
 
 import { PageContainer } from './styled-components';
 
@@ -19,29 +17,11 @@ interface PricingPlanProps {
   checkoutSrcList: CheckoutSrcList;
 }
 
-const DynamicDialogCustomServices = dynamic(
-  () => import('../dialogs/custom-services/DialogCustomServices'),
-  {
-    loading: () => <Loading />,
-  },
-);
-
-const DynamicDialogCheckout = dynamic(() => import('../dialogs/checkout/DialogCheckout'), {
-  loading: () => <Loading />,
-});
+const DynamicDialogCheckout = dynamic(() => import('../dialogs/checkout/DialogCheckout'));
 
 const PricingPlan: FC<PricingPlanProps> = ({ data, checkoutSrcList }) => {
-  const [showDialogCustomServices, setShowDialogCustomServices] = useState(false);
   const [showDialogCheckout, setShowDialogCheckout] = useState(false);
   const [checkoutSrc, setCheckoutSrc] = useState<string>('');
-
-  const handleShowDialogCustomServices = (): void => {
-    setShowDialogCustomServices(true);
-  };
-
-  const handleCloseDialogCustomServices = (): void => {
-    setShowDialogCustomServices(false);
-  };
 
   const handleShowDialogCheckout = (planType: PlanType): void => {
     setShowDialogCheckout(true);
@@ -80,12 +60,6 @@ const PricingPlan: FC<PricingPlanProps> = ({ data, checkoutSrcList }) => {
             );
           })}
         </Grid>
-
-        <CustomServices onOpenDialog={handleShowDialogCustomServices} />
-
-        {showDialogCustomServices ? (
-          <DynamicDialogCustomServices onClose={handleCloseDialogCustomServices} />
-        ) : null}
 
         {showDialogCheckout ? (
           <DynamicDialogCheckout onClose={handleCloseDialogCheckout} checkoutSrc={checkoutSrc} />
