@@ -6,17 +6,12 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import Loading from '../common/loading/Loading';
 import Button from '../common/buttons/Button';
 
 import { CustomServicesContainer, CustomServicesWrapper } from './styled-components';
 
 const DynamicDialogCustomServices = dynamic(
   () => import('../dialogs/custom-services/DialogCustomServices'),
-  {
-    loading: () => <Loading />,
-    ssr: false,
-  },
 );
 
 const CustomServices = () => {
