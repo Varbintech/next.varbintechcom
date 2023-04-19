@@ -1,7 +1,6 @@
 import { useTheme } from '@mui/material/styles';
 
-import LogoBlackIcon from '../icon-logo/LogoBlackIcon';
-import LogoWhiteIcon from '../icon-logo/LogoWhiteIcon';
+import LogoIcon from '../icon-logo/LogoIcon';
 
 import { LogoContainer } from './styled-components';
 
@@ -10,7 +9,7 @@ const SiteLogo = () => {
 
   return (
     <LogoContainer href="/" aria-label="Varbintech logo">
-      {isDarkTheme ? <LogoWhiteIcon /> : <LogoBlackIcon />}
+      <LogoIcon isDarkTheme={isDarkTheme} />
     </LogoContainer>
   );
 };

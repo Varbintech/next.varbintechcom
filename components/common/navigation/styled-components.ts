@@ -15,7 +15,7 @@ export const AppBarStyled = styled(AppBar)(({ theme }) => ({
     color: theme.palette.text.secondary,
     borderBottom: '1px solid transparent',
 
-    '&:hover, &.isActive': {
+    '&:hover, &:focus, &.isActive': {
       color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
       borderBottomColor: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
     },
