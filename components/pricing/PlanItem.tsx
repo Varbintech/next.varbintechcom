@@ -41,7 +41,7 @@ const PlanItem = ({ data, onOpenCheckout }: PlanItemProps) => {
 
         {planSavePrice ? (
           <Typography variant="body2" textTransform="uppercase" mb={2.75}>
-            You can Save ${planSavePrice}
+            Save ${planSavePrice}/m
           </Typography>
         ) : (
           <Typography variant="body2" textTransform="uppercase" mb={2.75}>
