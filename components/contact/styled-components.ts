@@ -62,7 +62,8 @@ export const ImageWrapper = styled('div')(({ theme }) => ({
 
 export const ContactEmail = styled(Typography)(({ theme }) => ({
   marginBottom: '12px',
-  color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.background.paper,
+  color:
+    theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.background.paper,
   fontWeight: 700,
   lineHeight: 1,
 
@@ -72,7 +73,8 @@ export const ContactEmail = styled(Typography)(({ theme }) => ({
 }));
 
 export const ContactText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.background.paper,
+  color:
+    theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.background.paper,
   opacity: '0.5',
 }));
 

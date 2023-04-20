@@ -10,7 +10,7 @@ const СubeComponent = () => {
 
   return (
     <СubeContainerStyled>
-      {isDarkTheme ? <RectangleBoxIconInverse />: <RectangleBoxIcon />}
+      {isDarkTheme ? <RectangleBoxIconInverse /> : <RectangleBoxIcon />}
     </СubeContainerStyled>
   );
 };

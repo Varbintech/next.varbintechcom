@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -9,19 +7,28 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 
-import type { PricingPlanItem } from '../../models';
+import type { PricingPlanItem, FunctionWithArg, PlanType } from '../../models';
 
 import Button from '../common/buttons/Button';
 import Link, { type LinkProps } from '../common/link/Link';
 
 import { PlanItemContainer, ListStyled, BestChoiceContainer } from './styled-components';
 
-const PlanItem: FC<{ data: PricingPlanItem }> = ({ data }) => {
+interface PlanItemProps {
+  data: PricingPlanItem;
+  onOpenCheckout: FunctionWithArg<PlanType>;
+}
+
+const PlanItem = ({ data, onOpenCheckout }: PlanItemProps) => {
   const { planTitle, planPrice, planSavePrice, planflag, planLinkProjects, planBenefits } = data;
 
   const additionalLinkProps: Pick<LinkProps, 'component' | 'href'> = planLinkProjects
     ? { href: planLinkProjects }
     : { component: 'div' };
+
+  const handleClick = (planType: PlanType) => {
+    onOpenCheckout(planType);
+  };
 
   return (
     <PlanItemContainer flag={planflag}>
@@ -32,22 +39,20 @@ const PlanItem: FC<{ data: PricingPlanItem }> = ({ data }) => {
 
         <Typography variant="h3">${planPrice}</Typography>
 
-        {planSavePrice
-          ? (
-            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
-              You can Save ${planSavePrice}
-            </Typography>
-          )
-          : (
-            <Typography variant="body2" textTransform="uppercase" mb={2.75}>
-              No honeypot
-            </Typography>
-          )
-        }
+        {planSavePrice ? (
+          <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+            Save ${planSavePrice}/m
+          </Typography>
+        ) : (
+          <Typography variant="body2" textTransform="uppercase" mb={2.75}>
+            No honeypot
+          </Typography>
+        )}
 
         <Button
           variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
-          sx={{ margin: {xs: '0 16px 22px', md: '0 0 22px'} }}
+          sx={{ margin: { xs: '0 16px 22px', md: '0 0 22px' } }}
+          onClick={() => handleClick(planflag)}
         >
           Get it now
         </Button>

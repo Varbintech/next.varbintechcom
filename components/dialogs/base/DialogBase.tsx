@@ -13,7 +13,9 @@ type HeaderFooterFromContent = FunctionWithArg<ReactNode, JSXElement>;
 
 interface DialogBaseProps {
   onClose: EmptyFunction;
+  fullScreen?: boolean;
   fullWidth?: boolean;
+  noPaddingContent?: boolean;
   children?: ReactNode | JSXElement;
   footer?: ReactNode | JSXElement;
   header?: ReactNode | JSXElement;
@@ -28,12 +30,13 @@ const footerFromContent: HeaderFooterFromContent = (content: ReactNode) => (
 );
 
 const DialogBase: FC<DialogBaseProps> = props => {
-  const { footer, header, onClose, children, fullWidth } = props;
+  const { footer, header, onClose, children, fullWidth, fullScreen, noPaddingContent } = props;
 
   return (
     <StyledMuiDialog
       open
       onClose={onClose}
+      fullScreen={fullScreen || false}
       PaperProps={
         fullWidth
           ? {
@@ -51,7 +54,7 @@ const DialogBase: FC<DialogBaseProps> = props => {
 
       {header && headerFromContent(header)}
 
-      <DialogContent>
+      <DialogContent sx={noPaddingContent ? { padding: '0 !important' } : null}>
         {children}
       </DialogContent>
 

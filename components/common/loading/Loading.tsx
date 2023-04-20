@@ -1,9 +1,13 @@
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 
-const Loading = () => {
+interface LoadingProps {
+  fullWidth?: boolean;
+}
+
+const Loading = ({ fullWidth }: LoadingProps) => {
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: fullWidth ? '100%' : 300 }}>
       <Skeleton />
       <Skeleton />
       <Skeleton />
