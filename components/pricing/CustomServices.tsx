@@ -6,6 +6,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
+import * as gtag from '../../lib/gtag';
+
 import Button from '../common/buttons/Button';
 
 import { CustomServicesContainer, CustomServicesWrapper } from './styled-components';
@@ -23,6 +25,10 @@ const CustomServices = () => {
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
+
+    gtag.event('button_click', {
+      buttonId: 'contactNow',
+    });
   };
 
   return (
@@ -46,6 +52,7 @@ const CustomServices = () => {
             </Typography>
 
             <Button
+              id="contactNow"
               onClick={handleOpenDialog}
               sx={{
                 margin: { xs: '0 16px', md: '0 auto' },

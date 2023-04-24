@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import * as gtag from '../../lib/gtag';
+
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
 import Button from '../common/buttons/Button';
@@ -42,6 +44,18 @@ interface HeroProps {
 const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
   const classSmallSize = small ? 'page-small' : '';
   const classPlainBg = plainBg ? 'page-plainBg' : '';
+
+  const handleReserveASpotClick = (): void => {
+    gtag.event('button_click', {
+      buttonId: 'reserveASpot',
+    });
+  };
+
+  const handleLetsDiscussClick = (): void => {
+    gtag.event('button_click', {
+      buttonId: 'letsDiscuss',
+    });
+  };
 
   return (
     <PageContainer className={`${classSmallSize} ${classPlainBg}`}>
@@ -93,9 +107,20 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
               justifyContent="center"
               sx={{ marginBottom: { xs: '100px', md: '58px' } }}
             >
-              <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
+              <Button
+                id="reserveASpot"
+                href={Settings.CalendlyLink}
+                onClick={handleReserveASpotClick}
+              >
+                Reserve a spot
+              </Button>
 
-              <Button variant="outlined" href="#customServices">
+              <Button
+                id="letsDiscuss"
+                variant="outlined"
+                href="#customServices"
+                onClick={handleLetsDiscussClick}
+              >
                 Let&apos;s discuss
               </Button>
             </Stack>

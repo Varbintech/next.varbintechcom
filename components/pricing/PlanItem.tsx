@@ -7,6 +7,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 
+import * as gtag from '../../lib/gtag';
+
 import type { PricingPlanItem, FunctionWithArg, PlanType } from '../../models';
 
 import Button from '../common/buttons/Button';
@@ -26,8 +28,12 @@ const PlanItem = ({ data, onOpenCheckout }: PlanItemProps) => {
     ? { href: planLinkProjects }
     : { component: 'div' };
 
-  const handleClick = (planType: PlanType) => {
+  const handleClick = (planType: PlanType, planTitle: string) => {
     onOpenCheckout(planType);
+
+    gtag.event('button_click', {
+      buttonId: `getItNow${planTitle}`,
+    });
   };
 
   return (
@@ -50,9 +56,10 @@ const PlanItem = ({ data, onOpenCheckout }: PlanItemProps) => {
         )}
 
         <Button
+          id={`getItNow${planTitle}`}
           variant={planflag === 'QUARTER' ? 'contained' : 'outlined'}
           sx={{ margin: { xs: '0 16px 22px', md: '0 0 22px' } }}
-          onClick={() => handleClick(planflag)}
+          onClick={() => handleClick(planflag, planTitle)}
         >
           Get it now
         </Button>

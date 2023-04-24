@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 
+import * as gtag from '../../../lib/gtag';
+
 import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
 
 import EmailTemplate from '../../../email-template/EmailTemplate';
@@ -46,7 +48,7 @@ const footer: FooterElement = options => {
   const { onConfirm, isDisabled } = options;
 
   return (
-    <Button fullWidth onClick={onConfirm} disabled={isDisabled}>
+    <Button id="submitNow" fullWidth onClick={onConfirm} disabled={isDisabled}>
       Submit now
     </Button>
   );
@@ -116,6 +118,10 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
       if (data.status === 200) {
         setShowMessage(true);
       }
+    });
+
+    gtag.event('button_click', {
+      buttonId: 'submitNow',
     });
   };
 

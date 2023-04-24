@@ -2,6 +2,8 @@ import Stack from '@mui/system/Stack';
 import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
 
+import * as gtag from '../../../lib/gtag';
+
 import { Settings } from '../../../constants/settings';
 
 import Button from '../buttons/Button';
@@ -14,6 +16,12 @@ import NavigationMobile from './NavigationMobile';
 import { AppBarStyled } from './styled-components';
 
 const Navigation = () => {
+  const handleGetStartedClick = (): void => {
+    gtag.event('button_click', {
+      buttonId: 'getStarted',
+    });
+  };
+
   return (
     <ElevationScroll>
       <AppBarStyled position="fixed">
@@ -32,8 +40,10 @@ const Navigation = () => {
             <Stack direction="row" spacing={3} sx={{ height: '40px' }}>
               <Button
                 size="small"
+                id="getStarted"
                 href={Settings.CalendlyLink}
                 sx={{ height: '40px', display: 'flex' }}
+                onClick={handleGetStartedClick}
               >
                 Get started
               </Button>
