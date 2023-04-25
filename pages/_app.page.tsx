@@ -66,8 +66,6 @@ export default function MyApp(props: MyAppProps) {
           });
         `}
       </Script>
-
-      {/* Google tag (gtag.js) - Google Analytics */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}

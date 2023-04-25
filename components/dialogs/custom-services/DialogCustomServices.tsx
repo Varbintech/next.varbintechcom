@@ -3,6 +3,7 @@ import {
   type ChangeEventHandler,
   type FocusEventHandler,
   type FormEventHandler,
+  type MouseEvent,
   useMemo,
   useState,
 } from 'react';
@@ -15,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 
-import * as gtag from '../../../lib/gtag';
+import { generateEvent } from '../../../lib/gtag';
 
 import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
 
@@ -47,8 +48,14 @@ const header = (): JSXElement => (
 const footer: FooterElement = options => {
   const { onConfirm, isDisabled } = options;
 
+  const handleSubmitNowClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    generateEvent('button', event.currentTarget.id);
+
+    onConfirm();
+  };
+
   return (
-    <Button id="submitNow" fullWidth onClick={onConfirm} disabled={isDisabled}>
+    <Button id="submitNow" fullWidth onClick={handleSubmitNowClick} disabled={isDisabled}>
       Submit now
     </Button>
   );
@@ -118,10 +125,6 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
       if (data.status === 200) {
         setShowMessage(true);
       }
-    });
-
-    gtag.event('button_click', {
-      buttonId: 'submitNow',
     });
   };
 

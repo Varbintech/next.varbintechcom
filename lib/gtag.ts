@@ -13,8 +13,14 @@ export const event = (
   { event_category, event_label, value }: Gtag.EventParams | Gtag.CustomParams,
 ) => {
   window.gtag('event', action, {
-      event_category,
-      event_label,
-      value,
+    event_category,
+    event_label,
+    value,
+  });
+};
+
+export const generateEvent = (eventName: string, id: string) => {
+  event(`${eventName}_click`, {
+    [eventName + 'Id']: id,
   });
 };

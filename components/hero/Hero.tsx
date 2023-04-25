@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, MouseEvent} from 'react';
 
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import * as gtag from '../../lib/gtag';
+import { generateEvent } from '../../lib/gtag';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
@@ -45,16 +45,8 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
   const classSmallSize = small ? 'page-small' : '';
   const classPlainBg = plainBg ? 'page-plainBg' : '';
 
-  const handleReserveASpotClick = (): void => {
-    gtag.event('button_click', {
-      buttonId: 'reserveASpot',
-    });
-  };
-
-  const handleLetsDiscussClick = (): void => {
-    gtag.event('button_click', {
-      buttonId: 'letsDiscuss',
-    });
+  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    generateEvent('button', event.currentTarget.id);
   };
 
   return (
@@ -110,7 +102,7 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
               <Button
                 id="reserveASpot"
                 href={Settings.CalendlyLink}
-                onClick={handleReserveASpotClick}
+                onClick={handleButtonClick}
               >
                 Reserve a spot
               </Button>
@@ -119,7 +111,7 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
                 id="letsDiscuss"
                 variant="outlined"
                 href="#customServices"
-                onClick={handleLetsDiscussClick}
+                onClick={handleButtonClick}
               >
                 Let&apos;s discuss
               </Button>

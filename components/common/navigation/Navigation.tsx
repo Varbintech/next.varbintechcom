@@ -1,8 +1,10 @@
+import { type MouseEvent } from 'react';
+
 import Stack from '@mui/system/Stack';
 import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
 
-import * as gtag from '../../../lib/gtag';
+import { generateEvent } from '../../../lib/gtag';
 
 import { Settings } from '../../../constants/settings';
 
@@ -16,10 +18,8 @@ import NavigationMobile from './NavigationMobile';
 import { AppBarStyled } from './styled-components';
 
 const Navigation = () => {
-  const handleGetStartedClick = (): void => {
-    gtag.event('button_click', {
-      buttonId: 'getStarted',
-    });
+  const handleGetStartedClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    generateEvent('button', event.currentTarget.id);
   };
 
   return (

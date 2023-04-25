@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
 
 import dynamic from 'next/dynamic';
 
@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import * as gtag from '../../lib/gtag';
+import { generateEvent } from '../../lib/gtag';
 
 import Button from '../common/buttons/Button';
 
@@ -23,12 +23,10 @@ const CustomServices = () => {
     setOpenDialog(false);
   };
 
-  const handleOpenDialog = () => {
+  const handleOpenDialog = (event: MouseEvent<HTMLButtonElement>) => {
     setOpenDialog(true);
 
-    gtag.event('button_click', {
-      buttonId: 'contactNow',
-    });
+    generateEvent('button', event.currentTarget.id);
   };
 
   return (

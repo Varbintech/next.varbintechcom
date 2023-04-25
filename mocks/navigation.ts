@@ -9,5 +9,6 @@ export const navigationRoutes: Array<NavigationRoute> = [
     text: 'Blog',
     href: process.env.NODE_ENV === 'development' ? '/blog' : '',
     scrollTo: '',
+    linkId: 'blogLink',
   },
 ];
