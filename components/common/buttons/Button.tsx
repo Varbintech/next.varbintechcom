@@ -1,6 +1,11 @@
 import type { FC } from 'react';
 
-import MUIButton, { type ButtonProps } from '@mui/material/Button';
+import MUIButton, { type ButtonProps as MuiButtonProps } from '@mui/material/Button';
+
+type ButtonProps = MuiButtonProps &  {
+  rel?: 'noopener noreferrer',
+  target?: '_blank',
+};
 
 const Button: FC<ButtonProps> = props => {
   const { children, startIcon, variant, size, onClick, ...restProps } = props;

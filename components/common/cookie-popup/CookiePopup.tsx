@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { type FC, useState } from 'react';
 
 import Stack from '@mui/material/Stack';
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
+
+import type { EmptyFunction } from '../../../models';
 
 import Button from '../buttons/Button';
 
@@ -13,7 +15,11 @@ import {
   PopperTitle,
 } from './styled-components';
 
-const CookiePopup = () => {
+interface CookiePopupProps {
+  onConfirm: EmptyFunction;
+}
+
+const CookiePopup: FC<CookiePopupProps> = ({ onConfirm }) => {
   const [open, setOpen] = useState(true);
 
   const closePopupHandle = () => {
@@ -30,16 +36,20 @@ const CookiePopup = () => {
         Cookie Use
       </PopperTitle>
       <PopperText>
-        Varbintech uses cookies to allow us to better understand how to our site is used. By
-        continuing to use this site, you consent to Terms of Service and Privacy Policy of
-        Varbintech service.
+        This site uses cookies from Google to deliver its services and to analyze traffic.
       </PopperText>
       <Stack direction="row" spacing={2}>
-        <Button variant="contained" color="info">
-          Accept all
+        <Button variant="contained" color="info" onClick={onConfirm}>
+          OK, got it
         </Button>
-        <Button variant="outlined" color="info" onClick={closePopupHandle}>
-          Decline all
+        <Button
+          variant="outlined"
+          color="info"
+          href="https://policies.google.com/technologies/cookies"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          More info
         </Button>
       </Stack>
     </PopperStyled>
