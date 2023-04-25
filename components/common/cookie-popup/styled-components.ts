@@ -7,11 +7,13 @@ import ButtonClose from '../buttons/ButtonClose';
 
 export const PopperStyled = styled(Popper)(({ theme }) => ({
   zIndex: 1200,
-  top: 'auto !important',
-  left: 'auto !important',
   bottom: 0,
   right: 0,
-  margin: '16px',
+  margin: '16px !important',
+  top: 'auto !important',
+  left: 'auto !important',
+  transform: 'none !important',
+  inset: 'auto 0 0 auto !important',
   padding: '24px',
   maxWidth: '470px',
   color: theme.palette.background.paper,

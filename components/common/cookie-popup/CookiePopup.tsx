@@ -17,9 +17,10 @@ import {
 
 interface CookiePopupProps {
   onConfirm: EmptyFunction;
+  anchorEl?: HTMLElement | null;
 }
 
-const CookiePopup: FC<CookiePopupProps> = ({ onConfirm }) => {
+const CookiePopup: FC<CookiePopupProps> = ({ onConfirm, anchorEl }) => {
   const [open, setOpen] = useState(true);
 
   const closePopupHandle = () => {
@@ -27,7 +28,7 @@ const CookiePopup: FC<CookiePopupProps> = ({ onConfirm }) => {
   };
 
   return (
-    <PopperStyled open={open}>
+    <PopperStyled open={open} anchorEl={anchorEl} sx={{position: 'fixed !important'}}>
       <ButtonCloseContainer>
         <ButtonCloseStyled onClick={closePopupHandle} />
       </ButtonCloseContainer>

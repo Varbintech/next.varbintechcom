@@ -2,6 +2,8 @@ import dynamic from 'next/dynamic';
 
 import useLocalStorageState from 'use-local-storage-state';
 
+import { useClientOnlyRef } from '../../hooks/use-client-only-ref';
+
 import type { ReactChildren } from '../../models/common';
 
 import Head from '../head/Head';
@@ -21,15 +23,19 @@ function Layout({ children }: ReactChildren) {
     defaultValue: false,
   });
 
+  const container = useClientOnlyRef('#main-container');
+
   const handleClick = (): void => {
     setAcceptsCookies(true);
   };
 
   return (
-    <>
+    <div id="main-container">
       <Head />
       <Navigation />
-      {!acceptsCookies ? <DynamicCookiePopup onConfirm={handleClick} /> : null}
+      {!acceptsCookies && container ? (
+          <DynamicCookiePopup anchorEl={container} onConfirm={handleClick} />
+        ) : null}
 
       <main>
         {children}
@@ -37,7 +43,7 @@ function Layout({ children }: ReactChildren) {
         <Contact data={socialIcons} />
         <Footer data={footerData} />
       </main>
-    </>
+    </div>
   );
 }
 
