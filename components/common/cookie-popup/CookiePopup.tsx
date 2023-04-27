@@ -28,7 +28,7 @@ const CookiePopup: FC<CookiePopupProps> = ({ onConfirm, anchorEl }) => {
   };
 
   return (
-    <PopperStyled open={open} anchorEl={anchorEl} sx={{position: 'fixed !important'}}>
+    <PopperStyled open={open} anchorEl={anchorEl}>
       <ButtonCloseContainer>
         <ButtonCloseStyled onClick={closePopupHandle} />
       </ButtonCloseContainer>
