@@ -22,7 +22,7 @@ export const event = (
 export const generateEvent = (eventName: string, id: string) => {
   event(`${eventName}Id_click`, {
     event_category: `user_action_${eventName}_click`,
-    event_label: `${eventName}Id`,
+    event_label: `${eventName}Id_${id}`,
     value: id,
   });
 };
