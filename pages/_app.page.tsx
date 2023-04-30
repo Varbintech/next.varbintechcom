@@ -49,8 +49,7 @@ export default function MyApp(props: MyAppProps) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname,
-            debug_mode: true
+            page_path: window.location.pathname
           });
         `}
       </Script>
