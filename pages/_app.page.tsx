@@ -1,10 +1,14 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import Script from 'next/script';
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { CacheProvider, type EmotionCache } from '@emotion/react';
+
+import { GA_TRACKING_ID } from '../lib/gtag';
+import { useEffectPageView } from '../hooks/use-effect-page-view-ga';
 
 import { Settings } from '../constants/settings';
 import { inter } from '../constants/inter-latin';
@@ -25,6 +29,8 @@ export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const theme = useThemeMode();
 
+  useEffectPageView();
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -36,6 +42,21 @@ export default function MyApp(props: MyAppProps) {
           }
         `}</style>
       </Head>
+
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}', {
+            page_path: window.location.pathname
+          });
+        `}
+      </Script>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+      />
 
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

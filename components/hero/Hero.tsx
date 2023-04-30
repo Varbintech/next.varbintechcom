@@ -1,10 +1,10 @@
-import type { FC } from 'react';
-
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+
+import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
@@ -39,9 +39,11 @@ interface HeroProps {
   plainBg?: boolean;
 }
 
-const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
+const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
   const classSmallSize = small ? 'page-small' : '';
   const classPlainBg = plainBg ? 'page-plainBg' : '';
+
+  const handleButtonClick = useGenerateEventGa('button');
 
   return (
     <PageContainer className={`${classSmallSize} ${classPlainBg}`}>
@@ -93,9 +95,16 @@ const Hero: FC<HeroProps> = ({ title, subtitle, small, plainBg }) => {
               justifyContent="center"
               sx={{ marginBottom: { xs: '100px', md: '58px' } }}
             >
-              <Button href={Settings.CalendlyLink}>Reserve a spot</Button>
+              <Button id="reserveASpot" href={Settings.CalendlyLink} onClick={handleButtonClick}>
+                Reserve a spot
+              </Button>
 
-              <Button variant="outlined" href="#customServices">
+              <Button
+                id="letsDiscuss"
+                variant="outlined"
+                href="#customServices"
+                onClick={handleButtonClick}
+              >
                 Let&apos;s discuss
               </Button>
             </Stack>

@@ -14,7 +14,7 @@ import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import Result from '../../components/common/result/Result';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
-import { socialShareButtons } from '../../utils/socialShareButtons';
+import { socialShareButtons } from '../../constants/social-share-buttons';
 
 const CaseStudyDetailPage = () => {
   const {

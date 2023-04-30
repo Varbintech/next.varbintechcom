@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
 
 import dynamic from 'next/dynamic';
 
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+
+import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import Button from '../common/buttons/Button';
 
@@ -17,12 +19,16 @@ const DynamicDialogCustomServices = dynamic(
 const CustomServices = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
+  const handleGa = useGenerateEventGa('button');
+
   const handleCloseDialog = (): void => {
     setOpenDialog(false);
   };
 
-  const handleOpenDialog = () => {
+  const handleOpenDialog = (event: MouseEvent<HTMLButtonElement>) => {
     setOpenDialog(true);
+
+    handleGa(event);
   };
 
   return (
@@ -46,6 +52,7 @@ const CustomServices = () => {
             </Typography>
 
             <Button
+              id="contactNow"
               onClick={handleOpenDialog}
               sx={{
                 margin: { xs: '0 16px', md: '0 auto' },
