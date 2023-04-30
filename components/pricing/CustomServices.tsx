@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-import { generateEvent } from '../../lib/gtag';
+import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import Button from '../common/buttons/Button';
 
@@ -19,6 +19,8 @@ const DynamicDialogCustomServices = dynamic(
 const CustomServices = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
+  const handleGa = useGenerateEventGa('button');
+
   const handleCloseDialog = (): void => {
     setOpenDialog(false);
   };
@@ -26,7 +28,7 @@ const CustomServices = () => {
   const handleOpenDialog = (event: MouseEvent<HTMLButtonElement>) => {
     setOpenDialog(true);
 
-    generateEvent('button', event.currentTarget.id);
+    handleGa(event);
   };
 
   return (

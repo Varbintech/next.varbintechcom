@@ -1,12 +1,10 @@
-import { type MouseEvent } from 'react';
-
 import Stack from '@mui/system/Stack';
 import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
 
-import { generateEvent } from '../../../lib/gtag';
-
 import { Settings } from '../../../constants/settings';
+
+import { useGenerateEventGa } from '../../../hooks/use-generate-event-ga';
 
 import Button from '../buttons/Button';
 
@@ -18,16 +16,15 @@ import NavigationMobile from './NavigationMobile';
 import { AppBarStyled } from './styled-components';
 
 const Navigation = () => {
-  const handleGetStartedClick = (event: MouseEvent<HTMLButtonElement>): void => {
-    generateEvent('button', event.currentTarget.id);
-  };
+  const handleGetStartedClick = useGenerateEventGa('button');
+  const handleSiteLogoClick = useGenerateEventGa('link');
 
   return (
     <ElevationScroll>
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <SiteLogo />
+            <SiteLogo onGa={handleSiteLogoClick} />
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <nav aria-label="navigation">

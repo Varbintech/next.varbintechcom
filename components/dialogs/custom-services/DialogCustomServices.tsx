@@ -3,7 +3,7 @@ import {
   type ChangeEventHandler,
   type FocusEventHandler,
   type FormEventHandler,
-  type MouseEvent,
+  type MouseEventHandler,
   useMemo,
   useState,
 } from 'react';
@@ -16,9 +16,9 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 
-import { generateEvent } from '../../../lib/gtag';
+import { useGenerateEventGa } from '../../../hooks/use-generate-event-ga';
 
-import type { EmptyFunction, FooterElement, JSXElement } from '../../../models/common';
+import type { EmptyFunction, FooterElement, FooterProps, JSXElement } from '../../../models/common';
 
 import EmailTemplate from '../../../email-template/EmailTemplate';
 
@@ -30,6 +30,10 @@ import DialogBase from '../base/DialogBase';
 
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
+}
+
+interface FooterCustomServicesProps extends FooterProps {
+  onGa: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 const header = (): JSXElement => (
@@ -45,12 +49,11 @@ const header = (): JSXElement => (
   </>
 );
 
-const footer: FooterElement = options => {
-  const { onConfirm, isDisabled } = options;
+const footer: FooterElement<FooterCustomServicesProps> = options => {
+  const { onConfirm, isDisabled, onGa } = options;
 
-  const handleSubmitNowClick = (event: MouseEvent<HTMLButtonElement>): void => {
-    generateEvent('button', event.currentTarget.id);
-
+  const handleSubmitNowClick: MouseEventHandler<HTMLButtonElement> = (event): void => {
+    onGa(event);
     onConfirm();
   };
 
@@ -74,6 +77,8 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
 
     return fields.some(field => !state[field].success) || isLoading || !token;
   }, [state, isLoading, token]);
+
+  const handleGa = useGenerateEventGa('button');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     dispatchEvent({
@@ -139,6 +144,7 @@ const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
         onConfirm: handleConfirm,
         isDisabled,
         onClose,
+        onGa: handleGa,
       })}
       onClose={onClose}
     >
