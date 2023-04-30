@@ -1,11 +1,11 @@
-import type { FC } from 'react';
-
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
 import type { FooterData } from '../../models';
+
+import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import Link, { type LinkProps } from '../common/link/Link';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
@@ -17,7 +17,9 @@ interface FooterProps {
   data: FooterData;
 }
 
-const Footer: FC<FooterProps> = ({ data }) => {
+const Footer = ({ data }: FooterProps) => {
+  const handleGa = useGenerateEventGa('link');
+
   const currentYear = new Date().getFullYear();
 
   const additionalFooterLinkProps = (
@@ -36,20 +38,27 @@ const Footer: FC<FooterProps> = ({ data }) => {
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 6.5, md: 3, lg: 5.5 }} columns={12}>
           <Grid container item direction="column" xs={12} md={3}>
-            <SiteLogo />
+            <SiteLogo onGa={handleGa} id="siteLogoLink_footer" />
             <Typography marginTop={2}>
               We help startups and companies of all shapes and sizes to build high-quality Front-End
               solutions.
             </Typography>
           </Grid>
           <Grid container item direction="column" xs={6} md={3}>
-            <Typography variant="subtitle2" component="h4">Navigation</Typography>
+            <Typography variant="subtitle2" component="h4">
+              Navigation
+            </Typography>
             <FooterList>
               {data.navigations.map(singleRoute => {
                 if (singleRoute.href || singleRoute.scrollTo) {
                   return (
                     <FooterListItem key={singleRoute.id}>
-                      <Link href={singleRoute.href || singleRoute.scrollTo} underline="hover">
+                      <Link
+                        href={singleRoute.href || singleRoute.scrollTo}
+                        underline="hover"
+                        id={`${singleRoute.linkId}_footer`}
+                        onClick={handleGa}
+                      >
                         {singleRoute.text}
                       </Link>
                     </FooterListItem>
@@ -61,7 +70,9 @@ const Footer: FC<FooterProps> = ({ data }) => {
             </FooterList>
           </Grid>
           <Grid container item direction="column" xs={6} md={3}>
-            <Typography variant="subtitle2" component="h4">Services</Typography>
+            <Typography variant="subtitle2" component="h4">
+              Services
+            </Typography>
             <FooterList>
               {data.services.map(service => {
                 return (
@@ -75,7 +86,9 @@ const Footer: FC<FooterProps> = ({ data }) => {
             </FooterList>
           </Grid>
           <Grid container item direction="column" xs={10} md={3}>
-            <Typography variant="subtitle2" component="h4">Hire Engineers</Typography>
+            <Typography variant="subtitle2" component="h4">
+              Hire Engineers
+            </Typography>
             <FooterList>
               {data.hireEngineers.map(hireEngineer => {
                 return (

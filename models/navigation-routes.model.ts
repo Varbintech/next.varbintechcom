@@ -3,4 +3,5 @@ export interface NavigationRoute {
   text: string;
   href: string;
   scrollTo: string;
+  linkId?: string;
 }

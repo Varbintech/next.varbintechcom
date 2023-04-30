@@ -16,7 +16,7 @@ import TableOfContent from '../../components/common/table-of-content/TableOfCont
 
 import { blogData } from '../../mocks/blog-data';
 
-import { socialShareButtons } from '../../utils/socialShareButtons';
+import { socialShareButtons } from '../../constants/social-share-buttons';
 
 const BlogDetailPage = () => {
   const {
