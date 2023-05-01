@@ -1,37 +1,33 @@
 import NextHead from 'next/head';
-import { useRouter } from 'next/router';
 
-import { Settings } from '../../constants/settings';
+import { MetaData } from '../../constants/meta';
 
 const HeadIndex = () => {
-  const { asPath } = useRouter();
-  const url = new URL(asPath, location.href).pathname;
-
   return (
     <NextHead>
-      <title>{Settings.Title}</title>
+      <title>{MetaData.Title}</title>
 
-      <meta name="description" content={Settings.Description} />
-      <meta name="keywords" content={Settings.IndexKeywords} />
-      <meta name="image" content={Settings.Image} />
+      <meta name="description" content={MetaData.Description} />
+      <meta name="keywords" content={MetaData.IndexKeywords} />
+      <meta name="image" content={MetaData.Image} />
 
-      <meta itemProp="name" content={Settings.Title} />
-      <meta itemProp="description" content={Settings.Description} />
-      <meta itemProp="image" content={Settings.Image} />
+      <meta itemProp="name" content={MetaData.Title} />
+      <meta itemProp="description" content={MetaData.Description} />
+      <meta itemProp="image" content={MetaData.Image} />
 
-      <meta property="og:site_name" content={Settings.Title} />
-      <meta property="og:title" content={Settings.Title} />
-      <meta property="og:description" content={Settings.Description} />
-      <meta property="og:url" content={Settings.Url || url} />
-      <meta property="og:locale" content={Settings.Locale} />
-      <meta property="og:image" content={Settings.Image} />
-      <meta property="og:image:type" content={Settings.ImageType} />
-      <meta property="og:image:alt" content={Settings.ImageAlt} />
+      <meta property="og:site_name" content={MetaData.Title} />
+      <meta property="og:title" content={MetaData.Title} />
+      <meta property="og:description" content={MetaData.Description} />
+      <meta property="og:url" content={MetaData.Url} />
+      <meta property="og:locale" content={MetaData.Locale} />
+      <meta property="og:image" content={MetaData.Image} />
+      <meta property="og:image:type" content={MetaData.ImageType} />
+      <meta property="og:image:alt" content={MetaData.ImageAlt} />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={Settings.Title} />
-      <meta name="twitter:description" content={Settings.Description} />
-      <meta name="twitter:image" content={Settings.Image} />
+      <meta name="twitter:title" content={MetaData.Title} />
+      <meta name="twitter:description" content={MetaData.Description} />
+      <meta name="twitter:image" content={MetaData.Image} />
     </NextHead>
   );
 };
