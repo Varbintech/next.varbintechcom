@@ -5,11 +5,15 @@ import Typography from '@mui/material/Typography';
 
 import ButtonClose from '../buttons/ButtonClose';
 
+// Because of TS issue with `fixed !important`
+// @ts-ignore
 export const PopperStyled = styled(Popper)(({ theme }) => ({
   zIndex: 1200,
-  margin: '16px',
+  transform: 'none !important',
+  inset: 'auto 16px 16px auto !important',
   padding: '24px',
   maxWidth: '470px',
+  position: 'fixed !important',
   color: theme.palette.background.paper,
   background:
     theme.palette.mode === 'dark' ? theme.palette.secondary.main : theme.palette.primary.main,
