@@ -27,15 +27,12 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
   };
 
-  return withPWA(nextConfig);
+  return withPWA(
+    nextConfig,
+    withSentryConfig({
+      sentry: {
+        hideSourceMaps: true,
+      },
+    }),
+  );
 };
-
-const moduleExports = {
-  sentry: {
-    hideSourceMaps: true,
-  },
-};
-
-// Make sure adding Sentry options is the last code to run before exporting, to
-// ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(moduleExports);
