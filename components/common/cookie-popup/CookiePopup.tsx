@@ -43,6 +43,7 @@ const CookiePopup: FC<CookiePopupProps> = ({ onConfirm, anchorEl }) => {
         <Button variant="contained" color="info" onClick={onConfirm}>
           OK, got it
         </Button>
+
         <Button
           variant="outlined"
           color="info"

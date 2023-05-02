@@ -1,13 +1,9 @@
-import type { FC } from 'react';
-
 import MUIButton, { type ButtonProps as MuiButtonProps } from '@mui/material/Button';
+import type { LinkProps as MuiLinkProps } from '@mui/material/Link';
 
-type ButtonProps = MuiButtonProps &  {
-  rel?: 'noopener noreferrer',
-  target?: '_blank',
-};
+type ButtonProps = MuiButtonProps & Pick<MuiLinkProps, 'target' | 'rel'>;
 
-const Button: FC<ButtonProps> = props => {
+const Button = (props: ButtonProps) => {
   const { children, startIcon, variant, size, onClick, ...restProps } = props;
 
   return (
