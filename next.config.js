@@ -2,6 +2,8 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 const nextPWA = require('next-pwa');
 
+const { withSentryConfig } = require('@sentry/nextjs');
+
 module.exports = async (phase, { defaultConfig: _dc }) => {
   /**
    * @type {import('next').NextConfig}
@@ -27,3 +29,13 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
 
   return withPWA(nextConfig);
 };
+
+const moduleExports = {
+  sentry: {
+    hideSourceMaps: true,
+  },
+};
+
+// Make sure adding Sentry options is the last code to run before exporting, to
+// ensure that your source maps include changes from all other Webpack plugins
+module.exports = withSentryConfig(moduleExports);
