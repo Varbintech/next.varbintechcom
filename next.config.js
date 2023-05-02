@@ -23,6 +23,14 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       unoptimized: true,
     },
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
+
+    webpack: (config, { isServer }) => {
+      if (isServer) {
+        require('./scripts/generate-sitemap');
+      }
+
+      return config;
+    },
   };
 
   return withPWA(nextConfig);
