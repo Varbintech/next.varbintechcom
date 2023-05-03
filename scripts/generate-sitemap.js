@@ -2,7 +2,7 @@ const fs = require('fs');
 const globbyImport = require('globby');
 
 function addPage(page) {
-  const path = page.replace('pages', '').replace('.js', '').replace('.mdx', '');
+  const path = page.replace('pages', '').replace(/(.tsx|.ts)/, '').replace('.mdx', '');
   const route = path === '/index' ? '' : path;
 
   return `  <url>
