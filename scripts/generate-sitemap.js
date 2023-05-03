@@ -1,5 +1,5 @@
 const fs = require('fs');
-const globbyImport = require('globby');
+const globby = (...args) => import('globby').then(({default: globby}) => globby(...args));
 
 function addPage(page) {
   const path = page.replace('pages', '').replace(/(.tsx|.ts)/, '').replace('.mdx', '');
@@ -13,7 +13,7 @@ function addPage(page) {
 
 async function generateSitemap() {
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
-  const pages = await globbyImport([
+  const pages = await globby([
     'pages/**/*.{ts,tsx,mdx}',
     '!pages/_*.{ts,tsx}',
     '!pages/api',
