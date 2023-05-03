@@ -26,7 +26,7 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
 
     webpack: (config, { isServer }) => {
       if (isServer) {
-        require('./scripts/generate-sitemap');
+        require('./utils/generate-sitemap');
       }
 
       return config;
