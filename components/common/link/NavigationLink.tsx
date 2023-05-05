@@ -23,7 +23,7 @@ const NavigationLink: FC<NavigationLinkProps> = props => {
       // Using URL().pathname to get rid of query and hash
       const activePathname = new URL(asPath, location.href).pathname;
 
-      const newClassName = linkPathname === activePathname && !href.startsWith('#') || href === location.hash
+      const newClassName = linkPathname === activePathname && !href.startsWith('/#') || href === location.hash
         ? 'isActive'
         : '';
 
