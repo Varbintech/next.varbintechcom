@@ -1,3 +1,4 @@
+import HeadIndex from '../components-pages/head/HeadIndex';
 import Hero from '../components/hero/Hero';
 import CaseStudies from '../components/case-studies/CaseStudies';
 import Services from '../components/services/Services';
@@ -13,17 +14,21 @@ import { services } from '../mocks/services';
 export default function Home() {
   return (
     <>
-      <Hero
-        title="A development team with superpower"
-        subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
+      <HeadIndex />
+
+      <>
+        <Hero
+          title="A development team with superpower"
+          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
         solutions."
-      />
-      <CaseStudies data={caseStudies} />
-      <СubeComponent />
-      <Services data={services} />
-      <PricingPlan data={pricingPlan} checkoutSrcList={checkoutSrcList} />
-      <CustomServices />
-      <Discover />
+        />
+        <CaseStudies data={caseStudies} />
+        <СubeComponent />
+        <Services data={services} />
+        <PricingPlan data={pricingPlan} checkoutSrcList={checkoutSrcList} />
+        <CustomServices />
+        <Discover />
+      </>
     </>
   );
 }
