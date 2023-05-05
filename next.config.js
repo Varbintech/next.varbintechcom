@@ -25,14 +25,20 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       unoptimized: true,
     },
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
+    sentry: {
+      hideSourceMaps: true,
+    },
   };
 
   return withPWA(
-    nextConfig,
-    withSentryConfig({
-      sentry: {
-        hideSourceMaps: true,
-      },
+    withSentryConfig(nextConfig, {
+      // For all available options, see:
+      // https://github.com/getsentry/sentry-webpack-plugin#options
+
+      // Suppresses source map uploading logs during build
+      silent: true,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
     }),
   );
 };
