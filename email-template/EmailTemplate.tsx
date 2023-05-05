@@ -5,7 +5,7 @@ import { Hr } from '@react-email/hr';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
-import { Settings } from '../constants/settings';
+import { MetaData } from '../constants/meta';
 
 import { EmailHead } from './common/EmailHead';
 import { EmailLogo } from './common/EmailLogo';
@@ -39,7 +39,7 @@ export const EmailTemplate = ({
 }: EmailTemplateProps) => {
   return (
     <Html lang="en">
-      <EmailHead>{Settings.Title}</EmailHead>
+      <EmailHead>{MetaData.Title}</EmailHead>
 
       <Body style={main}>
         <Container style={container}>
