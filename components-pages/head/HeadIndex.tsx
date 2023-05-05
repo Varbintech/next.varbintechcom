@@ -23,6 +23,7 @@ const HeadIndex = () => {
       <meta property="og:description" content={MetaData.Description} />
       <meta property="og:url" content={MetaData.Url} />
       <meta property="og:locale" content={MetaData.Locale} />
+      <meta property="og:type" content={MetaData.IndexType} />
       <meta property="og:image" content={MetaData.Image} />
       <meta property="og:image:type" content={MetaData.ImageType} />
       <meta property="og:image:alt" content={MetaData.ImageAlt} />
