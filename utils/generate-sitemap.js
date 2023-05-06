@@ -7,7 +7,7 @@ function addPage(page) {
   const path = page.replace('pages', '').replace(/(.page.tsx|.page.ts)/, '');
   const route = path === '/index' ? '' : path;
 
-  return `  <url>
+  return `<url>
     <loc>${`${process.env.WEBSITE_URL}${route}`}</loc>
     <changefreq>hourly</changefreq>
     <priority>1.00</priority>
@@ -19,6 +19,7 @@ async function generateSitemap() {
   const pages = await globby([
     'pages/**/*.{ts,tsx}',
     '!pages/_*.{ts,tsx}',
+    '!pages/404.page.tsx',
     '!pages/**/*-wip.{ts,tsx}',
     '!pages/api',
   ]);
