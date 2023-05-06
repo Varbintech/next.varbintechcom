@@ -1,14 +1,14 @@
 import NextHead from 'next/head';
 
-import { Settings } from '../../constants/settings';
+import { MetaData } from '../../constants/meta';
 
 const Head = () => {
   return (
     <NextHead>
-      <title>{Settings.Title}</title>
+      <title>{MetaData.Title}</title>
 
-      <meta name="description" content={Settings.Description} />
-      <meta name="keywords" content={Settings.IndexKeywords} />
+      <meta name="description" content={MetaData.Description} />
+      <meta name="keywords" content={MetaData.IndexKeywords} />
     </NextHead>
   );
 };

@@ -33,16 +33,18 @@ function Layout({ children }: ReactChildren) {
     <div id="main-container">
       <Head />
       <Navigation />
+
       {!acceptsCookies && container ? (
-          <DynamicCookiePopup anchorEl={container} onConfirm={handleClick} />
-        ) : null}
+        <DynamicCookiePopup anchorEl={container} onConfirm={handleClick} />
+      ) : null}
 
       <main>
         {children}
 
         <Contact data={socialIcons} />
-        <Footer data={footerData} />
       </main>
+
+      <Footer data={footerData} />
     </div>
   );
 }

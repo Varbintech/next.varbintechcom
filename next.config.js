@@ -2,6 +2,8 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 const nextPWA = require('next-pwa');
 
+const { withSentryConfig } = require('@sentry/nextjs');
+
 module.exports = async (phase, { defaultConfig: _dc }) => {
   /**
    * @type {import('next').NextConfig}
@@ -23,7 +25,9 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       unoptimized: true,
     },
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
-
+    sentry: {
+      hideSourceMaps: true,
+    },
     webpack: (config, { isServer }) => {
       if (isServer) {
         require('./utils/generate-sitemap');
@@ -33,5 +37,15 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     },
   };
 
-  return withPWA(nextConfig);
+  return withPWA(
+    withSentryConfig(nextConfig, {
+      // For all available options, see:
+      // https://github.com/getsentry/sentry-webpack-plugin#options
+
+      // Suppresses source map uploading logs during build
+      silent: true,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+    }),
+  );
 };

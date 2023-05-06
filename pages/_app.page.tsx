@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import type { NextPageContext } from 'next/dist/shared/lib/utils';
 import Script from 'next/script';
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -21,11 +22,13 @@ import Layout from '../components-pages/layout/Layout';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+type MyAppError = Pick<NextPageContext, 'err'>;
+
 export interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function MyApp(props: MyAppProps) {
+export default function MyApp(props: MyAppProps, err: MyAppError) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const theme = useThemeMode();
 
@@ -63,7 +66,7 @@ export default function MyApp(props: MyAppProps) {
         <CssBaseline />
 
         <Layout>
-          <Component {...pageProps} />
+          <Component {...pageProps} err={err} />
         </Layout>
       </ThemeProvider>
     </CacheProvider>
