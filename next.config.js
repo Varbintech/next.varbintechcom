@@ -28,6 +28,13 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     sentry: {
       hideSourceMaps: true,
     },
+    webpack: (config, { isServer }) => {
+      if (isServer) {
+        require('./utils/generate-sitemap');
+      }
+
+      return config;
+    },
   };
 
   return withPWA(

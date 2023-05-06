@@ -43,5 +43,8 @@ public/sw.js.map
 public/workbox-*.js
 public/workbox-*.js.map
 
+# SEO
+public/sitemap.xml
+
 # Sentry Auth Token
 .sentryclirc
