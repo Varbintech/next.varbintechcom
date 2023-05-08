@@ -50,8 +50,9 @@ const CookiePopup: FC<CookiePopupProps> = ({ onConfirm, anchorEl }) => {
           href="https://policies.google.com/technologies/cookies"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="FAQ cookies"
         >
-          More info
+          FAQ cookies
         </Button>
       </Stack>
     </PopperStyled>
