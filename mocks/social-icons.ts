@@ -28,7 +28,7 @@ export const socialIcons: Array<SocialIcon> = [
   {
     id: 3,
     socialTitle: 'Twitter',
-    socialLink: '',
+    socialLink: 'https://twitter.com/varbintech',
     socialIcon: 'twitterIcon',
     socialBorderRadius: '',
     socialAriaLabel: 'Read more about Varbintech on Twitter',
