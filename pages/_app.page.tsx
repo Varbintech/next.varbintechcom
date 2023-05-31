@@ -5,7 +5,6 @@ import Script from 'next/script';
 
 import { ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Skeleton from '@mui/material/Skeleton';
 
 import { CacheProvider, type EmotionCache } from '@emotion/react';
 
@@ -27,16 +26,6 @@ const clientSideEmotionCache = createEmotionCache();
 const BodyContainer = styled('div')<{ mounted: boolean }>`
   visibility: ${({ mounted }) => (mounted ? 'visible' : 'hidden')};
 `;
-
-const SkeletonContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 8px',
-
-  [theme.breakpoints.up('md')]: {
-    padding: '0 40px',
-  },
-}));
 
 type MyAppError = Pick<NextPageContext, 'err'>;
 
@@ -80,11 +69,6 @@ export default function MyApp(props: MyAppProps, err: MyAppError) {
       />
 
       {/* prevents ssr flash for mismatched dark mode */}
-      {!mounted ? (
-        <SkeletonContainer>
-          <Skeleton />
-        </SkeletonContainer>
-      ) : null}
 
       <BodyContainer mounted={mounted}>
         <ThemeProvider theme={theme}>
