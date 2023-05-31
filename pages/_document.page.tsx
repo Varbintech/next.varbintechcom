@@ -15,7 +15,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
 
-import { MyAppProps } from './_app.page';
+import { type MyAppProps } from './_app.page';
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
@@ -89,6 +89,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+
   // This is important. It prevents Emotion to render invalid HTML.
   // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
