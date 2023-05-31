@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import type { NextPageContext } from 'next/dist/shared/lib/utils';
 import Script from 'next/script';
 
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { CacheProvider, type EmotionCache } from '@emotion/react';
@@ -16,11 +16,16 @@ import { inter } from '../constants/inter-latin';
 
 import createEmotionCache from '../createEmotionCache';
 import { useThemeMode } from '../hooks/use-theme-mode';
+import { useMounted } from '../hooks/use-mounted';
 
 import Layout from '../components-pages/layout/Layout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+
+const BodyContainer = styled('div')<{ mounted: boolean }>`
+  visibility: ${({ mounted }) => (mounted ? 'visible' : 'hidden')};
+`;
 
 type MyAppError = Pick<NextPageContext, 'err'>;
 
@@ -30,7 +35,9 @@ export interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps, err: MyAppError) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   const theme = useThemeMode();
+  const mounted = useMounted();
 
   useEffectPageView();
 
@@ -61,14 +68,18 @@ export default function MyApp(props: MyAppProps, err: MyAppError) {
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
 
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+      {/* prevents ssr flash for mismatched dark mode */}
 
-        <Layout>
-          <Component {...pageProps} err={err} />
-        </Layout>
-      </ThemeProvider>
+      <BodyContainer mounted={mounted}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+
+          <Layout>
+            <Component {...pageProps} err={err} />
+          </Layout>
+        </ThemeProvider>
+      </BodyContainer>
     </CacheProvider>
   );
 }
