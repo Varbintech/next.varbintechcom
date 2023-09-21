@@ -1,0 +1,11 @@
+# Robots.txt file for varbintech.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Host
+Host: https://varbintech.com
+
+# Sitemap
+Sitemap: https://varbintech.com/sitemap.xml
