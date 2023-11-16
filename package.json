@@ -41,7 +41,7 @@
     "react-dom": "18.2.0",
     "react-email": "1.9.1",
     "resend": "0.12.2",
-    "sharp": "0.31.3",
+    "sharp": "0.32.6",
     "use-local-storage-state": "18.3.2"
   },
   "devDependencies": {
