@@ -2,7 +2,6 @@ import type { FC } from 'react';
 
 import Image from 'next/image';
 
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
@@ -26,6 +25,7 @@ interface HeroDetailsProps {
   postDate?: string;
   postAuthorPhoto?: ProjectImage;
   postBgImage?: string;
+  isDarkTheme?: boolean;
 }
 
 const HeroDetails: FC<HeroDetailsProps> = props => {
@@ -39,9 +39,8 @@ const HeroDetails: FC<HeroDetailsProps> = props => {
     postDate,
     postAuthorPhoto,
     postBgImage,
+    isDarkTheme,
   } = props;
-
-  const isDarkTheme = useTheme().palette.mode === 'dark';
 
   return (
     <HeroDetailsBgImage imageUrl={postBgImage} className={isDarkTheme ? 'bg-dark-theme' : ''}>

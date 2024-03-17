@@ -24,7 +24,7 @@ const Navigation = () => {
       <AppBarStyled position="fixed">
         <Container maxWidth="lg">
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <SiteLogo onGa={handleSiteLogoClick} />
+            <SiteLogo onGa={handleSiteLogoClick} isDarkTheme={Settings.DarkThemeAvailable} />
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <nav aria-label="navigation">

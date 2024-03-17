@@ -13,7 +13,7 @@ import type { AppType } from 'next/app';
 import createEmotionServer from '@emotion/server/create-instance';
 
 import createEmotionCache from '../createEmotionCache';
-import { useThemeMode } from '../hooks/use-theme-mode';
+import lightTheme from '../lightTheme';
 
 import { type MyAppProps } from './_app.page';
 
@@ -22,13 +22,11 @@ interface MyDocumentProps extends DocumentProps {
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
-  const theme = useThemeMode();
-
   return (
     <Html lang="en">
       <Head>
         {/* PWA primary color */}
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content={lightTheme.palette.primary.main} />
         <meta name="emotion-insertion-point" content="" />
 
         <link rel="manifest" href="/manifest.json" />

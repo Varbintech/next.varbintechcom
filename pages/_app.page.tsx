@@ -15,7 +15,7 @@ import { Settings } from '../constants/settings';
 import { inter } from '../constants/inter-latin';
 
 import createEmotionCache from '../createEmotionCache';
-import { useThemeMode } from '../hooks/use-theme-mode';
+import lightTheme from '../lightTheme';
 import { useMounted } from '../hooks/use-mounted';
 
 import Layout from '../components-pages/layout/Layout';
@@ -36,7 +36,6 @@ export interface MyAppProps extends AppProps {
 export default function MyApp(props: MyAppProps, err: MyAppError) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  const theme = useThemeMode();
   const mounted = useMounted();
 
   useEffectPageView();
@@ -71,7 +70,7 @@ export default function MyApp(props: MyAppProps, err: MyAppError) {
       {/* prevents ssr flash for mismatched dark mode */}
 
       <BodyContainer mounted={mounted}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
 
