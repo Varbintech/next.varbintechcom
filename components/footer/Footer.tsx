@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import type { FooterData } from '../../models';
 
+import { Settings } from '../../constants/settings';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import Link, { type LinkProps } from '../common/link/Link';
@@ -39,7 +40,11 @@ const Footer = ({ data }: FooterProps) => {
         <Container maxWidth="lg">
           <Grid container spacing={{ xs: 6.5, md: 3, lg: 5.5 }} columns={12}>
             <Grid container item direction="column" xs={12} md={3}>
-              <SiteLogo onGa={handleGa} id="siteLogoLink_footer" />
+              <SiteLogo
+                onGa={handleGa}
+                id="siteLogoLink_footer"
+                isDarkTheme={Settings.DarkThemeAvailable}
+              />
               <Typography marginTop={2}>
                 We help startups and companies of all shapes and sizes to build high-quality
                 Front-End solutions.

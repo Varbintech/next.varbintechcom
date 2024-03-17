@@ -8,6 +8,8 @@ import Stack from '@mui/material/Stack';
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
+import { Settings } from '../../constants/settings';
+
 import Button from '../common/buttons/Button';
 
 import { CustomServicesContainer, CustomServicesWrapper } from './styled-components';
@@ -63,7 +65,12 @@ const CustomServices = () => {
             </Button>
           </Stack>
         </CustomServicesWrapper>
-        {openDialog ? <DynamicDialogCustomServices onClose={handleCloseDialog} /> : null}
+        {openDialog ? (
+          <DynamicDialogCustomServices
+            onClose={handleCloseDialog}
+            isDarkTheme={Settings.DarkThemeAvailable}
+          />
+        ) : null}
       </Container>
     </CustomServicesContainer>
   );

@@ -14,7 +14,6 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material/styles';
 
 import { useGenerateEventGa } from '../../../hooks/use-generate-event-ga';
 
@@ -30,6 +29,7 @@ import DialogBase from '../base/DialogBase';
 
 interface DialogCustomServicesProps {
   onClose: EmptyFunction;
+  isDarkTheme?: boolean;
 }
 
 interface FooterCustomServicesProps extends FooterProps {
@@ -65,12 +65,12 @@ const footer: FooterElement<FooterCustomServicesProps> = options => {
 };
 
 const DialogCustomServices: FC<DialogCustomServicesProps> = props => {
-  const { onClose } = props;
+  const { onClose, isDarkTheme } = props;
+
   const { state, dispatchEvent } = useCustomServiceReducer();
   const [isLoading, setIsLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [token, setToken] = useState('');
-  const isDarkTheme = useTheme().palette.mode === 'dark';
 
   const isDisabled = useMemo(() => {
     const fields = Object.keys(state) as Array<InitialStateKeys>;

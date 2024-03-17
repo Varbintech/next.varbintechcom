@@ -4,6 +4,8 @@ import Container from '@mui/material/Container';
 
 import { useWindowLocation } from '../../hooks/use-window-location';
 
+import { Settings } from '../../constants/settings';
+
 import { caseStudies } from '../../mocks/case-study';
 
 import HeroDetails from '../../components/hero/HeroDetails';
@@ -41,6 +43,7 @@ const CaseStudyDetailPage = () => {
           title={data.projectTitle}
           projectTags={data.projectTags}
           projectSocialIcons={socialShareButtons(pageLink)}
+          isDarkTheme={Settings.DarkThemeAvailable}
         />
         <Container
           maxWidth="lg"

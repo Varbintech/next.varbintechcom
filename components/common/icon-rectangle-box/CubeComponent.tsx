@@ -1,13 +1,13 @@
-import { useTheme } from '@mui/material/styles';
-
 import RectangleBoxIcon from './RectangleBoxIcon';
 import RectangleBoxIconInverse from './RectangleBoxIconInverse';
 
 import { СubeContainerStyled } from './styled-components';
 
-const СubeComponent = () => {
-  const isDarkTheme = useTheme().palette.mode === 'dark';
+interface СubeComponentProps {
+  isDarkTheme?: boolean;
+}
 
+const СubeComponent = ({ isDarkTheme }: СubeComponentProps) => {
   return (
     <СubeContainerStyled>
       {isDarkTheme ? <RectangleBoxIconInverse /> : <RectangleBoxIcon />}

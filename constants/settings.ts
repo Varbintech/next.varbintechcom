@@ -5,4 +5,5 @@ export const Settings = {
   MaxAge: 31536000,
   RevalidateTime: 360, // In seconds
   CalendlyLink: 'https://calendly.com/varbincom/dc15-30',
+  DarkThemeAvailable: false,
 } as const;
