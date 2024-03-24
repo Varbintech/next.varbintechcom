@@ -24,3 +24,5 @@ export type { FooterData } from './footer-data.model';
 export type { NavigationRoute } from './navigation-routes.model';
 
 export type { BlogItem } from './blog-data.model';
+
+export type { CaseStudy as CaseStudyStrapi, ResponseData } from './strapi.model';

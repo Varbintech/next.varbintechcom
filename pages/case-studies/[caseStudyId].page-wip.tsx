@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import type { GetStaticProps } from 'next';
 
 import Container from '@mui/material/Container';
 
@@ -7,6 +8,8 @@ import { useWindowLocation } from '../../hooks/use-window-location';
 import { Settings } from '../../constants/settings';
 
 import { caseStudies } from '../../mocks/case-study';
+
+import type { CaseStudyStrapi, ResponseData } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
@@ -18,12 +21,46 @@ import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 
 import { socialShareButtons } from '../../constants/social-share-buttons';
 
-const CaseStudyDetailPage = () => {
+export const getStaticPaths = async () => {
+  const res = await fetch(`${process.env.API_URL}/case-studies`);
+  const caseStudies = (await res.json()) as ResponseData<CaseStudyStrapi>;
+
+  const paths = caseStudies.data.map((item: CaseStudyStrapi) => ({
+    params: {
+      caseStudyId: item.attributes.slug,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<{ data: CaseStudyStrapi }> = async ({ params }) => {
+  const res = await fetch(
+    `${process.env.API_URL}/case-studies?filters[slug][$eq]=${params?.caseStudyId}&populate=*`,
+  );
+  const json = (await res.json()) as { data: Array<CaseStudyStrapi> };
+
+  console.warn('getStaticProps: ', json.data[0]);
+
+  return {
+    props: {
+      data: json.data[0],
+    },
+  };
+};
+
+const CaseStudyDetailPage = (props: { data: CaseStudyStrapi }) => {
   const {
     query: { caseStudyId },
     isReady,
     asPath,
   } = useRouter();
+
+  console.warn('CaseStudyDetailPage: ', props.data.attributes);
+
   const location = useWindowLocation(isReady);
 
   const data = caseStudies.find(item => item.id === Number(caseStudyId));
@@ -61,6 +98,7 @@ const CaseStudyDetailPage = () => {
               if (item.label === 'TEXT') {
                 return <TextColumn key={index} data={item} />;
               }
+
               if (item.label === 'IMAGE') {
                 return <ImagesColumn key={index} data={item} />;
               }
@@ -68,7 +106,9 @@ const CaseStudyDetailPage = () => {
               return null;
             })}
         </Container>
+
         <Result data={data} />
+
         <CaseStudyNextItem title={randomCaseStudy.projectTitle} id={randomCaseStudy.id} />
       </>
     );
