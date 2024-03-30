@@ -25,4 +25,8 @@ export type { NavigationRoute } from './navigation-routes.model';
 
 export type { BlogItem } from './blog-data.model';
 
-export type { CaseStudy as CaseStudyStrapi, ResponseData } from './strapi.model';
+export type {
+  CaseStudy as CaseStudyStrapi,
+  ResponseData,
+  CaseStudyStaticProps,
+} from './strapi.model';

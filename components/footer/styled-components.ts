@@ -6,7 +6,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
   padding: '64px 0 24px',
 
   [theme.breakpoints.up('lg')]: {
-    padding: '120px 0 154px',
+    padding: '120px 0 44px',
   },
 }));
 

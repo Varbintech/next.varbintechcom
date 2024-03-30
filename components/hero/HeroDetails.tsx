@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
 import Image from 'next/image';
 
 import Box from '@mui/material/Box';
@@ -28,7 +26,7 @@ interface HeroDetailsProps {
   isDarkTheme?: boolean;
 }
 
-const HeroDetails: FC<HeroDetailsProps> = props => {
+const HeroDetails = (props: HeroDetailsProps) => {
   const {
     title,
     projectTags,
