@@ -1,3 +1,5 @@
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 interface TechnologyAttribute {
   name: string;
   description: string;
@@ -6,6 +8,14 @@ interface TechnologyAttribute {
 interface IndustryAttribute {
   name: string;
   description: string;
+}
+
+interface Image {
+  name: string;
+  alternativeText: string;
+  width: number;
+  height: number;
+  url: string;
 }
 
 interface HeroImageAttribute {
@@ -22,6 +32,34 @@ interface MetaImage {
   width: number;
   height: number;
   url: string;
+}
+
+interface Quote {
+  content: string;
+  author: string;
+  authorTitle: string;
+  authorLiLink: string;
+  authorPhoto: {
+    data: {
+      attributes: Image;
+    };
+  };
+  companyName: string;
+  companyLink: string;
+}
+
+export interface Result {
+  name: string;
+  description: string;
+}
+
+interface Section {
+  name: string;
+  description: string;
+  headingLevel: HeadingLevel;
+  order: number;
+  showTitle?: boolean;
+  showFeedback?: boolean;
 }
 
 export interface CaseStudy {
@@ -56,6 +94,24 @@ export interface CaseStudy {
         id: number;
         attributes: MetaImage;
       };
+    };
+    quotes: {
+      data: Array<{
+        id: number;
+        attributes: Quote;
+      }>;
+    };
+    sections: {
+      data: Array<{
+        id: number;
+        attributes: Section;
+      }>;
+    };
+    results: {
+      data: Array<{
+        id: number;
+        attributes: Result;
+      }>;
     };
   };
 }
@@ -95,6 +151,24 @@ export interface CaseStudyStaticProps {
         id: number;
         attributes: MetaImage;
       };
+    };
+    quotes: {
+      data: Array<{
+        id: number;
+        attributes: Quote;
+      }>;
+    };
+    sections: {
+      data: Array<{
+        id: number;
+        attributes: Section;
+      }>;
+    };
+    results: {
+      data: Array<{
+        id: number;
+        attributes: Result;
+      }>;
     };
     baseUrl: string;
     apiBaseUrl: string;

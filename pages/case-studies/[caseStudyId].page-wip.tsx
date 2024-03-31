@@ -1,20 +1,32 @@
-/* import { useRouter } from 'next/router'; */
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
-/* import { useWindowLocation } from '../../hooks/use-window-location'; */
+import { fetchCaseStudies, fetchCaseStudyBySlug } from '../../utils/api';
 
 import { Settings } from '../../constants/settings';
 import { MetaData } from '../../constants/meta';
 
-/* import { caseStudies } from '../../mocks/case-study'; */
-
-import type { CaseStudyStrapi, ResponseData, CaseStudyStaticProps } from '../../models';
+import type { CaseStudyStrapi, CaseStudyStaticProps } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
+import Button from '../../components/common/buttons/Button';
 import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
+import { TextColumnContainer } from '../../components/common/text-column/TextColumn';
+import {
+  MarkdownText,
+  MarkdownLink,
+  MarkdownList,
+  MarkdownListItem,
+  MarkdownParagraph,
+} from '../../components/common/typography/Markdown';
+import Result from '../../components/common/result/Result';
+import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/Feedback';
 /* import FullInfoColumn from '../../components/common/full-info-column/FullInfoColumn';
 import TextColumn from '../../components/common/text-column/TextColumn';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
@@ -24,8 +36,7 @@ import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem';
 import { socialShareButtons } from '../../constants/social-share-buttons';
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.API_URL}/case-studies`);
-  const caseStudies = (await res.json()) as ResponseData<CaseStudyStrapi>;
+  const caseStudies = await fetchCaseStudies();
 
   const paths = caseStudies.data.map((item: CaseStudyStrapi) => ({
     params: {
@@ -42,17 +53,16 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = async ({
   params,
 }) => {
-  const res = await fetch(
-    `${process.env.API_URL}/case-studies?filters[slug][$eq]=${params?.caseStudyId}&populate=*`,
-  );
-  const json = (await res.json()) as { data: Array<CaseStudyStrapi> };
+  const json = await fetchCaseStudyBySlug(String(params?.caseStudyId));
 
   // order images by width
   json.data[0].attributes.heroImage.data.sort((a, b) => a.attributes.width - b.attributes.width);
 
   const heroImageSrcSet = json.data[0].attributes.heroImage.data.reduce(
     (acc, item) =>
-      `${acc}${process.env.API_BASE_URL}${item.attributes.url} ${item.attributes.width}w, `,
+      `${acc ? acc + ', ' : ''}${process.env.API_BASE_URL}${item.attributes.url} ${
+        item.attributes.width
+      }w`,
     '',
   );
   const imagesWithoutLastItem = json.data[0].attributes.heroImage.data.slice(0, -1);
@@ -60,7 +70,7 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
     imagesWithoutLastItem.reduce(
       (acc, item) =>
         `${acc}(max-width: ${Math.round(item.attributes.width / 100) * 100}px) ${
-          Math.round(item.attributes.width / 100) * 100
+          item.attributes.width
         }px, `,
       '',
     ) +
@@ -101,27 +111,11 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
 };
 
 const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
-  /* const {
-    query: { caseStudyId },
-    isReady,
-    asPath,
-  } = useRouter(); */
-
   const {
     data: { attributes },
   } = props;
 
-  // console.warn('CaseStudyDetailPage: ', props.data.attributes);
-
-  // const location = useWindowLocation(isReady);
-
-  // const attributes = caseStudies.find(item => item.id === Number(caseStudyId));
-
-  // const pageLink = (location?.origin && new URL(asPath, location?.origin).href) || '';
-
-  /* const randomCaseStudy =
-    caseStudies[Number(caseStudyId) + 1] ||
-    caseStudies[Math.floor(Math.random() * caseStudies.length)]; */
+  const feedbackPhoto = attributes.quotes.data[0].attributes.authorPhoto.data.attributes;
 
   if (attributes) {
     return (
@@ -182,10 +176,11 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             link: '',
           }))}
           projectSocialIcons={socialShareButtons(
-            `${process.env.BASE_URL}/case-studies/${attributes.slug}`,
+            `${attributes.apiBaseUrl}/case-studies/${attributes.slug}`,
           )}
           isDarkTheme={Settings.DarkThemeAvailable}
         />
+
         <Container
           maxWidth="lg"
           sx={{
@@ -206,26 +201,152 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           />
         </Container>
 
-        {/* <FullInfoColumn data={attributes.projectFullInfo} />
+        <Container maxWidth="lg" sx={{ marginBottom: { xs: '27px', md: '47px' } }}>
+          <Stack direction="column">
+            {attributes.technologies.data.length > 0 ? (
+              <TextColumnContainer>
+                <Stack direction="column">
+                  <Typography variant="h3" marginBottom={2}>
+                    Technologies
+                  </Typography>
 
-        <Container maxWidth="lg">
-          {attributes &&
-            attributes.projectDetails.map((item, index) => {
-              if (item.label === 'TEXT') {
-                return <TextColumn key={index} data={item} />;
-              }
-
-              if (item.label === 'IMAGE') {
-                return <ImagesColumn key={index} data={item} />;
-              }
-
-              return null;
-            })}
+                  <Grid container columns={6}>
+                    {attributes.technologies.data.map(({ attributes: attr, id }) => (
+                      <Grid
+                        key={`${attr.name}-${id}`}
+                        container
+                        item
+                        direction="column"
+                        xs={6}
+                        md={4}
+                      >
+                        <Typography fontWeight="500">{attr.name}</Typography>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Stack>
+              </TextColumnContainer>
+            ) : null}
+          </Stack>
         </Container>
 
-        <Result data={attributes} /> */}
+        <Container maxWidth="lg">
+          {attributes.sections.data.map(({ attributes: attr, id }, index) => {
+            if (attr.showFeedback) {
+              return (
+                <Stack direction="column" key={`with-feedback-${id}-${index}`}>
+                  <TextColumnContainer>
+                    <Stack direction="column">
+                      {attr.showTitle ? (
+                        <Typography
+                          variant={attr.headingLevel}
+                          marginBottom={attr.description ? 2 : 0}
+                          style={{ scrollMarginTop: '112px' }}
+                        >
+                          {attr.name}
+                        </Typography>
+                      ) : null}
 
-        {/* <CaseStudyNextItem title={randomCaseStudy.projectTitle} id={randomCaseStudy.id} /> */}
+                      {attr.description ? (
+                        <Box>
+                          <MarkdownText
+                            components={{
+                              a: MarkdownLink,
+                              ul: MarkdownList,
+                              li: MarkdownListItem,
+                              p: MarkdownParagraph,
+                            }}
+                          >
+                            {attr.description}
+                          </MarkdownText>
+                        </Box>
+                      ) : null}
+                    </Stack>
+                  </TextColumnContainer>
+
+                  <FeedbackContainer2>
+                    <Feedback
+                      text={attributes.quotes.data[0].attributes.content}
+                      name={attributes.quotes.data[0].attributes.author}
+                      image={{
+                        src: `${attributes.apiBaseUrl}${feedbackPhoto.url}`,
+                        width: feedbackPhoto.width,
+                        height: feedbackPhoto.height,
+                        name: '',
+                        alt: feedbackPhoto.alternativeText,
+                      }}
+                      company={attributes.quotes.data[0].attributes.authorTitle}
+                      companyName={attributes.quotes.data[0].attributes.companyName}
+                      linkedInLink={attributes.quotes.data[0].attributes.authorLiLink}
+                      companyLinkHref={attributes.quotes.data[0].attributes.companyLink}
+                    />
+                  </FeedbackContainer2>
+                </Stack>
+              );
+            }
+
+            return (
+              <TextColumnContainer key={`${id}-${index}`}>
+                <Stack direction="column">
+                  {attr.showTitle ? (
+                    <Typography
+                      variant={attr.headingLevel}
+                      marginBottom={attr.description ? 2 : 0}
+                      style={{ scrollMarginTop: '112px' }}
+                    >
+                      {attr.name}
+                    </Typography>
+                  ) : null}
+
+                  {attr.description ? (
+                    <Box marginBottom={4}>
+                      <MarkdownText
+                        components={{
+                          a: MarkdownLink,
+                          ul: MarkdownList,
+                          li: MarkdownListItem,
+                          p: MarkdownParagraph,
+                        }}
+                      >
+                        {attr.description}
+                      </MarkdownText>
+                    </Box>
+                  ) : null}
+                </Stack>
+              </TextColumnContainer>
+            );
+          })}
+        </Container>
+
+        <Container
+          maxWidth="lg"
+          sx={{ paddingTop: { xs: '64px' }, paddingBottom: { xs: '64px', lg: '120px' } }}
+        >
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={3}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Typography variant="subtitle1">Don&apos;t miss your chance:</Typography>
+            <Button variant="outlined" href={Settings.CalendlyLink} size="large">
+              Book a call
+            </Button>
+          </Stack>
+        </Container>
+
+        {attributes.results.data.length > 0 ? (
+          <Box sx={{ paddingBottom: { xs: '64px', lg: '120px' } }}>
+            <Result
+              data={{
+                resultInfo: attributes.results.data.map(item => ({
+                  name: item.attributes.name,
+                  text: item.attributes.description,
+                })),
+              }}
+            />
+          </Box>
+        ) : null}
       </>
     );
   }

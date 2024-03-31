@@ -30,6 +30,7 @@ const FullInfoColumn: FC<FullInfoColumnProps> = ({ data }) => {
               <Typography variant="body2" component="h4" marginBottom={0.5}>
                 {infoItem.name}
               </Typography>
+
               {infoItem.name === 'Technologies' ? (
                 <Grid container columns={12}>
                   {infoItem.description.map((item, index) => {

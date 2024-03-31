@@ -29,4 +29,5 @@ export type {
   CaseStudy as CaseStudyStrapi,
   ResponseData,
   CaseStudyStaticProps,
+  Result,
 } from './strapi.model';

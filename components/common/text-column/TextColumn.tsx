@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -16,16 +16,56 @@ interface TextColumnProps {
   data: ProjectTextDetails;
 }
 
+export const TextColumnListStyled = ({
+  children,
+  ...restProps
+}: HTMLAttributes<HTMLUListElement>) => <ListStyled {...restProps}>{children}</ListStyled>;
+
+export const TextColumnListItem = ({ children, ...restProps }: HTMLAttributes<HTMLLIElement>) => (
+  <ListItem {...restProps}>
+    <ListItemIcon>
+      <CheckIcon />
+    </ListItemIcon>
+
+    <ListItemText primary={children}>{children}</ListItemText>
+  </ListItem>
+);
+
+export const TextColumnList = (props: { items: Array<string> }) => {
+  return (
+    <ListStyled>
+      {props.items.map((item, index) => {
+        return (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={item} />
+          </ListItem>
+        );
+      })}
+    </ListStyled>
+  );
+};
+
+export const TextColumnContainer = ({ children }: { children: ReactNode }) => (
+  <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ marginBottom: 3 }}>
+    {children}
+  </Stack>
+);
+
 const TextColumn: FC<TextColumnProps> = ({ data }) => {
   return (
     <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ marginBottom: 3 }}>
-      {data.name ? (
+      {/* {data.name ? (
         <Box sx={{ minWidth: { md: '25%' } }}>
           <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
             {data.name}
           </Typography>
         </Box>
-      ) : null}
+      ) : null} */}
+
       <Stack direction="column">
         {data.title ? (
           <Typography
@@ -37,6 +77,7 @@ const TextColumn: FC<TextColumnProps> = ({ data }) => {
             {data.title}
           </Typography>
         ) : null}
+
         {data.textSection.map((item, index) => {
           return (
             <Box key={index} marginBottom={4}>
@@ -46,21 +87,7 @@ const TextColumn: FC<TextColumnProps> = ({ data }) => {
                 </Typography>
               ) : null}
               {item.text ? <Typography variant="body2">{item.text}</Typography> : null}
-              {item.textList ? (
-                <ListStyled>
-                  {item.textList.map((item, index) => {
-                    return (
-                      <ListItem key={index}>
-                        <ListItemIcon>
-                          <CheckIcon />
-                        </ListItemIcon>
-
-                        <ListItemText primary={item} />
-                      </ListItem>
-                    );
-                  })}
-                </ListStyled>
-              ) : null}
+              {item.textList ? <TextColumnList items={item.textList} /> : null}
             </Box>
           );
         })}

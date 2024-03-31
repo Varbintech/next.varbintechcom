@@ -47,7 +47,7 @@ const HeroDetails = (props: HeroDetailsProps) => {
           <Typography
             variant="h1"
             marginBottom="24px"
-            sx={{ fontSize: { xs: '32px', md: '56px' } }}
+            sx={{ fontSize: { xs: '32px', md: '56px', lineHeight: 1.2 } }}
           >
             {title}
           </Typography>

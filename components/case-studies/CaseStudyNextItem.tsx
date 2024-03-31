@@ -23,6 +23,7 @@ const CaseStudyNextItem: FC<CaseStudyNextItemProps> = ({ title, id }) => {
       <Typography variant="subtitle1" align="center" sx={{ fontWeight: 500, marginBottom: 3 }}>
         Next case study
       </Typography>
+
       <Typography
         variant="h2"
         align="center"

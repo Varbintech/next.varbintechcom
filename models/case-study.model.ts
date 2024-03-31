@@ -8,6 +8,7 @@ export interface ProjectImage {
   name: string;
   width: number;
   height: number;
+  alt?: string;
   srcSet?: string;
   sizes?: string;
 }
@@ -59,7 +60,7 @@ export interface CaseStudy {
   projectDescription: Array<string>;
   projectTags: Array<ProjectTag>;
   results: Array<string>;
-  feedback: ProjectFeedback;
+  // feedback: ProjectFeedback;
   resultInfo: Array<ProjectResultInfo>;
   projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
   projectFullInfo: Array<ProjectFullInfo>;

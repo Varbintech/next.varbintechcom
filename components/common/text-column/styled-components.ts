@@ -6,6 +6,7 @@ export const ListStyled = styled(List)(({ theme }) => ({
 
   '.MuiListItem-root': {
     padding: 0,
+    color: '#4d4d4d',
   },
 
   '.MuiListItemIcon-root': {
@@ -14,6 +15,13 @@ export const ListStyled = styled(List)(({ theme }) => ({
 
     svg: {
       fontSize: '20px',
+    },
+  },
+
+  li: {
+    p: {
+      padding: 0,
+      margin: 0,
     },
   },
 }));
