@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import type { ProjectResultInfo, Result } from '../../../models';
+import type { ProjectResultInfo } from '../../../models';
 
 /* import Feedback from '../feedback/Feedback'; */
 import { PageContainer } from './styled-components';

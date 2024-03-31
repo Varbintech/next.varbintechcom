@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import type { CaseStudy } from '../../models';
 
-import Feedback from '../common/feedback/Feedback';
+/* import Feedback from '../common/feedback/Feedback'; */
 import ChipGroup from '../common/chip/ChipGroup';
 // import ButtonLink from '../common/buttons/ButtonLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
@@ -28,16 +28,8 @@ interface CaseStudyInnerProps {
 }
 
 const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
-  const {
-    // id,
-    projectImage,
-    projectImageAlt,
-    projectTitle,
-    projectDescription,
-    projectTags,
-    results,
-    feedback,
-  } = data;
+  const { projectImage, projectImageAlt, projectTitle, projectDescription, projectTags, results } =
+    data;
 
   return (
     <PageContainer className={direction === 'row' ? 'lightBackground' : ''}>
@@ -109,7 +101,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
           </TextContainer>
         </Stack>
 
-        <Feedback {...feedback} />
+        {/* <Feedback {...feedback} /> */}
       </Container>
     </PageContainer>
   );
