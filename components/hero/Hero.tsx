@@ -67,7 +67,7 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
             <UpdateLabel className="gradient-border">Update</UpdateLabel>
             We posted a new case study.&nbsp;
             <Link
-              href="https://varbintech.com/case-studies/better-product-management-with-okr-for-jira-extension"
+              href="/case-studies/better-product-management-with-okr-for-jira-extension"
               variant="caption"
             >
               Enjoy the reading here

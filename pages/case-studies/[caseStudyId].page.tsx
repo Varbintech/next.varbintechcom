@@ -1,4 +1,5 @@
 import type { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 import Container from '@mui/material/Container';
@@ -16,7 +17,6 @@ import type { CaseStudyStrapi, CaseStudyStaticProps } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import Button from '../../components/common/buttons/Button';
-import ImageWrapperWithPicture from '../../components/common/image-wrapper/ImageWrapperWithPicture';
 import { TextColumnContainer } from '../../components/common/text-column/TextColumn';
 import {
   MarkdownText,
@@ -29,6 +29,13 @@ import Result from '../../components/common/result/Result';
 import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/Feedback';
 /* import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem'; */
+
+const ImageWrapperWithPictureDynamic = dynamic(
+  () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
+  {
+    loading: () => <p>Loading...</p>,
+  },
+);
 
 import { socialShareButtons } from '../../constants/social-share-buttons';
 
@@ -196,7 +203,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             marginBottom: { xs: '42px', md: '80px' },
           }}
         >
-          <ImageWrapperWithPicture
+          <ImageWrapperWithPictureDynamic
             images={attributes.heroImage.images}
             mainImage={attributes.heroImage.mainImage}
             largeWithBorder
