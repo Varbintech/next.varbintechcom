@@ -115,7 +115,8 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
             },
           },
           technologies: technologiesGrouped,
-          baseUrl: process.env.BASE_URL || '',
+          // https://developers.cloudflare.com/pages/configuration/build-configuration/#environment-variables
+          baseUrl: process.env.CF_PAGES_URL || '',
           apiBaseUrl: process.env.API_BASE_URL || '',
           keywords: `${keywords}, ${keywords2}`,
         },
@@ -191,7 +192,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             link: '',
           }))}
           projectSocialIcons={socialShareButtons(
-            `${process.env.BASE_URL}/case-studies/${attributes.slug}`,
+            `${attributes.baseUrl}/case-studies/${attributes.slug}`,
           )}
           isDarkTheme={Settings.DarkThemeAvailable}
         />
