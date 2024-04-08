@@ -14,7 +14,9 @@ const CaseStudiesPage = () => {
         subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
         solutions."
       />
+
       <TabsFilter data={tabsItems} />
+
       <CaseStudies data={caseStudies} />
     </>
   );

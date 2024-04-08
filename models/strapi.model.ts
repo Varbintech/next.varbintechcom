@@ -18,7 +18,7 @@ interface Image {
   url: string;
 }
 
-interface HeroImageAttribute {
+export interface HeroImageAttribute {
   name: string;
   alternativeText: string;
   width: number;
@@ -60,6 +60,7 @@ interface Section {
   order: number;
   showTitle?: boolean;
   showFeedback?: boolean;
+  showTechStack?: boolean;
 }
 
 export interface CaseStudy {
@@ -74,7 +75,17 @@ export interface CaseStudy {
     technologies: {
       data: Array<{
         id: number;
-        attributes: TechnologyAttribute;
+        attributes: TechnologyAttribute & {
+          technologyField: {
+            data: {
+              id: number;
+              attributes: {
+                name: string;
+                description: string | null;
+              };
+            };
+          };
+        };
       }>;
     };
     industries: {
@@ -125,12 +136,15 @@ export interface CaseStudyStaticProps {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    technologies: {
-      data: Array<{
-        id: number;
-        attributes: TechnologyAttribute;
-      }>;
-    };
+    technologies: Array<
+      [
+        string,
+        Array<{
+          id: number;
+          attributes: TechnologyAttribute;
+        }>,
+      ]
+    >;
     industries: {
       data: Array<{
         id: number;
@@ -138,13 +152,14 @@ export interface CaseStudyStaticProps {
       }>;
     };
     heroImage: {
-      data: Array<{
+      images: Array<{
         id: number;
         attributes: HeroImageAttribute;
       }>;
-      srcSet: string;
-      sizes: string;
-      name: string;
+      mainImage: {
+        id: number;
+        attributes: HeroImageAttribute;
+      };
     };
     metaImage: {
       data: {

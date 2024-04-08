@@ -1,9 +1,18 @@
-import type { ReactChildren } from '../../../models/common';
+import type { ReactNode } from 'react';
 
 import { UpdateLabelContainer } from './styled-components';
 
-const UpdateLabel = ({ children }: ReactChildren) => {
-  return <UpdateLabelContainer>{children}</UpdateLabelContainer>;
+interface UpdateLabelProps {
+  children: ReactNode;
+  className?: string;
+}
+
+const UpdateLabel = ({ children, className }: UpdateLabelProps) => {
+  return (
+    <UpdateLabelContainer className={className}>
+      <span>{children}</span>
+    </UpdateLabelContainer>
+  );
 };
 
 export default UpdateLabel;

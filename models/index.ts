@@ -30,4 +30,5 @@ export type {
   ResponseData,
   CaseStudyStaticProps,
   Result,
+  HeroImageAttribute,
 } from './strapi.model';

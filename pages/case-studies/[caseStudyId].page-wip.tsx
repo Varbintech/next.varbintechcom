@@ -16,7 +16,7 @@ import type { CaseStudyStrapi, CaseStudyStaticProps } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import Button from '../../components/common/buttons/Button';
-import ImageWrapperComponent from '../../components/common/image-wrapper/ImageWrapper';
+import ImageWrapperWithPicture from '../../components/common/image-wrapper/ImageWrapperWithPicture';
 import { TextColumnContainer } from '../../components/common/text-column/TextColumn';
 import {
   MarkdownText,
@@ -27,10 +27,7 @@ import {
 } from '../../components/common/typography/Markdown';
 import Result from '../../components/common/result/Result';
 import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/Feedback';
-/* import FullInfoColumn from '../../components/common/full-info-column/FullInfoColumn';
-import TextColumn from '../../components/common/text-column/TextColumn';
-import ImagesColumn from '../../components/common/images-column/ImagesColumn';
-import Result from '../../components/common/result/Result';
+/* import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem'; */
 
 import { socialShareButtons } from '../../constants/social-share-buttons';
@@ -56,28 +53,10 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
   const json = await fetchCaseStudyBySlug(String(params?.caseStudyId));
 
   // order images by width
-  json.data[0].attributes.heroImage.data.sort((a, b) => a.attributes.width - b.attributes.width);
+  json.data[0].attributes.heroImage.data.sort((a, b) => b.attributes.width - a.attributes.width);
 
-  const heroImageSrcSet = json.data[0].attributes.heroImage.data.reduce(
-    (acc, item) =>
-      `${acc ? acc + ', ' : ''}${process.env.API_BASE_URL}${item.attributes.url} ${
-        item.attributes.width
-      }w`,
-    '',
-  );
-  const imagesWithoutLastItem = json.data[0].attributes.heroImage.data.slice(0, -1);
-  const heroImageSizes =
-    imagesWithoutLastItem.reduce(
-      (acc, item) =>
-        `${acc}(max-width: ${Math.round(item.attributes.width / 100) * 100}px) ${
-          item.attributes.width
-        }px, `,
-      '',
-    ) +
-    `${
-      json.data[0].attributes.heroImage.data[json.data[0].attributes.heroImage.data.length - 1]
-        .attributes.width
-    }px`;
+  const mainImage =
+    json.data[0].attributes.heroImage.data[json.data[0].attributes.heroImage.data.length - 1];
 
   // @TODO: add special field to DB for keywords
   const keywords = json.data[0].attributes.technologies.data.reduce(
@@ -88,6 +67,23 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
     (acc, item) => `${acc ? acc + ', ' : ''}${item.attributes.name}`,
     '',
   );
+  const technologiesGroupedByTechnologyField = json.data[0].attributes.technologies.data.reduce(
+    (acc: Record<string, Array<any>>, item) => {
+      const technologyField = item.attributes.technologyField.data?.attributes.name || '';
+
+      if (technologyField && !acc[technologyField]) {
+        acc[technologyField] = [];
+      }
+
+      if (technologyField) {
+        acc[technologyField].push(item);
+      }
+
+      return acc;
+    },
+    {},
+  );
+  const technologiesGrouped = Object.entries(technologiesGroupedByTechnologyField);
 
   return {
     props: {
@@ -96,11 +92,22 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
         attributes: {
           ...json.data[0].attributes,
           heroImage: {
-            ...json.data[0].attributes.heroImage,
-            srcSet: heroImageSrcSet,
-            sizes: heroImageSizes,
-            name: json.data[0].attributes.heroImage.data[0].attributes.alternativeText,
+            images: json.data[0].attributes.heroImage.data.map(item => ({
+              id: item.id,
+              attributes: {
+                ...item.attributes,
+                url: `${process.env.API_BASE_URL}${item.attributes.url}`,
+              },
+            })),
+            mainImage: {
+              id: mainImage.id,
+              attributes: {
+                ...mainImage.attributes,
+                url: `${process.env.API_BASE_URL}${mainImage.attributes.url}`,
+              },
+            },
           },
+          technologies: technologiesGrouped,
           baseUrl: process.env.BASE_URL || '',
           apiBaseUrl: process.env.API_BASE_URL || '',
           keywords: `${keywords}, ${keywords2}`,
@@ -165,6 +172,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             name="twitter:image"
             content={`${attributes.apiBaseUrl}${attributes.metaImage.data.attributes.url}`}
           />
+          <title>{`${attributes.title} | Case Study`}</title>
         </Head>
 
         <HeroDetails
@@ -185,49 +193,14 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           maxWidth="lg"
           sx={{
             marginTop: { xs: '-90px', md: '-160px' },
-            marginBottom: { xs: '42px', md: '112px' },
+            marginBottom: { xs: '42px', md: '80px' },
           }}
         >
-          <ImageWrapperComponent
-            data={{
-              src: '',
-              name: attributes.heroImage.name,
-              srcSet: attributes.heroImage.srcSet,
-              sizes: attributes.heroImage.sizes,
-              width: 0,
-              height: 0,
-            }}
+          <ImageWrapperWithPicture
+            images={attributes.heroImage.images}
+            mainImage={attributes.heroImage.mainImage}
             largeWithBorder
           />
-        </Container>
-
-        <Container maxWidth="lg" sx={{ marginBottom: { xs: '27px', md: '47px' } }}>
-          <Stack direction="column">
-            {attributes.technologies.data.length > 0 ? (
-              <TextColumnContainer>
-                <Stack direction="column">
-                  <Typography variant="h3" marginBottom={2}>
-                    Technologies
-                  </Typography>
-
-                  <Grid container columns={6}>
-                    {attributes.technologies.data.map(({ attributes: attr, id }) => (
-                      <Grid
-                        key={`${attr.name}-${id}`}
-                        container
-                        item
-                        direction="column"
-                        xs={6}
-                        md={4}
-                      >
-                        <Typography fontWeight="500">{attr.name}</Typography>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Stack>
-              </TextColumnContainer>
-            ) : null}
-          </Stack>
         </Container>
 
         <Container maxWidth="lg">
@@ -248,7 +221,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                       ) : null}
 
                       {attr.description ? (
-                        <Box>
+                        <Stack direction="column" spacing={2} marginBottom={2}>
                           <MarkdownText
                             components={{
                               a: MarkdownLink,
@@ -259,7 +232,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                           >
                             {attr.description}
                           </MarkdownText>
-                        </Box>
+                        </Stack>
                       ) : null}
                     </Stack>
                   </TextColumnContainer>
@@ -285,6 +258,79 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
               );
             }
 
+            if (attr.showTechStack) {
+              return (
+                <Stack direction="column" key={`with-tech-stack-${id}-${index}`}>
+                  <TextColumnContainer>
+                    <Stack direction="column">
+                      {attr.showTitle ? (
+                        <Typography
+                          variant={attr.headingLevel}
+                          marginBottom={attr.description ? 2 : 0}
+                          style={{ scrollMarginTop: '112px' }}
+                        >
+                          {attr.name}
+                        </Typography>
+                      ) : null}
+
+                      {attr.description ? (
+                        <Stack direction="column" spacing={2} marginBottom={2}>
+                          <MarkdownText
+                            components={{
+                              a: MarkdownLink,
+                              ul: MarkdownList,
+                              li: MarkdownListItem,
+                              p: MarkdownParagraph,
+                            }}
+                          >
+                            {attr.description}
+                          </MarkdownText>
+                        </Stack>
+                      ) : null}
+                    </Stack>
+                  </TextColumnContainer>
+
+                  <Stack direction="column" marginBottom={4}>
+                    {attributes.technologies.length > 0 ? (
+                      <TextColumnContainer>
+                        <Stack direction="column" width={'100%'}>
+                          <Typography variant="h3" marginBottom={2}>
+                            Tech Stack
+                          </Typography>
+
+                          <Grid container columns={6}>
+                            {attributes.technologies.map(([technologyField, technologies]) => (
+                              <Grid key={`field-${technologyField}`} container>
+                                <Typography variant="h4">{technologyField}:&nbsp;</Typography>
+
+                                <Grid
+                                  key={`field-item-${technologyField}`}
+                                  item
+                                  container
+                                  margin={1}
+                                >
+                                  {technologies.map((item, itemIndex) => (
+                                    <Typography
+                                      variant="body2"
+                                      component="span"
+                                      key={`${item.attributes.name}-${item.id}}`}
+                                    >
+                                      {item.attributes.name}
+                                      {itemIndex < technologies.length - 1 ? <>,&nbsp;</> : ''}
+                                    </Typography>
+                                  ))}
+                                </Grid>
+                              </Grid>
+                            ))}
+                          </Grid>
+                        </Stack>
+                      </TextColumnContainer>
+                    ) : null}
+                  </Stack>
+                </Stack>
+              );
+            }
+
             return (
               <TextColumnContainer key={`${id}-${index}`}>
                 <Stack direction="column">
@@ -299,7 +345,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                   ) : null}
 
                   {attr.description ? (
-                    <Box marginBottom={4}>
+                    <Stack direction="column" spacing={2} marginBottom={2}>
                       <MarkdownText
                         components={{
                           a: MarkdownLink,
@@ -310,7 +356,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                       >
                         {attr.description}
                       </MarkdownText>
-                    </Box>
+                    </Stack>
                   ) : null}
                 </Stack>
               </TextColumnContainer>

@@ -8,12 +8,21 @@ import {} from './TypographyExample';
 
 import ReactMarkdown from 'react-markdown';
 
-export const MarkdownText = ({ children, ...restProps }: ComponentProps<typeof ReactMarkdown>) => {
+export const MarkdownText = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
+  ...restProps
+}: ComponentProps<typeof ReactMarkdown>) => {
   return <ReactMarkdown {...restProps}>{children}</ReactMarkdown>;
 };
 
 export const MarkdownLink = ({
   children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
   ...restProps
 }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
@@ -25,20 +34,40 @@ export const MarkdownLink = ({
 
 export const MarkdownList = ({
   children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
   ...restProps
 }: HTMLAttributes<HTMLUListElement> | HTMLAttributes<HTMLOListElement>) => (
   <TextColumnListStyled {...restProps}>{children}</TextColumnListStyled>
 );
 
-export const MarkdownListItem = ({ children, ...restProps }: HTMLAttributes<HTMLLIElement>) => (
+export const MarkdownListItem = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
+  ...restProps
+}: HTMLAttributes<HTMLLIElement>) => (
   <TextColumnListItem {...restProps}>{children}</TextColumnListItem>
 );
 
 export const MarkdownParagraph = ({
   children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
   ...restProps
 }: HTMLAttributes<HTMLParagraphElement>) => (
-  <Typography variant="body2" paragraph gutterBottom {...restProps}>
+  <Typography
+    variant="body2"
+    paragraph
+    gutterBottom
+    {...restProps}
+    sx={{
+      marginBottom: 0,
+    }}
+  >
     {children}
   </Typography>
 );

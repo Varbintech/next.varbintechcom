@@ -53,7 +53,7 @@ export interface ProjectFullInfo {
 }
 
 export interface CaseStudy {
-  id: number;
+  id: string;
   projectImage: ProjectImage;
   projectImageAlt: string;
   projectTitle: string;
