@@ -6,7 +6,7 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import type { CaseStudyStaticProps } from '../../models';
 
 import CaseStudiesPage from '../../pages/case-studies/index.page-wip';
-import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page-wip';
+import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page';
 
 // @TODO: Fix this
 const caseStudy = {} as CaseStudyStaticProps;
