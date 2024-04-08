@@ -138,7 +138,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
 
           {/* Google / Search Engine Tags */}
-          <meta itemProp="name" content={attributes.title} />
+          <meta itemProp="name" content={`${attributes.title} | Case Study`} />
           <meta itemProp="description" content={attributes.description} />
           <meta
             itemProp="image"
@@ -147,7 +147,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
 
           {/* Open Graph */}
           <meta property="og:site_name" content={MetaData.IndexAuthor} />
-          <meta property="og:title" content={attributes.title} />
+          <meta property="og:title" content={`${attributes.title} | Case Study`} />
           <meta property="og:description" content={attributes.description} />
           <meta
             property="og:url"
@@ -166,7 +166,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={attributes.title} />
+          <meta name="twitter:title" content={`${attributes.title} | Case Study`} />
           <meta name="twitter:description" content={attributes.description} />
           <meta
             name="twitter:image"
@@ -184,7 +184,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             link: '',
           }))}
           projectSocialIcons={socialShareButtons(
-            `${attributes.apiBaseUrl}/case-studies/${attributes.slug}`,
+            `${process.env.BASE_URL}/case-studies/${attributes.slug}`,
           )}
           isDarkTheme={Settings.DarkThemeAvailable}
         />
