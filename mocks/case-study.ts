@@ -26,7 +26,7 @@ const caseStudy1: CaseStudy = {
     { name: 'Code review', link: '' },
   ],
   results: [],
-  /* feedback: {
+  feedback: {
     text: 'The latest version of the portal looks great and works great. Awesome job',
     name: 'Gene Foo',
     image: {
@@ -39,7 +39,7 @@ const caseStudy1: CaseStudy = {
     companyName: 'TIN',
     companyLinkHref: 'https://www.tin.info',
     linkedInLink: 'https://www.linkedin.com/in/gene-foo-38520239',
-  }, */
+  },
   resultInfo: [
     { name: '$12M', text: 'Funding raised' },
     { name: '120K', text: 'Active user' },
@@ -248,7 +248,7 @@ const caseStudy2: CaseStudy = {
     'Developed a set of reusable components that started using in both applications',
     'We had tons of fun and challenges, and enormous support from the client side',
   ],
-  /* feedback: {
+  feedback: {
     text: "Vitalii and Varbintech are amazing software developers. Vitalii was hired to help us with one layer of one of our products. Over a year of fantastic collaboration, Vitalii helped us grow the team by 5 people contributing to all aspects of 3 products that our company has. Entire Varbintech is very professional, people are very friendly, yet approachable. They have strong technical skills, quality oriented mindset and communicate fluently and directly. It's been absolute pleasure to work with them. They helped make our products better and teams stronger. Thanks!",
     name: 'Filip Rogaczewski',
     image: {
@@ -261,7 +261,7 @@ const caseStudy2: CaseStudy = {
     companyName: 'Digital Toucan',
     companyLinkHref: 'https://digitaltoucan.com',
     linkedInLink: 'https://www.linkedin.com/in/filiprogaczewski',
-  }, */
+  },
   resultInfo: [
     { name: '$12M', text: 'Funding raised' },
     { name: '120K', text: 'Active user' },

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import type { CaseStudy } from '../../models';
 
-/* import Feedback from '../common/feedback/Feedback'; */
+import Feedback from '../common/feedback/Feedback';
 import ChipGroup from '../common/chip/ChipGroup';
 import ButtonLink from '../common/buttons/ButtonLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
@@ -36,6 +36,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
     projectTags,
     results,
     id,
+    feedback,
   } = data;
 
   return (
@@ -103,12 +104,11 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
               </>
             ) : null}
 
-            {/* @TODO Uncomment after Headless CMS */}
             {id ? <ButtonLink href={`/case-studies/${id}`}>View full case study</ButtonLink> : null}
           </TextContainer>
         </Stack>
 
-        {/* <Feedback {...feedback} /> */}
+        {feedback ? <Feedback {...feedback} /> : null}
       </Container>
     </PageContainer>
   );
