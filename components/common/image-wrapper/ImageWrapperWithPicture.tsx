@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import type { HeroImageAttribute } from '../../../models';
 
 import { ImageContainer } from './styled-components';
@@ -20,24 +18,10 @@ interface ImageWrapperWithPictureComponentProps {
   smallSize?: boolean;
 }
 
-// Pixel GIF code adapted from https://stackoverflow.com/a/33919020/266535
-const keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-// https://github.com/vercel/next.js/blob/canary/examples/image-component/app/color/page.tsx
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
-
 const ImageWrapperWithPictureComponent = (props: ImageWrapperWithPictureComponentProps) => {
   const {
     images,
+    mainImage,
     largeWithBorder,
     mediumSize,
     mediumSizeColumn,
@@ -55,18 +39,17 @@ const ImageWrapperWithPictureComponent = (props: ImageWrapperWithPictureComponen
     <ImageContainer
       className={`${small} ${medium} ${mediumColumn} ${mediumAloneColumn} ${largeBorder}`}
     >
-      <div className="inner-wrapper">
-        <Image
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={rgbDataURL(194, 194, 194)}
-          alt={images[0].attributes.alternativeText}
-          src={images[0].attributes.url}
-          width={images[0].attributes.width}
-          height={images[0].attributes.height}
-        />
-      </div>
+      <picture className="inner-wrapper">
+        {images.map((image, index) => (
+          <source
+            key={`${image.id}-${index}`}
+            media={`(min-width: ${image.attributes.width}px)`}
+            srcSet={image.attributes.url}
+          />
+        ))}
+
+        <img src={mainImage.attributes.url} alt={mainImage.attributes.alternativeText} />
+      </picture>
     </ImageContainer>
   );
 };

@@ -53,7 +53,6 @@ const Feedback = (props: FeedbackProps) => {
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
           {image ? (
             <Image
-              unoptimized
               alt={image.alt || `${name} photo`}
               src={useAssets ? assets[image.name] : image.src}
               width={image.width}

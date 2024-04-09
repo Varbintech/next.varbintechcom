@@ -66,7 +66,6 @@ const HeroDetails = (props: HeroDetailsProps) => {
               <Avatar sx={{ width: 50, height: 50 }}>
                 {postAuthorPhoto ? (
                   <Image
-                    unoptimized
                     alt={`${postAuthor} photo`}
                     src={postAuthorPhoto.src}
                     width={postAuthorPhoto.width}

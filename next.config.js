@@ -22,15 +22,7 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     swcMinify: true,
     images: {
       minimumCacheTTL: 60,
-      /* unoptimized: true, */
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: '**',
-          port: '',
-          pathname: '**',
-        },
-      ],
+      unoptimized: true,
     },
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
     sentry: {
