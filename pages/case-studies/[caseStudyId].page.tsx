@@ -117,7 +117,7 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
           technologies: technologiesGrouped,
           // https://developers.cloudflare.com/pages/configuration/build-configuration/#environment-variables
           baseUrl:
-            process.env.NODE_ENV === 'development'
+            process.env.CF_PAGES_BRANCH !== 'main'
               ? String(process.env.CF_PAGES_URL)
               : String(process.env.WEBSITE_URL),
           apiBaseUrl: process.env.API_BASE_URL || '',
