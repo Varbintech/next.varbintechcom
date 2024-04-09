@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 
 import MuiLink from '../link/Link';
 import { TextColumnListStyled, TextColumnListItem } from '../text-column/TextColumn';
-import {} from './TypographyExample';
 
 import ReactMarkdown from 'react-markdown';
 
