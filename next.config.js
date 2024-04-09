@@ -26,8 +26,9 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: `${process.env.API_BASE_URL}/**`,
+          hostname: '**',
           port: '',
+          pathname: '**',
         },
       ],
     },
