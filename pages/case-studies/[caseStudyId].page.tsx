@@ -103,14 +103,13 @@ export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = as
               id: item.id,
               attributes: {
                 ...item.attributes,
-                url: `${process.env.API_BASE_URL}${item.attributes.url}`,
               },
             })),
             mainImage: {
               id: mainImage.id,
               attributes: {
                 ...mainImage.attributes,
-                url: `${process.env.API_BASE_URL}${mainImage.attributes.url}`,
+                url: mainImage.attributes.url,
               },
             },
           },
@@ -142,19 +141,13 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           {/* General */}
           <meta name="description" content={attributes.description} />
           <meta name="keywords" content={attributes.keywords} />
-          <meta
-            name="image"
-            content={`${attributes.apiBaseUrl}${attributes.metaImage.data.attributes.url}`}
-          />
+          <meta name="image" content={attributes.metaImage.data.attributes.url} />
           <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
 
           {/* Google / Search Engine Tags */}
           <meta itemProp="name" content={`${attributes.title} | Case Study`} />
           <meta itemProp="description" content={attributes.description} />
-          <meta
-            itemProp="image"
-            content={`${attributes.apiBaseUrl}${attributes.metaImage.data.attributes.url}`}
-          />
+          <meta itemProp="image" content={attributes.metaImage.data.attributes.url} />
 
           {/* Open Graph */}
           <meta property="og:site_name" content={MetaData.IndexAuthor} />
@@ -165,10 +158,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             content={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
           />
           <meta property="og:type" content="article" />
-          <meta
-            property="og:image"
-            content={`${attributes.apiBaseUrl}${attributes.metaImage.data.attributes.url}`}
-          />
+          <meta property="og:image" content={attributes.metaImage.data.attributes.url} />
           <meta property="og:image:type" content={MetaData.ImageType} />
           <meta
             property="og:image:alt"
@@ -179,10 +169,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={`${attributes.title} | Case Study`} />
           <meta name="twitter:description" content={attributes.description} />
-          <meta
-            name="twitter:image"
-            content={`${attributes.apiBaseUrl}${attributes.metaImage.data.attributes.url}`}
-          />
+          <meta name="twitter:image" content={attributes.metaImage.data.attributes.url} />
           <title>{`${attributes.title} | Case Study`}</title>
         </Head>
 
