@@ -3,8 +3,13 @@ import { storiesOf } from '@storybook/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
+import type { CaseStudyStaticProps } from '../../models';
+
 import CaseStudiesPage from '../../pages/case-studies/index.page-wip';
-import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page-wip';
+import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page';
+
+// @TODO: Fix this
+const caseStudy = {} as CaseStudyStaticProps;
 
 const mockRouter = {
   pathname: '/case-studies/[caseStudyId]',
@@ -22,4 +27,4 @@ storiesOf('App/Pages/CaseStudies', module)
     </RouterContext.Provider>
   ))
   .add('Index', () => <CaseStudiesPage />)
-  .add('Details', () => <CaseStudyDetailPage />);
+  .add('Details', () => <CaseStudyDetailPage data={caseStudy} />);

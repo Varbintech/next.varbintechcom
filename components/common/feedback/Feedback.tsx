@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 
 import Image, { type StaticImageData } from 'next/image';
 
@@ -19,6 +19,7 @@ const assets: Record<string, StaticImageData> = {
 
 import {
   FeedbackContainer,
+  FeedbackContainer2 as FeedbackContainer2Styled,
   QuoterTypography,
   AvatarContainer,
   QuoteIconLeft,
@@ -26,10 +27,19 @@ import {
   LinkContainer,
 } from './styled-components';
 
-type FeedbackProps = ProjectFeedback;
+type FeedbackProps = ProjectFeedback & { useAssets?: boolean };
 
-const Feedback: FC<FeedbackProps> = props => {
-  const { text, name, image, company, linkedInLink, companyName, companyLinkHref } = props;
+interface FeedbackContainer2Props {
+  children: ReactNode;
+}
+
+export const FeedbackContainer2 = ({ children }: FeedbackContainer2Props) => (
+  <FeedbackContainer2Styled>{children}</FeedbackContainer2Styled>
+);
+
+const Feedback = (props: FeedbackProps) => {
+  const { text, name, image, company, linkedInLink, companyName, companyLinkHref, useAssets } =
+    props;
 
   return (
     <FeedbackContainer>
@@ -41,7 +51,14 @@ const Feedback: FC<FeedbackProps> = props => {
 
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <AvatarContainer sx={{ width: { xs: 40, md: 66 }, height: { xs: 40, md: 66 } }}>
-          {image ? <Image alt={`${name} photo`} src={assets[image.name]} /> : null}
+          {image ? (
+            <Image
+              alt={image.alt || `${name} photo`}
+              src={useAssets ? assets[image.name] : image.src}
+              width={image.width}
+              height={image.height}
+            />
+          ) : null}
         </AvatarContainer>
 
         <div>
@@ -59,7 +76,7 @@ const Feedback: FC<FeedbackProps> = props => {
           </Typography>
 
           <Typography variant="overline">
-            {company}&nbsp;
+            {company ? `${company} ` : ''}
             {companyName && (
               <Link
                 href={companyLinkHref}

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
+import UpdateLabel from '../common/update-label/UpdateLabel';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
 import Button from '../common/buttons/Button';
 import BoxIcon from '../common/icon-box/BoxIcon';
@@ -61,13 +62,18 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
           <TriangleIcon />
         </TriangleIconContainer>
         {/* @TODO Move to a separate component */}
-        {/* {!small ? ( <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
-          <UpdateLabel>Update</UpdateLabel>
-          Data export & import, relations reordering, audit logs{' '}
-          <Link href="#s" variant="caption">
-            More v4.4 updates
-          </Link>
-        </Typography> ) : null}*/}
+        {!small ? (
+          <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
+            <UpdateLabel className="gradient-border">Update</UpdateLabel>
+            We posted a new case study.&nbsp;
+            <Link
+              href="/case-studies/better-product-management-with-okr-for-jira-extension"
+              variant="caption"
+            >
+              Enjoy the reading here
+            </Link>
+          </Typography>
+        ) : null}
         <TitleTypography variant="h1" align="center">
           {title}
         </TitleTypography>
@@ -96,7 +102,7 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
               sx={{ marginBottom: { xs: '100px', md: '58px' } }}
             >
               <Button id="reserveASpot" href={Settings.CalendlyLink} onClick={handleButtonClick}>
-                Reserve a spot
+                Book a call
               </Button>
 
               <Button
@@ -105,7 +111,7 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
                 href="#customServices"
                 onClick={handleButtonClick}
               >
-                Let&apos;s discuss
+                Custom services
               </Button>
             </Stack>
 

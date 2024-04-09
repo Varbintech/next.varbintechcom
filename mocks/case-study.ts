@@ -1,7 +1,7 @@
 import type { CaseStudy } from '../models';
 
 const caseStudy1: CaseStudy = {
-  id: 0,
+  id: '',
   projectImage: {
     src: '/TIN-project.webp',
     name: 'tinProject',
@@ -215,7 +215,7 @@ const caseStudy1: CaseStudy = {
 };
 
 const caseStudy2: CaseStudy = {
-  id: 1,
+  id: 'better-product-management-with-okr-for-jira-extension',
   projectImage: {
     src: '/DT-OKR-for-Jira.webp',
     name: 'dtOkrForJiraProject',
@@ -379,4 +379,4 @@ const caseStudy2: CaseStudy = {
   ],
 };
 
-export const caseStudies: Array<CaseStudy> = [caseStudy1, caseStudy2];
+export const caseStudies: Array<CaseStudy> = [caseStudy2, caseStudy1];

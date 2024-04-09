@@ -14,6 +14,18 @@ export const FeedbackContainer = styled('div')(({ theme }) => ({
   },
 }));
 
+export const FeedbackContainer2 = styled('div')(({ theme }) => ({
+  margin: '0 0 42px',
+  padding: '0 0 42px',
+  borderBottom: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+
+  [theme.breakpoints.up('lg')]: {
+    margin: '0 0 72px',
+    padding: '0 0 72px',
+    backgroundColor: theme.palette.primary.light,
+  },
+}));
+
 export const QuoterTypography = styled(Typography)`
   position: relative;
   margin: 0 auto 35px;

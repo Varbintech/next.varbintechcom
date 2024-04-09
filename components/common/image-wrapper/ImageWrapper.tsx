@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
 import type { ProjectImage } from '../../../models';
 
 import { ImageContainer } from './styled-components';
@@ -13,7 +11,7 @@ interface ImageWrapperComponentProps {
   smallSize?: boolean;
 }
 
-const ImageWrapperComponent: FC<ImageWrapperComponentProps> = props => {
+const ImageWrapperComponent = (props: ImageWrapperComponentProps) => {
   const { data, largeWithBorder, mediumSize, mediumSizeColumn, mediumSizeAloneColumn, smallSize } =
     props;
 
@@ -22,6 +20,9 @@ const ImageWrapperComponent: FC<ImageWrapperComponentProps> = props => {
   const mediumAloneColumn = mediumSizeAloneColumn ? 'medium-size-alone-column' : '';
   const mediumColumn = mediumSizeColumn ? 'medium-size-column' : '';
   const largeBorder = largeWithBorder ? 'large-with-border' : '';
+
+  const widthHeightProps =
+    data.width && data.height ? { width: data.width, height: data.height } : {};
 
   return (
     <ImageContainer
@@ -34,8 +35,7 @@ const ImageWrapperComponent: FC<ImageWrapperComponentProps> = props => {
           sizes={data.sizes}
           srcSet={data.srcSet}
           alt={data.name}
-          width={data.width}
-          height={data.height}
+          {...widthHeightProps}
         />
       </span>
     </ImageContainer>

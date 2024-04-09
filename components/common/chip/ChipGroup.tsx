@@ -25,6 +25,7 @@ const ChipGroup: FC<ChipGroupProps> = ({ data }) => {
             key={tagIndex}
             label={tag.name}
             sx={{ margin: '0 8px 8px 0' }}
+            clickable={Boolean(tag.link)}
           />
         );
       })}

@@ -11,7 +11,7 @@ export const socialShareButtons = (pageLink: string) => {
     {
       id: 1,
       socialTitle: 'LinkedIn',
-      socialLink: `https://linkedin.com/shareArticle?url=${pageLink}`,
+      socialLink: `https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}`,
       socialIcon: 'linkedInIcon',
       socialBorderRadius: '2px',
       socialAriaLabel: 'Share on LinkedIn',
