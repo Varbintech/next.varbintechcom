@@ -240,7 +240,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                       text={attributes.quotes.data[0].attributes.content}
                       name={attributes.quotes.data[0].attributes.author}
                       image={{
-                        src: `${attributes.apiBaseUrl}${feedbackPhoto.url}`,
+                        src: feedbackPhoto.url,
                         width: feedbackPhoto.width,
                         height: feedbackPhoto.height,
                         name: '',
