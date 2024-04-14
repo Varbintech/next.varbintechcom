@@ -53,7 +53,10 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
         <Head>
           {/* General */}
           <meta name="description" content={attributes.description} />
-          <meta name="keywords" content={attributes.keywords} />
+          <meta
+            name="keywords"
+            content="product management, jira okr, jira atlassian, front-end development, backend development, remote team"
+          />
           <meta name="image" content={attributes.metaImage.data.attributes.url} />
           <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
 
