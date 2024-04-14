@@ -331,7 +331,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             alignItems="center"
           >
             <Typography variant="subtitle1">Don&apos;t miss your chance:</Typography>
-            <Button variant="outlined" href={Settings.CalendlyLink} size="large">
+            <Button variant="outlined" href={Settings.CalendlyLink} size="large" target="_blank">
               Book a call
             </Button>
           </Stack>

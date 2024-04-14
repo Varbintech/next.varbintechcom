@@ -25,7 +25,7 @@ export const MarkdownLink = ({
   ...restProps
 }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <MuiLink {...restProps} underline="always">
+    <MuiLink {...restProps} underline="always" target="_blank">
       {children}
     </MuiLink>
   );
