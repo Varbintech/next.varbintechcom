@@ -19,7 +19,12 @@ function addCaseStudy(caseStudy) {
 
 function addPage(page) {
   const path = page.replace('pages', '').replace(/(.page.tsx|.page.ts)/, '');
-  const route = path === '/index' ? '' : path;
+  let route = path === '/index' ? '' : path;
+
+  // for pages router that ends with {directory-name}/index.page.tsx
+  if (route.endsWith('/index')) {
+    route = route.replace('/index', '');
+  }
 
   return `<url>
     <loc>${`${process.env.WEBSITE_URL}${route}`}</loc>

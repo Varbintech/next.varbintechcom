@@ -2,10 +2,14 @@ import NextHead from 'next/head';
 
 import { MetaData } from '../../constants/meta';
 
-const HeadIndex = () => {
+interface HeadIndexProps {
+  title?: string;
+}
+
+const HeadIndex = ({ title = MetaData.Title }: HeadIndexProps) => {
   return (
     <NextHead>
-      <title>{MetaData.Title}</title>
+      <title>{title}</title>
       {/* General */}
       <meta name="description" content={MetaData.Description} />
       <meta name="keywords" content={MetaData.IndexKeywords} />

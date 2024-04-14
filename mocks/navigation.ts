@@ -9,7 +9,7 @@ export const navigationRoutes: Array<NavigationRoute> = [
     linkId: 'caseStudiesLink',
   },
   { id: 1, text: 'Services', href: '', scrollTo: '/#services', linkId: 'servicesLink' },
-  { id: 2, text: 'Pricing', href: '', scrollTo: '/#pricing', linkId: 'pricingLink' },
+  { id: 2, text: 'Pricing', href: '/pricing', scrollTo: '', linkId: 'pricingLink' },
   {
     id: 3,
     text: 'Blog',
