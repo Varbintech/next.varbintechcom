@@ -42,6 +42,7 @@ const BlogDetailPage = () => {
           postAuthorPhoto={data.blogAuthorPhoto}
           postBgImage={data.blogImage.src}
           isDarkTheme={Settings.DarkThemeAvailable}
+          services=""
         />
 
         <Container maxWidth="lg" sx={{ marginTop: { md: '64px' }, marginBottom: { md: '64px' } }}>
