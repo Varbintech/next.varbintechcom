@@ -29,6 +29,12 @@ export type {
   CaseStudy as CaseStudyStrapi,
   ResponseData,
   CaseStudyStaticProps,
-  Result,
   HeroImageAttribute,
+  HeroImage,
+  Collection,
+  Technologies,
+  Industries,
+  TechnologyField,
+  Technology,
+  Section,
 } from './strapi.model';

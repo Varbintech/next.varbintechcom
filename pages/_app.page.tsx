@@ -74,7 +74,7 @@ export default function MyApp(props: MyAppProps, err: MyAppError) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
 
-          <Layout>
+          <Layout className={pageProps.className}>
             <Component {...pageProps} err={err} />
           </Layout>
         </ThemeProvider>

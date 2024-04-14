@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic';
+import type { ReactNode } from 'react';
+
+import { styled } from '@mui/material/styles';
 
 import useLocalStorageState from 'use-local-storage-state';
 
 import { useClientOnlyRef } from '../../hooks/use-client-only-ref';
-
-import type { ReactChildren } from '../../models/common';
 
 import Head from '../head/Head';
 import Navigation from '../../components/common/navigation/Navigation';
@@ -18,7 +19,18 @@ const DynamicCookiePopup = dynamic(
   () => import('../../components/common/cookie-popup/CookiePopup'),
 );
 
-function Layout({ children }: ReactChildren) {
+const MainStyled = styled('main')`
+  &.overflow-hidden {
+    overflow: hidden;
+  }
+`;
+
+interface LayoutProps {
+  children: ReactNode;
+  className?: string;
+}
+
+function Layout({ children, className }: LayoutProps) {
   const [acceptsCookies, setAcceptsCookies] = useLocalStorageState('varbintech-accepts-cookies', {
     defaultValue: false,
   });
@@ -38,11 +50,11 @@ function Layout({ children }: ReactChildren) {
         <DynamicCookiePopup anchorEl={container} onConfirm={handleClick} />
       ) : null}
 
-      <main>
+      <MainStyled className={className}>
         {children}
 
         <Contact data={socialIcons} />
-      </main>
+      </MainStyled>
 
       <Footer data={footerData} />
     </div>
