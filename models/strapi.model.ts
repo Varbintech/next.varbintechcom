@@ -1,13 +1,15 @@
+import type { SocialIcon } from './social-icons.model';
+
 type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-interface TechnologyAttribute {
+interface NameDescriptionAttribute {
   name: string;
   description: string;
 }
 
-interface IndustryAttribute {
-  name: string;
-  description: string;
+export interface Collection<T = NameDescriptionAttribute> {
+  id: number;
+  attributes: T;
 }
 
 interface Image {
@@ -48,12 +50,7 @@ interface Quote {
   companyLink: string;
 }
 
-export interface Result {
-  name: string;
-  description: string;
-}
-
-interface Section {
+export interface Section {
   name: string;
   description: string;
   headingLevel: HeadingLevel;
@@ -61,6 +58,30 @@ interface Section {
   showTitle?: boolean;
   showFeedback?: boolean;
   showTechStack?: boolean;
+  showResults?: boolean;
+}
+
+export interface HeroImage {
+  id: number;
+  attributes: HeroImageAttribute;
+}
+
+export interface TechnologyField {
+  data: Collection;
+}
+
+export type Technology = Collection<
+  NameDescriptionAttribute & {
+    technologyField: TechnologyField;
+  }
+>;
+
+export interface Technologies {
+  data: Array<Technology>;
+}
+
+export interface Industries {
+  data: Array<Collection>;
 }
 
 export interface CaseStudy {
@@ -72,33 +93,10 @@ export interface CaseStudy {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    technologies: {
-      data: Array<{
-        id: number;
-        attributes: TechnologyAttribute & {
-          technologyField: {
-            data: {
-              id: number;
-              attributes: {
-                name: string;
-                description: string | null;
-              };
-            };
-          };
-        };
-      }>;
-    };
-    industries: {
-      data: Array<{
-        id: number;
-        attributes: IndustryAttribute;
-      }>;
-    };
+    technologies: Technologies;
+    industries: Industries;
     heroImage: {
-      data: Array<{
-        id: number;
-        attributes: HeroImageAttribute;
-      }>;
+      data: Array<HeroImage>;
     };
     metaImage: {
       data: {
@@ -119,10 +117,7 @@ export interface CaseStudy {
       }>;
     };
     results: {
-      data: Array<{
-        id: number;
-        attributes: Result;
-      }>;
+      data: Array<Collection>;
     };
   };
 }
@@ -136,29 +131,15 @@ export interface CaseStudyStaticProps {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    technologies: Array<
-      [
-        string,
-        Array<{
-          id: number;
-          attributes: TechnologyAttribute;
-        }>,
-      ]
-    >;
+    technologies: Array<[string, Array<Collection>]>;
     industries: {
-      data: Array<{
-        id: number;
-        attributes: IndustryAttribute;
-      }>;
+      data: Array<Collection>;
     };
     heroImage: {
-      images: Array<{
-        id: number;
-        attributes: HeroImageAttribute;
-      }>;
+      images: Array<HeroImage>;
       mainImage: {
         id: number;
-        attributes: HeroImageAttribute;
+        attributes: MetaImage;
       };
     };
     metaImage: {
@@ -174,20 +155,17 @@ export interface CaseStudyStaticProps {
       }>;
     };
     sections: {
-      data: Array<{
-        id: number;
-        attributes: Section;
-      }>;
+      data: Array<Collection<Section>>;
     };
     results: {
-      data: Array<{
-        id: number;
-        attributes: Result;
-      }>;
+      data: Array<Collection>;
     };
+    services: string;
     baseUrl: string;
     apiBaseUrl: string;
     keywords: string;
+    socialShareButtons: Array<SocialIcon>;
+    className?: string;
   };
 }
 

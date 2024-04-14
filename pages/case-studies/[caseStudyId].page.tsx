@@ -8,12 +8,12 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import { fetchCaseStudies, fetchCaseStudyBySlug } from '../../utils/api';
+import { getStaticPathsCaseStudy, getStaticPropsCaseStudy } from '../../utils/api.case-study';
 
 import { Settings } from '../../constants/settings';
 import { MetaData } from '../../constants/meta';
 
-import type { CaseStudyStrapi, CaseStudyStaticProps } from '../../models';
+import type { CaseStudyStaticProps } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
 import Button from '../../components/common/buttons/Button';
@@ -27,8 +27,6 @@ import {
 } from '../../components/common/typography/Markdown';
 import Result from '../../components/common/result/Result';
 import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/Feedback';
-/* import ImagesColumn from '../../components/common/images-column/ImagesColumn';
-import CaseStudyNextItem from '../../components/case-studies/CaseStudyNextItem'; */
 
 const ImageWrapperWithPictureDynamic = dynamic(
   () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
@@ -37,95 +35,10 @@ const ImageWrapperWithPictureDynamic = dynamic(
   },
 );
 
-import { socialShareButtons } from '../../constants/social-share-buttons';
+export const getStaticPaths = async () => await getStaticPathsCaseStudy();
 
-export const getStaticPaths = async () => {
-  const caseStudies = await fetchCaseStudies();
-
-  const paths = caseStudies.data.map((item: CaseStudyStrapi) => ({
-    params: {
-      caseStudyId: item.attributes.slug,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = async ({
-  params,
-}) => {
-  const json = await fetchCaseStudyBySlug(String(params?.caseStudyId));
-
-  // order images by width
-  json.data[0].attributes.heroImage.data.sort((a, b) => b.attributes.width - a.attributes.width);
-
-  const mainImage =
-    json.data[0].attributes.heroImage.data[json.data[0].attributes.heroImage.data.length - 1];
-
-  // @TODO: add special field to DB for keywords
-  const keywords = json.data[0].attributes.technologies.data.reduce(
-    (acc, item) => `${acc ? acc + ', ' : ''}${item.attributes.name}`,
-    '',
-  );
-  const keywords2 = json.data[0].attributes.industries.data.reduce(
-    (acc, item) => `${acc ? acc + ', ' : ''}${item.attributes.name}`,
-    '',
-  );
-  const technologiesGroupedByTechnologyField = json.data[0].attributes.technologies.data.reduce(
-    (acc: Record<string, Array<any>>, item) => {
-      const technologyField = item.attributes.technologyField.data?.attributes.name || '';
-
-      if (technologyField && !acc[technologyField]) {
-        acc[technologyField] = [];
-      }
-
-      if (technologyField) {
-        acc[technologyField].push(item);
-      }
-
-      return acc;
-    },
-    {},
-  );
-  const technologiesGrouped = Object.entries(technologiesGroupedByTechnologyField);
-
-  return {
-    props: {
-      data: {
-        ...json.data[0],
-        attributes: {
-          ...json.data[0].attributes,
-          heroImage: {
-            images: json.data[0].attributes.heroImage.data.map(item => ({
-              id: item.id,
-              attributes: {
-                ...item.attributes,
-              },
-            })),
-            mainImage: {
-              id: mainImage.id,
-              attributes: {
-                ...mainImage.attributes,
-                url: mainImage.attributes.url,
-              },
-            },
-          },
-          technologies: technologiesGrouped,
-          // https://developers.cloudflare.com/pages/configuration/build-configuration/#environment-variables
-          baseUrl:
-            process.env.CF_PAGES_BRANCH !== 'main'
-              ? String(process.env.CF_PAGES_URL)
-              : String(process.env.WEBSITE_URL),
-          apiBaseUrl: process.env.API_BASE_URL || '',
-          keywords: `${keywords}, ${keywords2}`,
-        },
-      },
-    },
-  };
-};
+export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = async ({ params }) =>
+  await getStaticPropsCaseStudy({ params });
 
 const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
   const {
@@ -140,7 +53,10 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
         <Head>
           {/* General */}
           <meta name="description" content={attributes.description} />
-          <meta name="keywords" content={attributes.keywords} />
+          <meta
+            name="keywords"
+            content="product management, jira okr, jira atlassian, front-end development, backend development, remote team"
+          />
           <meta name="image" content={attributes.metaImage.data.attributes.url} />
           <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
 
@@ -176,14 +92,13 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
         <HeroDetails
           centered
           bgColored
+          services={attributes.services}
           title={attributes.title}
           projectTags={attributes.industries.data.map(item => ({
             name: item.attributes.name,
             link: '',
           }))}
-          projectSocialIcons={socialShareButtons(
-            `${attributes.baseUrl}/case-studies/${attributes.slug}`,
-          )}
+          projectSocialIcons={attributes.socialShareButtons}
           isDarkTheme={Settings.DarkThemeAvailable}
         />
 
@@ -329,6 +244,52 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
               );
             }
 
+            if (attr.showResults && attributes.results.data.length > 0) {
+              return (
+                <Stack direction="column" key={`with-results-${id}-${index}`}>
+                  <TextColumnContainer key={`${id}-${index}`}>
+                    <Stack direction="column">
+                      {attr.showTitle ? (
+                        <Typography
+                          variant={attr.headingLevel}
+                          marginBottom={attr.description ? 2 : 0}
+                          style={{ scrollMarginTop: '112px' }}
+                        >
+                          {attr.name}
+                        </Typography>
+                      ) : null}
+
+                      {attr.description ? (
+                        <Stack direction="column" spacing={2} marginBottom={2}>
+                          <MarkdownText
+                            components={{
+                              a: MarkdownLink,
+                              ul: MarkdownList,
+                              li: MarkdownListItem,
+                              p: MarkdownParagraph,
+                            }}
+                          >
+                            {attr.description}
+                          </MarkdownText>
+                        </Stack>
+                      ) : null}
+                    </Stack>
+                  </TextColumnContainer>
+
+                  <Box sx={{ paddingBottom: '40px' }}>
+                    <Result
+                      data={{
+                        resultInfo: attributes.results.data.map(({ attributes }) => ({
+                          name: attributes.name,
+                          text: attributes.description,
+                        })),
+                      }}
+                    />
+                  </Box>
+                </Stack>
+              );
+            }
+
             return (
               <TextColumnContainer key={`${id}-${index}`}>
                 <Stack direction="column">
@@ -373,24 +334,11 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             alignItems="center"
           >
             <Typography variant="subtitle1">Don&apos;t miss your chance:</Typography>
-            <Button variant="outlined" href={Settings.CalendlyLink} size="large">
+            <Button variant="outlined" href={Settings.CalendlyLink} size="large" target="_blank">
               Book a call
             </Button>
           </Stack>
         </Container>
-
-        {attributes.results.data.length > 0 ? (
-          <Box sx={{ paddingBottom: { xs: '64px', lg: '120px' } }}>
-            <Result
-              data={{
-                resultInfo: attributes.results.data.map(item => ({
-                  name: item.attributes.name,
-                  text: item.attributes.description,
-                })),
-              }}
-            />
-          </Box>
-        ) : null}
       </>
     );
   }

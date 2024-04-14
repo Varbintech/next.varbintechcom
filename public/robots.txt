@@ -3,6 +3,7 @@
 # Allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /case-studies/[caseStudyId]/
 
 # Host
 Host: https://varbintech.com

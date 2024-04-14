@@ -17,6 +17,7 @@ interface HeroDetailsProps {
   title: string;
   projectTags: Array<ProjectTag>;
   projectSocialIcons: Array<SocialIcon>;
+  services: string;
   centered?: boolean;
   bgColored?: boolean;
   postAuthor?: string;
@@ -38,6 +39,7 @@ const HeroDetails = (props: HeroDetailsProps) => {
     postAuthorPhoto,
     postBgImage,
     isDarkTheme,
+    services,
   } = props;
 
   return (
@@ -50,6 +52,16 @@ const HeroDetails = (props: HeroDetailsProps) => {
             sx={{ fontSize: { xs: '32px', md: '56px', lineHeight: 1.2 } }}
           >
             {title}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            component="h2"
+            align="center"
+            mb={{ xs: '28px', md: '38px' }}
+            fontSize={{ xs: '18px', md: '28px' }}
+          >
+            Services: {services}
           </Typography>
 
           <Box marginBottom="24px">
