@@ -5,12 +5,12 @@ import type { PlanType } from '../../models/common';
 
 export const PageContainer = styled('div')(({ theme }) => ({
   paddingTop: '56px',
-  paddingBottom: '115px',
+  paddingBottom: '10px',
   backgroundColor: theme.palette.primary.dark,
 
   [theme.breakpoints.up('lg')]: {
     paddingTop: '112px',
-    paddingBottom: '120px',
+    paddingBottom: '90px',
   },
 }));
 
