@@ -86,6 +86,9 @@ export const fetchCaseStudyBySlug = async (
       metaImage: {
         ...populateAllFields,
       },
+      callToAction: {
+        ...populateAllFields,
+      },
     },
     filters: {
       slug: {

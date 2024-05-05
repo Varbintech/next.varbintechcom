@@ -28,6 +28,13 @@ export interface HeroImageAttribute {
   url: string;
 }
 
+export interface CallToAction {
+  title: string;
+  action: string;
+  actionText: string;
+  actionId: string;
+}
+
 interface MetaImage {
   name: string;
   alternativeText: string;
@@ -119,6 +126,9 @@ export interface CaseStudy {
     results: {
       data: Array<Collection>;
     };
+    callToAction: {
+      data: Collection<CallToAction>;
+    };
   };
 }
 
@@ -128,10 +138,8 @@ export interface CaseStudyStaticProps {
     title: string;
     description: string;
     slug: string;
-    createdAt: string;
-    updatedAt: string;
     publishedAt: string;
-    technologies: Array<[string, Array<Collection>]>;
+    technologies: Array<[string, Array<Technology>]>;
     industries: {
       data: Array<Collection>;
     };
@@ -159,6 +167,9 @@ export interface CaseStudyStaticProps {
     };
     results: {
       data: Array<Collection>;
+    };
+    callToAction: {
+      data: Collection<CallToAction>;
     };
     services: string;
     baseUrl: string;

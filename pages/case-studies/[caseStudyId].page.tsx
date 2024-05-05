@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
-import Head from 'next/head';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -11,13 +10,12 @@ import Grid from '@mui/material/Grid';
 import { getStaticPathsCaseStudy, getStaticPropsCaseStudy } from '../../utils/api.case-study';
 
 import { Settings } from '../../constants/settings';
-import { MetaData } from '../../constants/meta';
 
 import type { CaseStudyStaticProps } from '../../models';
 
 import HeroDetails from '../../components/hero/HeroDetails';
-import Button from '../../components/common/buttons/Button';
 import { TextColumnContainer } from '../../components/common/text-column/TextColumn';
+import HeadCaseStudyDetails from '../../components-pages/head/HeadCaseStudyDetails';
 import {
   MarkdownText,
   MarkdownLink,
@@ -30,6 +28,12 @@ import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/F
 
 const ImageWrapperWithPictureDynamic = dynamic(
   () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
+  {
+    loading: () => <p>Loading...</p>,
+  },
+);
+const CallToActionDynamic = dynamic(
+  () => import('../../components-pages/case-study/CallToAction'),
   {
     loading: () => <p>Loading...</p>,
   },
@@ -50,44 +54,15 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
   if (attributes) {
     return (
       <>
-        <Head>
-          {/* General */}
-          <meta name="description" content={attributes.description} />
-          <meta
-            name="keywords"
-            content="product management, jira okr, jira atlassian, front-end development, backend development, remote team"
-          />
-          <meta name="image" content={attributes.metaImage.data.attributes.url} />
-          <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
-
-          {/* Google / Search Engine Tags */}
-          <meta itemProp="name" content={`${attributes.title} | Case Study`} />
-          <meta itemProp="description" content={attributes.description} />
-          <meta itemProp="image" content={attributes.metaImage.data.attributes.url} />
-
-          {/* Open Graph */}
-          <meta property="og:site_name" content={MetaData.IndexAuthor} />
-          <meta property="og:title" content={`${attributes.title} | Case Study`} />
-          <meta property="og:description" content={attributes.description} />
-          <meta
-            property="og:url"
-            content={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
-          />
-          <meta property="og:type" content="article" />
-          <meta property="og:image" content={attributes.metaImage.data.attributes.url} />
-          <meta property="og:image:type" content={MetaData.ImageType} />
-          <meta
-            property="og:image:alt"
-            content={`${MetaData.IndexAuthor} Case Study: ${attributes.title}`}
-          />
-
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={`${attributes.title} | Case Study`} />
-          <meta name="twitter:description" content={attributes.description} />
-          <meta name="twitter:image" content={attributes.metaImage.data.attributes.url} />
-          <title>{`${attributes.title} | Case Study`}</title>
-        </Head>
+        <HeadCaseStudyDetails
+          title={attributes.title}
+          description={attributes.description}
+          keywords="product management, jira okr, jira atlassian, front-end development, backend development, remote team"
+          image={attributes.metaImage.data.attributes.url}
+          imageWidth={attributes.metaImage.data.attributes.width}
+          imageHeight={attributes.metaImage.data.attributes.height}
+          ogUrl={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
+        />
 
         <HeroDetails
           centered
@@ -323,22 +298,9 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           })}
         </Container>
 
-        <Container
-          maxWidth="lg"
-          sx={{ paddingTop: { xs: '64px' }, paddingBottom: { xs: '64px', lg: '120px' } }}
-        >
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={3}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Typography variant="subtitle1">Don&apos;t miss your chance:</Typography>
-            <Button variant="outlined" href={Settings.CalendlyLink} size="large" target="_blank">
-              Book a call
-            </Button>
-          </Stack>
-        </Container>
+        {attributes.callToAction.data ? (
+          <CallToActionDynamic {...attributes.callToAction.data.attributes} />
+        ) : null}
       </>
     );
   }

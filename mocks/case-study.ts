@@ -1,5 +1,8 @@
 import type { CaseStudy } from '../models';
 
+import geneFooPhoto from '../public/genefoo.webp';
+import filipRogaczewskiPhoto from '../public/filiprogaczewski.webp';
+
 const caseStudy1: CaseStudy = {
   id: '',
   projectImage: {
@@ -30,10 +33,11 @@ const caseStudy1: CaseStudy = {
     text: 'The latest version of the portal looks great and works great. Awesome job',
     name: 'Gene Foo',
     image: {
-      src: '/genefoo.webp',
+      src: geneFooPhoto.src,
       name: 'geneFooPhoto',
-      width: 396,
-      height: 396,
+      width: geneFooPhoto.width,
+      height: geneFooPhoto.height,
+      alt: 'Gene Foo photo',
     },
     company: 'Director at',
     companyName: 'TIN',
@@ -252,10 +256,11 @@ const caseStudy2: CaseStudy = {
     text: "Vitalii and Varbintech are amazing software developers. Vitalii was hired to help us with one layer of one of our products. Over a year of fantastic collaboration, Vitalii helped us grow the team by 5 people contributing to all aspects of 3 products that our company has. Entire Varbintech is very professional, people are very friendly, yet approachable. They have strong technical skills, quality oriented mindset and communicate fluently and directly. It's been absolute pleasure to work with them. They helped make our products better and teams stronger. Thanks!",
     name: 'Filip Rogaczewski',
     image: {
-      src: '/filiprogaczewski.webp',
+      src: filipRogaczewskiPhoto.src,
       name: 'filipRogaczewskiPhoto',
-      width: 200,
-      height: 200,
+      width: filipRogaczewskiPhoto.width,
+      height: filipRogaczewskiPhoto.height,
+      alt: 'Filip Rogaczewski photo',
     },
     company: 'Product Director & Co-Founder at',
     companyName: 'Digital Toucan',
