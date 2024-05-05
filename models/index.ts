@@ -37,4 +37,5 @@ export type {
   TechnologyField,
   Technology,
   Section,
+  CallToAction,
 } from './strapi.model';

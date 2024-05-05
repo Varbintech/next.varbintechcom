@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -8,14 +8,6 @@ import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import type { ProjectFeedback } from '../../../models';
-
-import filipRogaczewskiPhoto from '../../../public/filiprogaczewski.webp';
-import geneFooPhoto from '../../../public/genefoo.webp';
-
-const assets: Record<string, StaticImageData> = {
-  filipRogaczewskiPhoto,
-  geneFooPhoto,
-};
 
 import {
   FeedbackContainer,
@@ -27,7 +19,7 @@ import {
   LinkContainer,
 } from './styled-components';
 
-type FeedbackProps = ProjectFeedback & { useAssets?: boolean };
+type FeedbackProps = ProjectFeedback;
 
 interface FeedbackContainer2Props {
   children: ReactNode;
@@ -38,8 +30,7 @@ export const FeedbackContainer2 = ({ children }: FeedbackContainer2Props) => (
 );
 
 const Feedback = (props: FeedbackProps) => {
-  const { text, name, image, company, linkedInLink, companyName, companyLinkHref, useAssets } =
-    props;
+  const { text, name, image, company, linkedInLink, companyName, companyLinkHref } = props;
 
   return (
     <FeedbackContainer>
@@ -54,7 +45,7 @@ const Feedback = (props: FeedbackProps) => {
           {image ? (
             <Image
               alt={image.alt || `${name} photo`}
-              src={useAssets ? assets[image.name] : image.src}
+              src={image.src}
               width={image.width}
               height={image.height}
             />

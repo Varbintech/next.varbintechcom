@@ -60,8 +60,8 @@ export interface CaseStudy {
   projectDescription: Array<string>;
   projectTags: Array<ProjectTag>;
   results: Array<string>;
-  feedback?: ProjectFeedback;
   resultInfo: Array<ProjectResultInfo>;
   projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
   projectFullInfo: Array<ProjectFullInfo>;
+  feedback?: ProjectFeedback;
 }

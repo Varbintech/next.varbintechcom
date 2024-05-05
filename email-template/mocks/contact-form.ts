@@ -4,11 +4,11 @@ export const contactFormEmail = {
   textSection: [
     {
       title: 'Name',
-      text: 'Md. Shamsul Alam',
+      text: 'Varbintech Team',
     },
     {
       title: 'Email',
-      text: 'helloshams.me@gmail.com',
+      text: 'contact@varbintech.com',
     },
     {
       title: 'Your request',

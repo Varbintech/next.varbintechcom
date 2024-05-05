@@ -12,8 +12,12 @@ import type { ProjectTextDetails } from '../../../models';
 
 import { ListStyled } from './styled-components';
 
-interface TextColumnProps {
+export interface TextColumnProps {
   data: ProjectTextDetails;
+}
+
+interface TextColumnWithSideTitleProps extends TextColumnProps {
+  titlePosition: 'left' | 'right';
 }
 
 export const TextColumnListStyled = ({
@@ -58,13 +62,53 @@ export const TextColumnContainer = ({ children }: { children: ReactNode }) => (
 const TextColumn: FC<TextColumnProps> = ({ data }) => {
   return (
     <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ marginBottom: 3 }}>
-      {/* {data.name ? (
-        <Box sx={{ minWidth: { md: '25%' } }}>
+      <Stack direction="column">
+        {data.title ? (
+          <Typography
+            variant="h3"
+            marginBottom={2}
+            id={data.href}
+            style={{ scrollMarginTop: '112px' }}
+          >
+            {data.title}
+          </Typography>
+        ) : null}
+
+        {data.textSection.map((item, index) => {
+          return (
+            <Box key={index} marginBottom={4}>
+              {item.subTitle ? (
+                <Typography variant="h3" marginBottom={2}>
+                  {item.subTitle}
+                </Typography>
+              ) : null}
+              {item.text ? <Typography variant="body2">{item.text}</Typography> : null}
+              {item.textList ? <TextColumnList items={item.textList} /> : null}
+            </Box>
+          );
+        })}
+      </Stack>
+    </Stack>
+  );
+};
+
+export const TextColumnWithSideTitle = ({ data, titlePosition }: TextColumnWithSideTitleProps) => {
+  return (
+    <Stack
+      direction={{ xs: 'column', md: titlePosition === 'left' ? 'row' : 'row-reverse' }}
+      spacing={3}
+      sx={{ marginBottom: 3 }}
+    >
+      {data.name ? (
+        <Box
+          sx={{ minWidth: { md: '25%' } }}
+          textAlign={titlePosition === 'left' ? 'left' : 'right'}
+        >
           <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
             {data.name}
           </Typography>
         </Box>
-      ) : null} */}
+      ) : null}
 
       <Stack direction="column">
         {data.title ? (
