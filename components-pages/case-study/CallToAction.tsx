@@ -8,7 +8,7 @@ import Button from '../../components/common/buttons/Button';
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
-const CallToAction = (props: CallToAction) => {
+const CallToActionComponent = (props: CallToAction) => {
   const { title, action, actionText, actionId } = props;
 
   const handleCtaClick = useGenerateEventGa('link');
@@ -42,4 +42,4 @@ const CallToAction = (props: CallToAction) => {
   );
 };
 
-export default CallToAction;
+export default CallToActionComponent;
