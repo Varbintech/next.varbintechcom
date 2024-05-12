@@ -12,7 +12,7 @@ export const MetaData = {
   Image:
     'https://res.cloudinary.com/dlxpwfaic/image/upload/v1683287110/varbintech/OG-general_zaxpjl.jpg',
   ImageCaseStudies:
-    'https://res.cloudinary.com/dlxpwfaic/image/upload/v1715537593/og-case-studies_fhd9ge.jpg',
+    'https://res.cloudinary.com/dlxpwfaic/image/upload/v1715549950/og-case-studies_p0r9xr.jpg',
   ImageAlt: 'Varbintech | High-quality Front-End solutions | Get started',
   ImageAltCaseStudies:
     'Case studies that we feel proud. We help startups and companies of all shapes and sizes to build high-quality Front-End solutions.',
