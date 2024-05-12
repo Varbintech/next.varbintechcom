@@ -7,13 +7,14 @@ interface HeadIndexProps {
   description: string;
   keywords: string;
   image: string;
-  imageWidth: number;
-  imageHeight: number;
   ogUrl: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const HeadCaseStudyDetails = (props: HeadIndexProps) => {
-  const { title, description, keywords, image, imageWidth, imageHeight, ogUrl } = props;
+  const { title, description, keywords, image, imageWidth, imageHeight, ogUrl, imageAlt } = props;
 
   return (
     <NextHead>
@@ -24,39 +25,53 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
 
       {/* Google / Search Engine Tags */}
-      <meta itemProp="name" content={`${title} | Case Study`} />
+      <meta itemProp="name" content={title} />
       <meta itemProp="description" content={description} />
       <meta itemProp="image" content={image} />
       <meta itemProp="author" content={`${MetaData.IndexAuthor} Team`} />
 
       {/* Open Graph */}
       <meta property="og:site_name" content={MetaData.IndexAuthor} />
-      <meta property="og:title" content={`${title} | Case Study`} />
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={ogUrl} />
       <meta property="og:type" content="article" />
       <meta property="og:image" content={image} />
       <meta property="og:image:type" content={MetaData.ImageType} />
-      <meta property="og:image:alt" content={`${MetaData.IndexAuthor} Case Study: ${title}`} />
-      {/* At least 1,200 */}
-      <meta name="og:image:width" content={`${imageWidth}`} />
-      {/* At least 630 */}
-      <meta name="og:image:height" content={`${imageHeight}`} />
+      <meta
+        property="og:image:alt"
+        content={imageAlt || `${MetaData.IndexAuthor} Case Study: ${title}`}
+      />
+      {imageWidth && imageHeight ? (
+        <>
+          {/* At least 1,200 */}
+          <meta name="og:image:width" content={`${imageWidth}`} />
+          {/* At least 630 */}
+          <meta name="og:image:height" content={`${imageHeight}`} />
+        </>
+      ) : null}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${title} | Case Study`} />
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      <meta name="twitter:image:alt" content={`${title} | Case Study`} />
+      <meta
+        name="twitter:image:alt"
+        content={imageAlt || `${MetaData.IndexAuthor} Case Study: ${title}`}
+      />
       <meta name="twitter:site" content={MetaData.Url} />
       <meta name="twitter:creator" content="@varbintech" />
-      {/* At least 1,200 */}
-      <meta name="twitter:image:width" content={`${imageWidth}`} />
-      {/* At least 630 */}
-      <meta name="twitter:image:height" content={`${imageHeight}`} />
+      {imageWidth && imageHeight ? (
+        <>
+          {/* At least 1,200 */}
+          <meta name="og:image:width" content={`${imageWidth}`} />
+          {/* At least 630 */}
+          <meta name="og:image:height" content={`${imageHeight}`} />
+        </>
+      ) : null}
 
-      <title>{`${title} | Case Study`}</title>
+      <title>{title}</title>
     </NextHead>
   );
 };

@@ -44,6 +44,7 @@ function Layout({ children, className }: LayoutProps) {
   return (
     <div id="main-container">
       <Head />
+
       <Navigation />
 
       {!acceptsCookies && container ? (

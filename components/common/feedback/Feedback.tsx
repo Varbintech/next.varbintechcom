@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-import type { ProjectFeedback } from '../../../models';
+import type { ProjectFeedback, Quote } from '../../../models';
 
 import {
   FeedbackContainer,
@@ -24,6 +24,27 @@ type FeedbackProps = ProjectFeedback;
 interface FeedbackContainer2Props {
   children: ReactNode;
 }
+
+type QuotesData = {
+  id: number;
+  attributes: Quote;
+};
+
+export const convertStrapiQuoteToFeedback = ({ attributes }: QuotesData): ProjectFeedback => ({
+  text: attributes.content,
+  name: attributes.author,
+  image: {
+    src: attributes.authorPhoto.data.attributes.url,
+    width: attributes.authorPhoto.data.attributes.width,
+    height: attributes.authorPhoto.data.attributes.height,
+    name: '',
+    alt: attributes.authorPhoto.data.attributes.alternativeText,
+  },
+  company: attributes.authorTitle,
+  companyName: attributes.companyName,
+  linkedInLink: attributes.authorLiLink,
+  companyLinkHref: attributes.companyLink,
+});
 
 export const FeedbackContainer2 = ({ children }: FeedbackContainer2Props) => (
   <FeedbackContainer2Styled>{children}</FeedbackContainer2Styled>

@@ -21,6 +21,9 @@
 *.pem
 *.code-workspace
 
+# storybook
+storybook-static/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

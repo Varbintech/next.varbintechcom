@@ -40,7 +40,7 @@ export const ImageWrapper = styled('span')(({ theme }) => ({
   position: 'relative',
   maxWidth: '586px',
 
-  '.inner-wrapper': {
+  '> .inner-wrapper': {
     overflow: 'hidden',
     borderRadius: '16px',
     border: `8px solid ${alpha(theme.palette.primary.main, 0.1)}`,

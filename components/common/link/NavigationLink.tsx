@@ -1,6 +1,6 @@
 import { type FC, useEffect, useState } from 'react';
 
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 
 import MuiLink, { type LinkProps as MuiLinkProps } from '@mui/material/Link';
@@ -24,7 +24,9 @@ const NavigationLink: FC<NavigationLinkProps> = props => {
       const activePathname = new URL(asPath, location.href).pathname;
 
       const newClassName =
-        (linkPathname === activePathname && !href.startsWith('/#')) || href === location.hash
+        (linkPathname === activePathname && !href.startsWith('/#')) ||
+        href === location.hash ||
+        activePathname.startsWith(href)
           ? 'isActive'
           : '';
 

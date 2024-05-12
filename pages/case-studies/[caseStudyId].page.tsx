@@ -24,7 +24,10 @@ import {
   MarkdownParagraph,
 } from '../../components/common/typography/Markdown';
 import Result from '../../components/common/result/Result';
-import Feedback, { FeedbackContainer2 } from '../../components/common/feedback/Feedback';
+import Feedback, {
+  FeedbackContainer2,
+  convertStrapiQuoteToFeedback,
+} from '../../components/common/feedback/Feedback';
 
 const ImageWrapperWithPictureDynamic = dynamic(
   () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
@@ -49,15 +52,13 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
     data: { attributes },
   } = props;
 
-  const feedbackPhoto = attributes.quotes.data[0].attributes.authorPhoto.data.attributes;
-
   if (attributes) {
     return (
       <>
         <HeadCaseStudyDetails
-          title={attributes.title}
-          description={attributes.description}
-          keywords="product management, jira okr, jira atlassian, front-end development, backend development, remote team"
+          title={`${attributes.title} | Case Study`}
+          description={attributes.descriptionSEO}
+          keywords={attributes.keywords}
           image={attributes.metaImage.data.attributes.url}
           imageWidth={attributes.metaImage.data.attributes.width}
           imageHeight={attributes.metaImage.data.attributes.height}
@@ -126,21 +127,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                   </TextColumnContainer>
 
                   <FeedbackContainer2>
-                    <Feedback
-                      text={attributes.quotes.data[0].attributes.content}
-                      name={attributes.quotes.data[0].attributes.author}
-                      image={{
-                        src: feedbackPhoto.url,
-                        width: feedbackPhoto.width,
-                        height: feedbackPhoto.height,
-                        name: '',
-                        alt: feedbackPhoto.alternativeText,
-                      }}
-                      company={attributes.quotes.data[0].attributes.authorTitle}
-                      companyName={attributes.quotes.data[0].attributes.companyName}
-                      linkedInLink={attributes.quotes.data[0].attributes.authorLiLink}
-                      companyLinkHref={attributes.quotes.data[0].attributes.companyLink}
-                    />
+                    <Feedback {...convertStrapiQuoteToFeedback(attributes.quotes.data[0])} />
                   </FeedbackContainer2>
                 </Stack>
               );
