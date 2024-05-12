@@ -17,6 +17,7 @@ const caseStudy: CaseStudyStaticProps = {
   attributes: {
     title: 'Case Study Title',
     description: 'Case Study Description',
+    descriptionSEO: 'Case Study Description',
     slug: 'case-study-slug',
     publishedAt: '2024-01-01',
     technologies: [
