@@ -8,7 +8,7 @@ import type { CaseStudyStaticProps } from '../../models';
 import heroImage from '../../public/dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_1200.webp';
 import filipRogaczewski from '../../public/filiprogaczewski.webp';
 
-import CaseStudiesPage from '../../pages/case-studies/index.page-wip';
+/* import CaseStudiesPage from '../../pages/case-studies/index.page-wip'; */
 /* import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page'; */
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -135,6 +135,7 @@ const caseStudy: CaseStudyStaticProps = {
           attributes: {
             name: '5',
             description: 'Developers',
+            descriptionLong: 'Developers Long',
           },
         },
         {
@@ -142,6 +143,7 @@ const caseStudy: CaseStudyStaticProps = {
           attributes: {
             name: '3',
             description: 'Projects',
+            descriptionLong: 'Developers Long',
           },
         },
       ],
@@ -189,5 +191,5 @@ storiesOf('App/Pages/CaseStudies', module)
       <Story />
     </RouterContext.Provider>
   ))
-  .add('Index', () => <CaseStudiesPage />)
+  .add('Index', () => <>This page is: WIP</>)
   .add('Details', () => <>This page is: WIP</>);

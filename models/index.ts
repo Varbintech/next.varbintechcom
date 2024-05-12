@@ -38,4 +38,8 @@ export type {
   Technology,
   Section,
   CallToAction,
+  CaseStudyAllData,
+  CaseStudyAllStaticProps,
+  Quote,
+  CaseStudyAllAttributes,
 } from './strapi.model';

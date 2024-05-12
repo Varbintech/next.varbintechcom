@@ -43,7 +43,7 @@ interface MetaImage {
   url: string;
 }
 
-interface Quote {
+export interface Quote {
   content: string;
   author: string;
   authorTitle: string;
@@ -55,6 +55,12 @@ interface Quote {
   };
   companyName: string;
   companyLink: string;
+}
+
+interface Result {
+  name: string;
+  description: string;
+  descriptionLong: string;
 }
 
 export interface Section {
@@ -96,12 +102,14 @@ export interface CaseStudy {
   attributes: {
     title: string;
     description: string;
+    descriptionSEO: string;
     slug: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
     technologies: Technologies;
     industries: Industries;
+    keywords: string;
     heroImage: {
       data: Array<HeroImage>;
     };
@@ -124,7 +132,7 @@ export interface CaseStudy {
       }>;
     };
     results: {
-      data: Array<Collection>;
+      data: Array<Collection<Result>>;
     };
     callToAction: {
       data: Collection<CallToAction>;
@@ -132,52 +140,81 @@ export interface CaseStudy {
   };
 }
 
+interface CaseStudyAttributesCommon {
+  title: string;
+  description: string;
+  descriptionSEO: string;
+  slug: string;
+  publishedAt: string;
+  technologies: Array<[string, Array<Technology>]>;
+  industries: {
+    data: Array<Collection>;
+  };
+  heroImage: {
+    images: Array<HeroImage>;
+    mainImage: {
+      id: number;
+      attributes: MetaImage;
+    };
+  };
+  metaImage: {
+    data: {
+      id: number;
+      attributes: MetaImage;
+    };
+  };
+  quotes: {
+    data: Array<{
+      id: number;
+      attributes: Quote;
+    }>;
+  };
+  sections: {
+    data: Array<Collection<Section>>;
+  };
+  results: {
+    data: Array<Collection<Result>>;
+  };
+  callToAction: {
+    data: Collection<CallToAction>;
+  };
+  services: string;
+  keywords: string;
+}
+
 export interface CaseStudyStaticProps {
   id: number;
-  attributes: {
-    title: string;
-    description: string;
-    slug: string;
-    publishedAt: string;
-    technologies: Array<[string, Array<Technology>]>;
-    industries: {
-      data: Array<Collection>;
-    };
-    heroImage: {
-      images: Array<HeroImage>;
-      mainImage: {
-        id: number;
-        attributes: MetaImage;
-      };
-    };
-    metaImage: {
-      data: {
-        id: number;
-        attributes: MetaImage;
-      };
-    };
-    quotes: {
-      data: Array<{
-        id: number;
-        attributes: Quote;
-      }>;
-    };
-    sections: {
-      data: Array<Collection<Section>>;
-    };
-    results: {
-      data: Array<Collection>;
-    };
-    callToAction: {
-      data: Collection<CallToAction>;
-    };
-    services: string;
+  attributes: CaseStudyAttributesCommon & {
     baseUrl: string;
     apiBaseUrl: string;
-    keywords: string;
     socialShareButtons: Array<SocialIcon>;
     className?: string;
   };
+}
+
+export interface CaseStudyAllAttributes {
+  attributes: CaseStudyAttributesCommon & {
+    tags: Array<{
+      name: string;
+      link: string;
+    }>;
+    resultsWithDescriptionLong: Array<string>;
+  };
+  id: number;
+}
+
+export interface CaseStudyAllData {
+  caseStudies: Array<CaseStudyAllAttributes>;
+  baseUrl: string;
+  apiBaseUrl: string;
+  socialShareButtons: Array<SocialIcon>;
+  lastCaseStudy: CaseStudyAllAttributes;
+  className?: string;
+}
+
+export interface CaseStudyAllStaticProps {
+  data: CaseStudyAllData;
+  className: string;
 }
 
 export interface ResponseData<T> {

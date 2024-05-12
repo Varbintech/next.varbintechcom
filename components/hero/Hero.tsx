@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import UpworkIcon from '../common/icon-upwork/UpworkIcon';
-import UpdateLabel from '../common/update-label/UpdateLabel';
 import ClutchIcon from '../common/icon-clutch/ClutchIcon';
 import Button from '../common/buttons/Button';
 import BoxIcon from '../common/icon-box/BoxIcon';
@@ -15,6 +14,9 @@ import TriangleIcon from '../common/icon-triangle/TriangleIcon';
 import RectangleLeftIcon from '../common/icon-rectangle-left/RectangleLeftIcon';
 import RectangleRightIcon from '../common/icon-rectangle-right/RectangleRightIcon';
 import DTIcon from '../common/icon-dt/DTIcon';
+import SocialIcons from '../common/social-icons/SocialIcons';
+
+import type { SocialIcon } from '../../models';
 
 import { Settings } from '../../constants/settings';
 
@@ -38,9 +40,13 @@ interface HeroProps {
   subtitle?: string;
   small?: boolean;
   plainBg?: boolean;
+  socialIcons?: Array<SocialIcon>;
+  importantUpdateEl?: JSX.Element;
 }
 
-const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
+const Hero = (props: HeroProps) => {
+  const { title, subtitle, small, plainBg, socialIcons, importantUpdateEl } = props;
+
   const classSmallSize = small ? 'page-small' : '';
   const classPlainBg = plainBg ? 'page-plainBg' : '';
 
@@ -61,19 +67,9 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
         <TriangleIconContainer>
           <TriangleIcon />
         </TriangleIconContainer>
-        {/* @TODO Move to a separate component */}
-        {!small ? (
-          <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
-            <UpdateLabel className="gradient-border">Update</UpdateLabel>
-            We posted a new case study.&nbsp;
-            <Link
-              href="/case-studies/better-product-management-with-okr-for-jira-extension"
-              variant="caption"
-            >
-              Enjoy the reading here
-            </Link>
-          </Typography>
-        ) : null}
+
+        {!small ? <>{importantUpdateEl}</> : null}
+
         <TitleTypography variant="h1" align="center">
           {title}
         </TitleTypography>
@@ -91,6 +87,12 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
           >
             {subtitle}
           </Typography>
+        ) : null}
+
+        {socialIcons?.length ? (
+          <Box justifyContent="center" display="flex">
+            <SocialIcons data={socialIcons} />
+          </Box>
         ) : null}
 
         {!small ? (
@@ -142,6 +144,7 @@ const Hero = ({ title, subtitle, small, plainBg }: HeroProps) => {
           </>
         ) : null}
       </ContainerStyled>
+
       {!small ? (
         <FixedBottomContainer>
           <ScrollContainer
