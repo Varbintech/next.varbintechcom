@@ -42,14 +42,10 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
         property="og:image:alt"
         content={imageAlt || `${MetaData.IndexAuthor} Case Study: ${title}`}
       />
-      {imageWidth && imageHeight ? (
-        <>
-          {/* At least 1,200 */}
-          <meta name="og:image:width" content={`${imageWidth}`} />
-          {/* At least 630 */}
-          <meta name="og:image:height" content={`${imageHeight}`} />
-        </>
-      ) : null}
+      {/* At least 1,200 */}
+      <meta name="og:image:width" content={`${imageWidth || 1200}`} />
+      {/* At least 630 */}
+      <meta name="og:image:height" content={`${imageHeight || 630}`} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -62,14 +58,10 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       />
       <meta name="twitter:site" content={MetaData.Url} />
       <meta name="twitter:creator" content="@varbintech" />
-      {imageWidth && imageHeight ? (
-        <>
-          {/* At least 1,200 */}
-          <meta name="og:image:width" content={`${imageWidth}`} />
-          {/* At least 630 */}
-          <meta name="og:image:height" content={`${imageHeight}`} />
-        </>
-      ) : null}
+      {/* At least 1,200 */}
+      <meta name="twitter:image:width" content={`${imageWidth || 1200}`} />
+      {/* At least 630 */}
+      <meta name="twitter:image:height" content={`${imageHeight || 630}`} />
 
       <title>{title}</title>
     </NextHead>
