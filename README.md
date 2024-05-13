@@ -1,3 +1,5 @@
+[![Build and Publish Storybook to GitHub Pages](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy-storybook-github-pages.yml/badge.svg)](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy-storybook-github-pages.yml)
+
 # Intro
 
 The front-end part for Varbintech Team [home page](https://varbintech.com/).
