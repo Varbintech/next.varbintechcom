@@ -37,9 +37,7 @@ interface CaseStudiesAllProps {
 }
 
 const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
-  const handleImageLinkClick = useGenerateEventGa('link');
-  const handleTitleLinkClick = useGenerateEventGa('link');
-  const handleReadFullLinkClick = useGenerateEventGa('link');
+  const handleLinkClick = useGenerateEventGa('link');
 
   return (
     <>
@@ -62,7 +60,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                       href={`/case-studies/${attributes.slug}`}
                       id={`linkCaseStudyImage${parentId ? `-${parentId}-` : '-'}${attributes.slug}`}
                       aria-label={`Link to case study page: ${attributes.title}`}
-                      onClick={handleImageLinkClick}
+                      onClick={handleLinkClick}
                     >
                       <ImageWrapperWithPictureDynamic
                         images={attributes.heroImage.images}
@@ -91,7 +89,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                       sx={{ fontSize: { xs: '24px', lg: '32px' } }}
                       id={`linkCaseStudyTitle${parentId ? `-${parentId}-` : '-'}${attributes.slug}`}
                       aria-label={`Link to case study page: ${attributes.title}`}
-                      onClick={handleTitleLinkClick}
+                      onClick={handleLinkClick}
                     >
                       {attributes.title}
                     </Link>
@@ -135,7 +133,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                       attributes.slug
                     }`}
                     aria-label={`Link to case study page: ${attributes.title}`}
-                    onClick={handleReadFullLinkClick}
+                    onClick={handleLinkClick}
                   >
                     Read full case study
                   </ButtonLink>
