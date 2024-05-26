@@ -1,15 +1,16 @@
 import { alpha, styled } from '@mui/material/styles';
 
-export const PageContainer = styled('div')(({ theme }) => ({
-  padding: '72px 0',
+export const PageContainer = styled('span')(({ theme }) => ({
+  padding: '52px 0',
   backgroundColor: theme.palette.secondary.dark,
+  display: 'block',
 
   '&.lightBackground': {
     backgroundColor: theme.palette.background.paper,
   },
 
   [theme.breakpoints.up('lg')]: {
-    padding: '124px 0',
+    padding: '94px 0',
   },
 }));
 
@@ -17,7 +18,8 @@ export const CaseStudiesContainer = styled('div')`
   position: relative;
 `;
 
-export const ImageContainer = styled('div')`
+export const ImageContainer = styled('span')`
+  display: block;
   width: 100%;
 
   & > div {

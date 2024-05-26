@@ -1,11 +1,16 @@
 import { type MouseEventHandler, useCallback } from 'react';
 
-import { generateEvent } from '../lib/gtag';
+import { generateClickEvent } from '../lib/gtag';
 
 export const useGenerateEventGa = (element: 'button' | 'link') => {
   const handleClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = useCallback(
-    event => {
-      generateEvent(element, event.currentTarget.id);
+    ({ currentTarget }) => {
+      generateClickEvent({
+        eventName: element,
+        id: currentTarget.id,
+        url: currentTarget.getAttribute('href') ?? 'No href attribute found',
+        text: currentTarget.innerText,
+      });
     },
     [element],
   );
