@@ -1,6 +1,6 @@
 import { alpha, styled } from '@mui/material/styles';
 
-export const ImageContainer = styled('div')(({ theme }) => ({
+export const ImageContainer = styled('span')(({ theme }) => ({
   display: 'flex',
 
   '.inner-wrapper': {

@@ -9,7 +9,7 @@ export const useEffectPageView = () => {
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
-      pageview(url);
+      pageview(url, document.title);
     };
 
     router.events.on('routeChangeComplete', handleRouteChange);

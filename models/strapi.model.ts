@@ -194,7 +194,11 @@ export interface CaseStudyStaticProps {
 
 export interface CaseStudyAllAttributes {
   attributes: CaseStudyAttributesCommon & {
-    tags: Array<{
+    servicesAsArray: Array<{
+      name: string;
+      link: string;
+    }>;
+    industriesAsArray: Array<{
       name: string;
       link: string;
     }>;

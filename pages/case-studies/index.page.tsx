@@ -33,11 +33,12 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
         image={MetaData.ImageCaseStudies}
         imageAlt={MetaData.ImageAltCaseStudies}
         ogUrl={`${baseUrl}/case-studies`}
+        ogType={MetaData.IndexType}
       />
 
       <Hero
         small
-        title="Case studies that we feel proud"
+        title="Case Studies that We Feel Proud"
         subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
         solutions."
         socialIcons={socialShareButtons}

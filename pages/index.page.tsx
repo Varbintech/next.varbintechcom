@@ -68,7 +68,7 @@ export default function Home(props: HomeStaticProps) {
         />
 
         <CaseStudiesContainer>
-          <CaseStudiesAllDynamic data={caseStudies} />
+          <CaseStudiesAllDynamic data={caseStudies} parentId="homePage" />
         </CaseStudiesContainer>
 
         <СubeComponent isDarkTheme={Settings.DarkThemeAvailable} />

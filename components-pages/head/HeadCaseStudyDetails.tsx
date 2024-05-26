@@ -8,13 +8,15 @@ interface HeadIndexProps {
   keywords: string;
   image: string;
   ogUrl: string;
+  ogType?: string;
   imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;
 }
 
 const HeadCaseStudyDetails = (props: HeadIndexProps) => {
-  const { title, description, keywords, image, imageWidth, imageHeight, ogUrl, imageAlt } = props;
+  const { title, description, keywords, image, imageWidth, imageHeight, ogUrl, imageAlt, ogType } =
+    props;
 
   return (
     <NextHead>
@@ -23,6 +25,7 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       <meta name="keywords" content={keywords} />
       <meta name="image" content={image} />
       <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
+      <link rel="canonical" href={ogUrl}></link>
 
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={title} />
@@ -35,7 +38,7 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={ogUrl} />
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content={ogType || 'article'} />
       <meta property="og:image" content={image} />
       <meta property="og:image:type" content={MetaData.ImageType} />
       <meta
@@ -62,6 +65,7 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       <meta name="twitter:image:width" content={`${imageWidth || 1200}`} />
       {/* At least 630 */}
       <meta name="twitter:image:height" content={`${imageHeight || 630}`} />
+      <meta property="twitter:domain" content={MetaData.Domain}></meta>
 
       <title>{title}</title>
     </NextHead>

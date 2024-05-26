@@ -45,7 +45,7 @@ const CaseStudyInner: FC<CaseStudyInnerProps> = ({ direction, data }) => {
         <Stack
           direction={{ xs: 'column', md: direction }}
           spacing={{ xs: '35px', lg: '95px' }}
-          marginBottom={{ xs: '48px', lg: '100px' }}
+          marginBottom={{ xs: '48px', lg: '60px' }}
         >
           <ImageContainer>
             <ImageWrapper>
