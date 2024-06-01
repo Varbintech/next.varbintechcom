@@ -22,7 +22,15 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     swcMinify: true,
     images: {
       minimumCacheTTL: 60,
-      unoptimized: true,
+      // unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+          port: '',
+          pathname: '/dlxpwfaic/image/upload/**',
+        },
+      ],
     },
     pageExtensions: ['page.tsx', 'page.ts', 'api.ts', ...pageExtensionsWIP],
     sentry: {
