@@ -14,6 +14,8 @@ import { CaseStudiesContainer } from '../components/case-studies/styled-componen
 
 import { Settings } from '../constants/settings';
 
+import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
+
 import { services } from '../mocks/services';
 
 import type { CaseStudyAllStaticProps, Service } from '../models';
@@ -49,6 +51,8 @@ export default function Home(props: HomeStaticProps) {
     services,
   } = props;
 
+  const handleUpdateLinkClick = useGenerateEventGa('link');
+
   return (
     <>
       <HeadIndex />
@@ -63,6 +67,8 @@ export default function Home(props: HomeStaticProps) {
               text="We posted a new case study "
               linkText="Enjoy the reading here"
               linkUrl={`/case-studies/${lastCaseStudy.attributes.slug}`}
+              id={`caseStudy_${lastCaseStudy.id}`}
+              onGa={handleUpdateLinkClick}
             />
           }
         />

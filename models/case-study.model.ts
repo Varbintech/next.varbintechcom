@@ -25,7 +25,8 @@ export interface ProjectFeedback {
   company: string;
   companyName: string;
   companyLinkHref: string;
-  linkedInLink: string;
+  linkedInLink?: string;
+  websiteLink?: string;
   image?: ProjectImage;
 }
 
@@ -63,5 +64,5 @@ export interface CaseStudy {
   resultInfo: Array<ProjectResultInfo>;
   projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
   projectFullInfo: Array<ProjectFullInfo>;
-  feedback?: ProjectFeedback;
+  feedback: ProjectFeedback;
 }
