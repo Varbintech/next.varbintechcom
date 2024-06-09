@@ -1,9 +1,10 @@
 import type { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import Hero from '../../components/hero/Hero';
 import HeadCaseStudies from '../../components-pages/head/HeadCaseStudyDetails';
 import { CaseStudiesContainer } from '../../components/case-studies/styled-components';
+
+const HeroDynamic = dynamic(() => import('../../components/hero/Hero'));
 const CaseStudiesAllDynamic = dynamic(
   () => import('../../components-pages/case-study/CaseStudiesAll'),
   {
@@ -36,7 +37,7 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
         ogType={MetaData.IndexType}
       />
 
-      <Hero
+      <HeroDynamic
         small
         title="Case Studies that We Feel Proud"
         subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End

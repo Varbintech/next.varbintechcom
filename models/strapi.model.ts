@@ -47,7 +47,8 @@ export interface Quote {
   content: string;
   author: string;
   authorTitle: string;
-  authorLiLink: string;
+  authorLiLink?: string;
+  authorWebsiteLink?: string;
   authorPhoto: {
     data: {
       attributes: Image;

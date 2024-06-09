@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import LanguageIcon from '@mui/icons-material/Language';
 
 import type { ProjectFeedback, Quote } from '../../../models';
 
@@ -42,7 +43,8 @@ export const convertStrapiQuoteToFeedback = ({ attributes }: QuotesData): Projec
   },
   company: attributes.authorTitle,
   companyName: attributes.companyName,
-  linkedInLink: attributes.authorLiLink,
+  linkedInLink: attributes.authorLiLink || '',
+  websiteLink: attributes.authorWebsiteLink || '',
   companyLinkHref: attributes.companyLink,
 });
 
@@ -51,7 +53,8 @@ export const FeedbackContainer2 = ({ children }: FeedbackContainer2Props) => (
 );
 
 const Feedback = (props: FeedbackProps) => {
-  const { text, name, image, company, linkedInLink, companyName, companyLinkHref } = props;
+  const { text, name, image, company, linkedInLink, companyName, companyLinkHref, websiteLink } =
+    props;
 
   return (
     <FeedbackContainer>
@@ -76,15 +79,27 @@ const Feedback = (props: FeedbackProps) => {
         <div>
           <Typography variant="caption" component="div" marginBottom={0.5}>
             {name}&nbsp;
-            <LinkContainer
-              href={linkedInLink}
-              underline="none"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Read more about ${name}`}
-            >
-              <LinkedInIcon sx={{ fontSize: '26px' }} />
-            </LinkContainer>
+            {linkedInLink ? (
+              <LinkContainer
+                href={linkedInLink}
+                underline="none"
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Read more about ${name}`}
+              >
+                <LinkedInIcon sx={{ fontSize: '26px' }} />
+              </LinkContainer>
+            ) : (
+              <LinkContainer
+                href={websiteLink}
+                underline="none"
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Read more about ${name}`}
+              >
+                <LanguageIcon sx={{ fontSize: '26px' }} />
+              </LinkContainer>
+            )}
           </Typography>
 
           <Typography variant="overline">
@@ -93,7 +108,7 @@ const Feedback = (props: FeedbackProps) => {
               <Link
                 href={companyLinkHref}
                 target="_blank"
-                underline={companyLinkHref ? 'hover' : 'none'}
+                underline="always"
                 rel="noreferrer"
                 aria-label={`Read more about ${companyName}`}
               >

@@ -135,8 +135,6 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
     item.attributes.name.toLocaleLowerCase().startsWith('services'),
   )[0];
 
-  console.warn('json.data[0].attributes.heroImage', json.data[0].attributes.heroImage);
-
   return {
     props: {
       data: {

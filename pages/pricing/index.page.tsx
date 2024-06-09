@@ -1,15 +1,33 @@
-import Box from '@mui/material/Box';
+import type { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 
 import HeroPricing from '../../components/hero/HeroPricing';
 import HeadIndex from '../../components-pages/head/HeadIndex';
-import PricingPlan from '../../components/pricing/PricingPlan';
-import { DiscoverInner } from '../../components/discover/Discover';
-
-import { pricingPlan, checkoutSrcList } from '../../mocks/pricing-plan';
 
 import { MetaData } from '../../constants/meta';
 
-export default function PricingPage() {
+const BoxDynamic = dynamic(() => import('@mui/material/Box'));
+
+const PricingPlanDynamic = dynamic(() => import('../../components/pricing/PricingPlan'));
+const DiscoverInnerDynamic = dynamic(() =>
+  import('../../components/discover/Discover').then(mod => mod.DiscoverInner),
+);
+
+export const getStaticProps: GetStaticProps<any> = async () => {
+  const mocks = await import('../../mocks/pricing-plan');
+
+  return {
+    props: {
+      pricingPlan: mocks.pricingPlan,
+      checkoutSrcList: mocks.checkoutSrcList,
+      className: '',
+    },
+  };
+};
+
+export default function PricingPage(props: any) {
+  const { pricingPlan, checkoutSrcList } = props;
+
   return (
     <>
       <HeadIndex title={`Pricing | ${MetaData.IndexAuthor}`} />
@@ -17,11 +35,11 @@ export default function PricingPage() {
       <>
         <HeroPricing centered />
 
-        <PricingPlan data={pricingPlan} checkoutSrcList={checkoutSrcList} />
+        <PricingPlanDynamic data={pricingPlan} checkoutSrcList={checkoutSrcList} />
 
-        <Box my={8}>
-          <DiscoverInner />
-        </Box>
+        <BoxDynamic my={8}>
+          <DiscoverInnerDynamic />
+        </BoxDynamic>
       </>
     </>
   );
