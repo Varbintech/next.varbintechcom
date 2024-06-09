@@ -13,27 +13,22 @@ import BoxIcon from '../common/icon-box/BoxIcon';
 import TriangleIcon from '../common/icon-triangle/TriangleIcon';
 import RectangleLeftIcon from '../common/icon-rectangle-left/RectangleLeftIcon';
 import RectangleRightIcon from '../common/icon-rectangle-right/RectangleRightIcon';
-import DTIcon from '../common/icon-dt/DTIcon';
 import SocialIcons from '../common/social-icons/SocialIcons';
 
 import type { SocialIcon } from '../../models';
 
 import { Settings } from '../../constants/settings';
 
-import tinLogo from '../../public/TIN-logo.webp';
-
 import {
   PageContainer,
   ContainerStyled,
-  FixedBottomContainer,
-  ScrollContainer,
   RectangleLeftIconContainer,
   RectangleRightIconContainer,
   BoxIconContainer,
   TriangleIconContainer,
   TitleTypography,
-  FirstItem,
 } from './styled-components';
+import Logos from './Logos';
 
 interface HeroProps {
   title: string;
@@ -145,22 +140,7 @@ const Hero = (props: HeroProps) => {
         ) : null}
       </ContainerStyled>
 
-      {!small ? (
-        <FixedBottomContainer>
-          <ScrollContainer
-            direction="row"
-            spacing={{
-              xs: 8,
-              sm: 13.75,
-            }}
-          >
-            <FirstItem src={tinLogo} alt="The Intelligent Network logo" width={300} height={60} />
-            <Box sx={{ width: '24px', height: '24px' }}>
-              <DTIcon />
-            </Box>
-          </ScrollContainer>
-        </FixedBottomContainer>
-      ) : null}
+      {!small ? <Logos /> : null}
     </PageContainer>
   );
 };

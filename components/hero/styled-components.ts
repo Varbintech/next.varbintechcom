@@ -1,9 +1,13 @@
-import { darken, keyframes, styled } from '@mui/material/styles';
+import { darken, styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import Image from 'next/image';
+export const LogoContainer = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
 
 export const PageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -135,22 +139,12 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const primary = keyframes`
-  0% {
-    margin-left: 0;
-  }
-  100% {
-    margin-left: -1341px;
-  }
-`;
-
 export const FixedBottomContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   overflow: 'hidden',
   bottom: 0,
   left: 0,
   right: 0,
-  height: '70px',
   backgroundColor:
     theme.palette.mode === 'dark'
       ? darken(theme.palette.background.default, 0.1)
@@ -163,7 +157,7 @@ export const FixedBottomContainer = styled('div')(({ theme }) => ({
 }));
 
 export const ScrollContainer = styled(Stack)`
-  margin-top: 22px;
+  margin: 22px 0;
   justify-content: center;
 
   img {
@@ -175,11 +169,6 @@ export const ScrollContainer = styled(Stack)`
   svg {
     max-height: 26px;
   }
-`;
-
-export const FirstItem = styled(Image)`
-  // @TODO Uncomment when more logos
-  // animation: ${primary} 10s linear infinite;
 `;
 
 export const TitleTypography = styled(Typography)(({ theme }) => ({
