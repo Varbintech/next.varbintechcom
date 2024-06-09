@@ -4,11 +4,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import RectangleIcon from '../../components/common/icon-rectangle/RectangleIcon';
-import ChipGroup from '../../components/common/chip/ChipGroup';
-import ButtonLink from '../../components/common/buttons/ButtonLink';
-import Feedback, { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
-import Link from '../../components/common/link/Link';
+import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
@@ -22,6 +18,13 @@ import {
   IconLeftContainer,
   ListContainer,
 } from '../../components/case-studies/styled-components';
+const LinkDynamic = dynamic(() => import('../../components/common/link/Link'));
+const ButtonLinkDynamic = dynamic(() => import('../../components/common/buttons/ButtonLink'));
+const RectangleIconDynamic = dynamic(
+  () => import('../../components/common/icon-rectangle/RectangleIcon'),
+);
+const ChipGroupDynamic = dynamic(() => import('../../components/common/chip/ChipGroup'));
+const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
 const ImageWrapperWithPictureDynamic = dynamic(
   () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
   {
@@ -55,7 +58,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
               >
                 <ImageContainer>
                   <ImageWrapper>
-                    <Link
+                    <LinkDynamic
                       className="inner-wrapper"
                       href={`/case-studies/${attributes.slug}`}
                       id={`linkCaseStudyImage${parentId ? `-${parentId}-` : '-'}${attributes.slug}`}
@@ -66,15 +69,15 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                         images={attributes.heroImage.images}
                         mainImage={attributes.heroImage.mainImage}
                       />
-                    </Link>
+                    </LinkDynamic>
 
                     {direction === 'row' ? (
                       <IconLeftContainer>
-                        <RectangleIcon />
+                        <RectangleIconDynamic />
                       </IconLeftContainer>
                     ) : (
                       <IconContainer>
-                        <RectangleIcon />
+                        <RectangleIconDynamic />
                       </IconContainer>
                     )}
                   </ImageWrapper>
@@ -82,7 +85,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
 
                 <TextContainer>
                   <Typography variant="h2" marginBottom={1}>
-                    <Link
+                    <LinkDynamic
                       underline="always"
                       variant="h2"
                       href={`/case-studies/${attributes.slug}`}
@@ -92,7 +95,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                       onClick={handleLinkClick}
                     >
                       {attributes.title}
-                    </Link>
+                    </LinkDynamic>
                   </Typography>
 
                   <Typography gutterBottom>{attributes.description}</Typography>
@@ -102,7 +105,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                   </Typography>
 
                   <ChipContainer>
-                    <ChipGroup data={attributes.servicesAsArray} />
+                    <ChipGroupDynamic data={attributes.servicesAsArray} />
                   </ChipContainer>
 
                   <Typography variant="caption" component="h3" gutterBottom>
@@ -110,7 +113,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                   </Typography>
 
                   <ChipContainer>
-                    <ChipGroup data={attributes.industriesAsArray} />
+                    <ChipGroupDynamic data={attributes.industriesAsArray} />
                   </ChipContainer>
 
                   {attributes.resultsWithDescriptionLong.length ? (
@@ -127,7 +130,7 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                     </>
                   ) : null}
 
-                  <ButtonLink
+                  <ButtonLinkDynamic
                     href={`/case-studies/${attributes.slug}`}
                     id={`linkCaseStudyReadFull${parentId ? `-${parentId}-` : '-'}${
                       attributes.slug
@@ -136,11 +139,11 @@ const CaseStudiesAll = ({ data, parentId }: CaseStudiesAllProps) => {
                     onClick={handleLinkClick}
                   >
                     Read full case study
-                  </ButtonLink>
+                  </ButtonLinkDynamic>
                 </TextContainer>
               </Stack>
 
-              <Feedback {...convertStrapiQuoteToFeedback(attributes.quotes.data[0])} />
+              <FeedbackDynamic {...convertStrapiQuoteToFeedback(attributes.quotes.data[0])} />
             </Container>
           </PageContainer>
         );

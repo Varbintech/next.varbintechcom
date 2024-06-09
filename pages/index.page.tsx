@@ -1,27 +1,28 @@
 import type { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import Box from '@mui/material/Box';
-
 import HeadIndex from '../components-pages/head/HeadIndex';
-import Hero from '../components/hero/Hero';
-import Services from '../components/services/Services';
-import CustomServices from '../components/pricing/CustomServices';
-import Discover from '../components/discover/Discover';
-import СubeComponent from '../components/common/icon-rectangle-box/CubeComponent';
-import ImportantUpdate from '../components/common/important-update/ImportantUpdate';
 import { CaseStudiesContainer } from '../components/case-studies/styled-components';
 
 import { Settings } from '../constants/settings';
 
 import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
 
-import { services } from '../mocks/services';
-
 import type { CaseStudyAllStaticProps, Service } from '../models';
 
 import { getStaticPropsCaseStudies } from '../utils/api.case-study';
 
+const BoxDynamic = dynamic(() => import('@mui/material/Box'));
+const HeroDynamic = dynamic(() => import('../components/hero/Hero'));
+const ImportantUpdateDynamic = dynamic(
+  () => import('../components/common/important-update/ImportantUpdate'),
+);
+const ServicesDynamic = dynamic(() => import('../components/services/Services'));
+const CustomServicesDynamic = dynamic(() => import('../components/pricing/CustomServices'));
+const DiscoverDynamic = dynamic(() => import('../components/discover/Discover'));
+const СubeComponentDynamic = dynamic(
+  () => import('../components/common/icon-rectangle-box/CubeComponent'),
+);
 const CaseStudiesAllDynamic = dynamic(
   () => import('../components-pages/case-study/CaseStudiesAll'),
   {
@@ -35,11 +36,12 @@ interface HomeStaticProps extends CaseStudyAllStaticProps {
 
 export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
   const caseStudies = await getStaticPropsCaseStudies(2);
+  const servicesMock = await import('../mocks/services');
 
   return {
     props: {
       ...caseStudies.props,
-      services,
+      services: servicesMock.services,
       className: '',
     },
   };
@@ -58,12 +60,12 @@ export default function Home(props: HomeStaticProps) {
       <HeadIndex />
 
       <>
-        <Hero
+        <HeroDynamic
           title="A development team with superpower"
           subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
         solutions."
           importantUpdateEl={
-            <ImportantUpdate
+            <ImportantUpdateDynamic
               text="We posted a new case study "
               linkText="Enjoy the reading here"
               linkUrl={`/case-studies/${lastCaseStudy.attributes.slug}`}
@@ -77,15 +79,15 @@ export default function Home(props: HomeStaticProps) {
           <CaseStudiesAllDynamic data={caseStudies} parentId="homePage" />
         </CaseStudiesContainer>
 
-        <СubeComponent isDarkTheme={Settings.DarkThemeAvailable} />
+        <СubeComponentDynamic isDarkTheme={Settings.DarkThemeAvailable} />
 
-        <Services data={services} />
+        <ServicesDynamic data={services} />
 
-        <Box mt={{ xs: 9, md: 4 }}>
-          <CustomServices />
-        </Box>
+        <BoxDynamic mt={{ xs: 9, md: 4 }}>
+          <CustomServicesDynamic />
+        </BoxDynamic>
 
-        <Discover />
+        <DiscoverDynamic />
       </>
     </>
   );

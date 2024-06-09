@@ -13,8 +13,6 @@ import { Settings } from '../../constants/settings';
 
 import type { CaseStudyStaticProps } from '../../models';
 
-import HeroDetails from '../../components/hero/HeroDetails';
-import { TextColumnContainer } from '../../components/common/text-column/TextColumn';
 import HeadCaseStudyDetails from '../../components-pages/head/HeadCaseStudyDetails';
 import {
   MarkdownText,
@@ -23,12 +21,17 @@ import {
   MarkdownListItem,
   MarkdownParagraph,
 } from '../../components/common/typography/Markdown';
-import Result from '../../components/common/result/Result';
-import Feedback, {
-  FeedbackContainer2,
-  convertStrapiQuoteToFeedback,
-} from '../../components/common/feedback/Feedback';
+import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
+const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
+const FeedbackContainer2Dynamic = dynamic(() =>
+  import('../../components/common/feedback/Feedback').then(mod => mod.FeedbackContainer2),
+);
+const ResultDynamic = dynamic(() => import('../../components/common/result/Result'));
+const TextColumnContainerDynamic = dynamic(() =>
+  import('../../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
+);
+const HeroDetailsDynamic = dynamic(() => import('../../components/hero/HeroDetails'));
 const ImageWrapperWithPictureDynamic = dynamic(
   () => import('../../components/common/image-wrapper/ImageWrapperWithPicture'),
   {
@@ -65,7 +68,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
           ogUrl={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
         />
 
-        <HeroDetails
+        <HeroDetailsDynamic
           centered
           bgColored
           services={attributes.services}
@@ -97,7 +100,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             if (attr.showFeedback) {
               return (
                 <Stack direction="column" key={`with-feedback-${id}-${index}`}>
-                  <TextColumnContainer>
+                  <TextColumnContainerDynamic>
                     <Stack direction="column">
                       {attr.showTitle ? (
                         <Typography
@@ -124,11 +127,11 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                         </Stack>
                       ) : null}
                     </Stack>
-                  </TextColumnContainer>
+                  </TextColumnContainerDynamic>
 
-                  <FeedbackContainer2>
-                    <Feedback {...convertStrapiQuoteToFeedback(attributes.quotes.data[0])} />
-                  </FeedbackContainer2>
+                  <FeedbackContainer2Dynamic>
+                    <FeedbackDynamic {...convertStrapiQuoteToFeedback(attributes.quotes.data[0])} />
+                  </FeedbackContainer2Dynamic>
                 </Stack>
               );
             }
@@ -136,7 +139,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             if (attr.showTechStack) {
               return (
                 <Stack direction="column" key={`with-tech-stack-${id}-${index}`}>
-                  <TextColumnContainer>
+                  <TextColumnContainerDynamic>
                     <Stack direction="column">
                       {attr.showTitle ? (
                         <Typography
@@ -163,11 +166,11 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                         </Stack>
                       ) : null}
                     </Stack>
-                  </TextColumnContainer>
+                  </TextColumnContainerDynamic>
 
                   <Stack direction="column" marginBottom={4}>
                     {attributes.technologies.length > 0 ? (
-                      <TextColumnContainer>
+                      <TextColumnContainerDynamic>
                         <Stack direction="column" width={'100%'}>
                           <Typography variant="h3" marginBottom={2}>
                             Tech Stack
@@ -199,7 +202,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                             ))}
                           </Grid>
                         </Stack>
-                      </TextColumnContainer>
+                      </TextColumnContainerDynamic>
                     ) : null}
                   </Stack>
                 </Stack>
@@ -209,7 +212,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             if (attr.showResults && attributes.results.data.length > 0) {
               return (
                 <Stack direction="column" key={`with-results-${id}-${index}`}>
-                  <TextColumnContainer key={`${id}-${index}`}>
+                  <TextColumnContainerDynamic key={`${id}-${index}`}>
                     <Stack direction="column">
                       {attr.showTitle ? (
                         <Typography
@@ -236,10 +239,10 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                         </Stack>
                       ) : null}
                     </Stack>
-                  </TextColumnContainer>
+                  </TextColumnContainerDynamic>
 
                   <Box sx={{ paddingBottom: '40px' }}>
-                    <Result
+                    <ResultDynamic
                       data={{
                         resultInfo: attributes.results.data.map(({ attributes }) => ({
                           name: attributes.name,
@@ -253,7 +256,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
             }
 
             return (
-              <TextColumnContainer key={`${id}-${index}`}>
+              <TextColumnContainerDynamic key={`${id}-${index}`}>
                 <Stack direction="column">
                   {attr.showTitle ? (
                     <Typography
@@ -280,7 +283,7 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                     </Stack>
                   ) : null}
                 </Stack>
-              </TextColumnContainer>
+              </TextColumnContainerDynamic>
             );
           })}
         </Container>
