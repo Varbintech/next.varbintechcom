@@ -24,9 +24,11 @@ const ImportantUpdate = (props: ImportantUpdateProps) => {
     <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
       <UpdateLabel className="gradient-border">{labelText}</UpdateLabel>
       {text}
-      <Link href={linkUrl} variant="caption" {...linkId} {...onClick}>
-        {linkText}
-      </Link>
+      {linkUrl ? (
+        <Link href={linkUrl} variant="caption" {...linkId} {...onClick}>
+          {linkText}
+        </Link>
+      ) : null}
     </Typography>
   );
 };
