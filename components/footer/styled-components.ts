@@ -24,11 +24,22 @@ export const IconRightContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-export const FooterList = styled('ul')`
-  margin: 20px 0 0;
-  padding: 0;
-  list-style-type: none;
-`;
+export const FooterList = styled('ul')(({ theme }) => ({
+  margin: '20px 0 0',
+  padding: 0,
+  listStyleType: 'none',
+
+  'a.MuiLink-root': {
+    lineHeight: '1em',
+    color: theme.palette.text.secondary,
+    borderBottom: '1px solid transparent',
+
+    '&:hover, &:focus, &.isActive': {
+      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
+      borderBottomColor: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
+    },
+  },
+}));
 
 export const FooterListItem = styled('li')`
   padding: 4px 0;

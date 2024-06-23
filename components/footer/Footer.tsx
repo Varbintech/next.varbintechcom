@@ -9,6 +9,7 @@ import { Settings } from '../../constants/settings';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import Link, { type LinkProps } from '../common/link/Link';
+import NavigationLink from '../common/link/NavigationLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 import SiteLogo from '../common/navigation/SiteLogo';
 
@@ -54,19 +55,18 @@ const Footer = ({ data }: FooterProps) => {
               <Typography variant="subtitle2" component="h4">
                 Navigation
               </Typography>
+
               <FooterList>
                 {data.navigations.map(singleRoute => {
                   if (singleRoute.href || singleRoute.scrollTo) {
                     return (
                       <FooterListItem key={singleRoute.id}>
-                        <Link
+                        <NavigationLink
                           href={singleRoute.href || singleRoute.scrollTo}
-                          underline="hover"
                           id={`${singleRoute.linkId}_footer`}
-                          onClick={handleGa}
                         >
                           {singleRoute.text}
-                        </Link>
+                        </NavigationLink>
                       </FooterListItem>
                     );
                   }

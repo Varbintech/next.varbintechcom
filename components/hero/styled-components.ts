@@ -59,6 +59,16 @@ export const ContainerStyled = styled(Container)(({ theme }) => ({
   },
 }));
 
+export const ContainerTechStyled = styled(ContainerStyled)(({ theme }) => ({
+  '.page-small &': {
+    padding: '0 60px',
+
+    [theme.breakpoints.up('md')]: {
+      padding: '0 60px',
+    },
+  },
+}));
+
 export const RectangleLeftIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '638px',
@@ -187,6 +197,11 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
 export const HeroDetailsStyled = styled('div')(({ theme }) => ({
   paddingTop: '112px',
   paddingBottom: '72px',
+  backgroundColor: theme.palette.background.default,
+  backgroundImage:
+    theme.palette.mode === 'dark'
+      ? ''
+      : 'linear-gradient(180deg, rgba(242, 242, 242, 0) 0%, rgba(242, 242, 242, 0.24) 100%)',
 
   [theme.breakpoints.up('md')]: {
     paddingTop: '135px',

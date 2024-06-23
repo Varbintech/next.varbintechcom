@@ -4,4 +4,5 @@ export interface NavigationRoute {
   href: string;
   scrollTo: string;
   linkId?: string;
+  showInMenu?: boolean;
 }

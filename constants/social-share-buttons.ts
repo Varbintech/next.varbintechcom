@@ -1,4 +1,13 @@
-export const socialShareButtons = (pageLink: string) => {
+export interface SocialShareButton {
+  id: number;
+  socialTitle: string;
+  socialLink: string;
+  socialIcon: string;
+  socialBorderRadius: string;
+  socialAriaLabel: string;
+}
+
+export const socialShareButtons = (pageLink: string): Array<SocialShareButton> => {
   return [
     {
       id: 0,

@@ -1,7 +1,7 @@
 import MUIButton, { type ButtonProps as MuiButtonProps } from '@mui/material/Button';
 import type { LinkProps as MuiLinkProps } from '@mui/material/Link';
 
-type ButtonProps = MuiButtonProps & Pick<MuiLinkProps, 'target' | 'rel'>;
+export type ButtonProps = MuiButtonProps & Pick<MuiLinkProps, 'target' | 'rel'>;
 
 const Button = (props: ButtonProps) => {
   const { children, startIcon, variant, size, onClick, ...restProps } = props;

@@ -46,12 +46,12 @@ const baseUrl =
     : String(process.env.WEBSITE_URL);
 const apiBaseUrl = process.env.API_BASE_URL || '';
 
-const sortHeroImagesByWidth = (a: HeroImage, b: HeroImage) =>
+export const sortHeroImagesByWidth = (a: HeroImage, b: HeroImage) =>
   b.attributes.width - a.attributes.width;
 
-const getMainImage = (heroImages: Array<HeroImage>) => heroImages[heroImages.length - 1];
+export const getMainImage = (heroImages: Array<HeroImage>) => heroImages[heroImages.length - 1];
 
-const technologiesGroupedByTechnologyField = (technologies: Array<Technology>) => {
+export const technologiesGroupedByTechnologyField = (technologies: Array<Technology>) => {
   return technologies.reduce((acc: Record<string, Array<Technology>>, item) => {
     const technologyField = item.attributes.technologyField.data?.attributes.name || '';
 

@@ -10,7 +10,7 @@ const NavigationLinks = () => {
   return (
     <>
       {navigationRoutes.map(singleRoute => {
-        if (singleRoute.href || singleRoute.scrollTo) {
+        if ((singleRoute.href || singleRoute.scrollTo) && singleRoute.showInMenu) {
           return (
             <NavigationLink
               key={singleRoute.id}
