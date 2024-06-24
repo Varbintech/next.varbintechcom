@@ -87,6 +87,9 @@ export interface TechnologyField {
 export type Technology = Collection<
   NameDescriptionAttribute & {
     technologyField: TechnologyField;
+    showInTech?: boolean;
+    svgIcon?: string;
+    docLink?: string;
   }
 >;
 

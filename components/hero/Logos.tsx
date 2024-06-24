@@ -58,7 +58,7 @@ const Logos = () => {
             rel="noreferrer"
             aria-label="Read more about Digital Toucan"
           >
-            <DTIcon aria-label="Digital Toucan logo" width="auto" sx={{ width: 'auto' }} />
+            <DTIcon aria-label="Digital Toucan logo" width="64" sx={{ width: 'auto' }} />
           </Link>
         </LogoContainer>
 
