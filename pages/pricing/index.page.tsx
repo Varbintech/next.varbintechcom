@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 
 import HeroPricing from '../../components/hero/HeroPricing';
-import HeadIndex from '../../components-pages/head/HeadIndex';
+import HeadPricing from '../../components-pages/head/HeadCaseStudyDetails';
 
 import { MetaData } from '../../constants/meta';
 
@@ -30,7 +30,16 @@ export default function PricingPage(props: any) {
 
   return (
     <>
-      <HeadIndex title={`Pricing | ${MetaData.IndexAuthor}`} />
+      <HeadPricing
+        title={`Pricing | ${MetaData.IndexAuthor}`}
+        keywords={MetaData.IndexKeywords}
+        description={MetaData.Description}
+        image={MetaData.Image}
+        imageAlt={MetaData.ImageAlt}
+        imageWidth={1200}
+        imageHeight={630}
+        ogUrl={`${MetaData.Url}/pricing`}
+      />
 
       <>
         <HeroPricing centered />
