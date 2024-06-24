@@ -56,7 +56,7 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
         imageAlt={MetaData.ImageAlt}
         imageWidth={1200}
         imageHeight={630}
-        ogUrl={`${MetaData.Url}/tech-and-tools-build-high-quality-frontend-solutions`}
+        ogUrl={`${MetaData.Url}/tech`}
       />
 
       <>
