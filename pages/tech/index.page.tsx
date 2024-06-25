@@ -26,7 +26,7 @@ import {
   TextColumnListStyled,
   TextColumnListItem,
 } from '../../components/common/text-column/TextColumn';
-import ChipTech from '../../components/common/chip/ChipTech';
+import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
 import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
 import RectangleBoxIcon from '../../components/common/icon-rectangle-box/RectangleBoxIcon';
 import HeroTech from '../../components/hero/HeroTech';
@@ -206,18 +206,20 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
                       </TypographyDynamic>
 
                       <ChipTechGroup>
-                        {list.map((techItem, index) => {
-                          return (
-                            <ChipTech
-                              key={`${techItem.id}-${index}`}
-                              href={techItem.attributes.docLink}
-                              svgString={techItem.attributes.svgIcon}
-                              target="_blank"
-                            >
-                              {techItem.attributes.name}
-                            </ChipTech>
-                          );
-                        })}
+                        {list.map((techItem, index) => (
+                          <ChipTech
+                            key={`${techItem.id}-${index}`}
+                            href={techItem.attributes.docLink}
+                            startIcon={
+                              techItem.attributes.svgIcon ? (
+                                <ChipTechIcon svgString={techItem.attributes.svgIcon} />
+                              ) : null
+                            }
+                            target="_blank"
+                          >
+                            {techItem.attributes.name}
+                          </ChipTech>
+                        ))}
                       </ChipTechGroup>
                     </BoxDynamic>
                   );
