@@ -33,7 +33,7 @@ export default function PricingPage(props: any) {
       <HeadPricing
         title={`Pricing | ${MetaData.IndexAuthor}`}
         keywords={MetaData.IndexKeywords}
-        description={MetaData.Description}
+        description="We help startups and businesses of all sizes create exceptional front-end solutions that stand out. From concept to launch, we've got you covered."
         image={MetaData.Image}
         imageAlt={MetaData.ImageAlt}
         imageWidth={1200}

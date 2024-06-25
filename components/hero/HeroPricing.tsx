@@ -16,10 +16,17 @@ const HeroPricing = (props: HeroPricingProps) => {
       <Container maxWidth="lg" className={centered ? 'centered' : ''}>
         <Typography
           variant="h1"
-          marginBottom="24px"
-          sx={{ fontSize: { xs: '32px', md: '56px', lineHeight: 1.2 } }}
+          sx={{
+            fontSize: {
+              xs: '32px',
+              md: '56px',
+              lineHeight: 1.2,
+              maxWidth: '600px',
+              margin: '0 auto 1.5rem',
+            },
+          }}
         >
-          A development team with superpower
+          A front-end team with superpower for SaaS & startups
         </Typography>
       </Container>
     </HeroDetailsStyled>

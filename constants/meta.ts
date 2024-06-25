@@ -1,5 +1,5 @@
 export const MetaData = {
-  Title: 'Best front-end solutions for startups and companies of any size | Varbintech',
+  Title: 'Software Front-End Team for SaaS & Startups | Varbintech',
   Description:
     "We help startups and companies of any size to craft exceptional Front-End solutions that set you apart. From an idea to the final launch, we've got you covered.",
   IndexKeywords:
