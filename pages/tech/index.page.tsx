@@ -1,3 +1,5 @@
+import { styled } from '@mui/material/styles';
+
 import type { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 
@@ -6,6 +8,25 @@ const ContainerDynamic = dynamic(() => import('@mui/material/Container'));
 const TypographyDynamic = dynamic(() => import('@mui/material/Typography'));
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
+
+import { СubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
+
+const SectionContainerStyled = styled('div')(({ theme }) => ({
+  position: 'relative',
+  overflow: 'hidden',
+  padding: '58px 0 30px',
+  backgroundColor: theme.palette.primary.light,
+
+  [theme.breakpoints.up('md')]: {
+    paddingTop: '112px',
+  },
+}));
+
+const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+  },
+}));
 
 import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
@@ -35,8 +56,6 @@ import HeadTech from '../../components-pages/head/HeadCaseStudyDetails';
 import { MetaData } from '../../constants/meta';
 
 import { getStaticPropsTechnologies, TechnologiesStaticProps } from '../../utils/api.tech';
-
-import { SectionContainerStyled, СubeContainerTechStyled } from './styled-components';
 
 export const getStaticProps: GetStaticProps<TechnologiesStaticProps> = async () =>
   await getStaticPropsTechnologies();
@@ -164,13 +183,13 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
               </TypographyDynamic>
 
               <TypographyDynamic sx={{ marginBottom: 1 }}>
-                Let us share some <strong>Client satisfaction stats</strong>:
+                <strong>Client satisfaction stats</strong>:
               </TypographyDynamic>
 
               <TextColumnListStyled>
-                <TextColumnListItem>100% of Clients who would recommend us</TextColumnListItem>
+                <TextColumnListItem>100% of clients who would recommend us</TextColumnListItem>
                 <TextColumnListItem>
-                  75% of our Clients become the long-term clients
+                  75% of our clients become the long-term clients
                 </TextColumnListItem>
                 <TextColumnListItem>
                   All projects are finished with five stars feedback
