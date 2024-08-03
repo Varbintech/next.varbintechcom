@@ -9,14 +9,17 @@ import Button from '../../components/common/buttons/Button';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 const CallToActionComponent = (props: CallToAction) => {
-  const { title, action, actionText, actionId } = props;
+  const { title, action, actionText, actionId, noPadding } = props;
 
   const handleCtaClick = useGenerateEventGa('link');
 
   return (
     <Container
       maxWidth="lg"
-      sx={{ paddingTop: { xs: '64px' }, paddingBottom: { xs: '64px', lg: '120px' } }}
+      sx={{
+        paddingTop: noPadding ? 0 : { xs: '64px' },
+        paddingBottom: noPadding ? 0 : { xs: '64px', lg: '120px' },
+      }}
     >
       <Stack
         direction={{ xs: 'column', sm: 'row' }}

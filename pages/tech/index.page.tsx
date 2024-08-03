@@ -224,7 +224,7 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
                         {techField}
                       </TypographyDynamic>
 
-                      <ChipTechGroup>
+                      <ChipTechGroup component="nav">
                         {list.map((techItem, index) => (
                           <ChipTech
                             key={`${techItem.id}-${index}`}

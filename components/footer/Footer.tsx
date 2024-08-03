@@ -3,12 +3,11 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import type { FooterData } from '../../models';
+import type { FooterData, HireEngineersLink } from '../../models';
 
 import { Settings } from '../../constants/settings';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
-import Link, { type LinkProps } from '../common/link/Link';
 import NavigationLink from '../common/link/NavigationLink';
 import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
 import SiteLogo from '../common/navigation/SiteLogo';
@@ -16,7 +15,9 @@ import SiteLogo from '../common/navigation/SiteLogo';
 import { FooterList, FooterListItem, IconRightContainer, PageContainer } from './styled-components';
 
 interface FooterProps {
-  data: FooterData;
+  data: Omit<FooterData, 'hireEngineers'> & {
+    hireEngineerLinks: Array<HireEngineersLink>;
+  };
 }
 
 const Footer = ({ data }: FooterProps) => {
@@ -24,58 +25,54 @@ const Footer = ({ data }: FooterProps) => {
 
   const currentYear = new Date().getFullYear();
 
-  const additionalFooterLinkProps = (
-    link: string,
-  ): Pick<LinkProps, 'component' | 'href' | 'underline' | 'className'> => {
-    return link
-      ? { href: link, underline: 'hover', className: 'footer-link' }
-      : { component: 'div' };
-  };
-
   return (
     <footer>
       <PageContainer>
         <IconRightContainer>
           <RectangleIcon />
         </IconRightContainer>
+
         <Container maxWidth="lg">
           <Grid container spacing={{ xs: 6.5, md: 3, lg: 5.5 }} columns={12}>
-            <Grid container item direction="column" xs={12} md={3}>
+            <Grid container item direction="column" xs={12} md={4}>
               <SiteLogo
                 onGa={handleGa}
                 id="siteLogoLink_footer"
                 isDarkTheme={Settings.DarkThemeAvailable}
               />
               <Typography marginTop={2}>
-                We help startups and companies of all shapes and sizes to build high-quality
-                Front-End solutions.
+                We help startups and small teams to build high-quality Front-End solutions.
               </Typography>
             </Grid>
-            <Grid container item direction="column" xs={6} md={3}>
+
+            <Grid container item direction="column" xs={6} md={4} mx={{ xs: 'unset', md: 'auto' }}>
               <Typography variant="subtitle2" component="h4">
                 Navigation
               </Typography>
 
-              <FooterList>
-                {data.navigations.map(singleRoute => {
-                  if (singleRoute.href || singleRoute.scrollTo) {
-                    return (
-                      <FooterListItem key={singleRoute.id}>
-                        <NavigationLink
-                          href={singleRoute.href || singleRoute.scrollTo}
-                          id={`${singleRoute.linkId}_footer`}
-                        >
-                          {singleRoute.text}
-                        </NavigationLink>
-                      </FooterListItem>
-                    );
-                  }
+              <nav>
+                <FooterList>
+                  {data.navigations.map(singleRoute => {
+                    if (singleRoute.href || singleRoute.scrollTo) {
+                      return (
+                        <FooterListItem key={singleRoute.id}>
+                          <NavigationLink
+                            href={singleRoute.href || singleRoute.scrollTo}
+                            id={`${singleRoute.linkId}_footer`}
+                          >
+                            {singleRoute.text}
+                          </NavigationLink>
+                        </FooterListItem>
+                      );
+                    }
 
-                  return null;
-                })}
-              </FooterList>
+                    return null;
+                  })}
+                </FooterList>
+              </nav>
             </Grid>
-            <Grid container item direction="column" xs={6} md={3}>
+
+            {/* <Grid container item direction="column" xs={6} md={3}>
               <Typography variant="subtitle2" component="h4">
                 Services
               </Typography>
@@ -90,24 +87,30 @@ const Footer = ({ data }: FooterProps) => {
                   );
                 })}
               </FooterList>
-            </Grid>
+            </Grid> */}
+
             <Grid container item direction="column" xs={10} md={3}>
               <Typography variant="subtitle2" component="h4">
                 Hire Engineers
               </Typography>
-              <FooterList>
-                {data.hireEngineers.map(hireEngineer => {
-                  return (
+
+              <nav>
+                <FooterList>
+                  {data.hireEngineerLinks.map(hireEngineer => (
                     <FooterListItem key={hireEngineer.id}>
-                      <Link {...additionalFooterLinkProps(hireEngineer.hireLink)}>
-                        {hireEngineer.hireText}
-                      </Link>
+                      <NavigationLink
+                        href={`/hire-engineers/${hireEngineer.slug}`}
+                        id={`hireEngineer_${hireEngineer.id}`}
+                      >
+                        {hireEngineer.title}
+                      </NavigationLink>
                     </FooterListItem>
-                  );
-                })}
-              </FooterList>
+                  ))}
+                </FooterList>
+              </nav>
             </Grid>
           </Grid>
+
           <Divider sx={{ margin: { xs: '30px 0 22px', md: '60px 0 22px', lg: '118px 0 22px' } }} />
 
           <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }} component="h5">

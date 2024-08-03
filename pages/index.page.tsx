@@ -11,6 +11,7 @@ import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
 import type { CaseStudyAllStaticProps, Service } from '../models';
 
 import { getStaticPropsCaseStudies } from '../utils/api.case-study';
+import { getStaticPropsHireEngineersLinks } from '../utils/api.hire-engineers';
 
 const BoxDynamic = dynamic(() => import('@mui/material/Box'));
 const HeroDynamic = dynamic(() => import('../components/hero/Hero'));
@@ -36,6 +37,7 @@ interface HomeStaticProps extends CaseStudyAllStaticProps {
 
 export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
   const caseStudies = await getStaticPropsCaseStudies(2);
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const servicesMock = await import('../mocks/services');
 
   return {
@@ -43,6 +45,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
       ...caseStudies.props,
       services: servicesMock.services,
       className: '',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };

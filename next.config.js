@@ -28,6 +28,8 @@ module.exports = async (phase, { defaultConfig: _dc }) => {
     sentry: {
       hideSourceMaps: true,
     },
+    // @TODO: Uncomment when @mui/x-charts is needed
+    // transpilePackages: ['@mui/x-charts'],
     webpack: (config, { isServer }) => {
       if (isServer) {
         require('./utils/generate-sitemap');

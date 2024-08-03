@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import MuiLink from '../link/Link';
 import { TextColumnListStyled, TextColumnListItem } from '../text-column/TextColumn';
 
+import { ListContainer } from './styled-components';
+
 import ReactMarkdown from 'react-markdown';
 
 export const MarkdownText = ({
@@ -37,8 +39,18 @@ export const MarkdownList = ({
   // @ts-expect-error
   node: _,
   ...restProps
-}: HTMLAttributes<HTMLUListElement> | HTMLAttributes<HTMLOListElement>) => (
+}: HTMLAttributes<HTMLUListElement> | HTMLAttributes<HTMLUListElement>) => (
   <TextColumnListStyled {...restProps}>{children}</TextColumnListStyled>
+);
+
+export const MarkdownListOl = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
+  ...restProps
+}: HTMLAttributes<HTMLOListElement> | HTMLAttributes<HTMLOListElement>) => (
+  <ListContainer {...restProps}>{children}</ListContainer>
 );
 
 export const MarkdownListItem = ({

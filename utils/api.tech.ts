@@ -1,13 +1,22 @@
-import qs from 'qs';
-
-import type { Technology, ResponseData, CaseStudyAllAttributes, Service, Quote } from '../models';
+import type {
+  Technology,
+  ResponseData,
+  CaseStudyAllAttributes,
+  Service,
+  Quote,
+  HireEngineersLink,
+} from '../models';
 
 import {
+  stringify,
+  populateAllFields,
+  getMainImage,
+  sortHeroImagesByWidth,
   technologiesGroupedByTechnologyField,
   fetchCaseStudiesWithAllFields,
-  sortHeroImagesByWidth,
-  getMainImage,
-} from './api.case-study';
+} from './api.common';
+
+import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
 
 interface Feedback {
   id: number;
@@ -29,9 +38,8 @@ interface TechnologiesData {
 export interface TechnologiesStaticProps {
   data: TechnologiesData;
   className: string;
+  hireEngineersLinks: Array<HireEngineersLink>;
 }
-
-const populateAllFields = { populate: '*' };
 
 const baseUrl =
   process.env.CF_PAGES_BRANCH !== 'main'
@@ -50,7 +58,7 @@ const fetchTechnologiesByShowInTech = async (): Promise<ResponseData<Technology>
       },
     },
   };
-  const urlParams = qs.stringify(params, { arrayFormat: 'comma' });
+  const urlParams = stringify(params);
 
   const res = await fetch(`${process.env.API_URL}/technologies?${urlParams}`);
 
@@ -59,6 +67,7 @@ const fetchTechnologiesByShowInTech = async (): Promise<ResponseData<Technology>
 
 export const getStaticPropsTechnologies = async (): Promise<{ props: TechnologiesStaticProps }> => {
   const json = await fetchTechnologiesByShowInTech();
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const caseStudiesWithAllFields = await fetchCaseStudiesWithAllFields();
   const caseStudies = caseStudiesWithAllFields.data.map(data => {
     data.attributes.heroImage.data.sort(sortHeroImagesByWidth);
@@ -142,6 +151,7 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
         feedback,
       },
       className: 'overflow-hidden',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };

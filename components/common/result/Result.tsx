@@ -12,6 +12,7 @@ import { PageContainer } from './styled-components';
 interface ResultProps {
   data: {
     resultInfo: Array<ProjectResultInfo>;
+    title?: string;
   };
 }
 
@@ -23,8 +24,8 @@ export const ResultContainer = ({ children }: ResultContainerProps) => (
   <PageContainer>{children}</PageContainer>
 );
 
-const Result: FC<ResultProps> = props => {
-  const { data } = props;
+const Result: FC<ResultProps> = ({ data }) => {
+  const { resultInfo, title } = data;
 
   return (
     <ResultContainer>
@@ -32,11 +33,11 @@ const Result: FC<ResultProps> = props => {
         <Grid container spacing={3} columns={12} sx={{ marginBottom: { xs: '36px', lg: '58px' } }}>
           <Grid container item direction="column" xs={12} md={3}>
             <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-              Results
+              {title || 'Results'}
             </Typography>
           </Grid>
 
-          {data.resultInfo.map((item, index) => {
+          {resultInfo.map((item, index) => {
             return (
               <Grid key={index} container item direction="column" xs={4} md={3}>
                 <Typography variant="h3" marginBottom={1.25}>

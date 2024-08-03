@@ -1,14 +1,21 @@
-import type { ReactNode } from 'react';
+import type { ElementType } from 'react';
 
-import Stack from '@mui/material/Stack';
+import Stack, { type StackProps } from '@mui/material/Stack';
 
-interface ChipTechGroupProps {
-  children: ReactNode;
-}
-
-const ChipTechGroup = ({ children }: ChipTechGroupProps) => {
+const ChipTechGroup = ({
+  children,
+  direction,
+  gap,
+  flexWrap,
+  ...restProps
+}: StackProps & { component?: ElementType }) => {
   return (
-    <Stack direction="row" gap={2} flexWrap="wrap">
+    <Stack
+      direction={direction || 'row'}
+      gap={gap || 2}
+      flexWrap={flexWrap || 'wrap'}
+      {...restProps}
+    >
       {children}
     </Stack>
   );
