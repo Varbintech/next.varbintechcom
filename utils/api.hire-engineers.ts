@@ -19,8 +19,6 @@ const hireEngineersFields = [
 
 const populateHireEngineers = generatePopulate(hireEngineersFields);
 
-console.warn('populateHireEngineers: ', populateHireEngineers);
-
 export interface HireEngineerStaticProps {
   data: Collection<HireEngineer>;
   className: string;
@@ -32,12 +30,6 @@ const fetchHireEngineers = async (): Promise<ResponseData<Collection<HireEnginee
     sort: ['id:asc'],
   };
   const urlParams = stringify(params);
-
-  console.warn('fetchHireEngineers urlParams: ', urlParams);
-  console.warn(
-    'fetchHireEngineers urlParams: ',
-    `${process.env.API_URL}/hire-engineers?${urlParams}`,
-  );
 
   const res = await fetch(`${process.env.API_URL}/hire-engineers?${urlParams}`);
 
@@ -81,8 +73,6 @@ export const getStaticPathsHireEngineers = async () => {
     },
   }));
 
-  console.warn('getStaticPathsHireEngineers paths: ', paths);
-
   return {
     paths,
     fallback: false,
@@ -92,11 +82,8 @@ export const getStaticPathsHireEngineers = async () => {
 export const getStaticPropsHireEngineer: GetStaticProps<HireEngineerStaticProps> = async ({
   params,
 }) => {
-  console.warn('getStaticPropsHireEngineer params: ', params);
   const json = await fetchHireEngineerBySlug(String(params?.hireEngineerId));
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
-
-  console.warn('getStaticPropsHireEngineer json: ', json.data[0].attributes.feedback);
 
   return {
     props: {
