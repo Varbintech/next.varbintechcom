@@ -52,6 +52,11 @@ interface MetaImage {
   url: string;
 }
 
+export interface FAQ {
+  title: string;
+  description: string;
+}
+
 interface Result {
   name: string;
   description: string;
@@ -141,6 +146,9 @@ export interface HireEngineer {
   };
   results: {
     data: Array<Collection<Result>>;
+  };
+  frequentlyAskedQuestions: {
+    data: Array<Collection<FAQ>>;
   };
 }
 

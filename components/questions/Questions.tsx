@@ -1,15 +1,13 @@
-import { type PropsWithChildren, type SyntheticEvent, useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import SouthIcon from '@mui/icons-material/South';
 
-import type { Question } from '../../models';
+import type { FAQ, Collection } from '../../models';
 
 import {
   MarkdownText,
@@ -20,22 +18,15 @@ import {
   MarkdownParagraph,
 } from '../common/typography/Markdown';
 
-import RectangleLeftFillIcon from '../common/icon-rectangle-left-fill/RectangleLeftFillIcon';
-import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
-
-import { IconLeftContainer, IconRightContainer, PageContainer } from './styled-components';
-
 interface QuestionsProps {
-  data: Array<Question>;
+  data: Array<Collection<FAQ>>;
+  expandedId?: number;
 }
 
-interface QuestionsContainerProps {
-  title?: string;
-  subtitle?: string;
-}
-
-function Questions({ data }: QuestionsProps) {
-  const [expanded, setExpanded] = useState<string | false>('panel0');
+function Questions({ data, expandedId }: QuestionsProps) {
+  const [expanded, setExpanded] = useState<string | false>(
+    expandedId ? `panel${expandedId}` : 'panel0',
+  );
 
   const handleChange = (panel: string) => (_event: SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
@@ -44,7 +35,10 @@ function Questions({ data }: QuestionsProps) {
   return (
     <>
       {data.map(question => {
-        const { questionsTitle, questionsText, id } = question;
+        const {
+          attributes: { title, description },
+          id,
+        } = question;
 
         return (
           <Accordion
@@ -58,13 +52,27 @@ function Questions({ data }: QuestionsProps) {
               id={`panel-header${id}`}
               expandIcon={<SouthIcon fontSize="small" />}
             >
-              <Typography variant="h5">{questionsTitle}</Typography>
+              <Typography variant="h5">{title}</Typography>
             </AccordionSummary>
 
             <AccordionDetails>
               <MarkdownText
                 components={{
-                  a: MarkdownLink,
+                  a: ({ children, href, ...restProps }) => {
+                    if (href?.includes('@')) {
+                      return (
+                        <MarkdownLink href={`mailto:${href}`} {...restProps}>
+                          {children}
+                        </MarkdownLink>
+                      );
+                    }
+
+                    return (
+                      <MarkdownLink href={href} {...restProps}>
+                        {children}
+                      </MarkdownLink>
+                    );
+                  },
                   ul: MarkdownList,
                   ol: MarkdownListOl,
                   li: MarkdownListItem,
@@ -74,7 +82,7 @@ function Questions({ data }: QuestionsProps) {
                   h6: ({ children }) => <Typography variant="h6">{children}</Typography>,
                 }}
               >
-                {questionsText}
+                {description}
               </MarkdownText>
             </AccordionDetails>
           </Accordion>
@@ -83,55 +91,5 @@ function Questions({ data }: QuestionsProps) {
     </>
   );
 }
-
-const QuestionsContainer = (props: PropsWithChildren<QuestionsContainerProps>) => {
-  const {
-    children,
-    title = "Let's see if we are a good fit.",
-    subtitle = 'Top-notch experience with a proven record',
-  } = props;
-
-  return (
-    <PageContainer>
-      <IconRightContainer>
-        <RectangleLeftFillIcon />
-      </IconRightContainer>
-
-      <IconLeftContainer>
-        <RectangleIcon />
-      </IconLeftContainer>
-
-      <Container maxWidth="lg">
-        {title || subtitle ? (
-          <Box paddingLeft={2} paddingRight={2} maxWidth="600px" margin="auto">
-            {title ? (
-              <Typography
-                variant="h2"
-                align="center"
-                sx={{ marginBottom: 1.5, fontSize: { xs: '32px', lg: '40px' } }}
-              >
-                {title}
-              </Typography>
-            ) : null}
-
-            {subtitle ? (
-              <Typography
-                variant="body2"
-                align="center"
-                sx={{ marginBottom: { xs: '30px', md: '57px' } }}
-              >
-                {subtitle}
-              </Typography>
-            ) : null}
-          </Box>
-        ) : null}
-
-        {children}
-      </Container>
-    </PageContainer>
-  );
-};
-
-Questions.Container = QuestionsContainer;
 
 export default Questions;

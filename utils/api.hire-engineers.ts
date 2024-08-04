@@ -14,6 +14,7 @@ const hireEngineersFields = [
   'metaImage',
   'links',
   'results',
+  'frequentlyAskedQuestions',
 ];
 
 const populateHireEngineers = generatePopulate(hireEngineersFields);

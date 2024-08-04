@@ -44,4 +44,5 @@ export type {
   CaseStudyAllAttributes,
   HireEngineer,
   HireEngineersLink,
+  FAQ,
 } from './strapi.model';

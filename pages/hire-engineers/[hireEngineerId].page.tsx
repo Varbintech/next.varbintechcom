@@ -8,27 +8,16 @@ const ContainerDynamic = dynamic(() => import('@mui/material/Container'));
 const TypographyDynamic = dynamic(() => import('@mui/material/Typography'));
 const StackDynamic = dynamic(() => import('@mui/material/Stack'));
 
+import type { HireEngineer, Collection } from '../../models';
+
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import { СubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
-
 import { PageContainer } from '../../components/case-studies/styled-components';
-
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    display: 'block',
-  },
-}));
-
-import type { HireEngineer, Collection } from '../../models';
-
 import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
 const ImportantUpdateDynamic = dynamic(
   () => import('../../components/common/important-update/ImportantUpdate'),
-  {
-    loading: () => <p>Loading...</p>,
-  },
 );
 const ResultDynamic = dynamic(() => import('../../components/common/result/Result'));
 const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
@@ -36,12 +25,12 @@ const FeedbackContainer2Dynamic = dynamic(() =>
   import('../../components/common/feedback/Feedback').then(mod => mod.FeedbackContainer2),
 );
 const ButtonLinkDynamic = dynamic(() => import('../../components/common/buttons/ButtonLink'));
-
 const TextColumnContainerDynamic = dynamic(() =>
   import('../../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
 );
-
 const CallToActionDynamic = dynamic(() => import('../../components-pages/case-study/CallToAction'));
+const Questions = dynamic(() => import('../../components/questions/Questions'));
+const QuestionsContainer = dynamic(() => import('../../components/questions/QuestionsContainer'));
 
 import {
   MarkdownText,
@@ -66,6 +55,12 @@ import {
   getStaticPathsHireEngineers,
 } from '../../utils/api.hire-engineers';
 
+const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+  },
+}));
+
 export const getStaticPaths = async () => await getStaticPathsHireEngineers();
 
 export const getStaticProps: GetStaticProps<{ data: Collection<HireEngineer> }> = async ({
@@ -86,6 +81,7 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
     callToAction,
     results,
     technologies,
+    frequentlyAskedQuestions,
   } = data.attributes;
 
   const handleLinkClick = useGenerateEventGa('link');
@@ -144,6 +140,7 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
                 showResults,
                 showTechStack,
                 showCTA,
+                showFAQ,
                 description,
                 headingLevel,
                 name,
@@ -414,6 +411,74 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
                             </MarkdownText>
                           </StackDynamic>
                         ) : null}
+                      </StackDynamic>
+                    ) : null}
+                  </TextColumnContainerDynamic>
+                );
+              }
+
+              if (showFAQ && frequentlyAskedQuestions.data.length) {
+                return (
+                  <TextColumnContainerDynamic key={`${id}-${sectionIndex}`}>
+                    {showTitle || description ? (
+                      <StackDynamic direction="column" width="100%">
+                        {showTitle ? (
+                          <TypographyDynamic
+                            variant={headingLevel}
+                            marginBottom={description ? 2 : 0}
+                            lineHeight={1.3}
+                          >
+                            {name}
+                          </TypographyDynamic>
+                        ) : null}
+
+                        {description ? (
+                          <StackDynamic direction="column" spacing={2} marginBottom={2}>
+                            <MarkdownText
+                              components={{
+                                a: MarkdownLink,
+                                ul: MarkdownList,
+                                ol: MarkdownListOl,
+                                li: MarkdownListItem,
+                                p: MarkdownParagraph,
+                                h3: ({ children }) => (
+                                  <TypographyDynamic variant="h3">{children}</TypographyDynamic>
+                                ),
+                                h4: ({ children }) => (
+                                  <TypographyDynamic variant="h4">{children}</TypographyDynamic>
+                                ),
+                              }}
+                            >
+                              {description}
+                            </MarkdownText>
+                          </StackDynamic>
+                        ) : null}
+
+                        <QuestionsContainer
+                          sx={{
+                            overflow: 'visible',
+
+                            '.icon-right': {
+                              transform: 'rotate(0deg)',
+                              top: 0,
+                              right: '-100px',
+                              bottom: 0,
+                              margin: 'auto',
+                            },
+
+                            '.icon-left': {
+                              top: '50px',
+                              left: '-78px',
+                            },
+                          }}
+                          title=""
+                          subtitle=""
+                        >
+                          <Questions
+                            data={frequentlyAskedQuestions.data}
+                            expandedId={frequentlyAskedQuestions.data[0].id}
+                          />
+                        </QuestionsContainer>
                       </StackDynamic>
                     ) : null}
                   </TextColumnContainerDynamic>
