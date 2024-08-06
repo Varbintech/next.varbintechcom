@@ -82,6 +82,7 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
     results,
     technologies,
     frequentlyAskedQuestions,
+    metaImage,
   } = data.attributes;
 
   const handleLinkClick = useGenerateEventGa('link');
@@ -92,11 +93,11 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
         title={`${title} | ${MetaData.IndexAuthor}`}
         description={descriptionSEO}
         keywords={keywords}
-        image={MetaData.Image}
-        imageAlt={MetaData.ImageAlt}
-        imageWidth={1200}
-        imageHeight={630}
-        ogUrl={`${MetaData.Url}${slug}`}
+        image={metaImage.data[0].attributes.url}
+        imageAlt={descriptionSEO}
+        imageWidth={metaImage.data[0].attributes.width}
+        imageHeight={metaImage.data[0].attributes.height}
+        ogUrl={`${MetaData.Url}/hire-engineers/${slug}`}
       />
 
       <>

@@ -137,9 +137,7 @@ export interface HireEngineer {
     data: Array<HeroImage>;
   };
   metaImage: {
-    data: {
-      attributes: MetaImage;
-    };
+    data: Array<Collection<MetaImage>>;
   };
   links: {
     data: Array<Technology>;
