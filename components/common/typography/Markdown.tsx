@@ -39,7 +39,7 @@ export const MarkdownList = ({
   // @ts-expect-error
   node: _,
   ...restProps
-}: HTMLAttributes<HTMLUListElement> | HTMLAttributes<HTMLUListElement>) => (
+}: HTMLAttributes<HTMLUListElement> | HTMLAttributes<HTMLOListElement>) => (
   <TextColumnListStyled {...restProps}>{children}</TextColumnListStyled>
 );
 

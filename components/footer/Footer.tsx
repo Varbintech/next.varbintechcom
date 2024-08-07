@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import type { FooterData, HireEngineersLink } from '../../models';
 
 import { Settings } from '../../constants/settings';
+import { MetaData } from '../../constants/meta';
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
 import NavigationLink from '../common/link/NavigationLink';
@@ -40,9 +41,7 @@ const Footer = ({ data }: FooterProps) => {
                 id="siteLogoLink_footer"
                 isDarkTheme={Settings.DarkThemeAvailable}
               />
-              <Typography marginTop={2}>
-                We help startups and small teams to build high-quality Front-End solutions.
-              </Typography>
+              <Typography marginTop={2}>{MetaData.Description}</Typography>
             </Grid>
 
             <Grid container item direction="column" xs={6} md={4} mx={{ xs: 'unset', md: 'auto' }}>

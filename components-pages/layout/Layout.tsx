@@ -69,7 +69,7 @@ function Layout(props: LayoutProps) {
       <Footer
         data={{
           ...footerData,
-          hireEngineerLinks: hireEngineersLinks || [],
+          hireEngineerLinks: hireEngineersLinks,
         }}
       />
     </div>

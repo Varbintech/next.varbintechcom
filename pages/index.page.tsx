@@ -5,6 +5,7 @@ import HeadIndex from '../components-pages/head/HeadIndex';
 import { CaseStudiesContainer } from '../components/case-studies/styled-components';
 
 import { Settings } from '../constants/settings';
+import { MetaData } from '../constants/meta';
 
 import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
 
@@ -65,8 +66,7 @@ export default function Home(props: HomeStaticProps) {
       <>
         <HeroDynamic
           title="A development team with superpower"
-          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
-        solutions."
+          subtitle={MetaData.Description}
           importantUpdateEl={
             <ImportantUpdateDynamic
               text="We posted a new case study "
