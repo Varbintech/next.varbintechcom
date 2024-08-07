@@ -20,6 +20,14 @@ interface Image {
   url: string;
 }
 
+interface UpdateLabel {
+  id: number;
+  label: string;
+  text: string;
+  linkText: string;
+  link: string;
+}
+
 export interface HeroImageAttribute {
   name: string;
   alternativeText: string;
@@ -33,6 +41,7 @@ export interface CallToAction {
   action: string;
   actionText: string;
   actionId: string;
+  noPadding?: boolean;
 }
 
 interface MetaImage {
@@ -41,6 +50,17 @@ interface MetaImage {
   width: number;
   height: number;
   url: string;
+}
+
+export interface FAQ {
+  title: string;
+  description: string;
+}
+
+interface Result {
+  name: string;
+  description: string;
+  descriptionLong: string;
 }
 
 export interface Quote {
@@ -58,12 +78,6 @@ export interface Quote {
   companyLink: string;
 }
 
-interface Result {
-  name: string;
-  description: string;
-  descriptionLong: string;
-}
-
 export interface Section {
   name: string;
   description: string;
@@ -73,6 +87,9 @@ export interface Section {
   showFeedback?: boolean;
   showTechStack?: boolean;
   showResults?: boolean;
+  showLinks?: boolean;
+  showCTA?: boolean;
+  showFAQ?: boolean;
 }
 
 export interface HeroImage {
@@ -92,6 +109,46 @@ export type Technology = Collection<
     docLink?: string;
   }
 >;
+
+export interface HireEngineersLink {
+  id: number;
+  slug: string;
+  title: string;
+}
+
+export interface HireEngineer {
+  title: string;
+  subtitle: string;
+  descriptionSEO: string;
+  keywords: string;
+  slug: string;
+  updateLabel: UpdateLabel;
+  technologies: Technologies;
+  sections: {
+    data: Array<Collection<Section>>;
+  };
+  feedback: {
+    data: Collection<Quote>;
+  };
+  callToAction: {
+    data: Collection<CallToAction>;
+  };
+  heroImage: {
+    data: Array<HeroImage>;
+  };
+  metaImage: {
+    data: Array<Collection<MetaImage>>;
+  };
+  links: {
+    data: Array<Technology>;
+  };
+  results: {
+    data: Array<Collection<Result>>;
+  };
+  frequentlyAskedQuestions: {
+    data: Array<Collection<FAQ>>;
+  };
+}
 
 export interface Technologies {
   data: Array<Technology>;
@@ -168,10 +225,7 @@ interface CaseStudyAttributesCommon {
     };
   };
   quotes: {
-    data: Array<{
-      id: number;
-      attributes: Quote;
-    }>;
+    data: Array<Collection<Quote>>;
   };
   sections: {
     data: Array<Collection<Section>>;
@@ -223,6 +277,7 @@ export interface CaseStudyAllData {
 export interface CaseStudyAllStaticProps {
   data: CaseStudyAllData;
   className: string;
+  hireEngineersLinks: Array<HireEngineersLink>;
 }
 
 export interface ResponseData<T> {

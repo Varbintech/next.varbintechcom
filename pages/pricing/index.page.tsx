@@ -5,6 +5,7 @@ import HeroPricing from '../../components/hero/HeroPricing';
 import HeadPricing from '../../components-pages/head/HeadCaseStudyDetails';
 
 import { MetaData } from '../../constants/meta';
+import { getStaticPropsHireEngineersLinks } from '../../utils/api.hire-engineers';
 
 const BoxDynamic = dynamic(() => import('@mui/material/Box'));
 
@@ -15,12 +16,14 @@ const DiscoverInnerDynamic = dynamic(() =>
 
 export const getStaticProps: GetStaticProps<any> = async () => {
   const mocks = await import('../../mocks/pricing-plan');
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
 
   return {
     props: {
       pricingPlan: mocks.pricingPlan,
       checkoutSrcList: mocks.checkoutSrcList,
       className: '',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };

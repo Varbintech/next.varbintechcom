@@ -1,5 +1,3 @@
-import qs from 'qs';
-
 import type { GetStaticProps } from 'next';
 
 import { socialShareButtons } from '../constants/social-share-buttons';
@@ -7,65 +5,26 @@ import { socialShareButtons } from '../constants/social-share-buttons';
 import type {
   CaseStudyStrapi,
   ResponseData,
-  HeroImage,
   CaseStudyStaticProps,
-  Technology,
   CaseStudyAllStaticProps,
 } from '../models';
 
-const populateAllFields = { populate: '*' };
-const populate = {
-  quotes: {
-    ...populateAllFields,
-  },
-  technologies: {
-    ...populateAllFields,
-  },
-  industries: {
-    ...populateAllFields,
-  },
-  sections: {
-    ...populateAllFields,
-  },
-  results: {
-    ...populateAllFields,
-  },
-  heroImage: {
-    ...populateAllFields,
-  },
-  metaImage: {
-    ...populateAllFields,
-  },
-  callToAction: {
-    ...populateAllFields,
-  },
-};
+import {
+  stringify,
+  getMainImage,
+  sortHeroImagesByWidth,
+  technologiesGroupedByTechnologyField,
+  fetchCaseStudiesWithAllFields,
+  populateCaseStudies,
+} from './api.common';
+
+import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
+
 const baseUrl =
   process.env.CF_PAGES_BRANCH !== 'main'
     ? String(process.env.CF_PAGES_URL)
     : String(process.env.WEBSITE_URL);
 const apiBaseUrl = process.env.API_BASE_URL || '';
-
-export const sortHeroImagesByWidth = (a: HeroImage, b: HeroImage) =>
-  b.attributes.width - a.attributes.width;
-
-export const getMainImage = (heroImages: Array<HeroImage>) => heroImages[heroImages.length - 1];
-
-export const technologiesGroupedByTechnologyField = (technologies: Array<Technology>) => {
-  return technologies.reduce((acc: Record<string, Array<Technology>>, item) => {
-    const technologyField = item.attributes.technologyField.data?.attributes.name || '';
-
-    if (technologyField && !acc[technologyField]) {
-      acc[technologyField] = [];
-    }
-
-    if (technologyField) {
-      acc[technologyField].push(item);
-    }
-
-    return acc;
-  }, {});
-};
 
 export const fetchCaseStudies = async (): Promise<ResponseData<CaseStudyStrapi>> => {
   const res = await fetch(`${process.env.API_URL}/case-studies`);
@@ -73,29 +32,16 @@ export const fetchCaseStudies = async (): Promise<ResponseData<CaseStudyStrapi>>
   return await res.json();
 };
 
-export const fetchCaseStudiesWithAllFields = async (): Promise<ResponseData<CaseStudyStrapi>> => {
+const fetchCaseStudyBySlug = async (slug: string): Promise<ResponseData<CaseStudyStrapi>> => {
   const params = {
-    populate,
-  };
-  const urlParams = qs.stringify(params, { arrayFormat: 'comma' });
-
-  const res = await fetch(`${process.env.API_URL}/case-studies?${urlParams}`);
-
-  return await res.json();
-};
-
-export const fetchCaseStudyBySlug = async (
-  slug: string,
-): Promise<ResponseData<CaseStudyStrapi>> => {
-  const params = {
-    populate,
+    populate: populateCaseStudies,
     filters: {
       slug: {
         $eq: slug,
       },
     },
   };
-  const urlParams = qs.stringify(params, { arrayFormat: 'comma' });
+  const urlParams = stringify(params);
 
   const res = await fetch(`${process.env.API_URL}/case-studies?${urlParams}`);
 
@@ -122,6 +68,7 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
   className: string;
 }> = async ({ params }) => {
   const json = await fetchCaseStudyBySlug(String(params?.caseStudyId));
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
 
   json.data[0].attributes.heroImage.data.sort(sortHeroImagesByWidth);
 
@@ -156,6 +103,7 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
         },
       },
       className: 'overflow-hidden',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };
@@ -164,6 +112,7 @@ export const getStaticPropsCaseStudies = async (
   caseStudiesLimit?: number,
 ): Promise<{ props: CaseStudyAllStaticProps }> => {
   const caseStudiesWithAllFields = await fetchCaseStudiesWithAllFields();
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
 
   const caseStudies = caseStudiesWithAllFields.data.map(data => {
     data.attributes.heroImage.data.sort(sortHeroImagesByWidth);
@@ -219,6 +168,7 @@ export const getStaticPropsCaseStudies = async (
         lastCaseStudy: caseStudiesWithLimit[0], // sorted by date
       },
       className: '',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };

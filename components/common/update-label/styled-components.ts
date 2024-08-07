@@ -14,6 +14,52 @@ const animatedGradient = keyframes`
   }
 `;
 
+const animatedColor = keyframes`
+  0% {
+    color: #f79533;
+  }
+
+  10% {
+    color: #f37055;
+  }
+
+  20% {
+    color: #ef4e7b;
+  }
+
+  30% {
+    color: #a166ab;
+  }
+
+  40% {
+    color: #5073b8;
+  }
+
+  50% {
+    color: #1098ad;
+  }
+
+  60% {
+    color: #07b39b;
+  }
+
+  70% {
+    color: #6fba82;
+  }
+
+  80% {
+    color: #f79533;
+  }
+
+  90% {
+    color: #f37055;
+  }
+
+  100% {
+    color: #ef4e7b;
+  }
+`;
+
 export const UpdateLabelContainer = styled('span')(({ theme }) => ({
   display: 'inline-block',
   marginRight: '16px',
@@ -35,6 +81,8 @@ export const UpdateLabelContainer = styled('span')(({ theme }) => ({
     position: 'relative',
     backgroundColor: theme.palette.background.paper,
     borderColor: 'transparent',
+    animation: `${animatedColor} 3s ease alternate infinite`,
+    fontWeight: 500,
 
     '&::before': {
       content: '""',

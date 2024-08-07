@@ -12,6 +12,8 @@ import Navigation from '../../components/common/navigation/Navigation';
 import Contact from '../../components/contact/Contact';
 import Footer from '../../components/footer/Footer';
 
+import type { HireEngineersLink } from '../../models';
+
 import { socialIcons } from '../../mocks/social-icons';
 import { footerData } from '../../mocks/footer-data';
 
@@ -26,11 +28,18 @@ const MainStyled = styled('main')`
 `;
 
 interface LayoutProps {
-  children: ReactNode;
+  children: ReactNode & {
+    props: {
+      hireEngineersLinks: Array<HireEngineersLink>;
+    };
+  };
   className?: string;
+  hireEngineersLinks: Array<HireEngineersLink>;
 }
 
-function Layout({ children, className }: LayoutProps) {
+function Layout(props: LayoutProps) {
+  const { children, className, hireEngineersLinks } = props;
+
   const [acceptsCookies, setAcceptsCookies] = useLocalStorageState('varbintech-accepts-cookies', {
     defaultValue: false,
   });
@@ -57,7 +66,12 @@ function Layout({ children, className }: LayoutProps) {
         <Contact data={socialIcons} />
       </MainStyled>
 
-      <Footer data={footerData} />
+      <Footer
+        data={{
+          ...footerData,
+          hireEngineerLinks: hireEngineersLinks,
+        }}
+      />
     </div>
   );
 }

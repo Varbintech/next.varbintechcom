@@ -1,85 +1,106 @@
-import { type FC, type SyntheticEvent, useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import SouthIcon from '@mui/icons-material/South';
 
-import type { Question } from '../../models';
+import type { FAQ, Collection } from '../../models';
 
-import RectangleLeftFillIcon from '../common/icon-rectangle-left-fill/RectangleLeftFillIcon';
-import RectangleIcon from '../common/icon-rectangle/RectangleIcon';
-
-import { IconLeftContainer, IconRightContainer, PageContainer } from './styled-components';
+import {
+  MarkdownText,
+  MarkdownLink,
+  MarkdownList,
+  MarkdownListOl,
+  MarkdownListItem,
+  MarkdownParagraph,
+} from '../common/typography/Markdown';
 
 interface QuestionsProps {
-  data: Array<Question>;
+  data: Array<Collection<FAQ>>;
+  expandedId?: number;
 }
 
-const Questions: FC<QuestionsProps> = ({ data }) => {
-  const [expanded, setExpanded] = useState<string | false>('panel0');
+function Questions({ data, expandedId }: QuestionsProps) {
+  const [expanded, setExpanded] = useState<string | false>(
+    expandedId ? `panel${expandedId}` : 'panel0',
+  );
 
-  const handleChange = (panel: string) => (event: SyntheticEvent, newExpanded: boolean) => {
+  const handleChange = (panel: string) => (_event: SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
 
   return (
-    <PageContainer>
-      <IconRightContainer>
-        <RectangleLeftFillIcon />
-      </IconRightContainer>
+    <>
+      {data.map(question => {
+        const {
+          attributes: { title, description },
+          id,
+        } = question;
 
-      <IconLeftContainer>
-        <RectangleIcon />
-      </IconLeftContainer>
-
-      <Container maxWidth="lg">
-        <Box paddingLeft={2} paddingRight={2} maxWidth="600px" margin="auto">
-          <Typography
-            variant="h2"
-            align="center"
-            sx={{ marginBottom: 1.5, fontSize: { xs: '32px', lg: '40px' } }}
+        return (
+          <Accordion
+            key={id}
+            expanded={expanded === `panel${id}`}
+            onChange={handleChange(`panel${id}`)}
+            disableGutters
+            itemScope
+            itemProp="mainEntity"
+            itemType="https://schema.org/Question"
           >
-            Let&apos;s see if we are a good fit.
-          </Typography>
-
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{ marginBottom: { xs: '30px', md: '57px' } }}
-          >
-            Top-notch experience with a proven record
-          </Typography>
-        </Box>
-
-        {data.map(question => {
-          return (
-            <Accordion
-              key={question.id}
-              expanded={expanded === `panel${question.id}`}
-              onChange={handleChange(`panel${question.id}`)}
-              disableGutters
+            <AccordionSummary
+              aria-controls={`panel-content${id}`}
+              id={`panel-header${id}`}
+              expandIcon={<SouthIcon fontSize="small" />}
             >
-              <AccordionSummary
-                aria-controls={`panel-content${question.id}`}
-                id={`panel-header${question.id}`}
-                expandIcon={<SouthIcon fontSize="small" />}
-              >
-                <Typography variant="h5">{question.questionsTitle}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="body2">{question.questionsText}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      </Container>
-    </PageContainer>
+              <Typography variant="h5" itemProp="name">
+                {title}
+              </Typography>
+            </AccordionSummary>
+
+            <AccordionDetails
+              itemScope
+              itemProp="acceptedAnswer"
+              itemType="https://schema.org/Answer"
+            >
+              <div itemProp="text">
+                <MarkdownText
+                  components={{
+                    a: ({ children, href, ...restProps }) => {
+                      if (href?.includes('@')) {
+                        return (
+                          <MarkdownLink href={`mailto:${href}`} {...restProps}>
+                            {children}
+                          </MarkdownLink>
+                        );
+                      }
+
+                      return (
+                        <MarkdownLink href={href} {...restProps}>
+                          {children}
+                        </MarkdownLink>
+                      );
+                    },
+                    ul: MarkdownList,
+                    ol: MarkdownListOl,
+                    li: MarkdownListItem,
+                    p: MarkdownParagraph,
+                    h3: ({ children }) => <Typography variant="h3">{children}</Typography>,
+                    h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
+                    h6: ({ children }) => <Typography variant="h6">{children}</Typography>,
+                  }}
+                >
+                  {description}
+                </MarkdownText>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
+    </>
   );
-};
+}
 
 export default Questions;

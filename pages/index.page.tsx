@@ -5,12 +5,14 @@ import HeadIndex from '../components-pages/head/HeadIndex';
 import { CaseStudiesContainer } from '../components/case-studies/styled-components';
 
 import { Settings } from '../constants/settings';
+import { MetaData } from '../constants/meta';
 
 import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
 
 import type { CaseStudyAllStaticProps, Service } from '../models';
 
 import { getStaticPropsCaseStudies } from '../utils/api.case-study';
+import { getStaticPropsHireEngineersLinks } from '../utils/api.hire-engineers';
 
 const BoxDynamic = dynamic(() => import('@mui/material/Box'));
 const HeroDynamic = dynamic(() => import('../components/hero/Hero'));
@@ -36,6 +38,7 @@ interface HomeStaticProps extends CaseStudyAllStaticProps {
 
 export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
   const caseStudies = await getStaticPropsCaseStudies(2);
+  const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const servicesMock = await import('../mocks/services');
 
   return {
@@ -43,6 +46,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
       ...caseStudies.props,
       services: servicesMock.services,
       className: '',
+      hireEngineersLinks: hireEngineersLinks.props.data,
     },
   };
 };
@@ -62,8 +66,7 @@ export default function Home(props: HomeStaticProps) {
       <>
         <HeroDynamic
           title="A development team with superpower"
-          subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
-        solutions."
+          subtitle={MetaData.Description}
           importantUpdateEl={
             <ImportantUpdateDynamic
               text="We posted a new case study "

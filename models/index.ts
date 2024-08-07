@@ -42,4 +42,7 @@ export type {
   CaseStudyAllStaticProps,
   Quote,
   CaseStudyAllAttributes,
+  HireEngineer,
+  HireEngineersLink,
+  FAQ,
 } from './strapi.model';
