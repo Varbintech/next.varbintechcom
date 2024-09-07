@@ -4,7 +4,7 @@
 
 The front-end part for Varbintech Team [home page](https://varbintech.com/).
 
-![image](https://res.cloudinary.com/dlxpwfaic/image/upload/v1680439761/varbintech/varbintech-join-the-club_qypktu.jpg)
+![image](https://res.cloudinary.com/dlxpwfaic/image/upload/v1683287110/varbintech/OG-general_zaxpjl.jpg)
 
 ## Social Links
 
@@ -35,7 +35,7 @@ This project uses [Cloudflare Pages](https://pages.cloudflare.com/) as a JAMstac
 
 - [EditorConfig](https://editorconfig.org/)
 - [ESLint](https://eslint.org/) + plugins
-- [Pretter](https://prettier.io/)
+- [Prettier](https://prettier.io/)
 - [Husky](https://typicode.github.io/husky) + [lint-staged](https://github.com/okonet/lint-staged) for [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
 ### Design:
@@ -48,16 +48,16 @@ This project uses [Cloudflare Pages](https://pages.cloudflare.com/) as a JAMstac
 
 ## Project Roadmap
 
-- Develop index page - **IN PROGRESS**
+- Develop index page - ✅
 - Cloudflare Pages build ✅
 - Develop email template ✅ #66
 - Send emails using Cloudflare Workers ✅ #65
 - Add analytics
-- Develop case studies page - **PARTIALLY DONE** #52
-- Develop case study item page - **PARTIALLY DONE** #59
+- Develop case studies page - ✅
+- Develop case study item page - ✅
 - Develop blog page - **PARTIALLY DONE** #68
 - Develop blog Item page - **PARTIALLY DONE** #69
-- Headless CMS for case studies
+- Headless CMS for case studies ✅
 - Headless CMS for blog
 
 ### Pages workflow:
