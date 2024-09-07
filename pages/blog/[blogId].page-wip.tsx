@@ -18,6 +18,44 @@ import { blogData } from '../../mocks/blog-data';
 
 import { socialShareButtons } from '../../constants/social-share-buttons';
 
+import { getStaticPropsBlogId } from '../../utils/api.blog';
+
+export const getStaticProps: GetStaticProps = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true };
+  }
+
+  const { props: propsBlogId } = await getStaticPropsBlogId();
+
+  return {
+    props: {
+      ...propsBlogId,
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every `Settings.RevalidateTime` seconds
+    revalidate: Settings.RevalidateTime, // In seconds
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return {
+      paths: [], // @TODO replace with real data when Headless CMS is ready
+      fallback: false,
+    };
+  }
+
+  const paths = blogData.map(({ id }) => ({
+    params: { blogId: String(id) },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
 const BlogDetailPage = () => {
   const {
     query: { blogId },
@@ -52,8 +90,10 @@ const BlogDetailPage = () => {
                 image={data.blogImage}
                 data={data.blogDetails}
                 socialIcons={socialShareButtons(pageLink)}
+                id={data.id}
               />
             </Grid>
+
             <Grid container item direction="column" xs={12} md={9}>
               {data.blogDetails.map((item, index) => {
                 if (item.label === 'TEXT') {
@@ -78,35 +118,3 @@ const BlogDetailPage = () => {
 };
 
 export default BlogDetailPage;
-
-export const getStaticProps: GetStaticProps = async () => {
-  if (process.env.NODE_ENV === 'production') {
-    return { notFound: true };
-  }
-
-  return {
-    props: {},
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every `Settings.RevalidateTime` seconds
-    revalidate: Settings.RevalidateTime, // In seconds
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.NODE_ENV === 'production') {
-    return {
-      paths: [], // @TODO replace with real data when Headless CMS is ready
-      fallback: false,
-    };
-  }
-
-  const paths = blogData.map(({ id }) => ({
-    params: { blogId: String(id) },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};

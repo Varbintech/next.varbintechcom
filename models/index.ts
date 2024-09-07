@@ -47,4 +47,5 @@ export type {
   FAQ,
   StaticPage,
   PolicyLink,
+  BlogItem as BlogItemStrapi,
 } from './strapi.model';
