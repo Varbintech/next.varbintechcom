@@ -45,4 +45,5 @@ export type {
   HireEngineer,
   HireEngineersLink,
   FAQ,
+  BlogItem as BlogItemStrapi,
 } from './strapi.model';

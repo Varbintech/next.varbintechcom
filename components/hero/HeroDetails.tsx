@@ -54,15 +54,17 @@ const HeroDetails = (props: HeroDetailsProps) => {
             {title}
           </Typography>
 
-          <Typography
-            variant="body2"
-            component="h2"
-            align="center"
-            mb={{ xs: '28px', md: '38px' }}
-            fontSize={{ xs: '18px', md: '28px' }}
-          >
-            Services: {services}
-          </Typography>
+          {services ? (
+            <Typography
+              variant="body2"
+              component="h2"
+              align="center"
+              mb={{ xs: '28px', md: '38px' }}
+              fontSize={{ xs: '18px', md: '28px' }}
+            >
+              Services: {services}
+            </Typography>
+          ) : null}
 
           <Box marginBottom="24px">
             <ChipGroup data={projectTags} />
