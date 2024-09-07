@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-import { inter } from './constants/inter-latin';
+import { inter, firaCode } from './constants/inter-latin';
 
 const color1 = '#141629';
 const color2 = '#4d4d4d';
@@ -15,8 +15,48 @@ const color10 = '#fefaf5';
 const color11 = '#f9fafb';
 const color12 = '#f2f3f5';
 
+declare module '@mui/material/styles' {
+  interface Theme {
+    typography: {
+      fontFamily: string;
+      fontFamilyMonospaced: string;
+
+      h2: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: string;
+      };
+      h3: {
+        fontSize: string;
+        fontWeight: number;
+      };
+      h4: {
+        fontSize: string;
+        fontWeight: number;
+      };
+      h5: {
+        fontSize: string;
+        fontWeight: number;
+      };
+      h6: {
+        fontSize: string;
+        fontWeight: number;
+      };
+      body1: {
+        lineHeight: string;
+      };
+      caption: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: string;
+      };
+    };
+  }
+}
+
 export const themeTypography = {
   fontFamily: inter.style.fontFamily,
+  fontFamilyMonospaced: firaCode.style.fontFamily,
 
   h2: {
     fontSize: '2.5em',
