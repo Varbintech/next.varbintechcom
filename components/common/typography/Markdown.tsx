@@ -1,14 +1,19 @@
 import type { ComponentProps, AnchorHTMLAttributes, HTMLAttributes } from 'react';
 
+import ReactMarkdown from 'react-markdown';
+
 import Typography from '@mui/material/Typography';
 import type { Variant } from '@mui/material/styles/createTypography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import CodeIcon from '@mui/icons-material/Code';
 
 import MuiLink from '../link/Link';
 import { TextColumnListStyled, TextColumnListItem } from '../text-column/TextColumn';
 
-import { ListContainer } from './styled-components';
-
-import ReactMarkdown from 'react-markdown';
+import { ListContainer, CodeStyled, PreStyled } from './styled-components';
 
 export const MarkdownText = ({
   children,
@@ -97,5 +102,52 @@ export const MarkdownHeading = ({
     <Typography variant={tagName} {...restProps}>
       {children}
     </Typography>
+  );
+};
+
+export const MarkdownCode = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
+  ...restProps
+}: HTMLAttributes<HTMLPreElement>) => {
+  const { className } = restProps;
+  const language = className?.replace('language-', '');
+
+  return (
+    <Card variant="outlined" sx={{ display: 'inline-block' }}>
+      <CardContent
+        sx={{
+          '&:last-child': {
+            paddingBottom: 2,
+          },
+        }}
+      >
+        <Box display="flex" alignItems="stretch" gap={1}>
+          <CodeIcon color="action" fontSize="small" />
+
+          <Divider orientation="vertical" sx={{ height: 'initial', m: 0 }} light />
+
+          <Typography
+            variant="subtitle2"
+            component="div"
+            gutterBottom
+            m={0}
+            lineHeight="1.2"
+            alignSelf="center"
+            textTransform="uppercase"
+          >
+            {language}
+          </Typography>
+        </Box>
+
+        <Divider sx={{ mx: 0, my: 1 }} />
+
+        <PreStyled>
+          <CodeStyled>{children}</CodeStyled>
+        </PreStyled>
+      </CardContent>
+    </Card>
   );
 };
