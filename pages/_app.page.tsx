@@ -16,15 +16,14 @@ import { inter } from '../constants/inter-latin';
 
 import createEmotionCache from '../createEmotionCache';
 import lightTheme from '../lightTheme';
-import { useMounted } from '../hooks/use-mounted';
 
 import Layout from '../components-pages/layout/Layout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-const BodyContainer = styled('div')<{ mounted: boolean }>`
-  visibility: ${({ mounted }) => (mounted ? 'visible' : 'hidden')};
+const BodyContainer = styled('div')`
+  visibility: visible;
 `;
 
 type MyAppError = Pick<NextPageContext, 'err'>;
@@ -35,8 +34,6 @@ export interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps, err: MyAppError) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
-  const mounted = useMounted();
 
   useEffectPageView();
 
@@ -52,24 +49,26 @@ export default function MyApp(props: MyAppProps, err: MyAppError) {
         `}</style>
       </Head>
 
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname
-          });
-        `}
-      </Script>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
+      {process.env.NODE_ENV === 'production' ? (
+        <>
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname
+            });
+          `}
+          </Script>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+        </>
+      ) : null}
 
-      {/* prevents ssr flash for mismatched dark mode */}
-
-      <BodyContainer mounted={mounted}>
+      <BodyContainer>
         <ThemeProvider theme={lightTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
