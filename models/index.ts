@@ -15,8 +15,6 @@ export type { Service } from './service.model';
 
 export type { ReactChildren, EmptyFunction, FunctionWithArg } from './common';
 
-export type { Question } from './questions.model';
-
 export type { SocialIcon } from './social-icons.model';
 
 export type { FooterData } from './footer-data.model';

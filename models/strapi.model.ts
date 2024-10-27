@@ -29,7 +29,7 @@ interface BlogAuthor {
   firstName: string;
   lastName: string;
   avatar: {
-    data: Image;
+    data: Collection<Image>;
   };
   liLink: string;
 }
@@ -239,14 +239,15 @@ export interface BlogItem {
     descriptionSEO: string;
     slug: string;
     keywords: string;
+    publishedAt: string;
     heroImage: {
       data: Array<HeroImage>;
     };
     tocImage: {
-      data: Image;
+      data: Collection<Image>;
     };
     listImage: {
-      data: Array<Image>;
+      data: Array<Collection<Image>>;
     };
     metaImage: {
       data: {

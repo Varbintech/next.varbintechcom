@@ -58,11 +58,12 @@ storiesOf('App/CommonComponents/MarkdownText', module)
 }
 \`\`\`
 
+
 \`\`\`js
 <script type="module">
   import rehypeHighlight from 'https://esm.sh/rehype-highlight@6?bundle'
 </script>
 \`\`\`
-      `}
+`}
     </MarkdownText>
   ));

@@ -1,12 +1,11 @@
-import { type FC, useEffect, useState } from 'react';
-
-import { useRouter } from 'next/router';
+import { useEffect, useState, useRef } from 'react';
 
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
-import type { ProjectImage, ProjectImageDetails, ProjectTextDetails, SocialIcon } from 'models';
+import type { ProjectImage, SocialIcon } from '../../../models';
+import type { TocContent } from '../../../utils/api.blog';
 
 import ImageWrapperComponent from '../image-wrapper/ImageWrapper';
 import SocialIcons from '../social-icons/SocialIcons';
@@ -16,44 +15,74 @@ import { TableOfContentContainer } from './styled-components';
 
 interface TableOfContentProps {
   image: ProjectImage;
-  data: Array<ProjectTextDetails | ProjectImageDetails>;
+  data: Array<TocContent>;
   socialIcons: Array<SocialIcon>;
-  id: number;
+  slug: string;
 }
 
-const TocLink = ({ href, title, id }: { href: string; title: string; id: number }) => {
-  const { asPath, isReady } = useRouter();
-  const [activeLink, setActiveLink] = useState('');
+interface TocLinkProps {
+  href: string;
+  title: string;
+  slug: string;
+  activeId: string;
+}
 
-  useEffect(() => {
-    if (isReady) {
-      setActiveLink(asPath);
-    }
-  }, [asPath, isReady, activeLink]);
+const options = {
+  root: null,
+  rootMargin: `-40% 0px`,
+  threshold: [],
+};
 
+const TocLink = ({ href, title, activeId }: TocLinkProps) => {
   return (
-    <Link href={`#${href}`} underline={activeLink === `/blog/${id}#${href}` ? 'always' : 'hover'}>
+    <Link href={`#${href}`} underline={activeId === href ? 'always' : 'none'} component="a">
       {title}
     </Link>
   );
 };
 
-const TableOfContent: FC<TableOfContentProps> = props => {
-  const { image, socialIcons, data, id } = props;
+const TableOfContent = (props: TableOfContentProps) => {
+  const { image, socialIcons, data, slug } = props;
 
-  const linkList = data
-    .map((item, itemIndex) => {
-      if (item.label === 'TEXT' && item.href && item.title) {
-        return {
-          id: itemIndex,
-          href: item.href,
-          title: item.title,
-        };
+  const [activeId, setActiveId] = useState('');
+  const sections = useRef<NodeListOf<Element> | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    if (!activeId && data.length > 0) {
+      setActiveId(data[0].href);
+    }
+  }, [activeId, data]);
+
+  useEffect(() => {
+    sections.current = document.querySelectorAll('.section');
+
+    observer.current = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id);
+        }
+      });
+    }, options);
+
+    if (sections.current) {
+      sections.current.forEach(section => {
+        if (observer.current && section) {
+          observer.current.observe(section);
+        }
+      });
+    }
+
+    return () => {
+      if (sections.current) {
+        sections.current.forEach(section => {
+          if (observer.current && section) {
+            observer.current.unobserve(section);
+          }
+        });
       }
-
-      return;
-    })
-    .filter(Boolean);
+    };
+  }, [data, activeId]);
 
   return (
     <TableOfContentContainer>
@@ -66,14 +95,19 @@ const TableOfContent: FC<TableOfContentProps> = props => {
       </Typography>
 
       <Stack spacing={2} marginBottom="52px">
-        {linkList.length
-          ? linkList.map((item, index) => {
-              return (
-                <TocLink key={index} href={`${item?.href}`} title={`${item?.title}`} id={id} />
-              );
-            })
+        {data.length > 0
+          ? data.map((item, index) => (
+              <TocLink
+                key={index}
+                href={item.href}
+                title={`${item?.title}`}
+                slug={slug}
+                activeId={activeId}
+              />
+            ))
           : null}
       </Stack>
+
       <SocialIcons data={socialIcons} />
     </TableOfContentContainer>
   );

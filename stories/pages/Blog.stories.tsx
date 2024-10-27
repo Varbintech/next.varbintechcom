@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
-import BlogPage from '../../pages/blog/index.page-wip';
-import BlogDetailPage from 'pages/blog/[blogId].page-wip';
+/* import BlogPage from '../../pages/blog/index.page';
+import BlogDetailPage from 'pages/blog/[blogId].page'; */
 
 const mockRouter = {
   pathname: '/blog/[blogId]',
@@ -21,5 +21,5 @@ storiesOf('App/Pages/Blog', module)
       <Story />
     </RouterContext.Provider>
   ))
-  .add('Index', () => <BlogPage />)
-  .add('Details', () => <BlogDetailPage />);
+  .add('Index', () => <>This page is: WIP</>)
+  .add('Details', () => <>This page is: WIP</>);

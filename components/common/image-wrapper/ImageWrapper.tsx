@@ -24,19 +24,23 @@ const ImageWrapperComponent = (props: ImageWrapperComponentProps) => {
   const widthHeightProps =
     data.width && data.height ? { width: data.width, height: data.height } : {};
 
+  const src =
+    data.sizes && data.srcSet
+      ? {
+          src: data.src,
+          srcSet: data.srcSet,
+        }
+      : {
+          src: data.src,
+        };
+
   return (
     <ImageContainer
       className={`${small} ${medium} ${mediumColumn} ${mediumAloneColumn} ${largeBorder}`}
     >
       <span className="inner-wrapper">
         {/* eslint-disable @next/next/no-img-element */}
-        <img
-          loading="lazy"
-          sizes={data.sizes}
-          srcSet={data.srcSet}
-          alt={data.name}
-          {...widthHeightProps}
-        />
+        <img loading="lazy" alt={data.alt || data.name} {...src} {...widthHeightProps} />
       </span>
     </ImageContainer>
   );
