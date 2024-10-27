@@ -6,6 +6,12 @@ type GeneratePopulate<T extends string> = Record<T, typeof populateAllFields>;
 
 export const populateAllFields = { populate: '*' };
 
+export const baseUrl =
+  process.env.CF_PAGES_BRANCH !== 'main'
+    ? String(process.env.CF_PAGES_URL)
+    : String(process.env.WEBSITE_URL);
+export const apiBaseUrl = process.env.API_BASE_URL || '';
+
 export const generatePopulate = <T extends string>(fields: Array<T>): GeneratePopulate<T> => {
   return fields.reduce((acc, field) => {
     acc[field] = { ...populateAllFields };

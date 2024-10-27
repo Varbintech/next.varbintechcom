@@ -77,7 +77,16 @@ const HeroDetails = (props: HeroDetailsProps) => {
               alignItems="center"
               marginBottom={{ xs: '32px', md: 0 }}
             >
-              <Avatar sx={{ width: 50, height: 50 }}>
+              <Avatar
+                sx={{
+                  width: '50px',
+                  height: '50px',
+                  '> img': {
+                    width: '100%',
+                    height: '100%',
+                  },
+                }}
+              >
                 {postAuthorPhoto ? (
                   <Image
                     alt={`${postAuthor} photo`}

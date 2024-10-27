@@ -16,15 +16,11 @@ import {
   technologiesGroupedByTechnologyField,
   fetchCaseStudiesWithAllFields,
   populateCaseStudies,
+  baseUrl,
+  apiBaseUrl,
 } from './api.common';
 
 import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
-
-const baseUrl =
-  process.env.CF_PAGES_BRANCH !== 'main'
-    ? String(process.env.CF_PAGES_URL)
-    : String(process.env.WEBSITE_URL);
-const apiBaseUrl = process.env.API_BASE_URL || '';
 
 export const fetchCaseStudies = async (): Promise<ResponseData<CaseStudyStrapi>> => {
   const res = await fetch(`${process.env.API_URL}/case-studies`);
