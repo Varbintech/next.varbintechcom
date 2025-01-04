@@ -63,6 +63,16 @@ module.exports = {
         'no-duplicate-imports': 'error',
         'newline-before-return': 'error',
         'comma-dangle': ['error', 'always-multiline'],
+
+        // @TODO: Temporary disabled rules due to old nextjs version
+        '@next/next/no-html-link-for-pages': 'off',
+        '@next/next/no-page-custom-font': 'off',
+        '@next/next/no-before-interactive-script-outside-document': 'off',
+        '@next/next/no-styled-jsx-in-document': 'off',
+        '@next/next/no-typos': 'off',
+        '@next/next/no-duplicate-head': 'off',
+        '@next/next/no-head-import-in-document': 'off',
+        '@next/next/no-document-import-in-page': 'off',
       },
     },
   ],
