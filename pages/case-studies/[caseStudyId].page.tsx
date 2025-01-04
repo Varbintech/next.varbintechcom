@@ -21,6 +21,8 @@ import {
   MarkdownListItem,
   MarkdownParagraph,
 } from '../../components/common/typography/Markdown';
+import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
+import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
 import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
 const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
@@ -187,16 +189,22 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
                                   container
                                   margin={1}
                                 >
-                                  {technologies.map((item, itemIndex) => (
-                                    <Typography
-                                      variant="body2"
-                                      component="span"
-                                      key={`${item.attributes.name}-${item.id}}`}
-                                    >
-                                      {item.attributes.name}
-                                      {itemIndex < technologies.length - 1 ? <>,&nbsp;</> : ''}
-                                    </Typography>
-                                  ))}
+                                  <ChipTechGroup component="nav">
+                                    {technologies.map((techItem, index) => (
+                                      <ChipTech
+                                        key={`${techItem.id}-${index}`}
+                                        href={techItem.attributes.docLink}
+                                        startIcon={
+                                          techItem.attributes.svgIcon ? (
+                                            <ChipTechIcon svgString={techItem.attributes.svgIcon} />
+                                          ) : null
+                                        }
+                                        target="_blank"
+                                      >
+                                        {techItem.attributes.name}
+                                      </ChipTech>
+                                    ))}
+                                  </ChipTechGroup>
                                 </Grid>
                               </Grid>
                             ))}
