@@ -12,7 +12,7 @@ import { Settings } from '../../constants/settings';
 
 import Button from '../common/buttons/Button';
 
-import BlogSection from './BlogSection';
+/* import BlogSection from './BlogSection'; */
 
 interface RelatedPostsProps {
   data: Array<BlogItem>;
@@ -34,7 +34,7 @@ const RelatedPosts: FC<RelatedPostsProps> = ({ data }) => {
         {data.map(item => {
           return (
             <Grid key={item.id} container item direction="column" xs={12} sm={6} md={4}>
-              <BlogSection data={item} />
+              {/* <BlogSection data={item} /> */}
             </Grid>
           );
         })}
