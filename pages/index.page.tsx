@@ -9,10 +9,11 @@ import { MetaData } from '../constants/meta';
 
 import { useGenerateEventGa } from '../hooks/use-generate-event-ga';
 
-import type { CaseStudyAllStaticProps, Service } from '../models';
+import type { CaseStudyAllStaticProps, Service, PolicyLink } from '../models';
 
 import { getStaticPropsCaseStudies } from '../utils/api.case-study';
 import { getStaticPropsHireEngineersLinks } from '../utils/api.hire-engineers';
+import { fetchStaticPagesPolicyLinks } from '../utils/api.static-page';
 
 const BoxDynamic = dynamic(() => import('@mui/material/Box'));
 const HeroDynamic = dynamic(() => import('../components/hero/Hero'));
@@ -34,12 +35,14 @@ const CaseStudiesAllDynamic = dynamic(
 
 interface HomeStaticProps extends CaseStudyAllStaticProps {
   services: Array<Service>;
+  policyLinks: Array<PolicyLink>;
 }
 
 export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
   const caseStudies = await getStaticPropsCaseStudies(2);
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const servicesMock = await import('../mocks/services');
+  const policyLinks = await fetchStaticPagesPolicyLinks();
 
   return {
     props: {
@@ -47,6 +50,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
       services: servicesMock.services,
       className: '',
       hireEngineersLinks: hireEngineersLinks.props.data,
+      policyLinks,
     },
   };
 };
@@ -68,13 +72,15 @@ export default function Home(props: HomeStaticProps) {
           title="A development team with superpower"
           subtitle={MetaData.Description}
           importantUpdateEl={
-            <ImportantUpdateDynamic
-              text="We posted a new case study "
-              linkText="Enjoy the reading here"
-              linkUrl={`/case-studies/${lastCaseStudy.attributes.slug}`}
-              id={`caseStudy_${lastCaseStudy.id}`}
-              onGa={handleUpdateLinkClick}
-            />
+            <BoxDynamic mb={2}>
+              <ImportantUpdateDynamic
+                text="We posted a new case study:"
+                linkText="Enjoy the reading here"
+                linkUrl={`/case-studies/${lastCaseStudy.attributes.slug}`}
+                id={`caseStudy_${lastCaseStudy.id}`}
+                onGa={handleUpdateLinkClick}
+              />
+            </BoxDynamic>
           }
         />
 
