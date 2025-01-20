@@ -5,6 +5,7 @@ import type {
   Service,
   Quote,
   HireEngineersLink,
+  PolicyLink,
 } from '../models';
 
 import {
@@ -17,6 +18,7 @@ import {
 } from './api.common';
 
 import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
+import { fetchStaticPagesPolicyLinks } from './api.static-page';
 
 interface Feedback {
   id: number;
@@ -39,6 +41,7 @@ export interface TechnologiesStaticProps {
   data: TechnologiesData;
   className: string;
   hireEngineersLinks: Array<HireEngineersLink>;
+  policyLinks: Array<PolicyLink>;
 }
 
 const baseUrl =
@@ -68,6 +71,7 @@ const fetchTechnologiesByShowInTech = async (): Promise<ResponseData<Technology>
 export const getStaticPropsTechnologies = async (): Promise<{ props: TechnologiesStaticProps }> => {
   const json = await fetchTechnologiesByShowInTech();
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
+  const policyLinks = await fetchStaticPagesPolicyLinks();
   const caseStudiesWithAllFields = await fetchCaseStudiesWithAllFields();
   const caseStudies = caseStudiesWithAllFields.data.map(data => {
     data.attributes.heroImage.data.sort(sortHeroImagesByWidth);
@@ -152,6 +156,7 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
       },
       className: 'overflow-hidden',
       hireEngineersLinks: hireEngineersLinks.props.data,
+      policyLinks,
     },
   };
 };

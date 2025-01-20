@@ -12,7 +12,7 @@ import Navigation from '../../components/common/navigation/Navigation';
 import Contact from '../../components/contact/Contact';
 import Footer from '../../components/footer/Footer';
 
-import type { HireEngineersLink } from '../../models';
+import type { HireEngineersLink, PolicyLink } from '../../models';
 
 import { socialIcons } from '../../mocks/social-icons';
 import { footerData } from '../../mocks/footer-data';
@@ -31,14 +31,16 @@ interface LayoutProps {
   children: ReactNode & {
     props: {
       hireEngineersLinks: Array<HireEngineersLink>;
+      policyLinks: Array<PolicyLink>;
     };
   };
   className?: string;
   hireEngineersLinks: Array<HireEngineersLink>;
+  policyLinks: Array<PolicyLink>;
 }
 
 function Layout(props: LayoutProps) {
-  const { children, className, hireEngineersLinks } = props;
+  const { children, className, hireEngineersLinks, policyLinks } = props;
 
   const [acceptsCookies, setAcceptsCookies] = useLocalStorageState('varbintech-accepts-cookies', {
     defaultValue: false,
@@ -69,7 +71,8 @@ function Layout(props: LayoutProps) {
       <Footer
         data={{
           ...footerData,
-          hireEngineerLinks: hireEngineersLinks,
+          hireEngineersLinks,
+          policyLinks,
         }}
       />
     </div>

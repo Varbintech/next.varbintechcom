@@ -45,4 +45,6 @@ export type {
   HireEngineer,
   HireEngineersLink,
   FAQ,
+  StaticPage,
+  PolicyLink,
 } from './strapi.model';

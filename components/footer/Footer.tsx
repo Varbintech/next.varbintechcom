@@ -2,8 +2,9 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-import type { FooterData, HireEngineersLink } from '../../models';
+import type { FooterData, HireEngineersLink, PolicyLink } from '../../models';
 
 import { Settings } from '../../constants/settings';
 import { MetaData } from '../../constants/meta';
@@ -17,11 +18,14 @@ import { FooterList, FooterListItem, IconRightContainer, PageContainer } from '.
 
 interface FooterProps {
   data: Omit<FooterData, 'hireEngineers'> & {
-    hireEngineerLinks: Array<HireEngineersLink>;
+    hireEngineersLinks: Array<HireEngineersLink>;
+    policyLinks: Array<PolicyLink>;
   };
 }
 
 const Footer = ({ data }: FooterProps) => {
+  const { navigations, hireEngineersLinks, policyLinks } = data;
+
   const handleGa = useGenerateEventGa('link');
 
   const currentYear = new Date().getFullYear();
@@ -51,7 +55,7 @@ const Footer = ({ data }: FooterProps) => {
 
               <nav>
                 <FooterList>
-                  {data.navigations.map(singleRoute => {
+                  {navigations.map(singleRoute => {
                     if (singleRoute.href || singleRoute.scrollTo) {
                       return (
                         <FooterListItem key={singleRoute.id}>
@@ -95,7 +99,7 @@ const Footer = ({ data }: FooterProps) => {
 
               <nav>
                 <FooterList>
-                  {data.hireEngineerLinks.map(hireEngineer => (
+                  {hireEngineersLinks.map(hireEngineer => (
                     <FooterListItem key={hireEngineer.id}>
                       <NavigationLink
                         href={`/hire-engineers/${hireEngineer.slug}`}
@@ -112,9 +116,27 @@ const Footer = ({ data }: FooterProps) => {
 
           <Divider sx={{ margin: { xs: '30px 0 22px', md: '60px 0 22px', lg: '118px 0 22px' } }} />
 
-          <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }} component="h5">
-            &copy; Varbintech {currentYear}
-          </Typography>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle2" sx={{ textAlign: { md: 'center' } }} component="h5">
+              &copy; Varbintech {currentYear}
+            </Typography>
+
+            <nav>
+              <FooterList sx={{ m: 0 }}>
+                {policyLinks.map(policyLink => (
+                  <FooterListItem key={policyLink.id}>
+                    <NavigationLink
+                      href={`/${policyLink.slug}`}
+                      id={`policyLink_${policyLink.id}`}
+                      variant="subtitle2"
+                    >
+                      {policyLink.title}
+                    </NavigationLink>
+                  </FooterListItem>
+                ))}
+              </FooterList>
+            </nav>
+          </Box>
         </Container>
       </PageContainer>
     </footer>
