@@ -13,6 +13,12 @@ const fetchHireEngineers = async () => {
   return await res.json();
 };
 
+const fetchStaticPages = async () => {
+  const res = await fetch(`${process.env.API_URL}/static-pages`);
+
+  return await res.json();
+};
+
 const FILENAME = 'sitemap.xml';
 
 function addCaseStudy(caseStudy) {
@@ -26,6 +32,14 @@ function addCaseStudy(caseStudy) {
 function addHireEngineer(hireEngineer) {
   return `<url>
     <loc>${`${process.env.WEBSITE_URL}/hire-engineers/${hireEngineer.attributes.slug}`}</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.00</priority>
+  </url>`;
+}
+
+function addStaticPage(staticPage) {
+  return `<url>
+    <loc>${`${process.env.WEBSITE_URL}/${staticPage.attributes.slug}`}</loc>
     <changefreq>hourly</changefreq>
     <priority>1.00</priority>
   </url>`;
@@ -58,6 +72,7 @@ async function generateSitemap() {
   ]);
   const caseStudies = await fetchCaseStudies();
   const hireEngineers = await fetchHireEngineers();
+  const staticPages = await fetchStaticPages();
 
   const fileData = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${pages
@@ -68,6 +83,10 @@ async function generateSitemap() {
 
       if (item.includes('[hireEngineerId]')) {
         return hireEngineers.data.map(addHireEngineer).join('\n');
+      }
+
+      if (item.includes('[staticPageName]')) {
+        return staticPages.data.map(addStaticPage).join('\n');
       }
 
       return addPage(item);
