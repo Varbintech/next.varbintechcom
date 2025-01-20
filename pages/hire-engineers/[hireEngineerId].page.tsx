@@ -118,7 +118,7 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
               }}
             >
               <ImportantUpdateDynamic
-                text={`${updateLabel.text} `}
+                text={updateLabel.text}
                 linkText={updateLabel.linkText}
                 linkUrl={updateLabel.link}
                 labelText={updateLabel.label}

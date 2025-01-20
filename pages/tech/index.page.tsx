@@ -94,7 +94,7 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
               }}
             >
               <ImportantUpdateDynamic
-                text="We posted a new case study: "
+                text="We posted a new case study:"
                 linkText="Enjoy the reading here"
                 linkUrl={`/case-studies/${lastCaseStudy.attributes.slug}`}
                 labelText="new"
