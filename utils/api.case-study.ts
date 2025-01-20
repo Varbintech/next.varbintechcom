@@ -19,6 +19,7 @@ import {
 } from './api.common';
 
 import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
+import { fetchStaticPagesPolicyLinks } from './api.static-page';
 
 const baseUrl =
   process.env.CF_PAGES_BRANCH !== 'main'
@@ -69,6 +70,7 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
 }> = async ({ params }) => {
   const json = await fetchCaseStudyBySlug(String(params?.caseStudyId));
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
+  const policyLinks = await fetchStaticPagesPolicyLinks();
 
   json.data[0].attributes.heroImage.data.sort(sortHeroImagesByWidth);
 
@@ -104,6 +106,7 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
       },
       className: 'overflow-hidden',
       hireEngineersLinks: hireEngineersLinks.props.data,
+      policyLinks,
     },
   };
 };
@@ -113,6 +116,7 @@ export const getStaticPropsCaseStudies = async (
 ): Promise<{ props: CaseStudyAllStaticProps }> => {
   const caseStudiesWithAllFields = await fetchCaseStudiesWithAllFields();
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
+  const policyLinks = await fetchStaticPagesPolicyLinks();
 
   const caseStudies = caseStudiesWithAllFields.data.map(data => {
     data.attributes.heroImage.data.sort(sortHeroImagesByWidth);
@@ -169,6 +173,7 @@ export const getStaticPropsCaseStudies = async (
       },
       className: '',
       hireEngineersLinks: hireEngineersLinks.props.data,
+      policyLinks,
     },
   };
 };

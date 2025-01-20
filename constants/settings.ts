@@ -6,4 +6,5 @@ export const Settings = {
   RevalidateTime: 360, // In seconds
   CalendlyLink: 'https://calendly.com/varbincom/dc15-30',
   DarkThemeAvailable: false,
+  OverflowHiddenClassName: 'overflow-hidden',
 } as const;

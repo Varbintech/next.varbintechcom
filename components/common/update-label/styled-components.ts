@@ -62,7 +62,6 @@ const animatedColor = keyframes`
 
 export const UpdateLabelContainer = styled('span')(({ theme }) => ({
   display: 'inline-block',
-  marginRight: '16px',
   padding: '8px 12px',
   textTransform: 'uppercase',
   lineHeight: 1,
@@ -114,5 +113,13 @@ export const UpdateLabelContainer = styled('span')(({ theme }) => ({
       borderRadius: '8px',
       backgroundColor: theme.palette.background.paper,
     },
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: theme.spacing(1),
+  },
+
+  [theme.breakpoints.up('md')]: {
+    marginRight: theme.spacing(1),
   },
 }));

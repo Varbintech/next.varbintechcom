@@ -1,7 +1,27 @@
-import { darken, styled } from '@mui/material/styles';
+import { darken, styled, keyframes } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+const BoxIconKeyframes = keyframes`
+  from, 0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -100%, 0) rotate(90deg);
+  }
+`;
+
+const TriangleIconKeyframes = keyframes`
+  from, 0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -100%, 0) rotate(-180deg);
+  }
+`;
 
 export const LogoContainer = styled('div')({
   display: 'flex',
@@ -12,7 +32,6 @@ export const LogoContainer = styled('div')({
 export const PageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   overflowX: 'hidden',
-  minHeight: '100vh',
   backgroundColor: theme.palette.background.default,
   backgroundImage:
     theme.palette.mode === 'dark'
@@ -41,11 +60,11 @@ export const PageContainer = styled('div')(({ theme }) => ({
 
 export const ContainerStyled = styled(Container)(({ theme }) => ({
   position: 'relative',
-  marginBottom: '116px',
+  marginBottom: '156px',
   padding: '160px 24px 0',
 
   [theme.breakpoints.up('lg')]: {
-    padding: '270px 24px 0',
+    padding: '200px 24px 0',
   },
 
   '.page-small &': {
@@ -75,8 +94,12 @@ export const RectangleLeftIconContainer = styled('div')(({ theme }) => ({
   left: 0,
 
   [theme.breakpoints.down('lg')]: {
-    top: '75vh',
+    top: '45vh',
     left: '-40px',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    top: '69vh',
   },
 
   '.page-small &': {
@@ -110,11 +133,13 @@ export const RectangleRightIconContainer = styled('div')(({ theme }) => ({
 
 export const BoxIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '423px',
+  top: '323px',
   left: '-100px',
+  animation: `${BoxIconKeyframes} 15s ease-in-out infinite`,
+  zIndex: 5,
 
   [theme.breakpoints.down('lg')]: {
-    top: '77px',
+    top: '177px',
     left: '-60px',
   },
 
@@ -131,9 +156,10 @@ export const TriangleIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '496px',
   right: '-100px',
+  animation: `${TriangleIconKeyframes} 10s ease infinite`,
+  zIndex: 5,
 
   [theme.breakpoints.down('lg')]: {
-    top: '73vh',
     right: 0,
     width: '88px',
   },

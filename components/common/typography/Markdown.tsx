@@ -1,6 +1,7 @@
 import type { ComponentProps, AnchorHTMLAttributes, HTMLAttributes } from 'react';
 
 import Typography from '@mui/material/Typography';
+import type { Variant } from '@mui/material/styles/createTypography';
 
 import MuiLink from '../link/Link';
 import { TextColumnListStyled, TextColumnListItem } from '../text-column/TextColumn';
@@ -82,3 +83,19 @@ export const MarkdownParagraph = ({
     {children}
   </Typography>
 );
+
+export const MarkdownHeading = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node,
+  ...restProps
+}: HTMLAttributes<HTMLHeadingElement>) => {
+  const tagName = node?.tagName as Variant;
+
+  return (
+    <Typography variant={tagName} {...restProps}>
+      {children}
+    </Typography>
+  );
+};

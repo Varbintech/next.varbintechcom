@@ -150,6 +150,23 @@ export interface HireEngineer {
   };
 }
 
+export interface StaticPage {
+  title: string;
+  description: string;
+  descriptionSEO: string;
+  keywords: string;
+  slug: string;
+  sections: {
+    data: Array<Collection<Section>>;
+  };
+}
+
+export interface PolicyLink {
+  id: number;
+  slug: string;
+  title: string;
+}
+
 export interface Technologies {
   data: Array<Technology>;
 }
@@ -278,6 +295,7 @@ export interface CaseStudyAllStaticProps {
   data: CaseStudyAllData;
   className: string;
   hireEngineersLinks: Array<HireEngineersLink>;
+  policyLinks: Array<PolicyLink>;
 }
 
 export interface ResponseData<T> {

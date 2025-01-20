@@ -21,9 +21,24 @@ const ImportantUpdate = (props: ImportantUpdateProps) => {
   const onClick = onGa ? { onClick: onGa } : {};
 
   return (
-    <Typography align="center" sx={{ marginBottom: { xs: 3.5, md: 2 } }}>
+    <Typography
+      align="center"
+      display="flex"
+      flexDirection={{
+        xs: 'column',
+        md: 'row',
+      }}
+      justifyContent="center"
+      alignItems="center"
+      flexWrap={{
+        xs: 'nowrap',
+        md: 'wrap',
+      }}
+      rowGap="4px"
+    >
       <UpdateLabel className="gradient-border">{labelText}</UpdateLabel>
-      {text}
+      <Typography component="span">{text}&nbsp;</Typography>
+
       {linkUrl ? (
         <Link href={linkUrl} variant="caption" {...linkId} {...onClick}>
           {linkText}

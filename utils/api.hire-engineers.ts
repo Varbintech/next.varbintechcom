@@ -1,8 +1,15 @@
 import type { GetStaticProps } from 'next';
 
-import type { HireEngineer, ResponseData, Collection, HireEngineersLink } from '../models';
+import type {
+  HireEngineer,
+  ResponseData,
+  Collection,
+  HireEngineersLink,
+  PolicyLink,
+} from '../models';
 
 import { stringify, generatePopulate } from './api.common';
+import { fetchStaticPagesPolicyLinks } from './api.static-page';
 
 const hireEngineersFields = [
   'updateLabel',
@@ -22,6 +29,8 @@ const populateHireEngineers = generatePopulate(hireEngineersFields);
 export interface HireEngineerStaticProps {
   data: Collection<HireEngineer>;
   className: string;
+  hireEngineersLinks: Array<HireEngineersLink>;
+  policyLinks: Array<PolicyLink>;
 }
 
 const fetchHireEngineers = async (): Promise<ResponseData<Collection<HireEngineer>>> => {
@@ -84,12 +93,14 @@ export const getStaticPropsHireEngineer: GetStaticProps<HireEngineerStaticProps>
 }) => {
   const json = await fetchHireEngineerBySlug(String(params?.hireEngineerId));
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
+  const policyLinks = await fetchStaticPagesPolicyLinks();
 
   return {
     props: {
       data: json.data[0],
       className: 'overflow-hidden',
       hireEngineersLinks: hireEngineersLinks.props.data,
+      policyLinks,
     },
   };
 };
