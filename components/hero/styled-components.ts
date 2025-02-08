@@ -39,7 +39,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
       : 'linear-gradient(180deg, rgba(242, 242, 242, 0) 0%, rgba(242, 242, 242, 0.24) 100%)',
 
   '&.page-small': {
-    minHeight: '375px',
+    minHeight: '390px',
 
     [theme.breakpoints.down('lg')]: {
       minHeight: 'auto',
@@ -217,6 +217,7 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     marginBottom: '24px',
     fontSize: '3.5em',
+    lineHeight: '1.2',
   },
 }));
 

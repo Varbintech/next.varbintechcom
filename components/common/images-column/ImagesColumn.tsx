@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
 import Stack from '@mui/material/Stack';
 
 import type { ProjectImageDetails } from '../../../models';
@@ -10,14 +8,14 @@ interface ImagesColumnProps {
   data: ProjectImageDetails;
 }
 
-const ImagesColumn: FC<ImagesColumnProps> = ({ data }) => {
+const ImagesColumn = ({ data }: ImagesColumnProps) => {
   const aloneColumn = data.imageSection.length === 1;
 
   return (
     <Stack
       direction={{ xs: 'column', md: aloneColumn ? 'column' : 'row' }}
       spacing={{ xs: '24px', md: '30px' }}
-      sx={{ marginBottom: { xs: '60px', md: aloneColumn ? '60px' : '112px' } }}
+      sx={{ marginBottom: { xs: '20px', md: aloneColumn ? '30px' : '50px' } }}
       flexWrap={aloneColumn ? 'wrap' : 'initial'}
     >
       {data.imageSection.map((item, index) => {
