@@ -29,7 +29,7 @@ export const navigationRoutes: Array<NavigationRoute> = [
   {
     id: 4,
     text: 'Blog',
-    href: process.env.NODE_ENV === 'development' ? '/blog' : '',
+    href: '/blog',
     scrollTo: '',
     linkId: 'blogLink',
     showInMenu: true,
