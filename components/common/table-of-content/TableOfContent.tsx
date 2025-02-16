@@ -49,40 +49,36 @@ const TableOfContent = (props: TableOfContentProps) => {
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    if (!activeId && data.length > 0) {
-      setActiveId(data[0].href);
-    }
-  }, [activeId, data]);
+    const timeoutId = setTimeout(() => {
+      sections.current = document.querySelectorAll('.section');
 
-  useEffect(() => {
-    sections.current = document.querySelectorAll('.section');
-
-    observer.current = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
-        }
-      });
-    }, options);
-
-    if (sections.current) {
-      sections.current.forEach(section => {
-        if (observer.current && section) {
-          observer.current.observe(section);
-        }
-      });
-    }
-
-    return () => {
-      if (sections.current) {
-        sections.current.forEach(section => {
-          if (observer.current && section) {
-            observer.current.unobserve(section);
+      observer.current = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
           }
         });
+      }, options);
+
+      sections.current.forEach(section => {
+        observer.current?.observe(section);
+      });
+    }, 100);
+
+    return () => {
+      if (observer.current) {
+        sections.current?.forEach(section => {
+          observer.current?.unobserve(section);
+        });
+
+        observer.current.disconnect();
+      }
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
     };
-  }, [data, activeId]);
+  }, []);
 
   return (
     <TableOfContentContainer>

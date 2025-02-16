@@ -22,3 +22,19 @@ export const PreStyled = styled('pre')`
   unicode-bidi: isolate;
   display: block;
 `;
+
+export const OneLineSpanStyled = styled('span')(({ theme }) => ({
+  fontFamily: 'Fira Code, monospace',
+  padding: theme.spacing(0, 0.5),
+  borderRadius: theme.shape.borderRadius,
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  backgroundColor: theme.palette.primary.dark,
+  color: theme.palette.text.primary,
+}));
+
+export const BlockquoteStyled = styled('blockquote')(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderLeft: `4px solid ${theme.palette.primary.contrastText}`,
+  color: theme.palette.text.secondary,
+}));

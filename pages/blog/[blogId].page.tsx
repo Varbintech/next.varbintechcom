@@ -10,9 +10,10 @@ import Typography from '@mui/material/Typography';
 
 import { Settings } from '../../constants/settings';
 
-import HeroDetails from '../../components/hero/HeroDetails';
+import HeroBlogDetails from '../../components/hero/HeroBlogDetails';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import TableOfContent from '../../components/common/table-of-content/TableOfContent';
+import HeadBlogDetails from '../../components-pages/head/HeadCaseStudyDetails';
 import {
   MarkdownText,
   MarkdownLink,
@@ -20,6 +21,8 @@ import {
   MarkdownListItem,
   MarkdownParagraph,
   MarkdownCode,
+  MarkdownHeading,
+  MarkdownBlockquote,
 } from '../../components/common/typography/Markdown';
 
 const TextColumnContainerDynamic = dynamic(() =>
@@ -44,12 +47,22 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
     data: { attributes },
     socialShareButtons,
     tocContent,
+    baseUrl,
   } = props;
 
   if (attributes) {
     return (
       <>
-        <HeroDetails
+        <HeadBlogDetails
+          title={`${attributes.title} | Varbintech Blog`}
+          description={attributes.descriptionSEO}
+          keywords={attributes.keywords}
+          image={attributes.metaImage.data.attributes.url}
+          imageAlt={attributes.metaImage.data.attributes.alternativeText}
+          ogUrl={`${baseUrl}/blog/${attributes.slug}`}
+        />
+
+        <HeroBlogDetails
           title={attributes.title}
           projectTags={attributes.blogTags.data.map(tag => ({
             name: tag.attributes.title,
@@ -89,6 +102,11 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
 
             <Grid container item direction="column" xs={12} md={9}>
               {attributes.sections.data.map(({ id: sectionId, attributes: sectionAttr }, index) => {
+                const scrollMarginTop = {
+                  scrollMarginTop: index === 0 ? '402px' : '202px',
+                  marginTop: '1.5rem !important',
+                };
+
                 return (
                   <TextColumnContainerDynamic key={`${sectionId}-${index}`}>
                     <Stack direction="column">
@@ -96,9 +114,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                         <Typography
                           variant={sectionAttr.headingLevel}
                           marginBottom={sectionAttr.description ? 2 : 0}
-                          sx={{
-                            scrollMarginTop: index === 0 ? '402px' : '202px',
-                          }}
+                          sx={scrollMarginTop}
                           className="section"
                         >
                           {sectionAttr.name}
@@ -106,70 +122,44 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                       ) : null}
 
                       {sectionAttr.description ? (
-                        <Stack direction="column" spacing={2} marginBottom={2}>
+                        <Stack direction="column" spacing={2} marginBottom={3}>
                           <MarkdownText
                             components={{
                               a: MarkdownLink,
-                              h2: ({ children }) => {
-                                const id = children
-                                  ?.toString()
-                                  .toLocaleLowerCase()
-                                  .replace(/ /g, '-');
-
-                                return (
-                                  <Typography
-                                    variant="h2"
-                                    id={id}
-                                    sx={{
-                                      scrollMarginTop: index === 0 ? '402px' : '202px',
-                                    }}
-                                    className="section"
-                                  >
-                                    {children}
-                                  </Typography>
-                                );
-                              },
-                              h3: ({ children }) => {
-                                const id = children
-                                  ?.toString()
-                                  .toLocaleLowerCase()
-                                  .replace(/ /g, '-');
-
-                                return (
-                                  <Typography
-                                    variant="h3"
-                                    id={id}
-                                    sx={{
-                                      scrollMarginTop: index === 0 ? '402px' : '202px',
-                                    }}
-                                    className="section"
-                                  >
-                                    {children}
-                                  </Typography>
-                                );
-                              },
-                              h4: ({ children }) => {
-                                const id = children
-                                  ?.toString()
-                                  .toLocaleLowerCase()
-                                  .replace(/ /g, '-');
-
-                                return (
-                                  <Typography
-                                    variant="h4"
-                                    id={id}
-                                    sx={{
-                                      scrollMarginTop: index === 0 ? '402px' : '202px',
-                                    }}
-                                    className="section"
-                                  >
-                                    {children}
-                                  </Typography>
-                                );
-                              },
+                              h2: ({ children, ...restProps }) => (
+                                <MarkdownHeading
+                                  withCustomId
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...restProps}
+                                >
+                                  {children}
+                                </MarkdownHeading>
+                              ),
+                              h3: ({ children, ...restProps }) => (
+                                <MarkdownHeading
+                                  withCustomId
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...restProps}
+                                >
+                                  {children}
+                                </MarkdownHeading>
+                              ),
+                              h4: ({ children, ...restProps }) => (
+                                <MarkdownHeading
+                                  withCustomId
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...restProps}
+                                >
+                                  {children}
+                                </MarkdownHeading>
+                              ),
                               ul: MarkdownList,
                               li: MarkdownListItem,
                               p: ({ children, ...restProps }) => {
+                                console.warn('children: ', children);
                                 if (
                                   Array.isArray(children) &&
                                   children.some(child => child.type === 'img')
@@ -188,9 +178,11 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                                   );
 
                                   return (
-                                    <ImagesColumn
-                                      data={{ label: 'IMAGE', imageSection: projectsImages }}
-                                    />
+                                    <div>
+                                      <ImagesColumn
+                                        data={{ label: 'IMAGE', imageSection: projectsImages }}
+                                      />
+                                    </div>
                                   );
                                 }
 
@@ -220,6 +212,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                               },
                               pre: ({ children }) => <>{children}</>,
                               code: MarkdownCode,
+                              blockquote: MarkdownBlockquote,
                             }}
                           >
                             {sectionAttr.description}
@@ -231,19 +224,6 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                 );
               })}
             </Grid>
-
-            {/* <Grid container item direction="column" xs={12} md={9}>
-              {data.blogDetails.map((item, index) => {
-                if (item.label === 'TEXT') {
-                  return <TextColumn key={index} data={item} />;
-                }
-                if (item.label === 'IMAGE') {
-                  return <ImagesColumn key={index} data={item} />;
-                }
-
-                return null;
-              })}
-            </Grid> */}
           </Grid>
         </Container>
 

@@ -14,8 +14,11 @@ export const MetaData = {
     'https://res.cloudinary.com/dlxpwfaic/image/upload/v1683287110/varbintech/OG-general_zaxpjl.jpg',
   ImageCaseStudies:
     'https://res.cloudinary.com/dlxpwfaic/image/upload/v1715549950/og-case-studies_p0r9xr.jpg',
+  ImageBlog:
+    'https://res.cloudinary.com/dlxpwfaic/image/upload/v1738424214/varbintech/LI_Blog_post_vfe45e.jpg',
   ImageAlt: 'Best front-end solutions for startups and small teams | Varbintech',
   ImageAltCaseStudies:
     'Case studies that we feel proud. We help startups and small teams to build high-quality Front-End solutions.',
+  ImageAltBlog: 'Stay inspired by Varbintech Blog',
   ImageType: 'image/jpeg',
 } as const;

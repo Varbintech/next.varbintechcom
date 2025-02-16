@@ -2,7 +2,7 @@ import type { ComponentProps, AnchorHTMLAttributes, HTMLAttributes } from 'react
 
 import ReactMarkdown from 'react-markdown';
 
-import Typography from '@mui/material/Typography';
+import Typography, { type TypographyProps } from '@mui/material/Typography';
 import type { Variant } from '@mui/material/styles/createTypography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -13,7 +13,13 @@ import CodeIcon from '@mui/icons-material/Code';
 import MuiLink from '../link/Link';
 import { TextColumnListStyled, TextColumnListItem } from '../text-column/TextColumn';
 
-import { ListContainer, CodeStyled, PreStyled } from './styled-components';
+import {
+  ListContainer,
+  CodeStyled,
+  PreStyled,
+  BlockquoteStyled,
+  OneLineSpanStyled,
+} from './styled-components';
 
 export const MarkdownText = ({
   children,
@@ -74,16 +80,19 @@ export const MarkdownParagraph = ({
   // Comes from ReactMarkdown
   // @ts-expect-error
   node: _,
+  sx,
   ...restProps
-}: HTMLAttributes<HTMLParagraphElement>) => (
+}: HTMLAttributes<HTMLParagraphElement> & { sx?: TypographyProps['sx'] }) => (
   <Typography
     variant="body2"
     paragraph
     gutterBottom
+    sx={
+      sx || {
+        marginBottom: 0,
+      }
+    }
     {...restProps}
-    sx={{
-      marginBottom: 0,
-    }}
   >
     {children}
   </Typography>
@@ -94,9 +103,22 @@ export const MarkdownHeading = ({
   // Comes from ReactMarkdown
   // @ts-expect-error
   node,
+  withCustomId,
   ...restProps
-}: HTMLAttributes<HTMLHeadingElement>) => {
+}: HTMLAttributes<HTMLHeadingElement> & {
+  withCustomId?: boolean;
+} & { sx?: TypographyProps['sx'] }) => {
   const tagName = node?.tagName as Variant;
+
+  if (withCustomId) {
+    const id = children?.toString().toLocaleLowerCase().replace(/ /g, '-');
+
+    return (
+      <Typography variant={tagName} id={id} {...restProps}>
+        {children}
+      </Typography>
+    );
+  }
 
   return (
     <Typography variant={tagName} {...restProps}>
@@ -115,39 +137,57 @@ export const MarkdownCode = ({
   const { className } = restProps;
   const language = className?.replace('language-', '');
 
+  if (language) {
+    return (
+      <Card variant="outlined" sx={{ display: 'inline-block' }}>
+        <CardContent
+          sx={{
+            '&:last-child': {
+              paddingBottom: 2,
+            },
+          }}
+        >
+          <Box display="flex" alignItems="stretch" gap={1}>
+            <CodeIcon color="action" fontSize="small" />
+
+            <Divider orientation="vertical" sx={{ height: 'initial', m: 0 }} light />
+
+            <Typography
+              variant="subtitle2"
+              component="div"
+              gutterBottom
+              m={0}
+              lineHeight="1.2"
+              alignSelf="center"
+              textTransform="uppercase"
+            >
+              {language}
+            </Typography>
+          </Box>
+
+          <Divider sx={{ mx: 0, my: 1 }} />
+
+          <PreStyled>
+            <CodeStyled>{children}</CodeStyled>
+          </PreStyled>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <Card variant="outlined" sx={{ display: 'inline-block' }}>
-      <CardContent
-        sx={{
-          '&:last-child': {
-            paddingBottom: 2,
-          },
-        }}
-      >
-        <Box display="flex" alignItems="stretch" gap={1}>
-          <CodeIcon color="action" fontSize="small" />
-
-          <Divider orientation="vertical" sx={{ height: 'initial', m: 0 }} light />
-
-          <Typography
-            variant="subtitle2"
-            component="div"
-            gutterBottom
-            m={0}
-            lineHeight="1.2"
-            alignSelf="center"
-            textTransform="uppercase"
-          >
-            {language}
-          </Typography>
-        </Box>
-
-        <Divider sx={{ mx: 0, my: 1 }} />
-
-        <PreStyled>
-          <CodeStyled>{children}</CodeStyled>
-        </PreStyled>
-      </CardContent>
-    </Card>
+    <OneLineSpanStyled>
+      <CodeStyled>{children}</CodeStyled>
+    </OneLineSpanStyled>
   );
 };
+
+export const MarkdownBlockquote = ({
+  children,
+  // Comes from ReactMarkdown
+  // @ts-expect-error
+  node: _,
+  ...restProps
+}: HTMLAttributes<HTMLQuoteElement>) => (
+  <BlockquoteStyled {...restProps}>{children}</BlockquoteStyled>
+);
