@@ -2361,19 +2361,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:5.11.11":
-  version: 5.11.11
-  resolution: "@mui/icons-material@npm:5.11.11"
+"@mui/icons-material@npm:5.16.14":
+  version: 5.16.14
+  resolution: "@mui/icons-material@npm:5.16.14"
   dependencies:
-    "@babel/runtime": "npm:^7.21.0"
+    "@babel/runtime": "npm:^7.23.9"
   peerDependencies:
     "@mui/material": ^5.0.0
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
+    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/d1f1228d83cf4d10769c1d7872f571adc941dab64a4afff522f3451b6497a4bf5c3ed6300592ef86d871a293361c1c40bd6b2d9db606301ecf1ba98b09ba1f4c
+  checksum: 10c0/11632d1f9904fda0a751e442d3d948a83977cd9ba81481cda4e61b9dfdbd80b0616e27750728c066a4dc505035d7ad6aa29ff7c6160a9b52a2b313fc89aa4be3
   languageName: node
   linkType: hard
 
@@ -17227,7 +17227,7 @@ __metadata:
     "@emotion/server": "npm:11.10.0"
     "@emotion/styled": "npm:11.10.6"
     "@hcaptcha/react-hcaptcha": "npm:1.8.1"
-    "@mui/icons-material": "npm:5.11.11"
+    "@mui/icons-material": "npm:5.16.14"
     "@mui/material": "npm:5.11.13"
     "@next/font": "npm:13.1.6"
     "@react-email/body": "npm:0.0.2"
