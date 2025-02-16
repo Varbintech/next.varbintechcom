@@ -25,8 +25,18 @@ import {
   MarkdownBlockquote,
 } from '../../components/common/typography/Markdown';
 
+import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
+import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
+
 const TextColumnContainerDynamic = dynamic(() =>
   import('../../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
+);
+
+const CallToActionDynamic = dynamic(
+  () => import('../../components-pages/case-study/CallToAction'),
+  {
+    loading: () => <p>Loading...</p>,
+  },
 );
 
 import {
@@ -107,6 +117,169 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                   marginTop: '1.5rem !important',
                 };
 
+                if (sectionAttr.showTechStack) {
+                  return (
+                    <Stack direction="column" key={`with-tech-stack-${sectionId}-${index}__blog`}>
+                      <TextColumnContainerDynamic key={`${sectionId}-${index}`}>
+                        <Stack direction="column">
+                          {sectionAttr.showTitle ? (
+                            <Typography
+                              variant={sectionAttr.headingLevel}
+                              marginBottom={sectionAttr.description ? 2 : 0}
+                              sx={scrollMarginTop}
+                              className="section"
+                            >
+                              {sectionAttr.name}
+                            </Typography>
+                          ) : null}
+
+                          {sectionAttr.description ? (
+                            <Stack direction="column" spacing={2} marginBottom={3}>
+                              <MarkdownText
+                                components={{
+                                  a: MarkdownLink,
+                                  h2: ({ children, ...restProps }) => (
+                                    <MarkdownHeading
+                                      withCustomId
+                                      sx={scrollMarginTop}
+                                      className="section"
+                                      {...restProps}
+                                    >
+                                      {children}
+                                    </MarkdownHeading>
+                                  ),
+                                  h3: ({ children, ...restProps }) => (
+                                    <MarkdownHeading
+                                      withCustomId
+                                      sx={scrollMarginTop}
+                                      className="section"
+                                      {...restProps}
+                                    >
+                                      {children}
+                                    </MarkdownHeading>
+                                  ),
+                                  h4: ({ children, ...restProps }) => (
+                                    <MarkdownHeading
+                                      withCustomId
+                                      sx={scrollMarginTop}
+                                      className="section"
+                                      {...restProps}
+                                    >
+                                      {children}
+                                    </MarkdownHeading>
+                                  ),
+                                  ul: MarkdownList,
+                                  li: MarkdownListItem,
+                                  p: ({ children, ...restProps }) => {
+                                    if (
+                                      Array.isArray(children) &&
+                                      children.some(child => child.type === 'img')
+                                    ) {
+                                      const imgs = (children as Array<ReactElement>).filter(
+                                        child => child.type === 'img',
+                                      );
+                                      const projectsImages: Array<ProjectImage> = imgs.map(
+                                        ({ props }: ReactElement) => ({
+                                          src: props.src,
+                                          alt: props.alt,
+                                          width: props.width,
+                                          height: props.height,
+                                          name: props.name,
+                                        }),
+                                      );
+
+                                      return (
+                                        <div>
+                                          <ImagesColumn
+                                            data={{ label: 'IMAGE', imageSection: projectsImages }}
+                                          />
+                                        </div>
+                                      );
+                                    }
+
+                                    if ((children as ReactElement).type === 'img') {
+                                      const { src, alt, width, height, name } = (
+                                        children as ReactElement
+                                      ).props;
+
+                                      const projectsImage: ProjectImage = {
+                                        src,
+                                        alt,
+                                        width,
+                                        height,
+                                        name,
+                                      };
+
+                                      return (
+                                        <ImagesColumn
+                                          data={{ label: 'IMAGE', imageSection: [projectsImage] }}
+                                        />
+                                      );
+                                    }
+
+                                    return (
+                                      <MarkdownParagraph {...restProps}>
+                                        {children}
+                                      </MarkdownParagraph>
+                                    );
+                                  },
+                                  pre: ({ children }) => <>{children}</>,
+                                  code: MarkdownCode,
+                                  blockquote: MarkdownBlockquote,
+                                }}
+                              >
+                                {sectionAttr.description}
+                              </MarkdownText>
+                            </Stack>
+                          ) : null}
+                        </Stack>
+                      </TextColumnContainerDynamic>
+
+                      <Stack direction="column" marginBottom={-3}>
+                        {attributes.technologies.length > 0 ? (
+                          <TextColumnContainerDynamic>
+                            <Stack direction="column" width={'100%'}>
+                              <Grid container columns={6} mt={-2}>
+                                {attributes.technologies.map(([technologyField, technologies]) => (
+                                  <Grid key={`field-${technologyField}`} container>
+                                    <Typography variant="h4">{technologyField}:&nbsp;</Typography>
+
+                                    <Grid
+                                      key={`field-item-${technologyField}`}
+                                      item
+                                      container
+                                      margin={1}
+                                    >
+                                      <ChipTechGroup component="nav">
+                                        {technologies.map((techItem, index) => (
+                                          <ChipTech
+                                            key={`${techItem.id}-${index}`}
+                                            href={techItem.attributes.docLink}
+                                            startIcon={
+                                              techItem.attributes.svgIcon ? (
+                                                <ChipTechIcon
+                                                  svgString={techItem.attributes.svgIcon}
+                                                />
+                                              ) : null
+                                            }
+                                            target="_blank"
+                                          >
+                                            {techItem.attributes.name}
+                                          </ChipTech>
+                                        ))}
+                                      </ChipTechGroup>
+                                    </Grid>
+                                  </Grid>
+                                ))}
+                              </Grid>
+                            </Stack>
+                          </TextColumnContainerDynamic>
+                        ) : null}
+                      </Stack>
+                    </Stack>
+                  );
+                }
+
                 return (
                   <TextColumnContainerDynamic key={`${sectionId}-${index}`}>
                     <Stack direction="column">
@@ -159,7 +332,6 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                               ul: MarkdownList,
                               li: MarkdownListItem,
                               p: ({ children, ...restProps }) => {
-                                console.warn('children: ', children);
                                 if (
                                   Array.isArray(children) &&
                                   children.some(child => child.type === 'img')
@@ -224,6 +396,10 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                 );
               })}
             </Grid>
+
+            {attributes.callToAction.data ? (
+              <CallToActionDynamic {...attributes.callToAction.data.attributes} />
+            ) : null}
           </Grid>
         </Container>
 
