@@ -46,4 +46,5 @@ export type {
   StaticPage,
   PolicyLink,
   BlogItem as BlogItemStrapi,
+  BlogItemStaticProps,
 } from './strapi.model';

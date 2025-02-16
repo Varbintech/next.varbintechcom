@@ -1,13 +1,23 @@
 import type { GetStaticProps } from 'next';
 
-import type { BlogItemStrapi, ResponseData, HireEngineersLink } from '../models';
+import type {
+  BlogItemStrapi,
+  ResponseData,
+  HireEngineersLink,
+  BlogItemStaticProps,
+} from '../models';
 import type { SocialIcon } from '../models/social-icons.model';
 
 import { socialShareButtons } from '../constants/social-share-buttons';
 
 import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
 import { fetchStaticPagesPolicyLinks } from './api.static-page';
-import { stringify, generatePopulate, baseUrl } from './api.common';
+import {
+  stringify,
+  generatePopulate,
+  baseUrl,
+  technologiesGroupedByTechnologyField,
+} from './api.common';
 
 const blogFields = [
   'heroImage',
@@ -18,6 +28,7 @@ const blogFields = [
   'blogAuthors',
   'sections',
   'callToAction',
+  'technologies',
 ];
 
 const populateBlog = generatePopulate(blogFields);
@@ -48,7 +59,7 @@ export interface BlogStaticProps {
 
 export interface BlogIdStaticProps {
   className: string;
-  data: BlogItemStrapi;
+  data: BlogItemStaticProps;
   hireEngineersLinks: Array<HireEngineersLink>;
   socialShareButtons: Array<SocialIcon>;
   tocContent: Array<TocContent>;
@@ -122,13 +133,23 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
     title: item || '',
     href: item?.toLocaleLowerCase().replace(/ /g, '-') || '',
   }));
+  const technologiesGrouped = Object.entries(
+    technologiesGroupedByTechnologyField(json.data[0].attributes.technologies.data),
+  );
 
   return {
     props: {
       className: '',
-      data: json.data[0],
+      data: {
+        ...json.data[0],
+        attributes: {
+          ...json.data[0].attributes,
+          technologies: technologiesGrouped,
+        },
+      },
       hireEngineersLinks: hireEngineersLinks.props.data,
       socialShareButtons: socialShareButtons(`${baseUrl}/blog/${json.data[0].attributes.slug}`),
+
       tocContent,
       policyLinks,
       baseUrl,
