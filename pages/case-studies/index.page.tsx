@@ -29,8 +29,8 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
     <>
       <HeadCaseStudies
         title={`Case studies that we feel proud | ${MetaData.IndexAuthor}`}
-        description="Discover Varbintech's front-end development case studies. See successful projects in React, Angular, and Next.js for various industries."
-        keywords="Front-end development case studies, Outsourced front-end development, Front-end development services, React case studies, Angular development projects, Next.js development examples, SaaS front-end solutions, Web application development"
+        description="Discover Varbintech's E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries."
+        keywords="Front-end development case studies, Outsourced front-end development, Front-end development services, React case studies, Angular development projects, Next.js development examples, SaaS front-end solutions, Web application development, E-Commerce development, SaaS development"
         image={MetaData.ImageCaseStudies}
         imageAlt={MetaData.ImageAltCaseStudies}
         ogUrl={`${baseUrl}/case-studies`}
@@ -40,8 +40,7 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
       <HeroDynamic
         small
         title="Case Studies that We Feel Proud"
-        subtitle="We help startups and companies of all shapes and sizes to build high-quality Front-End
-        solutions."
+        subtitle="We help to develop exceptional E-Commerce & SaaS solutions that set you apart. From an idea to the final launch, we've got you covered."
         socialIcons={socialShareButtons}
       />
 

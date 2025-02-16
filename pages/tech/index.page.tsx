@@ -68,9 +68,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
   return (
     <>
       <HeadTech
-        title={`Tech & tools, front-end solutions for your SaaS | ${MetaData.IndexAuthor}`}
-        description="Get expert front-end development with Varbintech. Specializing in React, Angular, and Next.js for dynamic and responsive web solutions."
-        keywords="Front-end development outsourcing, React development services, Angular front-end solutions, Responsive web design services, Custom front-end development, Front-end technology stack, JavaScript framework expertise, Outsourced front-end development for startups, Professional Next.js developers for hire"
+        title={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        keywords="Front-end development outsourcing, React development services, Angular front-end solutions, Responsive web design services, Custom front-end development, Front-end technology stack, JavaScript framework expertise, Outsourced front-end development for startups, Professional Next.js developers for hire, E-Commerce development, SaaS development"
         image={MetaData.Image}
         imageAlt={MetaData.ImageAlt}
         imageWidth={1200}
