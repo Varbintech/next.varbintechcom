@@ -71,8 +71,6 @@ export const getStaticPropsIndex: GetStaticProps<BlogStaticProps> = async () => 
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const policyLinks = await fetchStaticPagesPolicyLinks();
 
-  console.warn('allBlogPosts', allBlogPosts);
-
   return {
     props: {
       className: '',
