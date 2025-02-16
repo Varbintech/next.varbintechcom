@@ -53,7 +53,7 @@ function addStaticPage(staticPage) {
 
 function addBlogPage(blogPage) {
   return `<url>
-    <loc>${`${process.env.WEBSITE_URL}/${blogPage.attributes.slug}`}</loc>
+    <loc>${`${process.env.WEBSITE_URL}/blog/${blogPage.attributes.slug}`}</loc>
     <changefreq>hourly</changefreq>
     <priority>1.00</priority>
   </url>`;
