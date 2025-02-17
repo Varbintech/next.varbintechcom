@@ -25,7 +25,13 @@ export const navigationRoutes: Array<NavigationRoute> = [
     linkId: 'servicesLink',
     showInMenu: true,
   },
-  { id: 3, text: 'Pricing', href: '/pricing', scrollTo: '', linkId: 'pricingLink' },
+  {
+    id: 3,
+    text: 'Pricing',
+    href: '',
+    scrollTo: '',
+    linkId: 'pricingLink',
+  },
   {
     id: 4,
     text: 'Blog',
