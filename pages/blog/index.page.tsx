@@ -17,8 +17,8 @@ const BlogPage = (props: BlogStaticProps) => {
   return (
     <>
       <HeadBlog
-        title={`Stay inspired by Varbintech Blog | ${MetaData.IndexAuthor}`}
-        description="We share our knowledge and experience in front-end development, software engineering, and more."
+        title={`Stay inspired by Varbintech blog | ${MetaData.IndexAuthor}`}
+        description="We share our knowledge and experience in E-Commerce and SaaS solutions, front-end development, software engineering, and more."
         keywords="Front-end development blog, Software engineering blog, Web development blog, React tutorials, Angular guides, Next.js tips, Front-end development articles"
         image={MetaData.ImageBlog}
         imageAlt={MetaData.ImageAltBlog}
@@ -29,8 +29,8 @@ const BlogPage = (props: BlogStaticProps) => {
       <Hero
         small
         plainBg
-        title="Stay inspired by Varbintech Blog"
-        subtitle="We share our knowledge and experience in front-end development, software engineering, and more."
+        title="Stay inspired by Varbintech blog"
+        subtitle="We share our knowledge and experience in E-Commerce and SaaS solutions, front-end development, software engineering, and more."
         socialIcons={socialShareButtons}
       />
 
