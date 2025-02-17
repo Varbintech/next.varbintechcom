@@ -6,7 +6,7 @@ import RedditIcon from '@mui/icons-material/Reddit';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 
 import type { SocialIcon } from '../../../models';
 
@@ -25,7 +25,7 @@ const icons: Record<string, JSX.Element> = {
   gitHubIcon: <GitHubIcon sx={{ fontSize: '28px' }} />,
   facebookIcon: <FacebookIcon sx={{ fontSize: '32px' }} />,
   linkedInIcon: <LinkedInIcon sx={{ fontSize: '32px' }} />,
-  twitterIcon: <TwitterIcon sx={{ fontSize: '26px' }} />,
+  twitterIcon: <XIcon sx={{ fontSize: '26px' }} />,
   upworkIcon: <UpworkSmallIcon />,
   clutchIcon: <ClutchSmallIcon />,
 };

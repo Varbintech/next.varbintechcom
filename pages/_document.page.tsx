@@ -23,7 +23,7 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="en">
+    <Html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={lightTheme.palette.primary.main} />

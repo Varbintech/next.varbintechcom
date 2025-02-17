@@ -11,9 +11,9 @@ import type { ProjectImage, ProjectTag, SocialIcon } from '../../models';
 import ChipGroup from '../common/chip/ChipGroup';
 import SocialIcons from '../common/social-icons/SocialIcons';
 
-import { HeroDetailsBgImage, HeroDetailsStyled } from './styled-components';
+import { HeroBlogDetailsBgImage, HeroBlogDetailsStyled } from './styled-components';
 
-interface HeroDetailsProps {
+interface HeroBlogDetailsProps {
   title: string;
   projectTags: Array<ProjectTag>;
   projectSocialIcons: Array<SocialIcon>;
@@ -27,7 +27,7 @@ interface HeroDetailsProps {
   isDarkTheme?: boolean;
 }
 
-const HeroDetails = (props: HeroDetailsProps) => {
+const HeroBlogDetails = (props: HeroBlogDetailsProps) => {
   const {
     title,
     projectTags,
@@ -37,14 +37,13 @@ const HeroDetails = (props: HeroDetailsProps) => {
     postAuthor,
     postDate,
     postAuthorPhoto,
-    postBgImage,
     isDarkTheme,
     services,
   } = props;
 
   return (
-    <HeroDetailsBgImage imageUrl={postBgImage} className={isDarkTheme ? 'bg-dark-theme' : ''}>
-      <HeroDetailsStyled className={bgColored ? 'bg-colored' : ''}>
+    <HeroBlogDetailsBgImage className={isDarkTheme ? 'bg-dark-theme' : ''}>
+      <HeroBlogDetailsStyled className={bgColored ? 'bg-colored' : ''}>
         <Container maxWidth="lg" className={centered ? 'centered' : ''}>
           <Typography
             variant="h1"
@@ -111,9 +110,9 @@ const HeroDetails = (props: HeroDetailsProps) => {
             <SocialIcons data={projectSocialIcons} />
           </Box>
         </Container>
-      </HeroDetailsStyled>
-    </HeroDetailsBgImage>
+      </HeroBlogDetailsStyled>
+    </HeroBlogDetailsBgImage>
   );
 };
 
-export default HeroDetails;
+export default HeroBlogDetails;

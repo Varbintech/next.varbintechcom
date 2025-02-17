@@ -20,6 +20,20 @@ interface Image {
   url: string;
 }
 
+interface BlogTag {
+  title: string;
+  description?: string;
+}
+
+interface BlogAuthor {
+  firstName: string;
+  lastName: string;
+  avatar: {
+    data: Collection<Image>;
+  };
+  liLink: string;
+}
+
 interface UpdateLabel {
   id: number;
   label: string;
@@ -211,6 +225,90 @@ export interface CaseStudy {
     };
     results: {
       data: Array<Collection<Result>>;
+    };
+    callToAction: {
+      data: Collection<CallToAction>;
+    };
+  };
+}
+
+export interface BlogItem {
+  id: number;
+  attributes: {
+    title: string;
+    descriptionSEO: string;
+    slug: string;
+    keywords: string;
+    publishedAt: string;
+    technologies: Technologies;
+    heroImage: {
+      data: Array<HeroImage>;
+    };
+    tocImage: {
+      data: Collection<Image>;
+    };
+    listImage: {
+      data: Array<Collection<Image>>;
+    };
+    metaImage: {
+      data: {
+        id: number;
+        attributes: MetaImage;
+      };
+    };
+    blogTags: {
+      data: Array<Collection<BlogTag>>;
+    };
+    blogAuthors: {
+      data: Array<Collection<BlogAuthor>>;
+    };
+    sections: {
+      data: Array<{
+        id: number;
+        attributes: Section;
+      }>;
+    };
+    callToAction: {
+      data: Collection<CallToAction>;
+    };
+  };
+}
+
+export interface BlogItemStaticProps {
+  id: number;
+  attributes: {
+    title: string;
+    descriptionSEO: string;
+    slug: string;
+    keywords: string;
+    publishedAt: string;
+    technologies: Array<[string, Array<Technology>]>;
+    heroImage: {
+      data: Array<HeroImage>;
+    };
+    tocImage: {
+      data: Collection<Image>;
+    };
+    listImage: {
+      data: Array<Collection<Image>>;
+    };
+    metaImage: {
+      data: {
+        id: number;
+        attributes: MetaImage;
+      };
+    };
+    blogTags: {
+      data: Array<Collection<BlogTag>>;
+    };
+    blogAuthors: {
+      data: Array<Collection<BlogAuthor>>;
+    };
+    sections: {
+      data: Array<{
+        id: number;
+        attributes: Section;
+      }>;
     };
     callToAction: {
       data: Collection<CallToAction>;

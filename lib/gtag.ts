@@ -28,11 +28,13 @@ export const event = (
 };
 
 export const generateClickEvent = ({ id, url, text, eventName }: GenerateClickEventParams) => {
-  window.gtag('event', `${eventName}Id_click`, {
-    link_id: id,
-    link_url: url,
-    link_text: text,
-  });
+  if (process.env.NODE_ENV === 'production') {
+    window.gtag('event', `${eventName}Id_click`, {
+      link_id: id,
+      link_url: url,
+      link_text: text,
+    });
+  }
 };
 
 // @deprecated

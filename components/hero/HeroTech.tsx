@@ -55,7 +55,7 @@ const HeroTech = (props: HeroTechProps) => {
             fontSize: { xs: '1.2rem', md: '2.5rem' },
           }}
         >
-          To build high-quality front-end solutions for your project
+          E-Commerce & SaaS solutions for your project
         </Typography>
       </ContainerTechStyled>
     </HeroDetailsStyled>
