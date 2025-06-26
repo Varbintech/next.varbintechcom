@@ -94,9 +94,10 @@ export interface Quote {
 
 export interface Section {
   name: string;
-  description: string;
   headingLevel: HeadingLevel;
   order: number;
+  description?: string;
+  descriptionEnhanced?: string;
   showTitle?: boolean;
   showFeedback?: boolean;
   showTechStack?: boolean;
