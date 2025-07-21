@@ -1,18 +1,18 @@
 import RectangleBoxIcon from './RectangleBoxIcon';
 import RectangleBoxIconInverse from './RectangleBoxIconInverse';
 
-import { СubeContainerStyled } from './styled-components';
+import { CubeContainerStyled } from './styled-components';
 
-interface СubeComponentProps {
+interface CubeComponentProps {
   isDarkTheme?: boolean;
 }
 
-const СubeComponent = ({ isDarkTheme }: СubeComponentProps) => {
+const CubeComponent = ({ isDarkTheme }: CubeComponentProps) => {
   return (
-    <СubeContainerStyled>
+    <CubeContainerStyled>
       {isDarkTheme ? <RectangleBoxIconInverse /> : <RectangleBoxIcon />}
-    </СubeContainerStyled>
+    </CubeContainerStyled>
   );
 };
 
-export default СubeComponent;
+export default CubeComponent;

@@ -9,7 +9,7 @@ import {
   type StaticPageProps,
 } from '../utils/api.static-page';
 
-import { СubeContainerStyled } from '../components/common/icon-rectangle-box/styled-components';
+import { CubeContainerStyled } from '../components/common/icon-rectangle-box/styled-components';
 import RectangleBoxIcon from '../components/common/icon-rectangle-box/RectangleBoxIcon';
 import { PageContainer } from '../components/case-studies/styled-components';
 import HeroStaticPage from '../components/hero/HeroHireEngineer';
@@ -40,7 +40,7 @@ import JsonLdWebPage from '../components/json-ld/WebPage';
 import JsonLdWebSite from '../components/json-ld/WebSite';
 import JsonLdWebBreadcrumb from '../components/json-ld/Breadcrumb';
 
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+const CubeContainerTechStyled = styled(CubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
   },
@@ -78,9 +78,9 @@ export default function StaticPage({ data, hireEngineersLinks }: StaticPageProps
       <>
         <HeroStaticPage title={title} subtitle={description} />
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <PageContainer className="lightBackground">
           <ContainerDynamic maxWidth="lg">
