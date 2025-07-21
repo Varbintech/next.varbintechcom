@@ -8,7 +8,7 @@ interface GenerateClickEventParams {
 }
 
 // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
-export const pageview = (url: URL, title: string) => {
+export const pageview = (url: string, title: string) => {
   window.gtag('config', GA_TRACKING_ID, {
     page_location: url,
     page_title: title,
