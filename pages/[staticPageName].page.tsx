@@ -9,7 +9,7 @@ import {
   type StaticPageProps,
 } from '../utils/api.static-page';
 
-import { СubeContainerStyled } from '../components/common/icon-rectangle-box/styled-components';
+import { CubeContainerStyled } from '../components/common/icon-rectangle-box/styled-components';
 import RectangleBoxIcon from '../components/common/icon-rectangle-box/RectangleBoxIcon';
 import { PageContainer } from '../components/case-studies/styled-components';
 import HeroStaticPage from '../components/hero/HeroHireEngineer';
@@ -36,7 +36,7 @@ const TextColumnContainerDynamic = dynamic(() =>
   import('../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
 );
 
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+const CubeContainerTechStyled = styled(CubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
   },
@@ -70,9 +70,9 @@ export default function StaticPage({ data }: StaticPageProps) {
       <>
         <HeroStaticPage title={title} subtitle={description} />
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <PageContainer className="lightBackground">
           <ContainerDynamic maxWidth="lg">

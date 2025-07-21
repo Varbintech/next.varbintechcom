@@ -12,7 +12,7 @@ import type { HireEngineer, Collection } from '../../models';
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
-import { СubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
+import { CubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
 import { PageContainer } from '../../components/case-studies/styled-components';
 import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
 
@@ -55,7 +55,7 @@ import {
   getStaticPathsHireEngineers,
 } from '../../utils/api.hire-engineers';
 
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+const CubeContainerTechStyled = styled(CubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
   },
@@ -127,9 +127,9 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
           }
         />
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <PageContainer className="lightBackground">
           <ContainerDynamic maxWidth="lg">
