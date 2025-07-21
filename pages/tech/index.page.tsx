@@ -9,7 +9,7 @@ const TypographyDynamic = dynamic(() => import('@mui/material/Typography'));
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
-import { СubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
+import { CubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
 
 const SectionContainerStyled = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -22,7 +22,7 @@ const SectionContainerStyled = styled('div')(({ theme }) => ({
   },
 }));
 
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+const CubeContainerTechStyled = styled(CubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
   },
@@ -103,9 +103,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           }
         />
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}
@@ -247,9 +247,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           </ContainerDynamic>
         </SectionContainerStyled>
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}
@@ -294,9 +294,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           <ServicesDynamic data={services} />
         </BoxDynamic>
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}
