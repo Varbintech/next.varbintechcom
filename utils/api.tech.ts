@@ -117,8 +117,8 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
   const technologiesGrouped = Object.entries(technologiesGroupedByTechnologyField(json.data));
   const technologiesGroupedFrontend = technologiesGrouped.filter(([key]) => key === 'Front-End');
   const technologiesGroupedBackend = technologiesGrouped.filter(([key]) => key === 'Back-End');
-  const technologiesGroupedPayment = technologiesGrouped.filter(([key]) => key === 'Testing');
-  const technologiesGroupedTesting = technologiesGrouped.filter(([key]) => key === 'Payment');
+  const technologiesGroupedPayment = technologiesGrouped.filter(([key]) => key === 'Payment');
+  const technologiesGroupedTesting = technologiesGrouped.filter(([key]) => key === 'Testing');
   const technologiesGroupedInfra = technologiesGrouped
     .filter(([key]) => key === 'Infra')
     .map<[string, Array<Technology>]>(([_, value]) => ['Infrastructure', value]);
