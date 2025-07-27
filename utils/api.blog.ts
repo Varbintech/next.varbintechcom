@@ -46,7 +46,8 @@ const fetchAllBlogPosts = async (): Promise<ResponseData<BlogItemStrapi>> => {
 
 export interface TocContent {
   title: string;
-  href: string;
+  id: string;
+  level: string;
 }
 
 export interface BlogStaticProps {
@@ -114,23 +115,47 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
     },
   };
   const urlParams = stringify(params);
-  const regXHeader = /^#{1,6}.+/gm;
-  const regXHeaderReplace = /#{1,6} /g;
+  const regXHeader = /<h([1-6])([^>]*)>(.*?)<\/h\1>/gi;
+  const regIdValue = /id="([^"]*)"/;
 
   const res = await fetch(`${process.env.API_URL}/blogs?${urlParams}`);
   const json = (await res.json()) as ResponseData<BlogItemStrapi>;
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
   const policyLinks = await fetchStaticPagesPolicyLinks();
-  const allHeaders = json.data[0].attributes.sections.data.flatMap(item =>
-    item.attributes.description.match(regXHeader)?.map(item => item.replace(regXHeaderReplace, '')),
-  );
+
   const tocContent: Array<{
     title: string;
-    href: string;
-  }> = allHeaders?.map(item => ({
-    title: item || '',
-    href: item?.toLocaleLowerCase().replace(/ /g, '-') || '',
-  }));
+    id: string;
+    level: string;
+  }> = json.data[0].attributes.sections.data.flatMap(item => {
+    // Heads up: Use `descriptionEnhanced` instead of `description` to get the full content with HTML tags
+    const d = item.attributes.descriptionEnhanced;
+    const allHeaders = d?.match(regXHeader) || [];
+
+    return allHeaders.map(item => {
+      const idMatch = item.match(regIdValue);
+
+      if (idMatch && idMatch[1]) {
+        const title = item
+          .replace(regIdValue, '')
+          .replace(/<[^>]+>/g, '')
+          .trim();
+        const level = item.match(/<h([1-6])/)?.[1] || '1';
+
+        return {
+          title,
+          id: idMatch[1],
+          level,
+        };
+      }
+
+      return {
+        title: '',
+        id: '',
+        level: '',
+      };
+    });
+  });
   const technologiesGrouped = Object.entries(
     technologiesGroupedByTechnologyField(json.data[0].attributes.technologies.data),
   );
@@ -147,7 +172,6 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
       },
       hireEngineersLinks: hireEngineersLinks.props.data,
       socialShareButtons: socialShareButtons(`${baseUrl}/blog/${json.data[0].attributes.slug}`),
-
       tocContent,
       policyLinks,
       baseUrl,
