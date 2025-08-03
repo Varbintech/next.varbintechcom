@@ -139,6 +139,8 @@ export interface HireEngineer {
   slug: string;
   updateLabel: UpdateLabel;
   technologies: Technologies;
+  publishedAt: string;
+  updatedAt: string;
   sections: {
     data: Array<Collection<Section>>;
   };
@@ -190,6 +192,23 @@ export interface Industries {
   data: Array<Collection>;
 }
 
+export interface Client {
+  firstName: string;
+  lastName: string;
+  companyName: string;
+  liProfileCeo: string;
+  liProfileCompany: string;
+  url: string;
+  description: string;
+  location: string;
+  foundingDate: string;
+  logoUrl: string;
+  logoSize: {
+    width: number;
+    height: number;
+  };
+}
+
 export interface CaseStudy {
   id: number;
   attributes: {
@@ -230,6 +249,19 @@ export interface CaseStudy {
     callToAction: {
       data: Collection<CallToAction>;
     };
+    client: {
+      data: Collection<Client>;
+    };
+    readMoreCaseStudies: {
+      id: number;
+      intro: string;
+      description: string;
+      buttonLink: string;
+      buttonText: string;
+      caseStudies: {
+        data: Array<Omit<CaseStudy, 'attributes.readMoreCaseStudies'>>;
+      };
+    };
   };
 }
 
@@ -241,6 +273,7 @@ export interface BlogItem {
     slug: string;
     keywords: string;
     publishedAt: string;
+    updatedAt: string;
     technologies: Technologies;
     heroImage: {
       data: Array<HeroImage>;
@@ -283,6 +316,7 @@ export interface BlogItemStaticProps {
     slug: string;
     keywords: string;
     publishedAt: string;
+    updatedAt: string;
     technologies: Array<[string, Array<Technology>]>;
     heroImage: {
       data: Array<HeroImage>;
@@ -323,6 +357,7 @@ interface CaseStudyAttributesCommon {
   descriptionSEO: string;
   slug: string;
   publishedAt: string;
+  updatedAt: string;
   technologies: Array<[string, Array<Technology>]>;
   industries: {
     data: Array<Collection>;
@@ -351,6 +386,19 @@ interface CaseStudyAttributesCommon {
   };
   callToAction: {
     data: Collection<CallToAction>;
+  };
+  client: {
+    data: Collection<Client>;
+  };
+  readMoreCaseStudies: {
+    id: number;
+    intro: string;
+    description: string;
+    buttonLink: string;
+    buttonText: string;
+    caseStudies: {
+      data: Array<Omit<CaseStudy, 'attributes.readMoreCaseStudies'>>;
+    };
   };
   services: string;
   keywords: string;
