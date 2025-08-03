@@ -24,7 +24,7 @@ interface FooterProps {
 }
 
 const Footer = ({ data }: FooterProps) => {
-  const { navigations, hireEngineersLinks, policyLinks } = data;
+  const { navigation, hireEngineersLinks, policyLinks } = data;
 
   const handleGa = useGenerateEventGa('link');
 
@@ -55,7 +55,7 @@ const Footer = ({ data }: FooterProps) => {
 
               <nav>
                 <FooterList>
-                  {navigations.map(singleRoute => {
+                  {navigation.map(singleRoute => {
                     if (singleRoute.href || singleRoute.scrollTo) {
                       return (
                         <FooterListItem key={singleRoute.id}>

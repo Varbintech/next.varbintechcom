@@ -52,17 +52,3 @@ export interface ProjectFullInfo {
   name: string;
   description: Array<string>;
 }
-
-export interface CaseStudy {
-  id: string;
-  projectImage: ProjectImage;
-  projectImageAlt: string;
-  projectTitle: string;
-  projectDescription: Array<string>;
-  projectTags: Array<ProjectTag>;
-  results: Array<string>;
-  resultInfo: Array<ProjectResultInfo>;
-  projectDetails: Array<ProjectTextDetails | ProjectImageDetails>;
-  projectFullInfo: Array<ProjectFullInfo>;
-  feedback: ProjectFeedback;
-}
