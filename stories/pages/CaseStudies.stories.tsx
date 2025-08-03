@@ -20,6 +20,7 @@ const caseStudy: CaseStudyStaticProps = {
     descriptionSEO: 'Case Study Description',
     slug: 'case-study-slug',
     publishedAt: '2024-01-01',
+    updatedAt: '2024-01-02',
     technologies: [
       [
         'Frontend',
@@ -174,6 +175,38 @@ const caseStudy: CaseStudyStaticProps = {
         socialAriaLabel: 'Social Aria Label',
       },
     ],
+    client: {
+      data: {
+        id: 1,
+        attributes: {
+          firstName: 'Client First Name',
+          lastName: 'Client Last Name',
+          companyName: 'Client Company Name',
+          liProfileCompany: 'Client LinkedIn Profile',
+          liProfileCeo: 'Client LinkedIn CEO Profile',
+          url: 'https://client.example.com',
+          description: 'Client Description',
+          location: 'Client Location',
+          foundingDate: '2020-01-01',
+          logoUrl: 'https://client.example.com/logo.png',
+          logoSize: {
+            width: 100,
+            height: 100,
+          },
+        },
+      },
+    },
+    readMoreCaseStudies: {
+      id: 1,
+      intro: 'Read more about our case studies',
+      description: 'Explore more of our successful projects',
+      buttonLink: '/case-studies',
+      buttonText: 'View All Case Studies',
+      caseStudies: {
+        data: [],
+      },
+    },
+    className: '',
   },
 };
 
