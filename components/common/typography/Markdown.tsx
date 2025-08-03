@@ -243,7 +243,6 @@ export const MarkdownHeadingWithAnchorIconAndCopyButton = ({
 }: HTMLAttributesWithCopyButton & WithSxProps) => {
   const tagName = node?.tagName as Variant;
 
-  console.warn('node: ', node, 'restProps: ', restProps);
 
   return (
     <TypographyStyled variant={tagName} {...restProps}>
