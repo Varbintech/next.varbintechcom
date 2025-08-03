@@ -17,12 +17,17 @@ import type { CaseStudyAllStaticProps } from '../../models';
 
 import { getStaticPropsCaseStudies } from '../../utils/api.case-study';
 
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdBreadcrumb from '../../components/json-ld/Breadcrumb';
+
 export const getStaticProps: GetStaticProps<CaseStudyAllStaticProps> = async () =>
   await getStaticPropsCaseStudies();
 
 const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
   const {
     data: { caseStudies, baseUrl, socialShareButtons },
+    hireEngineersLinks,
   } = props;
 
   return (
@@ -36,6 +41,14 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
         ogUrl={`${baseUrl}/case-studies`}
         ogType={MetaData.IndexType}
       />
+
+      <JsonLdWebSite />
+      <JsonLdWebPage
+        slug="/case-studies"
+        description="Discover Varbintech's E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries."
+        name="Varbintech Case Studies"
+      />
+      <JsonLdBreadcrumb hireEngineersLinks={hireEngineersLinks} />
 
       <HeroDynamic
         small

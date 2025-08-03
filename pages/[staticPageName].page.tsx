@@ -36,6 +36,10 @@ const TextColumnContainerDynamic = dynamic(() =>
   import('../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
 );
 
+import JsonLdWebPage from '../components/json-ld/WebPage';
+import JsonLdWebSite from '../components/json-ld/WebSite';
+import JsonLdWebBreadcrumb from '../components/json-ld/Breadcrumb';
+
 const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
@@ -49,7 +53,7 @@ export const getStaticProps: GetStaticProps<{ data: Collection<StaticPageModel> 
   params,
 }) => await getStaticPropsStaticPages({ params });
 
-export default function StaticPage({ data }: StaticPageProps) {
+export default function StaticPage({ data, hireEngineersLinks }: StaticPageProps) {
   const {
     attributes: { title, description, descriptionSEO, keywords, slug, sections },
   } = data;
@@ -66,6 +70,10 @@ export default function StaticPage({ data }: StaticPageProps) {
         imageHeight={630}
         ogUrl={`${MetaData.Url}/${slug}`}
       />
+
+      <JsonLdWebSite />
+      <JsonLdWebPage slug={`/${slug}`} description={descriptionSEO} name={title} />
+      <JsonLdWebBreadcrumb hireEngineersLinks={hireEngineersLinks} />
 
       <>
         <HeroStaticPage title={title} subtitle={description} />

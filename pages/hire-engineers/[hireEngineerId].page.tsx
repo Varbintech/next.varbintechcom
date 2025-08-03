@@ -46,6 +46,11 @@ import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
 import RectangleBoxIcon from '../../components/common/icon-rectangle-box/RectangleBoxIcon';
 import HeroHireEngineer from '../../components/hero/HeroHireEngineer';
 import HeadHireEngineer from '../../components-pages/head/HeadCaseStudyDetails';
+import JsonLdFaq from '../../components/json-ld/Faq';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdBreadcrumb from '../../components/json-ld/Breadcrumb';
+import JsonLdArticle from '../../components/json-ld/Article';
 
 import { MetaData } from '../../constants/meta';
 
@@ -67,7 +72,7 @@ export const getStaticProps: GetStaticProps<{ data: Collection<HireEngineer> }> 
   params,
 }) => await getStaticPropsHireEngineer({ params });
 
-export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
+export default function HireEngineerPage({ data, hireEngineersLinks }: HireEngineerStaticProps) {
   const {
     title,
     subtitle,
@@ -83,6 +88,8 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
     technologies,
     frequentlyAskedQuestions,
     metaImage,
+    publishedAt,
+    updatedAt,
   } = data.attributes;
 
   const handleLinkClick = useGenerateEventGa('link');
@@ -98,6 +105,25 @@ export default function HireEngineerPage({ data }: HireEngineerStaticProps) {
         imageWidth={metaImage.data[0].attributes.width}
         imageHeight={metaImage.data[0].attributes.height}
         ogUrl={`${MetaData.Url}/hire-engineers/${slug}`}
+      />
+
+      <JsonLdFaq data={frequentlyAskedQuestions.data} />
+      <JsonLdWebSite />
+      <JsonLdWebPage slug={`/hire-engineers/${slug}`} description={descriptionSEO} name={title} />
+      <JsonLdBreadcrumb hireEngineersLinks={hireEngineersLinks} />
+      <JsonLdArticle
+        slug={`/hire-engineers/${slug}`}
+        description={descriptionSEO}
+        headline={title}
+        datePublished={publishedAt}
+        dateModified={updatedAt}
+        authors={{
+          name: MetaData.IndexAuthor,
+          url: MetaData.Url,
+        }}
+        mainEntityOfPage={`${MetaData.Url}/hire-engineers/${slug}`}
+        image={metaImage.data[0].attributes.url}
+        type="Article"
       />
 
       <>

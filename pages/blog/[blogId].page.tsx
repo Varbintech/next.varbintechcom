@@ -35,6 +35,9 @@ import ButtonCopyHref from '../../components/common/typography/ButtonCopyHref';
 
 import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
 import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdArticle from '../../components/json-ld/Article';
 
 const TextColumnContainerDynamic = dynamic(() =>
   import('../../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
@@ -78,6 +81,26 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
           image={attributes.metaImage.data.attributes.url}
           imageAlt={attributes.metaImage.data.attributes.alternativeText}
           ogUrl={`${baseUrl}/blog/${attributes.slug}`}
+        />
+
+        <JsonLdWebPage
+          slug={`/blog/${attributes.slug}`}
+          description={attributes.descriptionSEO}
+          name={attributes.title}
+        />
+        <JsonLdWebSite />
+        <JsonLdArticle
+          headline={attributes.title}
+          description={attributes.descriptionSEO}
+          slug={`/blog/${attributes.slug}`}
+          image={attributes.metaImage.data.attributes.url}
+          datePublished={attributes.publishedAt}
+          dateModified={attributes.updatedAt}
+          authors={attributes.blogAuthors.data.map(author => ({
+            name: `${author.attributes.firstName} ${author.attributes.lastName}`,
+            url: author.attributes.liLink,
+          }))}
+          mainEntityOfPage={`${baseUrl}/blog/${attributes.slug}`}
         />
 
         <HeroBlogDetails

@@ -33,6 +33,10 @@ const CaseStudiesAllDynamic = dynamic(
   },
 );
 
+import JsonLdWebPage from '../components/json-ld/WebPage';
+import JsonLdWebSite from '../components/json-ld/WebSite';
+import JsonLdWebBreadcrumb from '../components/json-ld/Breadcrumb';
+
 interface HomeStaticProps extends CaseStudyAllStaticProps {
   services: Array<Service>;
   policyLinks: Array<PolicyLink>;
@@ -41,7 +45,7 @@ interface HomeStaticProps extends CaseStudyAllStaticProps {
 export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
   const caseStudies = await getStaticPropsCaseStudies(2);
   const hireEngineersLinks = await getStaticPropsHireEngineersLinks();
-  const servicesMock = await import('../mocks/services');
+  const servicesMock = await import('../constants/services');
   const policyLinks = await fetchStaticPagesPolicyLinks();
 
   return {
@@ -58,6 +62,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
 export default function Home(props: HomeStaticProps) {
   const {
     data: { lastCaseStudy, caseStudies },
+    hireEngineersLinks,
     services,
   } = props;
 
@@ -66,6 +71,10 @@ export default function Home(props: HomeStaticProps) {
   return (
     <>
       <HeadIndex />
+
+      <JsonLdWebSite />
+      <JsonLdWebPage slug="/" description={MetaData.Description} name={MetaData.IndexAuthor} />
+      <JsonLdWebBreadcrumb hireEngineersLinks={hireEngineersLinks} />
 
       <>
         <HeroDynamic
