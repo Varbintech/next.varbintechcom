@@ -128,7 +128,7 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
     id: string;
     level: string;
   }> = json.data[0].attributes.sections.data.flatMap(item => {
-    // Heads up: Use `descriptionEnhanced` instead of `description` to get the full content with HTML tags
+    // Note: Use `descriptionEnhanced` instead of `description` to get the full content with HTML tags
     const d = item.attributes.descriptionEnhanced;
     const allHeaders = d?.match(regXHeader) || [];
 
