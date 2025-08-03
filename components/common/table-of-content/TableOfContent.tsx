@@ -38,7 +38,7 @@ const TableOfContent = (props: TableOfContentProps) => {
   const tocContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let timeoutId = undefined;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     if (activeId && tocContainerRef.current && router.isReady) {
       const activeLink = tocContainerRef.current.querySelector(`a[href="#${activeId}"]`);
