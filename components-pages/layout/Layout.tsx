@@ -11,11 +11,11 @@ import Head from '../head/Head';
 import Navigation from '../../components/common/navigation/Navigation';
 import Contact from '../../components/contact/Contact';
 import Footer from '../../components/footer/Footer';
+import { footerData } from '../../constants/footer-data';
 
 import type { HireEngineersLink, PolicyLink } from '../../models';
 
 import { socialIcons } from '../../mocks/social-icons';
-import { footerData } from '../../mocks/footer-data';
 
 const DynamicCookiePopup = dynamic(
   () => import('../../components/common/cookie-popup/CookiePopup'),

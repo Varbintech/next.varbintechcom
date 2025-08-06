@@ -30,8 +30,21 @@ export const fetchCaseStudies = async (): Promise<ResponseData<CaseStudyStrapi>>
 };
 
 const fetchCaseStudyBySlug = async (slug: string): Promise<ResponseData<CaseStudyStrapi>> => {
+  const populateCaseStudiesWithNested = {
+    ...populateCaseStudies,
+    readMoreCaseStudies: {
+      populate: {
+        caseStudies: {
+          populate: {
+            heroImage: '*',
+            industries: '*',
+          },
+        },
+      },
+    },
+  };
   const params = {
-    populate: populateCaseStudies,
+    populate: populateCaseStudiesWithNested,
     filters: {
       slug: {
         $eq: slug,
@@ -90,7 +103,7 @@ export const getStaticPropsCaseStudy: GetStaticProps<{
             images: json.data[0].attributes.heroImage.data,
             mainImage,
           },
-          services: services.attributes.description,
+          services: services.attributes.description || '',
           technologies: technologiesGrouped,
           // https://developers.cloudflare.com/pages/configuration/build-configuration/#environment-variables
           baseUrl,
@@ -125,10 +138,12 @@ export const getStaticPropsCaseStudies = async (
       item.attributes.name.toLocaleLowerCase().startsWith('services'),
     )[0];
 
-    const servicesAsArray = services.attributes.description.split(',').map(item => ({
-      name: item.trim(),
-      link: '',
-    }));
+    const servicesAsArray = services.attributes.description
+      ? services.attributes.description.split(',').map(item => ({
+          name: item.trim(),
+          link: '',
+        }))
+      : [];
     const industriesAsArray = data.attributes.industries.data.map(item => ({
       name: item.attributes.name,
       link: '',
@@ -145,7 +160,7 @@ export const getStaticPropsCaseStudies = async (
           images: data.attributes.heroImage.data,
           mainImage,
         },
-        services: services.attributes.description,
+        services: services.attributes.description || '',
         servicesAsArray,
         industriesAsArray,
         resultsWithDescriptionLong,

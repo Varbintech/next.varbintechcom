@@ -46,7 +46,7 @@ export default function NotFound(props: CaseStudyAllStaticProps) {
 
   return (
     <>
-      <HeadIndex />
+      <HeadIndex follow={false} />
 
       <HeroDynamic
         small

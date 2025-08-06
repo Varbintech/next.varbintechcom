@@ -57,10 +57,15 @@ import { MetaData } from '../../constants/meta';
 
 import { getStaticPropsTechnologies, TechnologiesStaticProps } from '../../utils/api.tech';
 
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdWebBreadcrumb from '../../components/json-ld/Breadcrumb';
+import JsonLdArticle from '../../components/json-ld/Article';
+
 export const getStaticProps: GetStaticProps<TechnologiesStaticProps> = async () =>
   await getStaticPropsTechnologies();
 
-export default function TechPage({ data }: TechnologiesStaticProps) {
+export default function TechPage({ data, hireEngineersLinks }: TechnologiesStaticProps) {
   const { technologies, lastCaseStudy, services, feedback } = data;
 
   const handleLinkClick = useGenerateEventGa('link');
@@ -76,6 +81,28 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
         imageWidth={1200}
         imageHeight={630}
         ogUrl={`${MetaData.Url}/tech`}
+      />
+
+      <JsonLdWebSite />
+      <JsonLdWebPage
+        slug="/tech"
+        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        name={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+      />
+      <JsonLdWebBreadcrumb hireEngineersLinks={hireEngineersLinks} />
+      <JsonLdArticle
+        slug="/tech"
+        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        headline={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+        datePublished={new Date().toISOString()}
+        dateModified={new Date().toISOString()}
+        authors={{
+          name: MetaData.IndexAuthor,
+          url: MetaData.Url,
+        }}
+        mainEntityOfPage={`${MetaData.Url}/tech`}
+        type="Article"
+        image={MetaData.Image}
       />
 
       <>

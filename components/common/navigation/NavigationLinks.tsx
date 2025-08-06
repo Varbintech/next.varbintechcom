@@ -1,6 +1,6 @@
 import { useGenerateEventGa } from '../../../hooks/use-generate-event-ga';
 
-import { navigationRoutes } from '../../../mocks/navigation';
+import { navigationRoutes } from '../../../constants/navigation-routes';
 
 import NavigationLink from '../link/NavigationLink';
 
