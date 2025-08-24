@@ -23,7 +23,7 @@ const ImportantUpdateDynamic = dynamic(
 const ServicesDynamic = dynamic(() => import('../components/services/Services'));
 const CustomServicesDynamic = dynamic(() => import('../components/pricing/CustomServices'));
 const DiscoverDynamic = dynamic(() => import('../components/discover/Discover'));
-const СubeComponentDynamic = dynamic(
+const CubeComponentDynamic = dynamic(
   () => import('../components/common/icon-rectangle-box/CubeComponent'),
 );
 const CaseStudiesAllDynamic = dynamic(
@@ -97,7 +97,7 @@ export default function Home(props: HomeStaticProps) {
           <CaseStudiesAllDynamic data={caseStudies} parentId="homePage" />
         </CaseStudiesContainer>
 
-        <СubeComponentDynamic isDarkTheme={Settings.DarkThemeAvailable} />
+        <CubeComponentDynamic isDarkTheme={Settings.DarkThemeAvailable} />
 
         <ServicesDynamic data={services} />
 
