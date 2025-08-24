@@ -33,8 +33,8 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
   return (
     <>
       <HeadCaseStudies
-        title={`Case studies that we feel proud | ${MetaData.IndexAuthor}`}
-        description="Discover Varbintech's E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries."
+        title="Case studies that we feel proud"
+        description={`Discover ${MetaData.IndexAuthor}'s E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries.`}
         keywords="Front-end development case studies, Outsourced front-end development, Front-end development services, React case studies, Angular development projects, Next.js development examples, SaaS front-end solutions, Web application development, E-Commerce development, SaaS development"
         image={MetaData.ImageCaseStudies}
         imageAlt={MetaData.ImageAltCaseStudies}
@@ -45,8 +45,8 @@ const CaseStudiesPage = (props: CaseStudyAllStaticProps) => {
       <JsonLdWebSite />
       <JsonLdWebPage
         slug="/case-studies"
-        description="Discover Varbintech's E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries."
-        name="Varbintech Case Studies"
+        description={`Discover ${MetaData.IndexAuthor}'s E-Commerce & SaaS case studies. See successful projects in React, Angular, and Next.js for various industries.`}
+        name={`${MetaData.IndexAuthor} Case Studies`}
       />
       <JsonLdBreadcrumb hireEngineersLinks={hireEngineersLinks} />
 

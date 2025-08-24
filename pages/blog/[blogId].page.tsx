@@ -9,7 +9,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { Settings } from '../../constants/settings';
-import { MetaData } from '../../constants/meta';
 
 import HeroBlogDetails from '../../components/hero/HeroBlogDetails';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
@@ -75,7 +74,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
     return (
       <>
         <HeadBlogDetails
-          title={`${attributes.title} | ${MetaData.IndexAuthor} Blog`}
+          title={attributes.title}
           description={attributes.descriptionSEO}
           keywords={attributes.keywords}
           image={attributes.metaImage.data.attributes.url}

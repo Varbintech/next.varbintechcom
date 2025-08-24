@@ -19,7 +19,7 @@ const BlogPage = (props: BlogStaticProps) => {
   return (
     <>
       <HeadBlog
-        title={`Stay inspired by ${MetaData.IndexAuthor} Blog | ${MetaData.IndexAuthor}`}
+        title={`Stay inspired by ${MetaData.IndexAuthor} Blog`}
         description="We share our knowledge and experience in E-Commerce and SaaS solutions, front-end development, software engineering, and more."
         keywords="Front-end development blog, Software engineering blog, Web development blog, React tutorials, Angular guides, Next.js tips, Front-end development articles"
         image={MetaData.ImageBlog}

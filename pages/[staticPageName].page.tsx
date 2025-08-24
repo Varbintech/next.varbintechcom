@@ -61,7 +61,7 @@ export default function StaticPage({ data, hireEngineersLinks }: StaticPageProps
   return (
     <>
       <HeadTech
-        title={`${title} | ${MetaData.IndexAuthor}`}
+        title={title}
         description={descriptionSEO}
         keywords={keywords}
         image={MetaData.Image}
