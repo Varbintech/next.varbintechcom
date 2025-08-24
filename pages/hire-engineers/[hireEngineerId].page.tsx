@@ -97,7 +97,7 @@ export default function HireEngineerPage({ data, hireEngineersLinks }: HireEngin
   return (
     <>
       <HeadHireEngineer
-        title={`${title} | ${MetaData.IndexAuthor}`}
+        title={title}
         description={descriptionSEO}
         keywords={keywords}
         image={metaImage.data[0].attributes.url}

@@ -75,7 +75,7 @@ const CaseStudyDetailPage = (props: {
     return (
       <>
         <HeadCaseStudyDetails
-          title={`${attributes.title} | Case Study`}
+          title={attributes.title}
           description={attributes.descriptionSEO}
           keywords={attributes.keywords}
           image={attributes.metaImage.data.attributes.url}

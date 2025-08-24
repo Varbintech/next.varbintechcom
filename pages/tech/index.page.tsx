@@ -73,7 +73,7 @@ export default function TechPage({ data, hireEngineersLinks }: TechnologiesStati
   return (
     <>
       <HeadTech
-        title={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+        title="Tech & tools, high-impact for E-Commerce & SaaS solutions."
         description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
         keywords="Front-end development outsourcing, React development services, Angular front-end solutions, Responsive web design services, Custom front-end development, Front-end technology stack, JavaScript framework expertise, Outsourced front-end development for startups, Professional Next.js developers for hire, E-Commerce development, SaaS development"
         image={MetaData.Image}
@@ -86,13 +86,13 @@ export default function TechPage({ data, hireEngineersLinks }: TechnologiesStati
       <JsonLdWebSite />
       <JsonLdWebPage
         slug="/tech"
-        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
         name={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
       />
       <JsonLdWebBreadcrumb hireEngineersLinks={hireEngineersLinks} />
       <JsonLdArticle
         slug="/tech"
-        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
         headline={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
         datePublished={new Date().toISOString()}
         dateModified={new Date().toISOString()}
