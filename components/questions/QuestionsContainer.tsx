@@ -25,7 +25,7 @@ function QuestionsContainer(props: PropsWithChildren<QuestionsContainerProps>) {
   } = props;
 
   return (
-    <PageContainer sx={sx} itemScope itemType="https://schema.org/FAQPage">
+    <PageContainer sx={sx}>
       <IconRightContainer className="icon-right">
         <RectangleLeftFillIcon />
       </IconRightContainer>

@@ -46,55 +46,44 @@ function Questions({ data, expandedId }: QuestionsProps) {
             expanded={expanded === `panel${id}`}
             onChange={handleChange(`panel${id}`)}
             disableGutters
-            itemScope
-            itemProp="mainEntity"
-            itemType="https://schema.org/Question"
           >
             <AccordionSummary
               aria-controls={`panel-content${id}`}
               id={`panel-header${id}`}
               expandIcon={<SouthIcon fontSize="small" />}
             >
-              <Typography variant="h5" itemProp="name">
-                {title}
-              </Typography>
+              <Typography variant="h5">{title}</Typography>
             </AccordionSummary>
 
-            <AccordionDetails
-              itemScope
-              itemProp="acceptedAnswer"
-              itemType="https://schema.org/Answer"
-            >
-              <div itemProp="text">
-                <MarkdownText
-                  components={{
-                    a: ({ children, href, ...restProps }) => {
-                      if (href?.includes('@')) {
-                        return (
-                          <MarkdownLink href={`mailto:${href}`} {...restProps}>
-                            {children}
-                          </MarkdownLink>
-                        );
-                      }
-
+            <AccordionDetails>
+              <MarkdownText
+                components={{
+                  a: ({ children, href, ...restProps }) => {
+                    if (href?.includes('@')) {
                       return (
-                        <MarkdownLink href={href} {...restProps}>
+                        <MarkdownLink href={`mailto:${href}`} {...restProps}>
                           {children}
                         </MarkdownLink>
                       );
-                    },
-                    ul: MarkdownList,
-                    ol: MarkdownListOl,
-                    li: MarkdownListItem,
-                    p: MarkdownParagraph,
-                    h3: ({ children }) => <Typography variant="h3">{children}</Typography>,
-                    h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
-                    h6: ({ children }) => <Typography variant="h6">{children}</Typography>,
-                  }}
-                >
-                  {description}
-                </MarkdownText>
-              </div>
+                    }
+
+                    return (
+                      <MarkdownLink href={href} {...restProps}>
+                        {children}
+                      </MarkdownLink>
+                    );
+                  },
+                  ul: MarkdownList,
+                  ol: MarkdownListOl,
+                  li: MarkdownListItem,
+                  p: MarkdownParagraph,
+                  h3: ({ children }) => <Typography variant="h3">{children}</Typography>,
+                  h4: ({ children }) => <Typography variant="h4">{children}</Typography>,
+                  h6: ({ children }) => <Typography variant="h6">{children}</Typography>,
+                }}
+              >
+                {description}
+              </MarkdownText>
             </AccordionDetails>
           </Accordion>
         );
