@@ -85,10 +85,12 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
       item.attributes.name.toLocaleLowerCase().startsWith('services'),
     )[0];
 
-    const servicesAsArray = services.attributes.description.split(',').map(item => ({
-      name: item.trim(),
-      link: '',
-    }));
+    const servicesAsArray = services.attributes.description
+      ? services.attributes.description.split(',').map(item => ({
+          name: item.trim(),
+          link: '',
+        }))
+      : [];
     const industriesAsArray = data.attributes.industries.data.map(item => ({
       name: item.attributes.name,
       link: '',
@@ -105,7 +107,7 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
           images: data.attributes.heroImage.data,
           mainImage,
         },
-        services: services.attributes.description,
+        services: services.attributes.description || '',
         servicesAsArray,
         industriesAsArray,
         resultsWithDescriptionLong,
@@ -113,7 +115,7 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
       },
     };
   });
-  const servicesMock = await import('../mocks/services');
+  const servicesMock = await import('../constants/services');
 
   const technologiesGrouped = Object.entries(technologiesGroupedByTechnologyField(json.data));
   const technologiesGroupedFrontend = technologiesGrouped.filter(

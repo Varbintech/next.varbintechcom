@@ -52,6 +52,8 @@ const caseStudyFields = [
   'heroImage',
   'metaImage',
   'callToAction',
+  'client',
+  'readMoreCaseStudies',
 ];
 
 export const populateCaseStudies = generatePopulate(caseStudyFields);

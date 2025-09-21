@@ -12,7 +12,7 @@ export const useEffectPageView = () => {
       return;
     }
 
-    const handleRouteChange = (url: URL) => {
+    const handleRouteChange = (url: string) => {
       pageview(url, document.title);
     };
 

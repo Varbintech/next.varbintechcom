@@ -18,7 +18,7 @@ const CallToActionComponent = (props: CallToAction) => {
       maxWidth="lg"
       sx={{
         paddingTop: noPadding ? 0 : { xs: '64px' },
-        paddingBottom: noPadding ? 0 : { xs: '64px', lg: '120px' },
+        paddingBottom: noPadding ? 0 : { xs: '64px', lg: '80px' },
       }}
     >
       <Stack

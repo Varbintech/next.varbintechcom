@@ -9,6 +9,6 @@ export interface HireEngineer {
 
 export interface FooterData {
   services: Array<Service>;
-  navigations: Array<NavigationRoute>;
+  navigation: Array<NavigationRoute>;
   hireEngineers: Array<HireEngineer>;
 }
