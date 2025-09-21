@@ -73,8 +73,8 @@ export default function TechPage({ data, hireEngineersLinks }: TechnologiesStati
   return (
     <>
       <HeadTech
-        title="Tech & tools, high-impact for E-Commerce & SaaS solutions."
-        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        title="Tech & tools, for high-impact E-Commerce & SaaS solutions"
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
         keywords="Front-end development outsourcing, React development services, Angular front-end solutions, Responsive web design services, Custom front-end development, Front-end technology stack, JavaScript framework expertise, Outsourced front-end development for startups, Professional Next.js developers for hire, E-Commerce development, SaaS development"
         image={MetaData.Image}
         imageAlt={MetaData.ImageAlt}
@@ -214,12 +214,19 @@ export default function TechPage({ data, hireEngineersLinks }: TechnologiesStati
               </TypographyDynamic>
 
               <TextColumnListStyled>
-                <TextColumnListItem>100% of clients who would recommend us</TextColumnListItem>
                 <TextColumnListItem>
-                  75% of our clients become the long-term clients
+                  <strong>80%</strong> of our clients work with us more than once and bring friends
                 </TextColumnListItem>
                 <TextColumnListItem>
-                  All projects are finished with five stars feedback
+                  Our clients&apos; products that we developed are used by <strong>Nvidia</strong>
+                  ,&nbsp;<strong>Jira</strong>, <strong>Grammarly</strong>, and other&nbsp;
+                  <strong>Fortune 500</strong> companies
+                </TextColumnListItem>
+                <TextColumnListItem>
+                  On average, cooperation lasts at least <strong>9 months</strong>
+                </TextColumnListItem>
+                <TextColumnListItem>
+                  <strong>65%</strong> of our clients improved their KPIs
                 </TextColumnListItem>
               </TextColumnListStyled>
             </BoxDynamic>

@@ -1,13 +1,6 @@
-export interface SocialShareButton {
-  id: number;
-  socialTitle: string;
-  socialLink: string;
-  socialIcon: string;
-  socialBorderRadius: string;
-  socialAriaLabel: string;
-}
+import type { SocialIcon } from '../models/social-icons.model';
 
-export const socialShareButtons = (pageLink: string): Array<SocialShareButton> => {
+export const socialShareButtons = (pageLink: string): Array<SocialIcon> => {
   return [
     {
       id: 0,
@@ -27,11 +20,11 @@ export const socialShareButtons = (pageLink: string): Array<SocialShareButton> =
     },
     {
       id: 2,
-      socialTitle: 'Twitter',
-      socialLink: `https://twitter.com/intent/tweet?text=${pageLink}`,
+      socialTitle: 'X',
+      socialLink: `https://x.com/intent/tweet?text=${pageLink}`,
       socialIcon: 'twitterIcon',
       socialBorderRadius: '',
-      socialAriaLabel: 'Share on Twitter',
+      socialAriaLabel: 'Share on X',
     },
   ];
 };
