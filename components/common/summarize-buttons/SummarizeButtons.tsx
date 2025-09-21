@@ -37,7 +37,7 @@ const SummarizeButtons = ({ pageUrl, pageTitle }: SummarizeButtonsProps) => {
     {
       name: 'ChatGPT',
       icon: ChatGPTIcon,
-      url: `https://chatgpt.com/?q=${prompt}`,
+      url: `https://chatgpt.com/chat?q=${prompt}`,
     },
     {
       name: 'Claude',
@@ -71,8 +71,8 @@ const SummarizeButtons = ({ pageUrl, pageTitle }: SummarizeButtonsProps) => {
             target="_blank"
             rel="noopener noreferrer"
             startIcon={<Icon />}
-            title={`Summarize with ${name}`}
-            aria-label={`Summarize with ${name}`}
+            title={`Summarize at ${name}`}
+            aria-label={`Summarize at ${name}`}
             sx={{
               '.MuiButton-startIcon': {
                 margin: 0,
