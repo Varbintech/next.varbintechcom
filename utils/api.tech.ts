@@ -156,8 +156,8 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
         technologies: [
           ...technologiesGroupedFrontend,
           ...technologiesGroupedBackend,
-          ...technologiesGroupedTesting,
           ...technologiesGroupedPayment,
+          ...technologiesGroupedTesting,
           ...technologiesGroupedInfra,
           ...technologiesGroupedDesign,
           ...technologiesGroupedProjectManagement,
