@@ -37,7 +37,7 @@ const SummarizeButtons = ({ pageUrl, pageTitle }: SummarizeButtonsProps) => {
     {
       name: 'ChatGPT',
       icon: ChatGPTIcon,
-      url: `https://chatgpt.com/chat?q=${prompt}`,
+      url: `https://chatgpt.com/?q=${prompt}`,
     },
     {
       name: 'Claude',
