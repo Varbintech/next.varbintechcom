@@ -1,11 +1,12 @@
 import type { FooterData } from '../models';
 
-import { navigationRoutes } from './navigation';
+import { navigationRoutes } from '../constants/navigation-routes';
+
 import { services } from './services';
 
 export const footerData: FooterData = {
-  services: services,
-  navigations: navigationRoutes,
+  services,
+  navigation: navigationRoutes,
   hireEngineers: [
     {
       id: 0,

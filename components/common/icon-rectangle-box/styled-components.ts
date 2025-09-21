@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const СubeContainerStyled = styled('div')(({ theme }) => ({
+export const CubeContainerStyled = styled('div')(({ theme }) => ({
   position: 'absolute',
   left: '50%',
   marginTop: '-35px',

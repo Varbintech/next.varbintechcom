@@ -9,7 +9,7 @@ const TypographyDynamic = dynamic(() => import('@mui/material/Typography'));
 
 import { useGenerateEventGa } from '../../hooks/use-generate-event-ga';
 
-import { СubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
+import { CubeContainerStyled } from '../../components/common/icon-rectangle-box/styled-components';
 
 const SectionContainerStyled = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -22,7 +22,7 @@ const SectionContainerStyled = styled('div')(({ theme }) => ({
   },
 }));
 
-const СubeContainerTechStyled = styled(СubeContainerStyled)(({ theme }) => ({
+const CubeContainerTechStyled = styled(CubeContainerStyled)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block',
   },
@@ -57,10 +57,15 @@ import { MetaData } from '../../constants/meta';
 
 import { getStaticPropsTechnologies, TechnologiesStaticProps } from '../../utils/api.tech';
 
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdWebBreadcrumb from '../../components/json-ld/Breadcrumb';
+import JsonLdArticle from '../../components/json-ld/Article';
+
 export const getStaticProps: GetStaticProps<TechnologiesStaticProps> = async () =>
   await getStaticPropsTechnologies();
 
-export default function TechPage({ data }: TechnologiesStaticProps) {
+export default function TechPage({ data, hireEngineersLinks }: TechnologiesStaticProps) {
   const { technologies, lastCaseStudy, services, feedback } = data;
 
   const handleLinkClick = useGenerateEventGa('link');
@@ -68,14 +73,36 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
   return (
     <>
       <HeadTech
-        title={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
-        description="Get expert E-Commerce & SaaS development with Varbintech. Specializing in React, Angular, and Next.js."
+        title="Tech & tools, for high-impact E-Commerce & SaaS solutions"
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
         keywords="Front-end development outsourcing, React development services, Angular front-end solutions, Responsive web design services, Custom front-end development, Front-end technology stack, JavaScript framework expertise, Outsourced front-end development for startups, Professional Next.js developers for hire, E-Commerce development, SaaS development"
         image={MetaData.Image}
         imageAlt={MetaData.ImageAlt}
         imageWidth={1200}
         imageHeight={630}
         ogUrl={`${MetaData.Url}/tech`}
+      />
+
+      <JsonLdWebSite />
+      <JsonLdWebPage
+        slug="/tech"
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
+        name={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+      />
+      <JsonLdWebBreadcrumb hireEngineersLinks={hireEngineersLinks} />
+      <JsonLdArticle
+        slug="/tech"
+        description={`Get expert E-Commerce & SaaS development with ${MetaData.IndexAuthor}. Specializing in React, Angular, and Next.js.`}
+        headline={`Tech & tools, high-impact for E-Commerce & SaaS solutions. | ${MetaData.IndexAuthor}`}
+        datePublished={new Date().toISOString()}
+        dateModified={new Date().toISOString()}
+        authors={{
+          name: MetaData.IndexAuthor,
+          url: MetaData.Url,
+        }}
+        mainEntityOfPage={`${MetaData.Url}/tech`}
+        type="Article"
+        image={MetaData.Image}
       />
 
       <>
@@ -103,9 +130,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           }
         />
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}
@@ -187,12 +214,19 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
               </TypographyDynamic>
 
               <TextColumnListStyled>
-                <TextColumnListItem>100% of clients who would recommend us</TextColumnListItem>
                 <TextColumnListItem>
-                  75% of our clients become the long-term clients
+                  <strong>80%</strong> of our clients work with us more than once and bring friends
                 </TextColumnListItem>
                 <TextColumnListItem>
-                  All projects are finished with five stars feedback
+                  Our clients&apos; products that we developed are used by <strong>Nvidia</strong>
+                  ,&nbsp;<strong>Jira</strong>, <strong>Grammarly</strong>, and other&nbsp;
+                  <strong>Fortune 500</strong> companies
+                </TextColumnListItem>
+                <TextColumnListItem>
+                  On average, cooperation lasts at least <strong>9 months</strong>
+                </TextColumnListItem>
+                <TextColumnListItem>
+                  <strong>65%</strong> of our clients improved their KPIs
                 </TextColumnListItem>
               </TextColumnListStyled>
             </BoxDynamic>
@@ -247,9 +281,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           </ContainerDynamic>
         </SectionContainerStyled>
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}
@@ -294,9 +328,9 @@ export default function TechPage({ data }: TechnologiesStaticProps) {
           <ServicesDynamic data={services} />
         </BoxDynamic>
 
-        <СubeContainerTechStyled>
+        <CubeContainerTechStyled>
           <RectangleBoxIcon />
-        </СubeContainerTechStyled>
+        </CubeContainerTechStyled>
 
         <ContainerDynamic
           maxWidth={false}

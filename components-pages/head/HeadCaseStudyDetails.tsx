@@ -12,11 +12,22 @@ interface HeadIndexProps {
   imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;
+  follow?: boolean;
 }
 
 const HeadCaseStudyDetails = (props: HeadIndexProps) => {
-  const { title, description, keywords, image, imageWidth, imageHeight, ogUrl, imageAlt, ogType } =
-    props;
+  const {
+    title,
+    description,
+    keywords,
+    image,
+    imageWidth,
+    imageHeight,
+    ogUrl,
+    imageAlt,
+    ogType,
+    follow = true,
+  } = props;
 
   return (
     <NextHead>
@@ -25,6 +36,8 @@ const HeadCaseStudyDetails = (props: HeadIndexProps) => {
       <meta name="keywords" content={keywords} />
       <meta name="image" content={image} />
       <meta name="author" content={`${MetaData.IndexAuthor} Team`} />
+      <meta name="robots" content={follow ? 'index, follow' : 'noindex, nofollow'} />
+      <meta name="googlebot" content={follow ? 'index, follow' : 'noindex, nofollow'} />
       <link rel="canonical" href={ogUrl}></link>
 
       {/* Google / Search Engine Tags */}

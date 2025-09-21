@@ -11,7 +11,7 @@ import { getStaticPathsCaseStudy, getStaticPropsCaseStudy } from '../../utils/ap
 
 import { Settings } from '../../constants/settings';
 
-import type { CaseStudyStaticProps } from '../../models';
+import type { CaseStudyStaticProps, HireEngineersLink } from '../../models';
 
 import HeadCaseStudyDetails from '../../components-pages/head/HeadCaseStudyDetails';
 import {
@@ -24,6 +24,10 @@ import {
 import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
 import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
 import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdBreadcrumb from '../../components/json-ld/Breadcrumb';
+import JsonLdReview from '../../components/json-ld/Review';
 
 const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
 const FeedbackContainer2Dynamic = dynamic(() =>
@@ -46,28 +50,72 @@ const CallToActionDynamic = dynamic(
     loading: () => <p>Loading...</p>,
   },
 );
+const RelatedCaseStudiesDynamic = dynamic(
+  () => import('../../components/case-studies/RelatedCaseStudies'),
+  {
+    loading: () => <p>Loading...</p>,
+  },
+);
 
 export const getStaticPaths = async () => await getStaticPathsCaseStudy();
 
 export const getStaticProps: GetStaticProps<{ data: CaseStudyStaticProps }> = async ({ params }) =>
   await getStaticPropsCaseStudy({ params });
 
-const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
+const CaseStudyDetailPage = (props: {
+  data: CaseStudyStaticProps;
+  hireEngineersLinks: Array<HireEngineersLink>;
+}) => {
   const {
     data: { attributes },
+    hireEngineersLinks,
   } = props;
 
   if (attributes) {
     return (
       <>
         <HeadCaseStudyDetails
-          title={`${attributes.title} | Case Study`}
+          title={attributes.title}
           description={attributes.descriptionSEO}
           keywords={attributes.keywords}
           image={attributes.metaImage.data.attributes.url}
           imageWidth={attributes.metaImage.data.attributes.width}
           imageHeight={attributes.metaImage.data.attributes.height}
           ogUrl={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
+        />
+
+        <JsonLdWebSite />
+        <JsonLdWebPage
+          slug={`/case-studies/${attributes.slug}`}
+          description={attributes.descriptionSEO}
+          name={attributes.title}
+        />
+        <JsonLdBreadcrumb hireEngineersLinks={hireEngineersLinks} />
+        <JsonLdReview
+          name={attributes.title}
+          reviewBody={attributes.quotes.data[0].attributes.content}
+          reviewRating={{
+            ratingValue: '5',
+            bestRating: '5',
+            worstRating: '1',
+          }}
+          author={{
+            name: attributes.client.data.attributes.companyName,
+            url: attributes.client.data.attributes.url,
+            logo: {
+              url: attributes.client.data.attributes.logoUrl,
+              ...attributes.client.data.attributes.logoSize,
+            },
+            description: attributes.client.data.attributes.description,
+            location: attributes.client.data.attributes.location,
+            foundingDate: attributes.client.data.attributes.foundingDate,
+          }}
+          itemReviewed={{
+            name: attributes.title,
+            description: attributes.descriptionSEO,
+          }}
+          url={`/case-studies/${attributes.slug}`}
+          keywords={attributes.keywords.split(', ')}
         />
 
         <HeroDetailsDynamic
@@ -298,6 +346,16 @@ const CaseStudyDetailPage = (props: { data: CaseStudyStaticProps }) => {
 
         {attributes.callToAction.data ? (
           <CallToActionDynamic {...attributes.callToAction.data.attributes} />
+        ) : null}
+
+        {attributes.readMoreCaseStudies.caseStudies.data.length > 0 ? (
+          <RelatedCaseStudiesDynamic
+            data={attributes.readMoreCaseStudies.caseStudies.data}
+            intro={attributes.readMoreCaseStudies.intro}
+            description={attributes.readMoreCaseStudies.description}
+            buttonText={attributes.readMoreCaseStudies.buttonText}
+            buttonLink={attributes.readMoreCaseStudies.buttonLink}
+          />
         ) : null}
       </>
     );

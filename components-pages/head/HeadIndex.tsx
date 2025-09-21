@@ -4,9 +4,10 @@ import { MetaData } from '../../constants/meta';
 
 interface HeadIndexProps {
   title?: string;
+  follow?: boolean;
 }
 
-const HeadIndex = ({ title = MetaData.Title }: HeadIndexProps) => {
+const HeadIndex = ({ title = MetaData.Title, follow = true }: HeadIndexProps) => {
   return (
     <NextHead>
       <title>{title}</title>
@@ -15,6 +16,8 @@ const HeadIndex = ({ title = MetaData.Title }: HeadIndexProps) => {
       <meta name="keywords" content={MetaData.IndexKeywords} />
       <meta name="image" content={MetaData.Image} />
       <meta name="author" content={MetaData.IndexAuthor} />
+      <meta name="robots" content={follow ? 'index, follow' : 'noindex, nofollow'} />
+      <meta name="googlebot" content={follow ? 'index, follow' : 'noindex, nofollow'} />
       <link rel="canonical" href={MetaData.Url}></link>
 
       {/* Google / Search Engine Tags */}

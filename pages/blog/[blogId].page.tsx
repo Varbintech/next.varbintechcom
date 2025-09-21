@@ -16,17 +16,27 @@ import TableOfContent from '../../components/common/table-of-content/TableOfCont
 import HeadBlogDetails from '../../components-pages/head/HeadCaseStudyDetails';
 import {
   MarkdownText,
+  MarkdownTextWithHtml,
   MarkdownLink,
   MarkdownList,
   MarkdownListItem,
   MarkdownParagraph,
   MarkdownCode,
-  MarkdownHeading,
   MarkdownBlockquote,
+  MarkdownTable,
+  MarkdownTableHead,
+  MarkdownTableBody,
+  MarkdownTableCellStyled,
+  MarkdownTableRowStyled,
+  MarkdownHeadingWithAnchorIconAndCopyButton,
 } from '../../components/common/typography/Markdown';
+import ButtonCopyHref from '../../components/common/typography/ButtonCopyHref';
 
 import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
 import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
+import JsonLdWebPage from '../../components/json-ld/WebPage';
+import JsonLdWebSite from '../../components/json-ld/WebSite';
+import JsonLdArticle from '../../components/json-ld/Article';
 
 const TextColumnContainerDynamic = dynamic(() =>
   import('../../components/common/text-column/TextColumn').then(mod => mod.TextColumnContainer),
@@ -64,12 +74,32 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
     return (
       <>
         <HeadBlogDetails
-          title={`${attributes.title} | Varbintech Blog`}
+          title={attributes.title}
           description={attributes.descriptionSEO}
           keywords={attributes.keywords}
           image={attributes.metaImage.data.attributes.url}
           imageAlt={attributes.metaImage.data.attributes.alternativeText}
           ogUrl={`${baseUrl}/blog/${attributes.slug}`}
+        />
+
+        <JsonLdWebPage
+          slug={`/blog/${attributes.slug}`}
+          description={attributes.descriptionSEO}
+          name={attributes.title}
+        />
+        <JsonLdWebSite />
+        <JsonLdArticle
+          headline={attributes.title}
+          description={attributes.descriptionSEO}
+          slug={`/blog/${attributes.slug}`}
+          image={attributes.metaImage.data.attributes.url}
+          datePublished={attributes.publishedAt}
+          dateModified={attributes.updatedAt}
+          authors={attributes.blogAuthors.data.map(author => ({
+            name: `${author.attributes.firstName} ${author.attributes.lastName}`,
+            url: author.attributes.liLink,
+          }))}
+          mainEntityOfPage={`${baseUrl}/blog/${attributes.slug}`}
         />
 
         <HeroBlogDetails
@@ -93,7 +123,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
           services=""
         />
 
-        <Container maxWidth="lg" sx={{ marginTop: { md: '64px' }, marginBottom: { md: '64px' } }}>
+        <Container maxWidth="lg" sx={{ marginTop: { xs: 4, md: 8 }, marginBottom: { md: 8 } }}>
           <Grid container spacing={'30px'} columns={12}>
             <Grid container item direction="column" md={3} display={{ xs: 'none', md: 'flex' }}>
               <TableOfContent
@@ -106,14 +136,20 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                 }}
                 data={tocContent}
                 socialIcons={socialShareButtons}
-                slug={attributes.slug}
               />
             </Grid>
 
-            <Grid container item direction="column" xs={12} md={9}>
+            <Grid
+              container
+              item
+              direction="column"
+              xs={12}
+              md={9}
+              sx={{ paddingTop: '0 !important' }}
+            >
               {attributes.sections.data.map(({ id: sectionId, attributes: sectionAttr }, index) => {
                 const scrollMarginTop = {
-                  scrollMarginTop: index === 0 ? '402px' : '202px',
+                  scrollMarginTop: index === 0 ? '502px' : '202px',
                   marginTop: '1.5rem !important',
                 };
 
@@ -133,40 +169,39 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                             </Typography>
                           ) : null}
 
-                          {sectionAttr.description ? (
+                          {sectionAttr.descriptionEnhanced ? (
                             <Stack direction="column" spacing={2} marginBottom={3}>
-                              <MarkdownText
+                              <MarkdownTextWithHtml
                                 components={{
                                   a: MarkdownLink,
-                                  h2: ({ children, ...restProps }) => (
-                                    <MarkdownHeading
-                                      withCustomId
+                                  h2: props => (
+                                    <MarkdownHeadingWithAnchorIconAndCopyButton
                                       sx={scrollMarginTop}
                                       className="section"
-                                      {...restProps}
+                                      {...props}
                                     >
-                                      {children}
-                                    </MarkdownHeading>
+                                      <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                    </MarkdownHeadingWithAnchorIconAndCopyButton>
                                   ),
-                                  h3: ({ children, ...restProps }) => (
-                                    <MarkdownHeading
-                                      withCustomId
+                                  h3: props => {
+                                    return (
+                                      <MarkdownHeadingWithAnchorIconAndCopyButton
+                                        sx={scrollMarginTop}
+                                        className="section"
+                                        {...props}
+                                      >
+                                        <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                      </MarkdownHeadingWithAnchorIconAndCopyButton>
+                                    );
+                                  },
+                                  h4: props => (
+                                    <MarkdownHeadingWithAnchorIconAndCopyButton
                                       sx={scrollMarginTop}
                                       className="section"
-                                      {...restProps}
+                                      {...props}
                                     >
-                                      {children}
-                                    </MarkdownHeading>
-                                  ),
-                                  h4: ({ children, ...restProps }) => (
-                                    <MarkdownHeading
-                                      withCustomId
-                                      sx={scrollMarginTop}
-                                      className="section"
-                                      {...restProps}
-                                    >
-                                      {children}
-                                    </MarkdownHeading>
+                                      <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                    </MarkdownHeadingWithAnchorIconAndCopyButton>
                                   ),
                                   ul: MarkdownList,
                                   li: MarkdownListItem,
@@ -228,8 +263,8 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                                   blockquote: MarkdownBlockquote,
                                 }}
                               >
-                                {sectionAttr.description}
-                              </MarkdownText>
+                                {sectionAttr.descriptionEnhanced}
+                              </MarkdownTextWithHtml>
                             </Stack>
                           ) : null}
                         </Stack>
@@ -299,35 +334,32 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                           <MarkdownText
                             components={{
                               a: MarkdownLink,
-                              h2: ({ children, ...restProps }) => (
-                                <MarkdownHeading
-                                  withCustomId
+                              h2: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
                                   sx={scrollMarginTop}
                                   className="section"
-                                  {...restProps}
+                                  {...props}
                                 >
-                                  {children}
-                                </MarkdownHeading>
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
                               ),
-                              h3: ({ children, ...restProps }) => (
-                                <MarkdownHeading
-                                  withCustomId
+                              h3: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
                                   sx={scrollMarginTop}
                                   className="section"
-                                  {...restProps}
+                                  {...props}
                                 >
-                                  {children}
-                                </MarkdownHeading>
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
                               ),
-                              h4: ({ children, ...restProps }) => (
-                                <MarkdownHeading
-                                  withCustomId
+                              h4: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
                                   sx={scrollMarginTop}
                                   className="section"
-                                  {...restProps}
+                                  {...props}
                                 >
-                                  {children}
-                                </MarkdownHeading>
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
                               ),
                               ul: MarkdownList,
                               li: MarkdownListItem,
@@ -389,6 +421,125 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                           >
                             {sectionAttr.description}
                           </MarkdownText>
+                        </Stack>
+                      ) : null}
+
+                      {sectionAttr.descriptionEnhanced ? (
+                        <Stack direction="column" spacing={2} marginBottom={3}>
+                          <MarkdownTextWithHtml
+                            components={{
+                              a: MarkdownLink,
+                              h2: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...props}
+                                >
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
+                              ),
+                              h3: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...props}
+                                >
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
+                              ),
+                              h4: props => (
+                                <MarkdownHeadingWithAnchorIconAndCopyButton
+                                  sx={scrollMarginTop}
+                                  className="section"
+                                  {...props}
+                                >
+                                  <ButtonCopyHref href={`#${props.node?.properties.id}`} />
+                                </MarkdownHeadingWithAnchorIconAndCopyButton>
+                              ),
+                              ul: MarkdownList,
+                              li: MarkdownListItem,
+                              p: ({ children, ...restProps }) => {
+                                if (
+                                  Array.isArray(children) &&
+                                  children.some(child => child.type === 'img')
+                                ) {
+                                  const imgs = (children as Array<ReactElement>).filter(
+                                    child => child.type === 'img',
+                                  );
+                                  const projectsImages: Array<ProjectImage> = imgs.map(
+                                    ({ props }: ReactElement) => ({
+                                      src: props.src,
+                                      alt: props.alt,
+                                      width: props.width,
+                                      height: props.height,
+                                      name: props.name,
+                                    }),
+                                  );
+
+                                  return (
+                                    <div>
+                                      <ImagesColumn
+                                        data={{ label: 'IMAGE', imageSection: projectsImages }}
+                                      />
+                                    </div>
+                                  );
+                                }
+
+                                if ((children as ReactElement).type === 'img') {
+                                  const { src, alt, width, height, name } = (
+                                    children as ReactElement
+                                  ).props;
+
+                                  const projectsImage: ProjectImage = {
+                                    src,
+                                    alt,
+                                    width,
+                                    height,
+                                    name,
+                                  };
+
+                                  return (
+                                    <ImagesColumn
+                                      data={{ label: 'IMAGE', imageSection: [projectsImage] }}
+                                    />
+                                  );
+                                }
+
+                                return (
+                                  <MarkdownParagraph {...restProps}>{children}</MarkdownParagraph>
+                                );
+                              },
+                              pre: ({ children }) => <>{children}</>,
+                              code: MarkdownCode,
+                              blockquote: MarkdownBlockquote,
+                              table: MarkdownTable,
+                              thead: ({ children }) => (
+                                <MarkdownTableHead>{children}</MarkdownTableHead>
+                              ),
+                              tbody: ({ children }) => (
+                                <MarkdownTableBody>{children}</MarkdownTableBody>
+                              ),
+                              tr: MarkdownTableRowStyled,
+                              td: ({ children, ...restProps }) => (
+                                <MarkdownTableCellStyled scope="row" {...restProps}>
+                                  {children}
+                                </MarkdownTableCellStyled>
+                              ),
+                              th: MarkdownTableCellStyled,
+                              figure: ({ children }) => <>{children}</>,
+                              div: ({ children, ...restProps }) => {
+                                const { className } = restProps;
+
+                                if (className === 'raw-html-embed') {
+                                  return <>{children}</>;
+                                }
+
+                                return <div {...restProps}>{children}</div>;
+                              },
+                            }}
+                          >
+                            {sectionAttr.descriptionEnhanced}
+                          </MarkdownTextWithHtml>
                         </Stack>
                       ) : null}
                     </Stack>

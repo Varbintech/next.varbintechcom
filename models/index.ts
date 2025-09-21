@@ -1,7 +1,6 @@
 export type { PricingPlanItem, PlanType, CheckoutSrcList } from './pricing-plan.model';
 
 export type {
-  CaseStudy,
   ProjectFeedback,
   ProjectFullInfo,
   ProjectImageDetails,
@@ -9,6 +8,7 @@ export type {
   ProjectResultInfo,
   ProjectImage,
   ProjectTag,
+  CaseStudy,
 } from './case-study.model';
 
 export type { Service } from './service.model';
