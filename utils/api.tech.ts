@@ -16,6 +16,7 @@ import {
   technologiesGroupedByTechnologyField,
   fetchCaseStudiesWithAllFields,
 } from './api.common';
+import { TechGroup } from '../constants/tech-group.enum';
 
 import { getStaticPropsHireEngineersLinks } from './api.hire-engineers';
 import { fetchStaticPagesPolicyLinks } from './api.static-page';
@@ -115,16 +116,24 @@ export const getStaticPropsTechnologies = async (): Promise<{ props: Technologie
   const servicesMock = await import('../mocks/services');
 
   const technologiesGrouped = Object.entries(technologiesGroupedByTechnologyField(json.data));
-  const technologiesGroupedFrontend = technologiesGrouped.filter(([key]) => key === 'Front-End');
-  const technologiesGroupedBackend = technologiesGrouped.filter(([key]) => key === 'Back-End');
-  const technologiesGroupedPayment = technologiesGrouped.filter(([key]) => key === 'Payment');
-  const technologiesGroupedTesting = technologiesGrouped.filter(([key]) => key === 'Testing');
+  const technologiesGroupedFrontend = technologiesGrouped.filter(
+    ([key]) => key === TechGroup.Frontend,
+  );
+  const technologiesGroupedBackend = technologiesGrouped.filter(
+    ([key]) => key === TechGroup.Backend,
+  );
+  const technologiesGroupedPayment = technologiesGrouped.filter(
+    ([key]) => key === TechGroup.Payment,
+  );
+  const technologiesGroupedTesting = technologiesGrouped.filter(
+    ([key]) => key === TechGroup.Testing,
+  );
   const technologiesGroupedInfra = technologiesGrouped
-    .filter(([key]) => key === 'Infra')
-    .map<[string, Array<Technology>]>(([_, value]) => ['Infrastructure', value]);
-  const technologiesGroupedDesign = technologiesGrouped.filter(([key]) => key === 'Design');
+    .filter(([key]) => key === TechGroup.Infra)
+    .map<[string, Array<Technology>]>(([_, value]) => [TechGroup.Infrastructure, value]);
+  const technologiesGroupedDesign = technologiesGrouped.filter(([key]) => key === TechGroup.Design);
   const technologiesGroupedProjectManagement = technologiesGrouped.filter(
-    ([key]) => key === 'Project Management',
+    ([key]) => key === TechGroup.ProjectManagement,
   );
   const caseStudiesWithLimit = caseStudies.slice(0, 2);
   const feedback = caseStudies
