@@ -10,6 +10,7 @@ import type { ProjectImage, ProjectTag, SocialIcon } from '../../models';
 
 import ChipGroup from '../common/chip/ChipGroup';
 import SocialIcons from '../common/social-icons/SocialIcons';
+import SummarizeButtons from '../common/summarize-buttons/SummarizeButtons';
 
 import { HeroBlogDetailsBgImage, HeroBlogDetailsStyled } from './styled-components';
 
@@ -25,6 +26,7 @@ interface HeroBlogDetailsProps {
   postAuthorPhoto?: ProjectImage;
   postBgImage?: string;
   isDarkTheme?: boolean;
+  slug?: string;
 }
 
 const HeroBlogDetails = (props: HeroBlogDetailsProps) => {
@@ -39,6 +41,7 @@ const HeroBlogDetails = (props: HeroBlogDetailsProps) => {
     postAuthorPhoto,
     isDarkTheme,
     services,
+    slug,
   } = props;
 
   return (
@@ -108,6 +111,17 @@ const HeroBlogDetails = (props: HeroBlogDetailsProps) => {
 
           <Box sx={{ display: { xs: 'block', md: postAuthor ? 'none' : 'block' } }}>
             <SocialIcons data={projectSocialIcons} />
+          </Box>
+
+          <Box
+            mt={3}
+            sx={{
+              '.MuiTypography-root': {
+                fontSize: { xs: '20px', md: '24px' },
+              },
+            }}
+          >
+            <SummarizeButtons pageUrl={slug || ''} pageTitle={title} />
           </Box>
         </Container>
       </HeroBlogDetailsStyled>

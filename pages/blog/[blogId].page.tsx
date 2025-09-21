@@ -121,6 +121,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
           postBgImage={attributes.heroImage.data[0].attributes.url}
           isDarkTheme={Settings.DarkThemeAvailable}
           services=""
+          slug={`${baseUrl}/blog/${attributes.slug}`}
         />
 
         <Container maxWidth="lg" sx={{ marginTop: { xs: 4, md: 8 }, marginBottom: { md: 8 } }}>
