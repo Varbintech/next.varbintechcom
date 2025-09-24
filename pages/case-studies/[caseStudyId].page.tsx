@@ -129,6 +129,7 @@ const CaseStudyDetailPage = (props: {
           }))}
           projectSocialIcons={attributes.socialShareButtons}
           isDarkTheme={Settings.DarkThemeAvailable}
+          slug={`${attributes.baseUrl}/case-studies/${attributes.slug}`}
         />
 
         <Container

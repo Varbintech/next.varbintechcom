@@ -10,6 +10,7 @@ import type { ProjectImage, ProjectTag, SocialIcon } from '../../models';
 
 import ChipGroup from '../common/chip/ChipGroup';
 import SocialIcons from '../common/social-icons/SocialIcons';
+import SummarizeButtons from '../common/summarize-buttons/SummarizeButtons';
 
 import { HeroDetailsBgImage, HeroDetailsStyled } from './styled-components';
 
@@ -25,6 +26,7 @@ interface HeroDetailsProps {
   postAuthorPhoto?: ProjectImage;
   postBgImage?: string;
   isDarkTheme?: boolean;
+  slug?: string;
 }
 
 const HeroDetails = (props: HeroDetailsProps) => {
@@ -40,6 +42,7 @@ const HeroDetails = (props: HeroDetailsProps) => {
     postBgImage,
     isDarkTheme,
     services,
+    slug,
   } = props;
 
   return (
@@ -108,7 +111,30 @@ const HeroDetails = (props: HeroDetailsProps) => {
           ) : null}
 
           <Box sx={{ display: { xs: 'block', md: postAuthor ? 'none' : 'block' } }}>
-            <SocialIcons data={projectSocialIcons} />
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={4} alignItems="center" gap={2}>
+              <Box
+                flexGrow={{
+                  xs: 0,
+                  sm: 1,
+                }}
+                justifyContent={{ xs: 'flex-start', sm: 'center' }}
+                display="flex"
+                alignItems="center"
+                flexDirection="column"
+              >
+                <Typography variant="h4" component="p" marginBottom={2} textAlign="left">
+                  Share on:
+                </Typography>
+
+                <Box display="flex">
+                  <SocialIcons data={projectSocialIcons} />
+                </Box>
+              </Box>
+
+              <Box flexGrow={{ xs: 0, sm: 1 }} margin={'0 !important'}>
+                <SummarizeButtons pageUrl={slug || ''} pageTitle={title} />
+              </Box>
+            </Stack>
           </Box>
         </Container>
       </HeroDetailsStyled>
