@@ -7,7 +7,7 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
 
   const prepareValue = (v: number) => {
     if (name === 'CLS') {
-      return Math.round(v * 1000); // multiply by 1000 to convert to milliseconds
+      return Math.round(v * 1000); // multiply by 1000 to scale CLS for better granularity in analytics
     }
 
     if (name === 'LCP' || name === 'INP' || name === 'FID' || name === 'TTFB') {
@@ -19,10 +19,12 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
 
   // Assumes the global `gtag()` function exists, see:
   // https://developers.google.com/analytics/devguides/collection/gtagjs
-  window.gtag('event', name, {
-    event_category: isWebVitalLabel ? categoryWebVitals : categoryNextVitals,
-    value: prepareValue(value),
-    event_label: id, // id unique to current page load
-    non_interaction: true, // avoids affecting bounce rate.
-  });
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', name, {
+      event_category: isWebVitalLabel ? categoryWebVitals : categoryNextVitals,
+      value: prepareValue(value),
+      event_label: id, // id unique to current page load
+      non_interaction: true, // avoids affecting bounce rate.
+    });
+  }
 }
