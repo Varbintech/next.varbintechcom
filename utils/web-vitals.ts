@@ -10,7 +10,7 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
 
   const prepareValue = (v: number) => {
     if (isCLS) {
-      return Math.round(v * 1000); // multiply by 1000 to convert to milliseconds
+      return Math.round(v * 1000); // multiply by 1000 to scale CLS for better granularity in analytics (CLS is unitless)
     }
 
     if (isLCP || isINP) {
