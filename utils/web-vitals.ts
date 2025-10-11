@@ -4,16 +4,13 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
   const categoryWebVitals = 'Web Vitals';
   const categoryNextVitals = 'Next.js Vitals';
   const isWebVitalLabel = label === 'web-vital';
-  const isCLS = name === 'CLS';
-  const isLCP = name === 'LCP';
-  const isINP = name === 'INP';
 
   const prepareValue = (v: number) => {
-    if (isCLS) {
+    if (name === 'CLS') {
       return Math.round(v * 1000); // multiply by 1000 to convert to milliseconds
     }
 
-    if (isLCP || isINP) {
+    if (name === 'LCP' || name === 'INP' || name === 'FID' || name === 'TTFB') {
       return Math.round(v); // already in milliseconds
     }
 
