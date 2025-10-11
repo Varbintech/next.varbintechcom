@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import type { AppProps } from 'next/app';
+import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import type { NextPageContext } from 'next/dist/shared/lib/utils';
 import Script from 'next/script';
 
@@ -13,6 +13,8 @@ import { useEffectPageView } from '../hooks/use-effect-page-view-ga';
 
 import { Settings } from '../constants/settings';
 import { inter } from '../constants/inter-latin';
+
+import { sendToGA } from '../utils/web-vitals';
 
 import createEmotionCache from '../createEmotionCache';
 import lightTheme from '../lightTheme';
@@ -30,6 +32,12 @@ type MyAppError = Pick<NextPageContext, 'err'>;
 
 export interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
+}
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  if (process.env.NODE_ENV === 'production') {
+    sendToGA(metric);
+  }
 }
 
 export default function MyApp(props: MyAppProps, err: MyAppError) {
