@@ -22,10 +22,12 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
 
   // Assumes the global `gtag()` function exists, see:
   // https://developers.google.com/analytics/devguides/collection/gtagjs
-  window.gtag('event', name, {
-    event_category: isWebVitalLabel ? categoryWebVitals : categoryNextVitals,
-    value: prepareValue(value),
-    event_label: id, // id unique to current page load
-    non_interaction: true, // avoids affecting bounce rate.
-  });
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', name, {
+      event_category: isWebVitalLabel ? categoryWebVitals : categoryNextVitals,
+      value: prepareValue(value),
+      event_label: id, // id unique to current page load
+      non_interaction: true, // avoids affecting bounce rate.
+    });
+  }
 }
