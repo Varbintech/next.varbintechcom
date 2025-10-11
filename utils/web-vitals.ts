@@ -1,10 +1,9 @@
 import type { NextWebVitalsMetric } from 'next/app';
 
-export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
-  const categoryWebVitals = 'Web Vitals';
-  const categoryNextVitals = 'Next.js Vitals';
-  const isWebVitalLabel = label === 'web-vital';
+const categoryWebVitals = 'Web Vitals';
+const categoryNextVitals = 'Next.js Vitals';
 
+export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
   const prepareValue = (v: number) => {
     if (name === 'CLS') {
       return Math.round(v * 1000); // multiply by 1000 to scale CLS for better granularity in analytics
@@ -21,7 +20,7 @@ export function sendToGA({ id, name, label, value }: NextWebVitalsMetric) {
   // https://developers.google.com/analytics/devguides/collection/gtagjs
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', name, {
-      event_category: isWebVitalLabel ? categoryWebVitals : categoryNextVitals,
+      event_category: label === 'web-vital' ? categoryWebVitals : categoryNextVitals,
       value: prepareValue(value),
       event_label: id, // id unique to current page load
       non_interaction: true, // avoids affecting bounce rate.
