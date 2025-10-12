@@ -7,7 +7,7 @@ import {
   caseStudiesPageProps,
   caseStudyDetailData,
   hireEngineersLinksMock,
-} from '../mocks/pageData';
+} from '../mocks/page-data';
 
 const meta: Meta<typeof CaseStudiesPage> = {
   title: 'App/Pages/CaseStudies',

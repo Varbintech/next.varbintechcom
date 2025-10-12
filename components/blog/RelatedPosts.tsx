@@ -6,8 +6,6 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
-import type { BlogItem } from '../../models';
-
 import { Settings } from '../../constants/settings';
 
 import Button from '../common/buttons/Button';
@@ -15,7 +13,7 @@ import Button from '../common/buttons/Button';
 /* import BlogSection from './BlogSection'; */
 
 interface RelatedPostsProps {
-  data: Array<BlogItem>;
+  data: Array<any>;
 }
 
 const RelatedPosts: FC<RelatedPostsProps> = ({ data }) => {

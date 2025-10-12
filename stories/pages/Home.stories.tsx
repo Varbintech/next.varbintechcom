@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import HomePage from '../../pages/index.page';
 
-import { homePageProps } from '../mocks/pageData';
+import { homePageProps } from '../mocks/page-data';
 
 const meta: Meta<typeof HomePage> = {
   title: 'App/Pages/Home',

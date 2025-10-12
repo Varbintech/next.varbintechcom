@@ -5,18 +5,23 @@ import type {
   HireEngineersLink,
   PolicyLink,
   SocialIcon,
+  HeroImage,
+  MetaImage,
+  Collection,
+  Section,
+  HeadingLevel,
 } from '../../models';
 import type { BlogStaticProps } from '../../utils/api.blog';
 import type { Technology } from '../../models/strapi.model';
 
 import heroImagePrimary from '../../public/dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_1200.webp';
 import heroImageSecondary from '../../public/tin-project/TIN-project_q9im1n_c_scale,w_1200.webp';
-import filipRogaczewski from '../../public/filiprogaczewski.webp';
+import logoBlack from '../../public/logo-black.svg';
 
 import { services as serviceList } from '../../constants/services';
 
-const baseUrl = 'https://varbintech.com';
-const apiBaseUrl = 'https://api.varbintech.com';
+const baseUrl = 'base.url';
+const apiBaseUrl = 'api.base.url';
 
 export const socialShareButtonsMock: Array<SocialIcon> = [
   {
@@ -29,11 +34,11 @@ export const socialShareButtonsMock: Array<SocialIcon> = [
   },
   {
     id: 2,
-    socialTitle: 'Twitter',
-    socialLink: 'https://twitter.com/varbintech',
+    socialTitle: 'X',
+    socialLink: 'https://x.com/varbintech',
     socialIcon: 'twitterIcon',
     socialBorderRadius: '',
-    socialAriaLabel: 'Open Varbintech on Twitter',
+    socialAriaLabel: 'Open Varbintech on X',
   },
   {
     id: 3,
@@ -136,7 +141,21 @@ const technologiesData: Array<[string, Array<Technology>]> = [
   ],
 ];
 
-const heroImagePrimaryData = {
+const heroImagePrimaryData: HeroImage = {
+  id: 1,
+  attributes: {
+    url: heroImagePrimary.src,
+    width: heroImagePrimary.width,
+    height: heroImagePrimary.height,
+    name: 'Project analytics dashboard screenshot',
+    alternativeText: 'Dashboard interface on a laptop screen',
+  },
+};
+
+const heroImageMainImageData: {
+  id: number;
+  attributes: MetaImage;
+} = {
   id: 1,
   attributes: {
     url: heroImagePrimary.src,
@@ -158,13 +177,13 @@ const heroImageSecondaryData = {
   },
 };
 
-const sectionsData = {
+const sectionsData: { data: Array<Collection<Section>> } = {
   data: [
     {
       id: 1,
       attributes: {
         name: 'Project overview',
-        headingLevel: 'h2',
+        headingLevel: 'h2' as HeadingLevel,
         order: 1,
         description:
           'We partnered with the client to modernise their SaaS analytics platform, revamping the UI and optimising performance.',
@@ -175,7 +194,7 @@ const sectionsData = {
       id: 2,
       attributes: {
         name: 'Technology decisions',
-        headingLevel: 'h2',
+        headingLevel: 'h2' as HeadingLevel,
         order: 2,
         description:
           'The team introduced a modular design system powered by React and TypeScript to accelerate feature delivery.',
@@ -187,7 +206,7 @@ const sectionsData = {
       id: 3,
       attributes: {
         name: 'Business impact',
-        headingLevel: 'h2',
+        headingLevel: 'h2' as HeadingLevel,
         order: 3,
         description:
           'Key outcomes included shorter release cycles, happier customers, and a more maintainable codebase.',
@@ -281,9 +300,9 @@ const quotesData = {
         authorPhoto: {
           data: {
             attributes: {
-              url: filipRogaczewski.src,
-              width: filipRogaczewski.width,
-              height: filipRogaczewski.height,
+              url: logoBlack.src,
+              width: logoBlack.width,
+              height: logoBlack.height,
               name: 'Filip Rogaczewski',
               alternativeText: 'Portrait of Filip Rogaczewski',
             },
@@ -312,10 +331,10 @@ const caseStudyAttributesCommon = {
   industries: industriesData,
   heroImage: {
     images: [heroImagePrimaryData],
-    mainImage: heroImagePrimaryData,
+    mainImage: heroImageMainImageData,
   },
   metaImage: {
-    data: heroImagePrimaryData,
+    data: heroImageMainImageData,
   },
   quotes: quotesData,
   sections: sectionsData,
@@ -447,9 +466,9 @@ const blogAuthor = {
       data: {
         id: 1,
         attributes: {
-          url: filipRogaczewski.src,
-          width: filipRogaczewski.width,
-          height: filipRogaczewski.height,
+          url: logoBlack.src,
+          width: logoBlack.width,
+          height: logoBlack.height,
           name: 'Jordan Parker',
           alternativeText: 'Portrait of Jordan Parker',
         },
@@ -470,10 +489,22 @@ const blogSection = {
   id: 1,
   attributes: {
     name: 'Introduction',
-    headingLevel: 'h2',
+    headingLevel: 'h2' as HeadingLevel,
     order: 1,
-    description:
-      'Modernising a SaaS platform starts with aligning the product vision with a modular design system and robust tooling.',
+    descriptionEnhanced: `<h1 id="introduction">Introduction</h1>
+
+<p>This section introduces the main topics covered in the blog post.</p><h2 id="main-content">Main Content</h2><p>The core content of the blog post goes here.</p><h3 id="subsection-1">Subsection 1</h3><p>Details about subsection 1.</p><h3 id="subsection-2">Subsection 2</h3><p>Details about subsection 2.</p><h2 id="conclusion">Conclusion</h2><p>Final thoughts and summary.</p>
+
+<p>
+Note: This content uses HTML tags to represent headings and paragraphs.
+</p>
+
+<p>It is stored in the <code>descriptionEnhanced</code> field to preserve formatting.</p>
+
+<p>Each heading includes an <code>id</code> attribute for linking purposes.</p>
+
+<p>This structure allows for generating a table of contents based on the headings.</p>
+      `,
   },
 };
 
@@ -485,7 +516,7 @@ const blogItem = {
       'Practical lessons on building design systems for rapidly growing SaaS platforms.',
     slug: 'design-systems-that-scale',
     keywords: 'design systems, SaaS, front-end development',
-    publishedAt: 'January 15, 2024',
+    publishedAt: '2025-02-16T15:40:22.829Z',
     updatedAt: '2024-01-16T00:00:00.000Z',
     technologies: {
       data: technologiesData[0][1],
@@ -562,6 +593,15 @@ export const blogPageProps: BlogStaticProps = {
   className: '',
   data: [blogItem, secondBlogItem, thirdBlogItem],
   hireEngineersLinks: hireEngineersLinksMock,
+  socialShareButtons: socialShareButtonsMock,
+  baseUrl,
+};
+
+export const blogItemProps = {
+  className: '',
+  data: blogItem,
+  hireEngineersLinks: hireEngineersLinksMock,
+  policyLinks: policyLinksMock,
   socialShareButtons: socialShareButtonsMock,
   baseUrl,
 };
