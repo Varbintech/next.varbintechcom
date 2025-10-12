@@ -1,17 +1,18 @@
 [![Build and Publish Storybook to GitHub Pages](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy-storybook-github-pages.yml/badge.svg)](https://github.com/Varbintech/next.varbintechcom/actions/workflows/deploy-storybook-github-pages.yml)
+[Storybook](https://varbintech.github.io/next.varbintechcom?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom)
 
 # Intro
 
-The front-end part for Varbintech Team [home page](https://varbintech.com/).
+The front-end part for Varbintech Team [home page](https://varbintech.com?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom).
 
 ![image](https://res.cloudinary.com/dlxpwfaic/image/upload/v1683287110/varbintech/OG-general_zaxpjl.jpg)
 
 ## Social Links
 
-- [GitHub](https://github.com/Varbintech)
-- [LinkedIn](https://www.linkedin.com/company/varbintech/)
-- [Clutch](https://clutch.co/profile/varbintech#summary)
-- [UpWork](https://www.upwork.com/ag/varbintech/)
+- [GitHub](https://github.com/Varbintech?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom)
+- [LinkedIn](https://www.linkedin.com/company/varbintech?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom)
+- [Clutch](https://clutch.co/profile/varbintech#summary?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom)
+- [UpWork](https://www.upwork.com/ag/varbintech/?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom)
 
 ## Deploying
 
@@ -44,7 +45,7 @@ This project uses [Cloudflare Pages](https://pages.cloudflare.com/) as a JAMstac
 
 ### Project Backlog:
 
-- [GitHub Projects](https://github.com/orgs/Varbintech/projects/4) (**private**)
+- [GitHub Projects](https://github.com/orgs/Varbintech/projects/4?utm_source=github&utm_medium=readme&utm_campaign=next.varbintechcom) (**private**)
 
 ## Project Roadmap
 
@@ -52,13 +53,13 @@ This project uses [Cloudflare Pages](https://pages.cloudflare.com/) as a JAMstac
 - Cloudflare Pages build ✅
 - Develop email template ✅ #66
 - Send emails using Cloudflare Workers ✅ #65
-- Add analytics
+- Add analytics ✅
 - Develop case studies page - ✅
 - Develop case study item page - ✅
-- Develop blog page - **PARTIALLY DONE** #68
-- Develop blog Item page - **PARTIALLY DONE** #69
+- Develop blog page - ✅
+- Develop blog Item page - ✅
 - Headless CMS for case studies ✅
-- Headless CMS for blog
+- Headless CMS for blog ✅
 
 ### Pages workflow:
 
