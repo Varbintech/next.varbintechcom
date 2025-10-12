@@ -46,6 +46,8 @@ storiesOf('App/CommonComponents/MarkdownText', module)
       }}
     >
       {`[Jira app](https://marketplace.atlassian.com/apps/1221776/okr-for-jira) that allows users to simply create objectives, add key results, connect them to Jira issues, and automatically track progress. \n- 13 months\n- 5 dedicated developers\n- 100 end-to-end tests covering 20+ versions of Jira\n
+Some CSS code:
+
 \`\`\`CSS
 .line-number::before {
   display: inline-block;
@@ -58,6 +60,7 @@ storiesOf('App/CommonComponents/MarkdownText', module)
 }
 \`\`\`
 
+Some javascript code:
 
 \`\`\`js
 <script type="module">

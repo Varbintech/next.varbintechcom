@@ -53,6 +53,8 @@ export interface ProjectFullInfo {
   description: Array<string>;
 }
 
+// @TODO to remove CaseStudyStrapi and use CaseStudy instead
+// @deprecated
 export interface CaseStudy {
   id: string;
   projectImage: ProjectImage;

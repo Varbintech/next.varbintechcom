@@ -1,229 +1,45 @@
-import { storiesOf } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { NextRouter } from 'next/router';
-import { RouterContext } from 'next/dist/shared/lib/router-context';
+import CaseStudiesPage from '../../pages/case-studies/index.page';
+import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page';
 
-import type { CaseStudyStaticProps } from '../../models';
+import {
+  caseStudiesPageProps,
+  caseStudyDetailData,
+  hireEngineersLinksMock,
+} from '../mocks/page-data';
 
-import heroImage from '../../public/dt-okr-for-jira-project/DT-OKR-for-Jira_jnbl2b_c_scale,w_1200.webp';
-import filipRogaczewski from '../../public/filiprogaczewski.webp';
-
-/* import CaseStudiesPage from '../../pages/case-studies/index.page-wip'; */
-/* import CaseStudyDetailPage from '../../pages/case-studies/[caseStudyId].page'; */
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const caseStudy: CaseStudyStaticProps = {
-  id: 1,
-  attributes: {
-    title: 'Case Study Title',
-    description: 'Case Study Description',
-    descriptionSEO: 'Case Study Description',
-    slug: 'case-study-slug',
-    publishedAt: '2024-01-01',
-    updatedAt: '2024-01-02',
-    technologies: [
-      [
-        'Frontend',
-        [
-          {
-            id: 1,
-            attributes: {
-              name: 'Technology Name',
-              description: 'Technology Description',
-              technologyField: {
-                data: {
-                  id: 1,
-                  attributes: {
-                    name: 'Field Name',
-                    description: 'Field Description',
-                  },
-                },
-              },
-            },
-          },
-        ],
-      ],
-    ],
-    industries: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            name: 'Industry Name',
-            description: 'Industry Description',
-          },
-        },
-      ],
+const meta: Meta<typeof CaseStudiesPage> = {
+  title: 'App/Pages/CaseStudies',
+  component: CaseStudiesPage,
+  parameters: {
+    nextRouter: {
+      pathname: '/case-studies',
+      asPath: '/case-studies',
+      query: {},
     },
-    heroImage: {
-      images: [
-        {
-          id: 1,
-          attributes: {
-            url: heroImage.src,
-            width: heroImage.width,
-            height: heroImage.height,
-            name: 'Hero Image',
-            alternativeText: 'Hero Image Alt',
-          },
-        },
-      ],
-      mainImage: {
-        id: 1,
-        attributes: {
-          url: heroImage.src,
-          width: heroImage.width,
-          height: heroImage.height,
-          name: 'Hero Image',
-          alternativeText: 'Hero Image Alt',
-        },
-      },
-    },
-    metaImage: {
-      data: {
-        id: 1,
-        attributes: {
-          url: heroImage.src,
-          width: heroImage.width,
-          height: heroImage.height,
-          name: 'Meta Image',
-          alternativeText: 'Meta Image Alt',
-        },
-      },
-    },
-    quotes: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            content: 'Quote',
-            author: 'Author',
-            authorTitle: 'Author Title',
-            authorLiLink: 'Author Link',
-            companyName: 'Company Name',
-            companyLink: 'Company Link',
-            authorPhoto: {
-              data: {
-                attributes: {
-                  url: filipRogaczewski.src,
-                  width: filipRogaczewski.width,
-                  height: filipRogaczewski.height,
-                  name: 'Author Photo',
-                  alternativeText: 'Author Photo Alt',
-                },
-              },
-            },
-          },
-        },
-      ],
-    },
-    sections: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            name: 'Section Name',
-            description: 'Section Description',
-            headingLevel: 'h1',
-            order: 1,
-          },
-        },
-      ],
-    },
-    results: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            name: '5',
-            description: 'Developers',
-            descriptionLong: 'Developers Long',
-          },
-        },
-        {
-          id: 2,
-          attributes: {
-            name: '3',
-            description: 'Projects',
-            descriptionLong: 'Developers Long',
-          },
-        },
-      ],
-    },
-    callToAction: {
-      data: {
-        id: 1,
-        attributes: {
-          title: 'Call To Action Title',
-          action: 'action-link',
-          actionText: 'Call To Action Text',
-          actionId: 'Call To Action Id',
-        },
-      },
-    },
-    services: 'List, Of, Services',
-    baseUrl: 'https://example.com',
-    apiBaseUrl: 'https://api.example.com',
-    keywords: 'list, of, keywords',
-    socialShareButtons: [
-      {
-        id: 1,
-        socialTitle: 'Social Title',
-        socialLink: 'Social Link',
-        socialIcon: 'Social Icon',
-        socialBorderRadius: '1',
-        socialAriaLabel: 'Social Aria Label',
-      },
-    ],
-    client: {
-      data: {
-        id: 1,
-        attributes: {
-          firstName: 'Client First Name',
-          lastName: 'Client Last Name',
-          companyName: 'Client Company Name',
-          liProfileCompany: 'Client LinkedIn Profile',
-          liProfileCeo: 'Client LinkedIn CEO Profile',
-          url: 'https://client.example.com',
-          description: 'Client Description',
-          location: 'Client Location',
-          foundingDate: '2020-01-01',
-          logoUrl: 'https://client.example.com/logo.png',
-          logoSize: {
-            width: 100,
-            height: 100,
-          },
-        },
-      },
-    },
-    readMoreCaseStudies: {
-      id: 1,
-      intro: 'Read more about our case studies',
-      description: 'Explore more of our successful projects',
-      buttonLink: '/case-studies',
-      buttonText: 'View All Case Studies',
-      caseStudies: {
-        data: [],
-      },
-    },
-    className: '',
   },
 };
 
-const mockRouter = {
-  pathname: '/case-studies/[caseStudyId]',
-  route: 'case-studies/[caseStudyId]',
-  query: { caseStudyId: '0' },
-  asPath: '/case-studies/0',
-  basePath: '',
-  isLocaleDomain: false,
-} as unknown as NextRouter;
+export default meta;
 
-storiesOf('App/Pages/CaseStudies', module)
-  .addDecorator(Story => (
-    <RouterContext.Provider value={mockRouter}>
-      <Story />
-    </RouterContext.Provider>
-  ))
-  .add('Index', () => <>This page is: WIP</>)
-  .add('Details', () => <>This page is: WIP</>);
+type Story = StoryObj<typeof CaseStudiesPage>;
+
+export const Index: Story = {
+  args: caseStudiesPageProps,
+};
+
+export const Details: Story = {
+  render: () => (
+    <CaseStudyDetailPage data={caseStudyDetailData} hireEngineersLinks={hireEngineersLinksMock} />
+  ),
+  parameters: {
+    nextRouter: {
+      pathname: '/case-studies/[caseStudyId]',
+      asPath: `/case-studies/${caseStudyDetailData.attributes.slug}`,
+      query: {
+        caseStudyId: caseStudyDetailData.attributes.slug,
+      },
+    },
+  },
+};

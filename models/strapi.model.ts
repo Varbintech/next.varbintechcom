@@ -1,6 +1,6 @@
 import type { SocialIcon } from './social-icons.model';
 
-type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 interface NameDescriptionAttribute {
   name: string;
@@ -58,7 +58,7 @@ export interface CallToAction {
   noPadding?: boolean;
 }
 
-interface MetaImage {
+export interface MetaImage {
   name: string;
   alternativeText: string;
   width: number;
