@@ -1,5 +1,25 @@
-import { storiesOf } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-// import HomePage from '../../pages/index.page';
+import HomePage from '../../pages/index.page';
 
-storiesOf('App/Pages/Home', module).add('Default', () => <>This page is: WIP</>);
+import { homePageProps } from '../mocks/pageData';
+
+const meta: Meta<typeof HomePage> = {
+  title: 'App/Pages/Home',
+  component: HomePage,
+  parameters: {
+    nextRouter: {
+      pathname: '/',
+      asPath: '/',
+      query: {},
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof HomePage>;
+
+export const Default: Story = {
+  args: homePageProps,
+};

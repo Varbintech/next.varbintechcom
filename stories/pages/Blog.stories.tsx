@@ -1,25 +1,25 @@
-import { storiesOf } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { NextRouter } from 'next/router';
-import { RouterContext } from 'next/dist/shared/lib/router-context';
+import BlogPage from '../../pages/blog/index.page';
 
-/* import BlogPage from '../../pages/blog/index.page';
-import BlogDetailPage from 'pages/blog/[blogId].page'; */
+import { blogPageProps } from '../mocks/pageData';
 
-const mockRouter = {
-  pathname: '/blog/[blogId]',
-  route: 'blog/[blogId]',
-  query: { blogId: '0' },
-  asPath: '/blog/0',
-  basePath: '',
-  isLocaleDomain: false,
-} as unknown as NextRouter;
+const meta: Meta<typeof BlogPage> = {
+  title: 'App/Pages/Blog',
+  component: BlogPage,
+  parameters: {
+    nextRouter: {
+      pathname: '/blog',
+      asPath: '/blog',
+      query: {},
+    },
+  },
+};
 
-storiesOf('App/Pages/Blog', module)
-  .addDecorator(Story => (
-    <RouterContext.Provider value={mockRouter}>
-      <Story />
-    </RouterContext.Provider>
-  ))
-  .add('Index', () => <>This page is: WIP</>)
-  .add('Details', () => <>This page is: WIP</>);
+export default meta;
+
+type Story = StoryObj<typeof BlogPage>;
+
+export const Index: Story = {
+  args: blogPageProps,
+};
