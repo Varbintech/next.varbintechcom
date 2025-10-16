@@ -166,11 +166,11 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
   const technologiesGrouped = Object.entries(
     technologiesGroupedByTechnologyField(json.data[0].attributes.technologies.data),
   );
-  const publishedAt =
-    json.data[0].attributes.publishedAt === null
-      ? json.data[0].attributes.createdAt
-      : json.data[0].attributes.publishedAt;
-  const publicationStateAttr = json.data[0].attributes.publishedAt === null ? 'draft' : 'live';
+  const isDraft = json.data[0].attributes.publishedAt === null;
+  const publishedAt = isDraft
+    ? json.data[0].attributes.createdAt
+    : json.data[0].attributes.publishedAt;
+  const publicationStateAttr = isDraft ? 'draft' : 'live';
 
   return {
     props: {
