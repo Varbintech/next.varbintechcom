@@ -34,8 +34,11 @@ const blogFields = [
 const populateBlog = generatePopulate(blogFields);
 
 const fetchAllBlogPosts = async (): Promise<ResponseData<BlogItemStrapi>> => {
+  const publicationState = process.env.NODE_ENV === 'production' ? 'live' : 'preview';
   const params = {
     populate: populateBlog,
+    publicationState,
+    sort: ['publishedAt:desc'],
   };
   const urlParams = stringify(params);
 
@@ -76,9 +79,10 @@ export const getStaticPropsIndex: GetStaticProps<BlogStaticProps> = async () => 
     props: {
       className: '',
       data: allBlogPosts.data.map(({ id, attributes }) => {
-        const { publishedAt } = attributes;
+        const { publishedAt, createdAt } = attributes;
+        const publicationState = publishedAt === null ? 'draft' : 'live';
 
-        const dateRaw = new Date(publishedAt);
+        const dateRaw = new Date(process.env.NODE_ENV === 'production' ? publishedAt : createdAt);
 
         const date = dateRaw
           .toLocaleDateString('en-US', {
@@ -94,6 +98,7 @@ export const getStaticPropsIndex: GetStaticProps<BlogStaticProps> = async () => 
           attributes: {
             ...attributes,
             publishedAt: `${date}, ${dateRaw.getFullYear()}`,
+            publicationState,
           },
         };
       }),
@@ -106,8 +111,10 @@ export const getStaticPropsIndex: GetStaticProps<BlogStaticProps> = async () => 
 };
 
 export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ params: p }) => {
+  const publicationState = process.env.NODE_ENV === 'production' ? 'live' : 'preview';
   const params = {
     populate: populateBlog,
+    publicationState,
     filters: {
       slug: {
         $eq: String(p?.blogId),
@@ -159,6 +166,11 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
   const technologiesGrouped = Object.entries(
     technologiesGroupedByTechnologyField(json.data[0].attributes.technologies.data),
   );
+  const publishedAt =
+    json.data[0].attributes.publishedAt === null
+      ? json.data[0].attributes.createdAt
+      : json.data[0].attributes.publishedAt;
+  const publicationStateAttr = json.data[0].attributes.publishedAt === null ? 'draft' : 'live';
 
   return {
     props: {
@@ -168,6 +180,8 @@ export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ 
         attributes: {
           ...json.data[0].attributes,
           technologies: technologiesGrouped,
+          publishedAt,
+          publicationState: publicationStateAttr,
         },
       },
       hireEngineersLinks: hireEngineersLinks.props.data,

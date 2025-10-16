@@ -102,6 +102,25 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
           mainEntityOfPage={`${baseUrl}/blog/${attributes.slug}`}
         />
 
+        {attributes.publicationState === 'draft' ? (
+          <Typography
+            variant="caption"
+            sx={{
+              position: 'sticky',
+              top: 100,
+              left: 'calc(100% - 100px)',
+              backgroundColor: 'error.main',
+              color: 'common.white',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              zIndex: 1,
+              userSelect: 'none',
+            }}
+          >
+            Draft
+          </Typography>
+        ) : null}
+
         <HeroBlogDetails
           title={attributes.title}
           projectTags={attributes.blogTags.data.map(tag => ({

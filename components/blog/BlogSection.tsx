@@ -13,12 +13,30 @@ interface BlogSectionProps {
 
 const BlogSection = ({ data }: BlogSectionProps) => {
   const {
-    attributes: { publishedAt, listImage, blogTags, title, slug },
+    attributes: { publishedAt, listImage, blogTags, title, slug, publicationState },
   } = data;
 
   return (
     <Stack direction="column">
-      <Link href={`/blog/${slug}`} underline="none">
+      <Link href={`/blog/${slug}`} underline="none" position="relative">
+        {publicationState === 'draft' ? (
+          <Typography
+            variant="caption"
+            sx={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              backgroundColor: 'error.main',
+              color: 'common.white',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              zIndex: 1,
+              userSelect: 'none',
+            }}
+          >
+            Draft
+          </Typography>
+        ) : null}
         <ImageWrapperComponent
           data={{
             src: listImage.data[0].attributes.url,

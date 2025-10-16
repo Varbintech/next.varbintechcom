@@ -10,6 +10,7 @@ import type {
   Collection,
   Section,
   HeadingLevel,
+  BlogItemStrapi,
 } from '../../models';
 import type { BlogStaticProps } from '../../utils/api.blog';
 import type { Technology } from '../../models/strapi.model';
@@ -508,7 +509,7 @@ Note: This content uses HTML tags to represent headings and paragraphs.
   },
 };
 
-const blogItem = {
+const blogItem: BlogItemStrapi = {
   id: 1,
   attributes: {
     title: 'Designing design systems that scale',
@@ -517,6 +518,7 @@ const blogItem = {
     slug: 'design-systems-that-scale',
     keywords: 'design systems, SaaS, front-end development',
     publishedAt: '2025-02-16T15:40:22.829Z',
+    createdAt: '2024-01-15T00:00:00.000Z',
     updatedAt: '2024-01-16T00:00:00.000Z',
     technologies: {
       data: technologiesData[0][1],
@@ -553,10 +555,11 @@ const blogItem = {
         },
       },
     },
+    publicationState: 'live',
   },
 };
 
-const secondBlogItem = {
+const secondBlogItem: BlogItemStrapi = {
   ...blogItem,
   id: 2,
   attributes: {
@@ -578,7 +581,7 @@ const secondBlogItem = {
   },
 };
 
-const thirdBlogItem = {
+const thirdBlogItem: BlogItemStrapi = {
   ...blogItem,
   id: 3,
   attributes: {
@@ -586,6 +589,7 @@ const thirdBlogItem = {
     title: 'Building collaborative workflows with design tokens',
     slug: 'design-tokens-workflows',
     publishedAt: 'March 12, 2024',
+    publicationState: 'draft',
   },
 };
 
