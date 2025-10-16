@@ -273,6 +273,7 @@ export interface BlogItem {
     slug: string;
     keywords: string;
     publishedAt: string;
+    createdAt: string;
     updatedAt: string;
     technologies: Technologies;
     heroImage: {
@@ -305,6 +306,7 @@ export interface BlogItem {
     callToAction: {
       data: Collection<CallToAction>;
     };
+    publicationState: 'live' | 'draft';
   };
 }
 
@@ -348,6 +350,7 @@ export interface BlogItemStaticProps {
     callToAction: {
       data: Collection<CallToAction>;
     };
+    publicationState: 'live' | 'draft';
   };
 }
 
