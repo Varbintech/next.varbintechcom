@@ -10,11 +10,13 @@ module.exports = {
   features: {
     postcss: false,
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@next/font/google': require.resolve('./nextFontGoogle'),
-    }
+      'next/head': require.resolve('../node_modules/next/head'),
+      'next/script': require.resolve('../node_modules/next/script'),
+    };
 
     return config;
   },
