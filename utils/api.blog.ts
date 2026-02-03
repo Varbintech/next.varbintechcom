@@ -29,6 +29,8 @@ const blogFields = [
   'sections',
   'callToAction',
   'technologies',
+  'quote',
+  'readMoreBlogPosts',
 ];
 
 const populateBlog = generatePopulate(blogFields);
@@ -113,7 +115,19 @@ export const getStaticPropsIndex: GetStaticProps<BlogStaticProps> = async () => 
 export const getStaticPropsBlogId: GetStaticProps<BlogIdStaticProps> = async ({ params: p }) => {
   const publicationState = process.env.NODE_ENV === 'production' ? 'live' : 'preview';
   const params = {
-    populate: populateBlog,
+    populate: {
+      ...populateBlog,
+      readMoreBlogPosts: {
+        populate: {
+          blogs: {
+            populate: {
+              heroImage: '*',
+              blogTags: '*',
+            },
+          },
+        },
+      },
+    },
     publicationState,
     filters: {
       slug: {

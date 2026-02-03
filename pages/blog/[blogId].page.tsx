@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 
 import { Settings } from '../../constants/settings';
 
+import { convertStrapiQuoteToFeedback } from '../../components/common/feedback/Feedback';
+
 import HeroBlogDetails from '../../components/hero/HeroBlogDetails';
 import ImagesColumn from '../../components/common/images-column/ImagesColumn';
 import TableOfContent from '../../components/common/table-of-content/TableOfContent';
@@ -32,6 +34,8 @@ import {
 } from '../../components/common/typography/Markdown';
 import ButtonCopyHref from '../../components/common/typography/ButtonCopyHref';
 
+import { Image as ImageBlogNew, ImageContainer } from '../../components/blog/Image';
+
 import ChipTech, { ChipTechIcon } from '../../components/common/chip/ChipTech';
 import ChipTechGroup from '../../components/common/chip/ChipTechGroup';
 import JsonLdWebPage from '../../components/json-ld/WebPage';
@@ -48,6 +52,15 @@ const CallToActionDynamic = dynamic(
     loading: () => <p>Loading...</p>,
   },
 );
+
+const FeedbackDynamic = dynamic(() => import('../../components/common/feedback/Feedback'));
+const FeedbackContainer2Dynamic = dynamic(() =>
+  import('../../components/common/feedback/Feedback').then(mod => mod.FeedbackContainer2),
+);
+
+const RelatedBlogPostsDynamic = dynamic(() => import('../../components/blog/RelatedBlogPosts'), {
+  loading: () => <p>Loading...</p>,
+});
 
 import {
   getStaticPropsBlogId,
@@ -143,7 +156,7 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
           slug={`${baseUrl}/blog/${attributes.slug}`}
         />
 
-        <Container maxWidth="lg" sx={{ marginTop: { xs: 4, md: 8 }, marginBottom: { md: 8 } }}>
+        <Container maxWidth="lg" sx={{ marginTop: { xs: 4, md: 8 }, marginBottom: { md: 0 } }}>
           <Grid container spacing={'30px'} columns={12}>
             <Grid container item direction="column" md={3} display={{ xs: 'none', md: 'flex' }}>
               <TableOfContent
@@ -172,6 +185,19 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                   scrollMarginTop: index === 0 ? '502px' : '202px',
                   marginTop: '1.5rem !important',
                 };
+
+                if (sectionAttr.showFeedback) {
+                  return (
+                    <Stack direction="column" key={`with-feedback-${sectionId}-${index}`}>
+                      <FeedbackContainer2Dynamic isBlogPage>
+                        <FeedbackDynamic
+                          {...convertStrapiQuoteToFeedback(attributes.quote.data)}
+                          isBlogPage
+                        />
+                      </FeedbackContainer2Dynamic>
+                    </Stack>
+                  );
+                }
 
                 if (sectionAttr.showTechStack) {
                   return (
@@ -487,21 +513,32 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                                     child => child.type === 'img',
                                   );
                                   const projectsImages: Array<ProjectImage> = imgs.map(
-                                    ({ props }: ReactElement) => ({
-                                      src: props.src,
-                                      alt: props.alt,
-                                      width: props.width,
-                                      height: props.height,
-                                      name: props.name,
-                                    }),
+                                    ({ props }: ReactElement) => {
+                                      const { src, alt, width, height } = props;
+
+                                      return {
+                                        src,
+                                        alt,
+                                        width,
+                                        height,
+                                        name: src.split('/').pop() || '',
+                                      };
+                                    },
                                   );
 
                                   return (
-                                    <div>
-                                      <ImagesColumn
-                                        data={{ label: 'IMAGE', imageSection: projectsImages }}
+                                    <ImageContainer>
+                                      <ImageBlogNew
+                                        width="960"
+                                        height="600"
+                                        src={projectsImages[0].src}
+                                        sizes="(max-width: 640px) 100vw,
+                                          (max-width: 1280px) 50vw,
+                                          (max-width: 1536px) 33vw,
+                                          25vw"
+                                        alt={projectsImages[0].alt || 'Blog image'}
                                       />
-                                    </div>
+                                    </ImageContainer>
                                   );
                                 }
 
@@ -519,9 +556,18 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                                   };
 
                                   return (
-                                    <ImagesColumn
-                                      data={{ label: 'IMAGE', imageSection: [projectsImage] }}
-                                    />
+                                    <ImageContainer>
+                                      <ImageBlogNew
+                                        width="960"
+                                        height="600"
+                                        src={projectsImage.src}
+                                        sizes="(max-width: 640px) 100vw,
+                                          (max-width: 1280px) 50vw,
+                                          (max-width: 1536px) 33vw,
+                                          25vw"
+                                        alt={projectsImage.alt || 'Blog image'}
+                                      />
+                                    </ImageContainer>
                                   );
                                 }
 
@@ -567,14 +613,22 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                 );
               })}
             </Grid>
-
-            {attributes.callToAction.data ? (
-              <CallToActionDynamic {...attributes.callToAction.data.attributes} />
-            ) : null}
           </Grid>
         </Container>
 
-        {/* <RelatedPosts data={blogData} /> */}
+        {attributes.callToAction.data ? (
+          <CallToActionDynamic {...attributes.callToAction.data.attributes} />
+        ) : null}
+
+        {attributes.readMoreBlogPosts?.blogs.data.length > 0 ? (
+          <RelatedBlogPostsDynamic
+            data={attributes.readMoreBlogPosts.blogs.data}
+            intro={attributes.readMoreBlogPosts.intro}
+            description={attributes.readMoreBlogPosts.description}
+            buttonText={attributes.readMoreBlogPosts.buttonText}
+            buttonLink={attributes.readMoreBlogPosts.buttonLink}
+          />
+        ) : null}
       </>
     );
   }

@@ -27,7 +27,9 @@ const CallToActionComponent = (props: CallToAction) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="subtitle1">{title}</Typography>
+        <Typography variant="subtitle1" textAlign="center">
+          {title}
+        </Typography>
 
         <Button
           size="large"

@@ -556,6 +556,19 @@ const blogItem: BlogItemStrapi = {
       },
     },
     publicationState: 'live',
+    quote: {
+      data: quotesData.data[0],
+    },
+    readMoreBlogPosts: {
+      id: 1,
+      intro: 'Read more blog posts',
+      description: 'Explore additional articles on software development and design.',
+      buttonLink: '/blog',
+      buttonText: 'Browse blog',
+      blogs: {
+        data: [],
+      },
+    },
   },
 };
 

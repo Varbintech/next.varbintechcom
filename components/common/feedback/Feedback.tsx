@@ -20,10 +20,13 @@ import {
   LinkContainer,
 } from './styled-components';
 
-type FeedbackProps = ProjectFeedback;
+interface FeedbackProps extends ProjectFeedback {
+  isBlogPage?: boolean;
+}
 
 interface FeedbackContainer2Props {
   children: ReactNode;
+  isBlogPage?: boolean;
 }
 
 type QuotesData = {
@@ -48,17 +51,30 @@ export const convertStrapiQuoteToFeedback = ({ attributes }: QuotesData): Projec
   companyLinkHref: attributes.companyLink,
 });
 
-export const FeedbackContainer2 = ({ children }: FeedbackContainer2Props) => (
-  <FeedbackContainer2Styled>{children}</FeedbackContainer2Styled>
+export const FeedbackContainer2 = ({ children, isBlogPage }: FeedbackContainer2Props) => (
+  <FeedbackContainer2Styled isBlogPage={isBlogPage}>{children}</FeedbackContainer2Styled>
 );
 
 const Feedback = (props: FeedbackProps) => {
-  const { text, name, image, company, linkedInLink, companyName, companyLinkHref, websiteLink } =
-    props;
+  const {
+    text,
+    name,
+    image,
+    company,
+    linkedInLink,
+    companyName,
+    companyLinkHref,
+    websiteLink,
+    isBlogPage,
+  } = props;
 
   return (
     <FeedbackContainer>
-      <QuoterTypography variant="body1" sx={{ fontSize: { xs: '16px', md: '20px' } }}>
+      <QuoterTypography
+        variant="body1"
+        isBlogPage={isBlogPage}
+        sx={{ fontSize: { xs: '16px', md: '20px' } }}
+      >
         <QuoteIconLeft />
         {text}
         <QuoteIconRight />

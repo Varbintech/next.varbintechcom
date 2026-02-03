@@ -5,6 +5,10 @@ import Link from '@mui/material/Link';
 
 import QuoteIcon from '../icon-quote/QuoteIcon';
 
+interface QuoterTypographyProps {
+  isBlogPage?: boolean;
+}
+
 export const FeedbackContainer = styled('div')(({ theme }) => ({
   padding: '42px 0 0',
   borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
@@ -14,25 +18,29 @@ export const FeedbackContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-export const FeedbackContainer2 = styled('div')(({ theme }) => ({
-  margin: '0 0 42px',
+export const FeedbackContainer2 = styled('div', {
+  shouldForwardProp: prop => prop !== 'isBlogPage',
+})<QuoterTypographyProps>(({ isBlogPage, theme }) => ({
+  margin: isBlogPage ? '0 0 24px' : '0 0 42px',
   padding: '0 0 42px',
   borderBottom: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
 
   [theme.breakpoints.up('lg')]: {
-    margin: '0 0 72px',
+    margin: isBlogPage ? '0 0 24px' : '0 0 72px',
     padding: '0 0 72px',
     backgroundColor: theme.palette.primary.light,
   },
 }));
 
-export const QuoterTypography = styled(Typography)`
-  position: relative;
-  margin: 0 auto 35px;
-  padding: 0 20px;
-  max-width: 870px;
-  text-align: center;
-`;
+export const QuoterTypography = styled(Typography, {
+  shouldForwardProp: prop => prop !== 'isBlogPage',
+})<QuoterTypographyProps>(({ isBlogPage }) => ({
+  position: 'relative',
+  margin: '0 auto 35px',
+  padding: '0 20px',
+  maxWidth: isBlogPage ? '670px' : '870px',
+  textAlign: 'center',
+}));
 
 export const QuoteIconLeft = styled(QuoteIcon)`
   position: absolute;
