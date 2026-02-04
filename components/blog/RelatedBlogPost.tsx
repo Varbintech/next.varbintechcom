@@ -7,11 +7,11 @@ import type { BlogItemStrapi } from '../../models';
 import Link from '../common/link/Link';
 import ImageWrapperComponent from '../common/image-wrapper/ImageWrapper';
 
-interface RelatedCaseStudyProps {
+interface RelatedBlogPostProps {
   data: BlogItemStrapi;
 }
 
-const RelatedBlogPost = ({ data }: RelatedCaseStudyProps) => {
+const RelatedBlogPost = ({ data }: RelatedBlogPostProps) => {
   const {
     attributes: { publishedAt, heroImage, blogTags, title, slug },
   } = data;
