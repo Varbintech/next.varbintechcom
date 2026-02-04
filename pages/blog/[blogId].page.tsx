@@ -558,8 +558,8 @@ const BlogDetailPage = (props: BlogIdStaticProps) => {
                                   return (
                                     <ImageContainer>
                                       <ImageBlogNew
-                                        width="960"
-                                        height="600"
+                                        width={960}
+                                        height={600}
                                         src={projectsImage.src}
                                         sizes="(max-width: 640px) 100vw,
                                           (max-width: 1280px) 50vw,
