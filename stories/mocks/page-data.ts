@@ -509,6 +509,69 @@ Note: This content uses HTML tags to represent headings and paragraphs.
   },
 };
 
+const __blogItem0: BlogItemStrapi = {
+  id: 1,
+  attributes: {
+    title: 'Designing design systems that scale',
+    descriptionSEO:
+      'Practical lessons on building design systems for rapidly growing SaaS platforms.',
+    slug: 'design-systems-that-scale',
+    keywords: 'design systems, SaaS, front-end development',
+    publishedAt: '2025-02-16T15:40:22.829Z',
+    createdAt: '2024-01-15T00:00:00.000Z',
+    updatedAt: '2024-01-16T00:00:00.000Z',
+    technologies: {
+      data: technologiesData[0][1],
+    },
+    heroImage: {
+      data: [blogHeroImage],
+    },
+    tocImage: {
+      data: blogHeroImage,
+    },
+    listImage: {
+      data: [blogListImage],
+    },
+    metaImage: {
+      data: blogHeroImage,
+    },
+    blogTags: {
+      data: [blogTag],
+    },
+    blogAuthors: {
+      data: [blogAuthor],
+    },
+    sections: {
+      data: [blogSection],
+    },
+    callToAction: {
+      data: {
+        id: 1,
+        attributes: {
+          title: 'Let’s talk about your project',
+          action: '/contact',
+          actionText: 'Start a conversation',
+          actionId: 'blog-contact',
+        },
+      },
+    },
+    publicationState: 'live',
+    quote: {
+      data: quotesData.data[0],
+    },
+    readMoreBlogPosts: {
+      id: 1,
+      intro: 'Read more blog posts',
+      description: 'Explore additional articles on software development and design.',
+      buttonLink: '/blog',
+      buttonText: 'Browse blog',
+      blogs: {
+        data: [],
+      },
+    },
+  },
+};
+
 const blogItem: BlogItemStrapi = {
   id: 1,
   attributes: {
@@ -556,6 +619,19 @@ const blogItem: BlogItemStrapi = {
       },
     },
     publicationState: 'live',
+    quote: {
+      data: quotesData.data[0],
+    },
+    readMoreBlogPosts: {
+      id: 1,
+      intro: 'Read more blog posts',
+      description: 'Explore additional articles on software development and design.',
+      buttonLink: '/blog',
+      buttonText: 'Browse blog',
+      blogs: {
+        data: [__blogItem0],
+      },
+    },
   },
 };
 

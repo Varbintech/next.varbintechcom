@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 
 import type { ProjectResultInfo } from '../../../models';
 
-/* import Feedback from '../feedback/Feedback'; */
 import { PageContainer } from './styled-components';
 
 interface ResultProps {

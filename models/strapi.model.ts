@@ -252,16 +252,27 @@ export interface CaseStudy {
     client: {
       data: Collection<Client>;
     };
-    readMoreCaseStudies: {
-      id: number;
-      intro: string;
-      description: string;
-      buttonLink: string;
-      buttonText: string;
-      caseStudies: {
-        data: Array<Omit<CaseStudy, 'attributes.readMoreCaseStudies'>>;
-      };
-    };
+    readMoreCaseStudies: ReadMoreCaseStudies;
+  };
+}
+
+export interface ReadMorePosts {
+  id: number;
+  intro: string;
+  description: string;
+  buttonLink: string;
+  buttonText: string;
+}
+
+interface ReadMoreBlogPosts extends ReadMorePosts {
+  blogs: {
+    data: Array<Omit<BlogItem, 'attributes.readMoreBlogPosts'>>;
+  };
+}
+
+interface ReadMoreCaseStudies extends ReadMorePosts {
+  caseStudies: {
+    data: Array<Omit<CaseStudy, 'attributes.readMoreCaseStudies'>>;
   };
 }
 
@@ -307,6 +318,10 @@ export interface BlogItem {
       data: Collection<CallToAction>;
     };
     publicationState: 'live' | 'draft';
+    quote: {
+      data: Collection<Quote>;
+    };
+    readMoreBlogPosts: ReadMoreBlogPosts;
   };
 }
 
@@ -351,6 +366,10 @@ export interface BlogItemStaticProps {
       data: Collection<CallToAction>;
     };
     publicationState: 'live' | 'draft';
+    quote: {
+      data: Collection<Quote>;
+    };
+    readMoreBlogPosts: ReadMoreBlogPosts;
   };
 }
 
@@ -393,16 +412,7 @@ interface CaseStudyAttributesCommon {
   client: {
     data: Collection<Client>;
   };
-  readMoreCaseStudies: {
-    id: number;
-    intro: string;
-    description: string;
-    buttonLink: string;
-    buttonText: string;
-    caseStudies: {
-      data: Array<Omit<CaseStudy, 'attributes.readMoreCaseStudies'>>;
-    };
-  };
+  readMoreCaseStudies: ReadMoreCaseStudies;
   services: string;
   keywords: string;
 }

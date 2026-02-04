@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import type { ProjectImage } from '../../../models';
 
 import { ImageContainer } from './styled-components';
@@ -24,23 +26,12 @@ const ImageWrapperComponent = (props: ImageWrapperComponentProps) => {
   const widthHeightProps =
     data.width && data.height ? { width: data.width, height: data.height } : {};
 
-  const src =
-    data.sizes && data.srcSet
-      ? {
-          src: data.src,
-          srcSet: data.srcSet,
-        }
-      : {
-          src: data.src,
-        };
-
   return (
     <ImageContainer
       className={`${small} ${medium} ${mediumColumn} ${mediumAloneColumn} ${largeBorder}`}
     >
       <span className="inner-wrapper">
-        {/* eslint-disable @next/next/no-img-element */}
-        <img loading="lazy" alt={data.alt || data.name} {...src} {...widthHeightProps} />
+        <Image alt={data.alt || data.name} src={data.src} {...widthHeightProps} />
       </span>
     </ImageContainer>
   );

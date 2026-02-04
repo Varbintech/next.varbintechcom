@@ -48,4 +48,5 @@ export type {
   BlogItemStaticProps,
   MetaImage,
   HeadingLevel,
+  ReadMorePosts,
 } from './strapi.model';
